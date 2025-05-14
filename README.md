@@ -123,7 +123,7 @@ Sua missão é atravessar cinco regiões dominadas pelo mal, enfrentando inimigo
 
 ## 📌 Observações
 - O jogo deve rodar no console do Portugol Studio
-- O projeto pode ser feito em grupo ou individual
+- O projeto pode ser feito individualmente
 - Criatividade e organização serão valorizadas
 
 ---
@@ -144,5 +144,4 @@ Sua missão é atravessar cinco regiões dominadas pelo mal, enfrentando inimigo
 - Manter um histórico claro de commits mostrando o progresso do projeto
 - Incluir:
   - Código fonte em um PR neste repositório
-  - README.md com descrição do projeto
-  - Pasta de documentação
+  - README.md com a documentação do projeto sem estar no código
