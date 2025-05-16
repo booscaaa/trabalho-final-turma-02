@@ -1,0 +1,46 @@
+name: Verificação de Plágio
+
+on:
+  push:
+    branches:
+      - '**' 
+
+jobs:
+  plagiarism-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repositório
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Instalar Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Baixar jPlag
+        run: |
+          wget https://github.com/jplag/jplag/releases/latest/download/jplag-2.11.9-SNAPSHOT-jar-with-dependencies.jar -O jplag.jar
+
+      - name: Extrair arquivos de cada branch
+        run: |
+          mkdir submissions
+          for BRANCH in $(git branch -r | grep -v HEAD); do
+            STUDENT=$(echo "$BRANCH" | sed 's/origin\///')
+            mkdir -p "submissions/$STUDENT"
+            git checkout "$BRANCH"
+            cp -r ./caminho/do/codigo/*.py "submissions/$STUDENT/" 2>/dev/null || true
+          done
+
+      - name: Rodar jPlag
+        run: |
+          java -jar jplag.jar -l python3 -s ./submissions -r ./report
+
+      - name: Upload do Relatório
+        uses: actions/upload-artifact@v3
+        with:
+          name: relatorio-plagio
+          path: report/
