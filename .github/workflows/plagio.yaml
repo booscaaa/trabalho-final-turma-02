@@ -42,7 +42,7 @@ jobs:
 
       - name: Rodar jPlag
         run: |
-          java -jar jplag.jar -l plain_text -s ./submissions -r ./report
+          java -jar jplag.jar -l text -s ./submissions -r ./report
 
       - name: Upload do Relatório
         uses: actions/upload-artifact@v4
