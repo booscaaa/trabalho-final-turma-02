@@ -23,7 +23,7 @@ jobs:
 
       - name: Baixar jPlag
         run: |
-          wget https://github.com/jplag/jplag/releases/latest/download/jplag-2.11.9-SNAPSHOT-jar-with-dependencies.jar -O jplag.jar
+          wget https://github.com/jplag/jplag/releases/download/v6.1.0/jplag-6.1.0-jar-with-dependencies.jar -O jplag.jar
 
       - name: Extrair arquivos de cada branch
         run: |
