@@ -18,11 +18,39 @@ programa {
     escolha (opcao) {
 
     caso 1:
+    escreva("=================================================================\n")
     escreva("Por favor campeão , coloque aqui o nome do seu campeão...\n") 
     leia(nomedocampeao)
-    escreva("Seja muito bem vindo ao reino de Eldoria " ,nomedocampeao, "\n") 
-    escreva("Sua aventura no reino de Eldoria comecará em breve os justos terão demasiadas glórias\n")
-    escreva("Desejamos um ótima jornada, que os deuses te iluminem!! ",nomedocampeao,"\n")
+    escreva("Seja muito bem vindo ao reino de Eldoria " ,nomedocampeao, "\n")
+    escreva("==================================================================\n")
+
+    escreva("Por favor campeão, escolha a especializacao na qual você pretende jogar:\n")
+
+    escreva("1=GUERREIRO-Classe lutadora com atributos focados principalmente em resistencia e vida ,--POUCO DANO \n")
+
+    escreva("2=ARCANISTA-Uma classe poderosa com dano base alto e canalizacao da magia em tempo mediano,--POUCA VIDA \n")
+
+    escreva("3=ARQUEIRO-Classe rápida,de alta agilidade possuindo diversos ataques ágeis com as flechas poderosas,--VIDA BAIXA E DANO MEDIANO \n ")
+
+    escreva("4=CAVALEIRO DAS TREVAS-Ataques potentes porém deixa a magia negra consumir parte de sua vida dessa forma reduzindo os atributos,--POUCA VIDA E VELOCIDADE REDUZIDA \n")
+
+
+    inteiro especializacaodeclasse
+
+    leia (especializacaodeclasse)
+
+    inteiro danodaespecializacao,vidadaespecializacao,agilizadedaespecializacao
+
+    escolha(especializacaodeclasse){
+
+    caso 1:
+    danodaespecializacao = 13
+    vidadaespecializacao = 60
+    agilizadedaespecializacao = 37
+    escreva("Você escolheu a classe guerreiro, seja bem vindo ao reino de Eldoria")
+    pare 
+    }
+
     pare
 
 
