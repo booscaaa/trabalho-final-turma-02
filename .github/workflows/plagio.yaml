@@ -32,7 +32,7 @@ jobs:
             STUDENT=$(echo "$BRANCH" | sed 's/origin\///')
             mkdir -p "submissions/$STUDENT"
             git checkout "$BRANCH"
-            cp -r ./caminho/do/codigo/*.py "submissions/$STUDENT/" 2>/dev/null || true
+            cp -r ./jogo.por "submissions/$STUDENT/" 2>/dev/null || true
           done
 
       - name: Rodar jPlag
