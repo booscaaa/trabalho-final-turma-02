@@ -34,16 +34,14 @@ jobs:
             fi
           done
   
-  
-  
+
+      - name: Instalar matplotlib e pandas
+        run: pip install matplotlib pandas seaborn
 
       - name: Comparar arquivos com Python
         run: |
           ls submissions
           python3 compare.py
-
-      - name: Instalar matplotlib e pandas
-        run: pip install matplotlib pandas seaborn
 
       - name: Gerar gráfico de similaridade
         run: python3 grafico.py
