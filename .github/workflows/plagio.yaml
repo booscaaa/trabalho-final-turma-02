@@ -1,19 +1,19 @@
-name: Verificação de Plágio
+name: Verificação de Plágio com jPlag
 
 on:
   push:
     branches:
-      - '**' 
+      - '**'  # Dispara em qualquer branch
 
 jobs:
   plagiarism-check:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repositório
+      - name: Checkout completo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # Necessário para acessar todas as branches
 
       - name: Instalar Java 21
         uses: actions/setup-java@v3
@@ -25,22 +25,27 @@ jobs:
         run: |
           wget https://github.com/jplag/jplag/releases/download/v6.1.0/jplag-6.1.0-jar-with-dependencies.jar -O jplag.jar
 
-      - name: Extrair arquivos de cada branch
+      - name: Extrair jogo.por de todas as branches
         run: |
-          mkdir submissions
+          mkdir -p submissions
+
           for BRANCH in $(git branch -r | grep -v HEAD); do
             STUDENT=$(echo "$BRANCH" | sed 's/origin\///')
             mkdir -p "submissions/$STUDENT"
-            git checkout "$BRANCH"
-            cp -r ./jogo.por "submissions/$STUDENT/" 2>/dev/null || true
+
+            git checkout "$BRANCH" || continue
+
+            if [ -f "jogo.por" ]; then
+              cp "jogo.por" "submissions/$STUDENT/"
+            fi
           done
 
       - name: Rodar jPlag
         run: |
-          java -jar jplag.jar -l python3 -s ./submissions -r ./report
+          java -jar jplag.jar -l plain_text -s ./submissions -r ./report
 
       - name: Upload do Relatório
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: relatorio-plagio
           path: report/
