@@ -36,7 +36,7 @@ jobs:
 
       - name: Comparar arquivos com Python
         run: |
-          python3 ./compare.py
+          python3 compare.py
 
       - name: Upload do Relatório
         uses: actions/upload-artifact@v4
