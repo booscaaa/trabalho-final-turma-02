@@ -39,7 +39,6 @@ jobs:
       - name: Comparar arquivos com Python
         run: |
           ls submissions
-          ls submissions/*
           python3 compare.py
           cat similaridade.md
 
