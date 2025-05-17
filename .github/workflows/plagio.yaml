@@ -20,23 +20,23 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Preparar arquivos de cada branch
+      - name: Preparar arquivos de cada branch com git worktree
         run: |
           mkdir -p submissions
+          mkdir -p branches
 
           for BRANCH in $(git branch -r | grep -v HEAD); do
-            STUDENT=$(echo "$BRANCH" | sed 's/origin\///')
-            git checkout "$BRANCH" || continue
-
-            if [ -f "jogo.por" ]; then
-              mkdir -p "submissions/$STUDENT"
-              cp "jogo.por" "submissions/$STUDENT/jogo.por"
+            NAME=$(echo "$BRANCH" | sed 's|origin/||')
+            git worktree add "branches/$NAME" "$NAME"
+            if [ -f "branches/$NAME/jogo.por" ]; then
+              mkdir -p "submissions/$NAME"
+              cp "branches/$NAME/jogo.por" "submissions/$NAME/jogo.por"
             fi
           done
+  
 
       - name: Comparar arquivos com Python
         run: |
-          ls
           python3 compare.py
 
       - name: Upload do Relatório
