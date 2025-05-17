@@ -33,21 +33,19 @@ jobs:
               cp "temp_$BRANCH/jogo.por" "submissions/$BRANCH/jogo.por"
             fi
           done
-  
 
-      - name: Instalar matplotlib e pandas
-        run: pip install matplotlib pandas seaborn
-
-      - name: Comparar arquivos com Python
-        run: |
-          ls submissions
-          python3 compare.py
-
-      - name: Gerar gráfico de similaridade
+      - name: Instalar dependências
+        run: pip install pandas matplotlib seaborn
+      
+      - name: Rodar análise de similaridade
+        run: python3 compare.py
+      
+      - name: Gerar gráfico
         run: python3 grafico.py
-
-      - name: Upload do gráfico
+      
+      - name: Upload dos relatórios e gráficos
         uses: actions/upload-artifact@v4
         with:
-          name: grafico-similaridade
-          path: similaridade.png
+          name: relatorios-completos
+          path: relatorios/
+        
