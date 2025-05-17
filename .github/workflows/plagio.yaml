@@ -26,13 +26,14 @@ jobs:
 
           for BRANCH in $(git ls-remote --heads origin | awk '{print $2}' | sed 's|refs/heads/||'); do
             echo "Clonando $BRANCH..."
-            git clone --branch "$BRANCH" --depth 1 . "temp_$BRANCH" || continue
+            git clone --branch "$BRANCH" --depth 1 https://github.com/${{ github.repository }} "temp_$BRANCH" || continue
 
             if [ -f "temp_$BRANCH/jogo.por" ]; then
               mkdir -p "submissions/$BRANCH"
               cp "temp_$BRANCH/jogo.por" "submissions/$BRANCH/jogo.por"
             fi
           done
+  
   
   
 
