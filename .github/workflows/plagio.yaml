@@ -39,6 +39,9 @@ jobs:
 
       - name: Gerar relatórios de commits
         run: python3 commits.py
+
+      - name: Gerar gráfico de commits por aluno
+        run: python3 commits_por_branch.py
       
       - name: Rodar análise de similaridade
         run: python3 compare.py
