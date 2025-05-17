@@ -45,7 +45,7 @@ jobs:
           java -jar jplag.jar -l plain_text -s ./submissions -r ./report
 
       - name: Upload do Relatório
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: relatorio-plagio
           path: report/
