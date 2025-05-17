@@ -48,3 +48,15 @@ jobs:
         with:
           name: relatorio-similaridade
           path: similaridade.md
+
+      - name: Instalar matplotlib e pandas
+        run: pip install matplotlib pandas seaborn
+
+      - name: Gerar gráfico de similaridade
+        run: python3 grafico.py
+
+      - name: Upload do gráfico
+        uses: actions/upload-artifact@v4
+        with:
+          name: grafico-similaridade
+          path: similaridade.png
