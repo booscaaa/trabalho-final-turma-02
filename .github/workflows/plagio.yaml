@@ -1,48 +1,42 @@
-name: Verificação de Plágio com jPlag
+name: Verificação de Plágio
 
 on:
   push:
     branches:
-      - '**'  # Dispara em qualquer branch
+      - '**'
 
 jobs:
-  plagiarism-check:
+  detectar-plagio:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout completo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Necessário para acessar todas as branches
+          fetch-depth: 0
 
-      - name: Instalar Java 21
-        uses: actions/setup-java@v3
+      - name: Instalar Python
+        uses: actions/setup-python@v4
         with:
-          distribution: 'temurin'
-          java-version: '21'
+          python-version: '3.11'
 
-      - name: Baixar jPlag
-        run: |
-          wget https://github.com/jplag/jplag/releases/download/v6.1.0/jplag-6.1.0-jar-with-dependencies.jar -O jplag.jar
-
-      - name: Extrair jogo.por de todas as branches
+      - name: Preparar arquivos de cada branch
         run: |
           mkdir -p submissions
 
           for BRANCH in $(git branch -r | grep -v HEAD); do
             STUDENT=$(echo "$BRANCH" | sed 's/origin\///')
-            mkdir -p "submissions/$STUDENT"
-
             git checkout "$BRANCH" || continue
 
             if [ -f "jogo.por" ]; then
-              cp "jogo.por" "submissions/$STUDENT/"
+              mkdir -p "submissions/$STUDENT"
+              cp "jogo.por" "submissions/$STUDENT/jogo.por"
             fi
           done
 
-      - name: Rodar jPlag
+      - name: Comparar arquivos com Python
         run: |
-          java -jar jplag.jar -l text -s ./submissions -r ./report --no-server
+          python3 compare.py
 
       - name: Upload do Relatório
         uses: actions/upload-artifact@v4
