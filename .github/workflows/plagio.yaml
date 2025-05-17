@@ -36,6 +36,7 @@ jobs:
 
       - name: Comparar arquivos com Python
         run: |
+          ls
           python3 compare.py
 
       - name: Upload do Relatório
