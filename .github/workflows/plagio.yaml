@@ -41,13 +41,6 @@ jobs:
         run: |
           ls submissions
           python3 compare.py
-          cat similaridade.md
-
-      - name: Upload do Relatório
-        uses: actions/upload-artifact@v4
-        with:
-          name: relatorio-similaridade
-          path: similaridade.md
 
       - name: Instalar matplotlib e pandas
         run: pip install matplotlib pandas seaborn

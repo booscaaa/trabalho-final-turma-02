@@ -1,34 +1,24 @@
+import pandas as pd
+from itertools import combinations
 import os
 import difflib
-from itertools import combinations
 
-def read_file(path):
-    with open(path, encoding='utf-8', errors='ignore') as f:
-        return f.read()
-
+# Carrega os dados
 submissions = {}
 base_dir = "submissions"
 
-# Carrega todos os arquivos
 for aluno in os.listdir(base_dir):
     path = os.path.join(base_dir, aluno, "jogo.por")
     if os.path.exists(path):
-        submissions[aluno] = read_file(path)
+        with open(path, encoding="utf-8", errors="ignore") as f:
+            submissions[aluno] = f.read()
 
-# Compara todos os pares
-relatorio = []
+# Compara os pares
+resultados = []
 for (a1, t1), (a2, t2) in combinations(submissions.items(), 2):
     ratio = difflib.SequenceMatcher(None, t1, t2).ratio()
-    relatorio.append((a1, a2, round(ratio * 100, 2)))
+    resultados.append((a1, a2, round(ratio * 100, 2)))
 
-# Ordena por maior similaridade
-relatorio.sort(key=lambda x: x[2], reverse=True)
-
-# Gera arquivo Markdown
-with open("similaridade.md", "w") as f:
-    f.write("| Aluno 1 | Aluno 2 | Similaridade (%) |\n")
-    f.write("|---------|---------|------------------|\n")
-    for a1, a2, score in relatorio:
-        f.write(f"| {a1} | {a2} | {score} |\n")
-
-print("Relatório gerado: similaridade.md")
+# Salva em CSV para o gráfico
+df = pd.DataFrame(resultados, columns=["Aluno 1", "Aluno 2", "Similaridade (%)"])
+df.to_csv("similaridade.csv", index=False)
