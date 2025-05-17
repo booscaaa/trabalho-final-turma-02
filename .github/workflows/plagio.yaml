@@ -20,19 +20,20 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Preparar arquivos de cada branch com git worktree
+      - name: Preparar arquivos de cada branch (checkout por pasta)
         run: |
           mkdir -p submissions
-          mkdir -p branches
 
-          for BRANCH in $(git branch -r | grep -v HEAD); do
-            NAME=$(echo "$BRANCH" | sed 's|origin/||')
-            git worktree add "branches/$NAME" "$NAME"
-            if [ -f "branches/$NAME/jogo.por" ]; then
-              mkdir -p "submissions/$NAME"
-              cp "branches/$NAME/jogo.por" "submissions/$NAME/jogo.por"
+          for BRANCH in $(git ls-remote --heads origin | awk '{print $2}' | sed 's|refs/heads/||'); do
+            echo "Clonando $BRANCH..."
+            git clone --branch "$BRANCH" --depth 1 . "temp_$BRANCH" || continue
+
+            if [ -f "temp_$BRANCH/jogo.por" ]; then
+              mkdir -p "submissions/$BRANCH"
+              cp "temp_$BRANCH/jogo.por" "submissions/$BRANCH/jogo.por"
             fi
           done
+  
   
 
       - name: Comparar arquivos com Python
