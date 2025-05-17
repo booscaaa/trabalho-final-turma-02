@@ -39,9 +39,10 @@ jobs:
       - name: Comparar arquivos com Python
         run: |
           python3 compare.py
+          cat similaridade.md
 
       - name: Upload do Relatório
         uses: actions/upload-artifact@v4
         with:
-          name: relatorio-plagio
-          path: report/
+          name: relatorio-similaridade
+          path: similaridade.md
