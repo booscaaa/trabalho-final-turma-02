@@ -1,6 +1,9 @@
 programa {
   inclua biblioteca Util
   funcao inicio() {
+    inteiro xp = 0
+    inteiro niveldocampeao = 1
+    inteiro xpparasubirdenivel = 100
     inteiro opcao
     inteiro opcaodecontinuarcomojogo
     cadeia nomedocampeao
@@ -176,6 +179,62 @@ programa {
     Util.aguarde(250)
     escreva("        MM                            ..                                --                        MM                                        \n")
     Util.aguarde(250)
+    
+    escreva("\n\n\n\n")
+
+    escreva("-Era uma vez , uma terra próspera e linda chamada Eldoria \n")
+    Util.aguarde(250)
+    escreva("-Podia-se ver em seus céus a beleza de toda aquela terra abencoada pelos deuses...\n")
+    Util.aguarde(250)
+    escreva("-No topo da colina podia-se ver um castelo brilhante , popularmente chamado de castelo dourado\n")
+    Util.aguarde(250)
+    escreva("-Lá dentro possuia uma pedra dourada chamada de pedra da luz, a mesma pedra que mantinha a paz em toda Eldoria.\n")
+    Util.aguarde(250)
+    escreva("\n\n\n\n")
+    escreva("-Um belo dia , os céus se escureceram e uma névoa acompanhada de um meteoro com uma mágia negra cobriram o dia ensolarado de Eldoria\n")
+    Util.aguarde(250)
+    escreva("-No momento que chegou ao chão , a linda terra chamada de Eldoria mergulha-rá em um caos negro jamais visto\n")
+    Util.aguarde(250)
+    escreva("-A terra que antes fora verde está negra , e a terra fértil já não era mais a mesma\n")
+    Util.aguarde(250)
+    escreva("-O monstro tinha uma aparencia sombria , intitulado por muitas religiões como o devastador,possuia tentáculos e uma aparência que causa medo até no mais bravo dos guerreiros!\n")
+    Util.aguarde(250)
+    escreva("-No momento que esse montro chegou ao castelo onde mantinha-se a pedra sagrada protegida foi tentado atacá-lo mas os guardar não tiveram êxito...\n")
+    Util.aguarde(250)
+    escreva("-O devastador tomou conta do castelo , transformando-o em um covil amedrontador e espalhou seus lacaios para todas as terras de Eldoria...\n")
+    Util.aguarde(250)
+    escreva("-A floresta da névoa que já foi um lindo lugar como mostra no desenho acima, agora era fria e comandada pelo temível Xavius, demonio com uma sede de sangue indomável...\n")
+    Util.aguarde(250)
+    escreva("-A vila abandonada onde possuia pessoas felizes , apenas restava almas ecoantes . Comandada por um de seus melhores lacaios, GulDhan, bruxo sombrio e um dos generais do devastador\n")
+    Util.aguarde(250)
+    escreva("-A caverna sombria agora era habitada por Ragnaros o senhor do fogo, emergiu a partir dos grandes terremotos e da energia má do devastador...\n")
+    Util.aguarde(250)
+    escreva("-O pântano dos lamentos , uma região que guardava diversas armadilhas e um terreno sombrio , era comandado pelo Carniceiro, braco direito do devastador...")
+    Util.aguarde(250)
+    escreva("-E o castelo...o mesmo que uma vez era brilhante e cheio de vida agora foi consumido por trevas...\n")
+    Util.aguarde(250)
+    escreva("-Agora nosso herói",nomedocampeao, "corre contra o tempo para que possamos voltar ao controle de nossa amada Eldoria.\n ")
+    Util.aguarde(250)
+    escreva("-Salve nossa Eldoria campeão, contamos com você...")
+    Util.aguarde(250)
+    escreva("\n\n\n\n\n")
+
+    inteiro opcaodecontinuarcomojogo2
+    escreva("Deseja continuar para a floresta da névoa campeão?\n")
+    escreva("1-SIM\n")
+    escreva("2-NÃO\n")
+    leia(opcaodecontinuarcomojogo2)
+
+    se(opcaodecontinuarcomojogo2==1){
+    
+    cadeia escolheroproximocaminho
+    escreva()
+
+
+
+    }senao{escreva("Sem problema",nomedocampeao)}
+    
+    
     
 
     
