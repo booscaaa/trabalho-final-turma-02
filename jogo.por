@@ -30,6 +30,20 @@ programa {
     escreva("\nOpção 3 - Créditos\n")
     escreva("\nOpção 4 - Sair do Jogo\n")
     leia(opcaoEscolhidaMenu)
+      se(opcaoEscolhidaMenu == 3){
+    creditos()
   }
   }
+  }
+
+  funcao creditos(){
+    limpa()
+    escreva("---------------------------------------\n")
+    escreva("--Creditos--\n")
+    escreva("Tudo - Ronaldo\n")
+    escreva("Professor - Vini Boscaa\n")
+    escreva("---------------------------------------\n")
+
+  }
+
 }
