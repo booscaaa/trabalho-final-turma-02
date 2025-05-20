@@ -226,13 +226,64 @@ programa {
     leia(opcaodecontinuarcomojogo2)
 
     se(opcaodecontinuarcomojogo2==1){
-    
+
+    escreva("\n\n\n\n\n")
     cadeia escolheroproximocaminho
-    escreva()
+    escreva("Ao chegar na floresta da névoa você se depara com dois caminhos , um deles é um caminho que leva a um rio turvo , com algumas algas por cima dele...\n")
+    escreva("O outro caminho é um caminho com algumas cabanas abandonadas na qual você pode ouvir sussuros ounvindo de lá...\n")
+    escreva("-Agora é com você",nomedocampeao,"por onde deseja seguir?\n")
+    escreva("1-CAMINHO DO RIO TURVO\n")
+    escreva("2-CAMINHO DAS CABANAS ABANDONADAS(NAO RECOMENDADO)\n")
+    leia(escolheroproximocaminho)
+
+    se(escolheroproximocaminho==1){
+    escreva("Você adentra o caminho do rio mas ali por perto repara na presenca de algo se mexendo em meio aos arbustos...\n")
+    Util.aguarde(500)
+    escreva("Você encontrou um GOBLIN DA NÉVOA!!\n")
+    Util.aguarde(500)
+    inteiro vidaDoGoblin = 25
+    inteiro danoDoGoblin = 6
+    cadeia acaodocombate
+    logico defendeuseNesteTurno
+    
+
+    enquanto(vidadaespecializacao > 0 e vidaDoGoblin > 0){
+      escreva("\nSUA VIDA:",vidadaespecializacao,"\nVIDA DO INIMIGO:",vidaDoGoblin,"\n")
+      escreva("1-ATACAR\n")
+      escreva("2-DEFENDER-SE\n")
+      leia(acaodocombate)
+      defendeuseNesteTurno = falso
+      se(acaodocombate==1){
+        vidaDoGoblin=vidaDoGoblin - danodaespecializacao
+        escreva("Muito bem herói,você causou:",danodaespecializacao,"de dano no inimigo")
+      }senao se(acaodocombate==2){
+        defendeuseNesteTurno = verdadeiro 
+        inteiro danoreduzidoNestecombate = danoDoGoblin / 2
+        vidadaespecializacao = vidadaespecializacao - danoreduzidoNestecombate
+        escreva("Voce acabou se defendendo campeao,e o inimigo causou apenas",danoreduzidoNestecombate,"de dano\n")
+        }senao{"O inimigo aproveitou a sua indesisão!!"}
+    
+      se(vidaDoGoblin>0 e defendeuseNesteTurno==falso ){
+        vidadaespecializacao = vidadaespecializacao - danoDoGoblin
+        escreva("O goblin atacou você causando",danoDoGoblin,"de dano\n")
+      }
+    }
+      se(vidadaespecializacao<=0){
+        escreva("Você foi derrotado pelo inimigo",nomedocampeao,"\n")
+        escreva("FIM DE JOGO CAMPEAO!\n")
+        }senao se(vidaDoGoblin<=0){
+          escreva("Parabéns",nomedocampeao,"Voce derrotou o inimigo!!\n")
+
+        }
+      
+    
+
+    }senao{escreva("Oh não herói , você foi puxado por um espírito malígno para dentro de uma cabana , infelizmente não há como lutar contrae ele...\n")
+    escreva("FIM DE JOGO...\n")}
 
 
 
-    }senao{escreva("Sem problema",nomedocampeao)}
+    }senao{escreva("Sem problema",nomedocampeao, "\n")}
     
     
     
