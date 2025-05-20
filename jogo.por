@@ -2,7 +2,7 @@ programa {
   inclua biblioteca Util --> u
   funcao inicio() {
 
-  inteiro opcaoEscolhidaMenu
+  inteiro opcaoEscolhidaMenu = 0
 
   escreva("\n --------------------\n")
   escreva("\n  A jornada do Herói \n")
@@ -23,17 +23,30 @@ programa {
 
   escreva("\n--Bem Vindo ao RPG A jornada do Herói--\n")
   u.aguarde(3000)
-  enquanto(opcaoEscolhidaMenu != 4){
+
+
+  enquanto(opcaoEscolhidaMenu != 3){
+    limpa()
     escreva("\n-- MENU --\n")
     escreva("\nOpção 1 - Iniciar Jornada\n")
-    escreva("\nOpção 2 - Configurar Classe\n")
-    escreva("\nOpção 3 - Créditos\n")
-    escreva("\nOpção 4 - Sair do Jogo\n")
+    escreva("\nOpção 2 - Créditos\n")
+    escreva("\nOpção 3 - Sair do Jogo\n")
     leia(opcaoEscolhidaMenu)
-      se(opcaoEscolhidaMenu == 3){
-    creditos()
-  }
-  }
+    }
+    se(opcaoEscolhidaMenu == 1){
+      iniciougame()
+      u.aguarde(2000)
+    } senao se(opcaoEscolhidaMenu == 2){
+      creditos()
+      u.aguarde(6000)
+    }senao se(opcaoEscolhidaMenu == 3){
+      escreva("Até logo!")
+      u.aguarde(8000)
+      limpa()
+    }senao{
+      escreva("\nOpção Invalida!\n")
+      u.aguarde(7000)
+    }
   }
 
   funcao creditos(){
@@ -43,7 +56,19 @@ programa {
     escreva("Tudo - Ronaldo\n")
     escreva("Professor - Vini Boscaa\n")
     escreva("---------------------------------------\n")
+    u.aguarde(5000)
+  
+  }
 
+  funcao iniciougame(){
+    inteiro vidaJogador = 0
+    inteiro ataqueJogador = 0
+    inteiro manaMagoJogador = 0
+    inteiro contadorvida = 0
+    inteiro contadormana = 0
+    
+    escreva("Você acaba de iniciar sua Aventura!")
+    u.aguarde(5000)
   }
 
 }
