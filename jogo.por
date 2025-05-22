@@ -1,4 +1,6 @@
 programa {
+  inclua biblioteca Util --> u
+
   cadeia nomeDoPersonagem, classe
   inteiro opcaoDeClase = 0
   inteiro nivel = 0
@@ -14,8 +16,17 @@ programa {
   inteiro ataque = 0
   inteiro defesa = 0
   inteiro agilidade = 0
+  
+  // Bagulho pro combate
+  inteiro pontosDeAcao = 10
+  cadeia nomeDoInimigo
+  inteiro nivelDoInimigo
+  inteiro vidaDoInimigo
+  inteiro inimigoATK
+  inteiro inimigoDEF
+  inteiro inimigoAGI
     
-    // Fun√ß√£o principal
+    // FunÁ„o principal
     funcao inicio() {
         inteiro opcao = 0
         
@@ -25,6 +36,7 @@ programa {
             escolha(opcao) {
                 caso 1:
                     criarPersonagem()
+                    campanha()
                 pare
                 caso 2:
                     mostrarCreditos()
@@ -33,50 +45,50 @@ programa {
                     escreva("Saindo do jogo...\n")
                 pare
                 caso contrario:
-                    escreva("Op√ß√£o inv√°lida! Tente novamente.\n")
+                    escreva("OpÁ„o inv·lida! Tente novamente.\n")
                 pare
             }
       }
     }
     
-    // Fun√ß√£o para exibir o menu inicial e retornar a op√ß√£o escolhida
+    // FunÁ„o para exibir o menu inicial e retornar a opÁ„o escolhida
     funcao inteiro menuDeInicializacao() {
         inteiro opcao = 0
         
         escreva("\nBem vindo a Eldoria Saga\n")
         escreva("--1: Novo jogo--\n")
-        escreva("--2: Cr√©ditos--\n")
+        escreva("--2: CrÈditos--\n")
         escreva("--3: Sair--\n")
-        escreva("Escolha uma op√ß√£o: ")
+        escreva("Escolha uma opÁ„o: ")
       
         
         // Garante que a leitura seja feita pelo menos uma vez
         leia(opcao)
         se(opcao < 1 ou opcao > 3) {
-            escreva("Op√ß√£o inv√°lida! Tente novamente: ")
+            escreva("OpÁ„o inv·lida! Tente novamente: ")
             leia(opcao)
         }
         
         retorne opcao
     }
     
-    // Fun√ß√£o para criar um novo personagem
+    // FunÁ„o para criar um novo personagem
     funcao criarPersonagem() {
 
-        escreva("\n--- Cria√ß√£o de Personagem ---\n")
+        escreva("\n--- CriaÁ„o de Personagem ---\n")
         escreva("Digite o nome do seu personagem: ")
         leia(nomeDoPersonagem)
         
-        // Mostra menu de classes at√© receber uma op√ß√£o v√°lida
+        // Mostra menu de classes atÈ receber uma opÁ„o v·lida
         escreva("\nEscolha sua classe:\n")
-        escreva("1 - GUERREIRO, Foco em vida e defesa. Ideal para resist√™ncia prolongada.\n")
-        escreva("2 - MAGO, Ataque poderoso, por√©m fr√°gil. Especialista em dano r√°pido.\n")
-        escreva("3 - ARQUEIRO, Equilibrado entre ataque e mobilidade. Vers√°til.\n")
-        escreva("Op√ß√£o: ")
+        escreva("1 - GUERREIRO, Foco em vida e defesa. Ideal para resistÍncia prolongada.\n")
+        escreva("2 - MAGO, Ataque poderoso, porÈm fr·gil. Especialista em dano r·pido.\n")
+        escreva("3 - ARQUEIRO, Equilibrado entre ataque e mobilidade. Vers·til.\n")
+        escreva("OpÁ„o: ")
         
         leia(opcaoDeClase)
         enquanto(opcaoDeClase < 1 ou opcaoDeClase > 3) {
-            escreva("Op√ß√£o inv√°lida! Tente novamente: ")
+            escreva("OpÁ„o inv·lida! Tente novamente: ")
             leia(opcaoDeClase)
         }
         
@@ -92,7 +104,7 @@ programa {
             pare
         }
         
-        // Aqui voc√™ pode adicionar a inicializa√ß√£o dos atributos do personagem
+        // Aqui vocÍ pode adicionar a inicializaÁ„o dos atributos do personagem
         escreva("\nPersonagem criado com sucesso!\n")
         
         se(classe == "GUERREIRO"){
@@ -113,15 +125,15 @@ programa {
         escreva("Nome: ", nomeDoPersonagem, "\n")
         escreva("Classe: ", classe, "\n\n")
         escreva("Vida: ", vida, "\n")
-        escreva("N√≠vel: ", nivel, "\n")
+        escreva("NÌvel: ", nivel, "\n")
         escreva("Ataque: ", ataque, "\n")
         escreva("Defesa: ", defesa, "\n")
         escreva("Agilidade: ", agilidade, "\n")
     }
     
-    // Fun√ß√£o para mostrar os cr√©ditos
+    // FunÁ„o para mostrar os crÈditos
     funcao mostrarCreditos() {
-        escreva("\n--- Cr√©ditos ---\n")
+        escreva("\n--- CrÈditos ---\n")
         escreva("Desenvolvido por: Patrick-fed\n")
         escreva("Eldoria Saga v1.0\n\n")
     }
@@ -129,7 +141,7 @@ programa {
       enquanto(experiencia >= (nivel+1)*10 e nivel < 10) {
       nivel = nivel + 1
       vida = vida + nivel
-      escreva("Seu her√≥i subiu para o n√≠vel: ", nivel, "\n")
+      escreva("Seu herÛi subiu para o nÌvel: ", nivel, "\n")
 
       escolha(classe) {
         caso "GUERREIRO":
@@ -176,7 +188,7 @@ programa {
           defesa += 2
           agilidade += 2
         pare
-        caso "CA√áADOR":
+        caso "CA«ADOR":
           ataque += 2
           defesa += 5
           agilidade += 2
@@ -205,7 +217,7 @@ programa {
       escreva("Vida: ", vida, "\n")
       escreva("Ataque: ", ataque, "\n")
       escreva("Defesa: ", defesa, "\n")
-      escreva("Experi√™ncia: ", experiencia, " / ", (nivel+1)*10, "\n")
+      escreva("ExperiÍncia: ", experiencia, " / ", (nivel+1)*10, "\n")
   }
   funcao ganharExperiencia(inteiro quantidadeXP){
     experiencia = experiencia + quantidadeXP
@@ -232,30 +244,30 @@ programa {
     }
       
   }
-  // Fun√ß√£o para avan√ßo de classe do Guerreiro
+  // FunÁ„o para avanÁo de classe do Guerreiro
 funcao avancoDeClasseGuerreiro() {
     inteiro opcaoDeAvanco
     
-    escreva(nomeDoPersonagem, " alcan√ßou o n√≠vel maximo na sua classe inicial, agora escolha uma das op√ß√µes de avan√ßo de classe.\n")
+    escreva(nomeDoPersonagem, " alcanÁou o nÌvel maximo na sua classe inicial, agora escolha uma das opÁıes de avanÁo de classe.\n")
     escreva("1 - CAVALEIRO\n")
-    escreva("Classe que evolui diretamente do Guerreiro, o Cavaleiro mant√©m um bom equil√≠brio entre ataque e defesa.\n")
-    escreva("√â uma escolha s√≥lida para quem quer enfrentar inimigos de forma direta, com for√ßa e resist√™ncia parecidas.\n")
-    escreva("N√£o se destaca em um √∫nico ponto, mas √© confi√°vel em qualquer situa√ß√£o.\n\n")
+    escreva("Classe que evolui diretamente do Guerreiro, o Cavaleiro mantÈm um bom equilÌbrio entre ataque e defesa.\n")
+    escreva("… uma escolha sÛlida para quem quer enfrentar inimigos de forma direta, com forÁa e resistÍncia parecidas.\n")
+    escreva("N„o se destaca em um ˙nico ponto, mas È confi·vel em qualquer situaÁ„o.\n\n")
 
     escreva("2 - SAMURAI\n")
     escreva("O Samurai foca na agilidade e no ataque. Ele causa mais dano e se move com mais rapidez,\n")
     escreva("mas tem uma defesa um pouco mais baixa.\n")
-    escreva("√â ideal para quem prefere atacar primeiro e r√°pido, mesmo que isso signifique receber mais dano se for atingido.\n\n")
+    escreva("… ideal para quem prefere atacar primeiro e r·pido, mesmo que isso signifique receber mais dano se for atingido.\n\n")
 
     escreva("3 - PALADINO\n")
     escreva("Classe voltada para a defesa. O Paladino resiste bem aos ataques e consegue aguentar mais tempo em combate.\n")
-    escreva("Em compensa√ß√£o, seu ataque n√£o √© t√£o forte.\n")
-    escreva("√â uma boa escolha para quem prefere jogar de forma segura e com mais prote√ß√£o.\n")
-    escreva("Digite o n√∫mero de seu avan√ßo de classe escolhido: \n")
+    escreva("Em compensaÁ„o, seu ataque n„o È t„o forte.\n")
+    escreva("… uma boa escolha para quem prefere jogar de forma segura e com mais proteÁ„o.\n")
+    escreva("Digite o n˙mero de seu avanÁo de classe escolhido: \n")
     leia(opcaoDeAvanco)
     
     enquanto(opcaoDeAvanco < 1 ou opcaoDeAvanco > 3) {
-        escreva("Op√ß√£o inv√°lida, tente novamente. As op√ß√µes v√°lidas s√£o 1, 2 e 3.\n")
+        escreva("OpÁ„o inv·lida, tente novamente. As opÁıes v·lidas s„o 1, 2 e 3.\n")
         leia(opcaoDeAvanco)
     }
     
@@ -268,33 +280,33 @@ funcao avancoDeClasseGuerreiro() {
             classe = "PALADINO"
     }
     
-    escreva(nomeDoPersonagem, ", agora √© um: ", classe, ".\n")
+    escreva(nomeDoPersonagem, ", agora È um: ", classe, ".\n")
 }
 
-// Fun√ß√£o para avan√ßo de classe do Mago
+// FunÁ„o para avanÁo de classe do Mago
 funcao avancoDeClasseMago() {
     inteiro opcaoDeAvanco
     
-    escreva(nomeDoPersonagem, " alcan√ßou o n√≠vel m√°ximo na sua classe inicial, agora escolha uma das op√ß√µes de avan√ßo de classe.\n")
+    escreva(nomeDoPersonagem, " alcanÁou o nÌvel m·ximo na sua classe inicial, agora escolha uma das opÁıes de avanÁo de classe.\n")
     escreva("1 - EVOCADOR\n")
     escreva("Classe que continua o caminho do Mago, com foco total em ataques poderosos.\n")
-    escreva("Mant√©m uma defesa fraca, mas √© capaz de causar grande dano de forma r√°pida e direta.\n")
-    escreva("Ideal para quem quer continuar atacando com for√ßa, mesmo sendo mais vulner√°vel.\n\n")
+    escreva("MantÈm uma defesa fraca, mas È capaz de causar grande dano de forma r·pida e direta.\n")
+    escreva("Ideal para quem quer continuar atacando com forÁa, mesmo sendo mais vulner·vel.\n\n")
 
     escreva("2 - ONMYOJI\n")
     escreva("Classe que troca parte do poder direto por mais velocidade e controle.\n")
-    escreva("Pode invocar pequenas criaturas para ajudar nos combates, al√©m de se mover com mais agilidade.\n")
-    escreva("Boa escolha para quem gosta de estrat√©gia e movimenta√ß√£o.\n\n")
+    escreva("Pode invocar pequenas criaturas para ajudar nos combates, alÈm de se mover com mais agilidade.\n")
+    escreva("Boa escolha para quem gosta de estratÈgia e movimentaÁ„o.\n\n")
 
     escreva("3 - BRUXO\n")
     escreva("Foca em enfraquecer o inimigo e se fortalecer durante o combate.\n")
-    escreva("N√£o √© t√£o r√°pido quanto outras classes, mas consegue virar o jogo aos poucos.\n")
+    escreva("N„o È t„o r·pido quanto outras classes, mas consegue virar o jogo aos poucos.\n")
     escreva("Indicado para quem prefere um estilo mais calculado e resistente.\n")
-    escreva("Digite o n√∫mero de seu avan√ßo de classe escolhido: \n")
+    escreva("Digite o n˙mero de seu avanÁo de classe escolhido: \n")
     leia(opcaoDeAvanco)
     
     enquanto(opcaoDeAvanco < 1 ou opcaoDeAvanco > 3) {
-        escreva("Op√ß√£o inv√°lida tente novamente.")
+        escreva("OpÁ„o inv·lida tente novamente.")
         leia(opcaoDeAvanco)
     }
     
@@ -307,43 +319,115 @@ funcao avancoDeClasseMago() {
             classe = "BRUXO"
     }
     
-    escreva(nomeDoPersonagem, ", agora √© um: ", classe, ".\n")
+    escreva(nomeDoPersonagem, ", agora È um: ", classe, ".\n")
 }
 
-// Fun√ß√£o para avan√ßo de classe do Arqueiro
+// FunÁ„o para avanÁo de classe do Arqueiro
 funcao avancoDeClasseArqueiro() {
     inteiro opcaoDeAvanco
     
-    escreva(nomeDoPersonagem, " alcan√ßou o n√≠vel m√°ximo na sua classe inicial, agora escolha uma das op√ß√µes de avan√ßo de classe.\n")
+    escreva(nomeDoPersonagem, " alcanÁou o nÌvel m·ximo na sua classe inicial, agora escolha uma das opÁıes de avanÁo de classe.\n")
 
-    escreva("1 - CA√áADOR\n")
+    escreva("1 - CA«ADOR\n")
     escreva("Classe com foco total na agilidade. Se move rapidamente e ataca com velocidade.\n")
     escreva("Boa para quem quer estar sempre em movimento e evitar ser atingido.\n\n")
 
     escreva("2 - ATIRADOR\n")
-    escreva("Especializado em causar o m√°ximo de dano com seus ataques √† dist√¢ncia.\n")
-    escreva("Tem menos mobilidade, mas acerta com mais for√ßa.\n")
+    escreva("Especializado em causar o m·ximo de dano com seus ataques ‡ dist‚ncia.\n")
+    escreva("Tem menos mobilidade, mas acerta com mais forÁa.\n")
     escreva("Recomendado para quem prefere eliminar os inimigos rapidamente.\n\n")
 
     escreva("3 - VIGIA\n")
-    escreva("Evolu√ß√£o equilibrada do Arqueiro, mantendo o bom desempenho entre ataque e mobilidade.\n")
-    escreva("Vers√°til e confi√°vel em qualquer situa√ß√£o.\n\n")
+    escreva("EvoluÁ„o equilibrada do Arqueiro, mantendo o bom desempenho entre ataque e mobilidade.\n")
+    escreva("Vers·til e confi·vel em qualquer situaÁ„o.\n\n")
 
-    escreva("Digite o n√∫mero de seu avan√ßo de classe escolhido: \n")
+    escreva("Digite o n˙mero de seu avanÁo de classe escolhido: \n")
     leia(opcaoDeAvanco)
 
     enquanto(opcaoDeAvanco < 1 ou opcaoDeAvanco > 3) {
-        escreva("Op√ß√£o inv√°lida tente novamente. As op√ß√µes v√°lidas s√£o 1, 2 e 3.\n")
+        escreva("OpÁ„o inv·lida tente novamente. As opÁıes v·lidas s„o 1, 2 e 3.\n")
         leia(opcaoDeAvanco)       
     }
     
     escolha (opcaoDeAvanco) {
         caso 1:
-            classe = "CA√áADOR"
+            classe = "CA«ADOR"
         caso 2:
             classe = "ATIRADOR"
         caso 3:
             classe = "VIGIA"
     }
+    escreva(nomeDoPersonagem, ", agora È um: ", classe, ".\n")
+  }
+  funcao turnoDeBatalha(){
+    enquanto(vida >= 0 ou vidaDoInimigo >= 0){
+      enquanto(vida > 0 e vidaDoInimigo > 0) {
+        escreva("Turno do jogador\n")
+        escreva("1 - Atacar\n2 - Defender\nEscolha: ")
+        inteiro acao
+        leia(acao)
+
+        se (acao == 1) {
+            inteiro danoCausado = ataque - inimigoDEF
+            se (danoCausado < 0) {
+                danoCausado = 0
+            }
+            vidaDoInimigo = vidaDoInimigo - danoCausado
+            escreva("VocÍ causou ", danoCausado, " de dano.\n")
+        } senao se (acao == 2) {
+            escreva("VocÍ se defendeu e recebeu menos dano.\n")
+            // Pode implementar bÙnus de defesa aqui
+        }
+
+        // Turno do inimigo
+        se (vidaDoInimigo > 0) {
+            escreva("Turno do inimigo\n")
+            inteiro danoRecebido = inimigoATK - defesa
+            se (danoRecebido < 0) {
+                danoRecebido = 0
+            }
+            vida = vida - danoRecebido
+            escreva("VocÍ recebeu ", danoRecebido, " de dano.\n")
+        }
+    }
+
+    se (vida <= 0) {
+        escreva("VocÍ foi derrotado...\n")
+    } senao {
+        escreva("Inimigo derrotado!\n")
+        ganharExperiencia(10) // ou qualquer valor adequado
+    }
+
+
+    }
+
+  }
+  funcao gerarInimigo() {
+    nomeDoInimigo
+    nivelDoInimigo = nivel
+    vidaDoInimigo = 20 + nivel * 5
+    inimigoATK = 5 + nivel
+    inimigoDEF = 2 + nivel
+    inimigoAGI = 1 + nivel
+}
+
+  funcao campanha(){
+    escreva("H· muito tempo, no Reino de Eldoria, a paz era mantida pela mÌstica Pedra da Luz, protegida pelos Anci„os do Castelo Dourado.\n")
+    u.aguarde(3)
+
+    escreva("\nUm dia, uma forÁa sombria conhecida como O Devastador invadiu o reino, roubando a relÌquia sagrada e mergulhando as terras em trevas e caos.\n")
+    u.aguarde(3)
+
+    escreva("\nVilas foram saqueadas, florestas corrompidas, e criaturas sombrias comeÁaram a vagar pelas regiıes.\n")
+    u.aguarde(3)
+
+    escreva("\nDiante da crise, uma antiga profecia se cumpriu: um herÛi escolhido surgir· das sombras para restaurar a luz. VocÍ È esse herÛi.\n")
+    u.aguarde(3)
+
+    escreva("\nSua miss„o È atravessar cinco regiıes dominadas pelo mal, enfrentando inimigos, evoluindo suas habilidades e se preparando para confrontar O Devastador no Castelo Dourado.\n")
+    u.aguarde(3)
+
+    escreva("\nA jornada ser· repleta de perigos, escolhas e batalhas. Seu destino e o de Eldoria est„o entrelaÁados.\n")
+    u.aguarde(3)
   }
 }
