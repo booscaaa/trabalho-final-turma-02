@@ -9,15 +9,15 @@ programa {
   inteiro xpDoPersonagem = 0 
   inteiro nivel = 0
   inteiro auxVidaDoPersonagem
+  inteiro sorteio = 0
 
   cadeia regioes[5] = {"Floresta das Névoas", "Vila Abandonada","Caverna Sombria","Pântano dos Lamentos","Castelo Dourado"}
 
   cadeia inimigosDaCampanhaNormal[15] = {"El Gigante"}
   inteiro vIdaDosInimigos[15] = {100}
-  inteiro aTaqueDosInimigos[15] = {30}
+  inteiro aTaqueDosInimigos
   inteiro dEfesaDosInimigos[15] = {20}
-  inteiro xpDosInimigos[50]
-  
+  inteiro xpDosInimigos[15] = {50}
   funcao inicio() {
 
     menu()
@@ -56,6 +56,7 @@ programa {
           novoJogo()
           registrarPersonagem()
           introducaoPosCriacao()
+          florestaDaNevoa()
         
         pare
 
@@ -117,17 +118,18 @@ programa {
     limpa()
 
     escreva(nomeDoPersonagem,"? Ok...cada um com suas ideias.\n")
-    escreva("Enfim, vamos continuar, escolha sua classe, temos 3 opções:\n")
+    escreva("Enfim, vamos continuar, escolha sua classe.\nUm ponto importante...o ataque será sorteado, então a cada vez que você atacar, o seu dano será rolado usando um\ndado d20, e você pode dar 1 de dano ou até 20, e cada classe adicionará mais uma quantidade de dano garantida.\nVamos exemplificar, o guerreiro irá adicionar 5 ao número que você tirar no dado, então se você tirar 10, o seu dano será de 15.\nDITO ISSO, temos 3 opções:\n")
       
     classesDoPersonagem()
 
   }
 
   funcao classesDoPersonagem(){
+      inteiro contador = 3
 
-      escreva("\nGuerreiro: Se você quer um personagem TANKUDÃO, pega ele, os status dele são:\nVida: 40\nDefesa: 35\nAtaque: 25\n")
-      escreva("\nMago: Se você quer um canhão de vidro, pega ele, os status dele são:\nVida: 15\nDefesa: 25\nAtaque: 60\n")
-      escreva("\nArqueiro: Se você quer um cara mais equilibrado, pega ele, os status dele são:\nVida: 30\nDefesa: 30\nAtaque: 40\n")
+      escreva("\nGuerreiro: Se você quer um personagem TANKUDÃO, pega ele, os status dele são:\nVida: 40\nDefesa: 35\nAtaque: +5\n")
+      escreva("\nMago: Se você quer um canhão de vidro, pega ele, os status dele são:\nVida: 15\nDefesa: 20\nAtaque: +20\n")
+      escreva("\nArqueiro: Se você quer um cara mais equilibrado, pega ele, os status dele são:\nVida: 30\nDefesa: 30\nAtaque: +10\n")
       
       enquanto(classe != "Guerreiro" e classe != "Mago" e classe != "Arqueiro"){
 
@@ -135,36 +137,52 @@ programa {
         leia(classe)
 
       }
-
+      u.aguarde(2000)
+      limpa()
       escreva("Perfeito, agora vou mostrar seus status iniciais:\nNome: ", nomeDoPersonagem,"\n")
-
+      
       se(classe == "Guerreiro"){
         vidaDoPersonagem = 40
         defesaDoPersonagem = 35
-        ataqueDoPersonagem = 25
+        ataqueDoPersonagem = 5
         escreva("Vida: ", vidaDoPersonagem,"\nDefesa: ", defesaDoPersonagem,"\nAtaque: ", ataqueDoPersonagem,"\n")
 
       } senao se(classe == "Mago"){
         vidaDoPersonagem = 15
-        defesaDoPersonagem = 25
-        ataqueDoPersonagem = 60
+        defesaDoPersonagem = 20
+        ataqueDoPersonagem = 20
         escreva("Vida: ", vidaDoPersonagem,"\nDefesa: ", defesaDoPersonagem,"\nAtaque: ", ataqueDoPersonagem,"\n")
 
       } senao se(classe == "Arqueiro"){
         vidaDoPersonagem = 30
         defesaDoPersonagem = 30
-        ataqueDoPersonagem = 40
+        ataqueDoPersonagem = 10
         escreva("Vida: ", vidaDoPersonagem,"\nDefesa: ", defesaDoPersonagem,"\nAtaque: ", ataqueDoPersonagem,"\n")
       }
 
       escreva("XP: ", xpDoPersonagem,"\nNível: ", nivel,"\n")
       auxVidaDoPersonagem = vidaDoPersonagem
+      u.aguarde(3000)
+      escreva("Vamos seguir em:\n", contador,"\n")
+      u.aguarde(1000)
+      contador--
+      escreva(contador,"\n")
+      u.aguarde(1000)
+      contador--
+      escreva(contador,"\n")
+      u.aguarde(1000)
+      contador--
+      escreva(contador,"\n")
+      u.aguarde(1000)
+      limpa()
 
   }
 
   funcao introducaoPosCriacao(){
+    limpa()
 
     escreva("PERFEITO, bora começar de fato com a sua jornada, que provavelmente será bem sangrenta e sofrida...\n")
+    u.aguarde(2000)
 
   }
   funcao florestaDaNevoa() {
@@ -175,66 +193,37 @@ programa {
     u.aguarde(100)
     escreva("  __|__      │‾‾‾‾  │___  │___│ │   ╲  │___  ____│   │   │   │      │___/ │   │    │ ╲│ │___   \\/  │___│ │   │    \n")
 
+    u.aguarde(2000)
+
+    escreva("\n",nomeDoPersonagem," começou sua jornada maluca na ", regioes[0],", um lugar que era frequentemente usado para realizar acampamentos\n")
+    escreva("e piqueniques entre amigos e família, mas depois que aquele VAGABUNDO do \"Devastador\"(ninguém sabe o real nome dele) invadiu Eldoria,\n")
+    escreva("ninguém mais tem liberdade pra nada, não é seguro ir ali, ainda mais sabendo que criaturas estranhas e poderosas vivem naquela\n")
+    escreva("floresta, e nosso coitado ",nomeDoPersonagem,"se deparará com a primeira ameaça logo agora...\n")
+
+    batalha()
+
     
 
   }
-
+ 
   funcao batalha(){
       
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[0] > 0){
 
       u.aguarde(2000)
-      escreva("\nJogador ataca\n")
+      escreva("\nVez de ",nomeDoPersonagem, "\n")
 
-      se(ataqueDoPersonagem > dEfesaDosInimigos[0]){
-        vIdaDosInimigos[0] = vIdaDosInimigos[0] - (ataqueDoPersonagem - dEfesaDosInimigos[0])
+      sorteio = u.sorteia(0,20) + ataqueDoPersonagem
+      vIdaDosInimigos[0] = vIdaDosInimigos[0] - (sorteio - dEfesaDosInimigos[0])
 
-        se(vIdaDosInimigos[0] <= 0){
-          vIdaDosInimigos[0] = 0
-        }
-        escreva("Dano dado: ", ataqueDoPersonagem - dEfesaDosInimigos[0],"\n")
-        escreva("Vida restante do Gigante: ", vIdaDosInimigos[0],"\n")
-
-      } senao se(ataqueDoPersonagem < dEfesaDosInimigos[0]){
-        escreva("A defesa do inimigo é mais alta, você não dá dano nenhum")
-
-      } senao se(ataqueDoPersonagem == dEfesaDosInimigos[0]){
-        escreva("Empatou")
-
-      }
-
-      u.aguarde(2000)
+      escreva("Seu ataque + o dado deu: ", sorteio,"\n")
       
-      se(vIdaDosInimigos[0] <= 0){
-        escreva("USUÁRIO VENCEU\n")
+      escreva("Dano dado: ", sorteio  - dEfesaDosInimigos[0])
 
-        escreva("XP adquirido: ", xpDosInimigos[0])
-        xpDoPersonagem = xpDoPersonagem + xpDosInimigos[0]
+      u.aguarde(5000)
+          
 
-      }senao {
-        escreva("\nInimigo Ataca\n")
-
-        se(aTaqueDosInimigos[0] > defesaDoPersonagem){
-          vidaDoPersonagem = vidaDoPersonagem - (aTaqueDosInimigos[0] - defesaDoPersonagem) 
-
-          se(vidaDoPersonagem <= 0){
-            vidaDoPersonagem = 0
-          }
-          escreva("Dano dado: ", aTaqueDosInimigos[0] - defesaDoPersonagem,"\n")
-          escreva("Vida restante do personagem: ",vidaDoPersonagem,"\n")
-          se(vidaDoPersonagem <= 0){
-          escreva("USUÁRIO MORREU\n")
-          u.aguarde(5000)
-          }
-
-        } senao se(aTaqueDosInimigos[0] < defesaDoPersonagem){
-          escreva("A defesa do usuário é maior, não dá dano nenhum\n")
-
-        } senao se(aTaqueDosInimigos[0] == defesaDoPersonagem){
-          escreva("Empatou\n")
-
-        }
-      }
+      
 
     }
   }
