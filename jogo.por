@@ -11,7 +11,7 @@ programa {
   }
 
   funcao menu () {
-    inteiro opcao
+    cadeia opcao
     faca {
       limpa()
       escreva("┌────────────────────────────┐\n")
@@ -29,7 +29,7 @@ programa {
       }
 
       se (opcao==2) {
-        inteiro opcao
+        cadeia opcao
         faca {
           creditos ()
           escreva("\n\n1. Voltar\n\n")
@@ -45,7 +45,7 @@ programa {
       se (opcao==3) {
         pare
       }
-    } enquanto (opcao>3 ou opcao<1)
+    } enquanto (opcao!=1 e opcao!=2 e opcao!=3)
 
     
   }
@@ -86,7 +86,7 @@ programa {
     ataque[2] = 80
     defesa[2] = 60
 
-    inteiro opcao
+    cadeia opcao
     faca{
       limpa()
       escreva("Deseja iniciar um novo jogo?\n\n1. Sim\n2. Cancelar\n\n")
@@ -94,8 +94,9 @@ programa {
 
       se (opcao==1) {
         carregamentoJogo()
-        classe = criacaoDoHeroi()
-        floresta()
+        classe = criacaoDoHeroi() - 1
+        florestadaNevoa()
+        vilaAbandonada ()
       }
 
       se (opcao==2) {
@@ -163,7 +164,7 @@ programa {
     } enquanto (classe>3 ou classe<1)
 
     se (classe==1) {
-      inteiro opcao
+      cadeia opcao
       faca {
         limpa()
         escreva("Muito bem! Esse é o seu herói:\n\n")
@@ -197,7 +198,7 @@ programa {
     }
 
     se (classe==2) {
-      inteiro opcao
+      cadeia opcao
       faca {
         limpa()
         escreva("Muito bem! Esse é o seu herói:\n\n")
@@ -231,7 +232,7 @@ programa {
     }
 
     se (classe==3) {
-      inteiro opcao
+      cadeia opcao
       faca {
         limpa()
         escreva("Muito bem! Esse é o seu herói:\n\n")
@@ -269,14 +270,22 @@ programa {
 
   }
   
-  funcao floresta () {
+  funcao florestadaNevoa () {
 
       prologo()
+      historiaFloresta()
+      chegadaFloresta()
+      batalhaFeraSombria (vida[classe], ataque[classe], defesa[classe])
+      serpenteVenenosa ()
+      vida[classe] = posSerpente (vida[classe])
+      introGuardiao()
+      batalhaGuardiao(vida[classe], ataque[classe], defesa[classe])
+      eyla()
 
   }
 
   funcao prologo () {
-    inteiro opcao
+    cadeia opcao
     faca {
       limpa()
     escreva("Prólogo: A Pedra da Luz\n")
@@ -286,41 +295,297 @@ programa {
     leia(opcao)
     } enquanto (opcao!=1)
 
-    se (opcao==1) {
-      historiaFloresta()
-    }
   }
 
   funcao historiaFloresta () {
-    inteiro opcao
-    faca {
+    cadeia opcao
+    
+      limpa()
+      faca {
       limpa()
       escreva("Capítulo 1: Floresta da Névoa – O Despertar do Herói\n\nSua jornada começa na sombria Floresta da Névoa, onde a névoa esconde feras mutantes, \nsombras que sussurram, e ilusões traiçoeiras. Antigamente um santuário dos druidas, a floresta agora devora os incautos. \n\n")
-      u.aguarde(5000)
-      limpa()
-      escreva("\n\n-O-OQUE É ISSO?")
-      u.aguarde(1500)
-      escreva("\nUM SOCO DE UMA MÃO ENORME LHE ATINGE E VOCÊ É ARREMESSADO")
-      u.aguarde(1500)
-      escreva("\n\nNão há para onde fugir.")
 
-      escreva("\n\n1. Lutar\n\n")
+      escreva("\n\n1. Explorar: ")
+      leia(opcao)
+    } enquanto (opcao!=1)
+        
+  }
+
+  funcao chegadaFloresta () {
+    cadeia opcao
+    faca {
+      limpa()
+      escreva("Você adentra a temida Floresta da Névoa, onde criaturas ocultas espreitam a cada passo.\n")
+      escreva("O ar é denso, a luz do sol mal atravessa as copas das árvores.\n")
+      escreva("Enquanto caminha com cautela, ouve um rosnado vindo de um arbusto próximo...\n\n")
+      escreva("1. Verificar o barulho: ")
       leia(opcao)
     } enquanto (opcao!=1)
 
-    se (opcao==1) {
-      introGuardiao()
-    }
+    limpa()
+    u.aguarde(1000)
+    faca {
+      limpa()
+      escreva("Uma Fera Sombria salta em sua direção! Prepare-se para lutar!\n")
+      escreva("1. Lutar: ")
+      leia(opcao)
+    } enquanto (opcao!=1)
+     
+  }
 
+  funcao batalhaFeraSombria (inteiro vidajogador, inteiro ataquejogador, inteiro defesajogador) {
+
+      inteiro vidaFeraSombria = 110, ataqueFeraSombria = 60, defesaFeraSombria = 50
+
+      inteiro turno = 1, danoCausado, danoRecebido
+      logico opcaoDefesa = falso
+      cadeia opcao
+      
+      
+      faca {
+        faca {
+          opcaoDefesa = falso
+          limpa()
+          escreva("-BATALHA-\n\n")
+          escreva(nomeHeroi ," x Fera Sombria\n\n" )
+          escreva("SUA VIDA: ", vidajogador, " | VIDA DO INIMIGO: ", vidaFeraSombria)
+          escreva("\nTURNO: ", turno)
+          escreva("\n\nSUA VEZ: O QUE DESEJA FAZER?\n1. Atacar | 2. Defender\n\nDigite a opção escolhida: ")
+          leia(opcao)
+        } enquanto (opcao>2 ou opcao<1)
+
+        se (opcao==1) {
+          danoCausado = ataquejogador - defesaFeraSombria
+          se (danoCausado<0) {
+            danoCausado = 0
+          } 
+          vidaFeraSombria -= danoCausado
+
+          escreva("\nVocê causou ", danoCausado, " de dano!")
+          u.aguarde(2000)
+          se (vidaFeraSombria<=0) {
+            faca {
+              limpa()
+              escreva("Você derrotou a fera!\n\n")
+              escreva("1. Prosseguir: ")
+              leia(opcao)
+            } enquanto (opcao!=1)
+            pare
+          }
+        }    
+
+        se (opcao==2) {
+          opcaoDefesa = verdadeiro
+          escreva("\nVocê escolheu se defender, o próximo ataque do seu inimigo causará metade do dano!")
+        }
+
+        escreva("\n\nVEZ DO INIMIGO\n\n")
+        u.aguarde(1000)
+
+        danoRecebido = ataqueFeraSombria - defesajogador
+        se (opcaoDefesa==verdadeiro) {
+          vidajogador -= danoRecebido/2
+          escreva("A fera lhe atacou e causou ", danoRecebido/2, " de dano!")
+          se (vidajogador<=0) {
+            cadeia opcao
+            faca {
+              escreva("Você perdeu. \n")
+              escreva("\n1. Recomeçar | 2. Sair: ")
+              leia (opcao)
+            } enquanto (opcao!=1 e opcao!=2)
+
+            se (opcao==1) {
+              menu()
+            } 
+
+            se (opcao==2) {
+              pare
+              pare
+            }
+            pare
+          } 
+        } senao {
+          vidajogador -= danoRecebido
+          escreva("A fera lhe atacou e causou ", danoRecebido, " de dano!")
+          se (vidajogador<=0) {
+            cadeia opcao
+            faca {
+              escreva("Você perdeu. \n")
+              escreva("\n1. Recomeçar | 2. Sair: ")
+              leia (opcao)
+            } enquanto (opcao!=1 e opcao!=2)
+
+            se (opcao==1) {
+              menu()
+            } 
+
+            se (opcao==2) {
+              pare
+              pare
+            }
+            pare
+          }
+        }
+
+        u.aguarde(2000)
+        turno++
+      } enquanto (vidajogador>0 e vidaFeraSombria>0)
+  }
+
+  funcao serpenteVenenosa () {
+    cadeia opcao
+    faca {
+      limpa()
+      escreva("Após isso, você segue explorando em busca de um local para descansar...\n")
+      escreva("Enquanto explora a clareira, uma Serpente Venenosa surge das sombras e se enrola em sua perna!\n")
+      escreva("Prepare-se para mais um combate!\n")
+      escreva("\n1. Lutar: ")
+      leia(opcao)
+    } enquanto (opcao!=1)
+
+    batalhaSerpenteVenenosa (vida[classe], ataque[classe], defesa[classe])
+
+  }
+
+  funcao batalhaSerpenteVenenosa (inteiro vidajogador, inteiro ataquejogador, inteiro defesajogador) {
+    inteiro vidaSerpenteVenenosa = 150, ataqueSerpenteVenenosa = 75, defesaSerpenteVenenosa = 0
+
+      inteiro turno = 1, danoCausado, danoRecebido
+      logico opcaoDefesa = falso
+      cadeia opcao
+      
+      
+      faca {
+        faca {
+          opcaoDefesa = falso
+          limpa()
+          escreva("-BATALHA-\n\n")
+          escreva(nomeHeroi ," x Serpente venenosa\n\n" )
+          escreva("SUA VIDA: ", vidajogador, " | VIDA DO INIMIGO: ", vidaSerpenteVenenosa)
+          escreva("\nTURNO: ", turno)
+          escreva("\n\nSUA VEZ: O QUE DESEJA FAZER?\n1. Atacar | 2. Defender\n\nDigite a opção escolhida: ")
+          leia(opcao)
+        } enquanto (opcao>2 ou opcao<1)
+
+        se (opcao==1) {
+          danoCausado = ataquejogador - defesaSerpenteVenenosa
+          se (danoCausado<0) {
+            danoCausado = 0
+          } 
+          vidaSerpenteVenenosa -= danoCausado
+
+          escreva("\nVocê causou ", danoCausado, " de dano!")
+          u.aguarde(2000)
+          se (vidaSerpenteVenenosa<=0) {
+            faca {
+              limpa()
+              escreva("Você derrotou a serpente!\n\n")
+              escreva("1. Prosseguir: ")
+              leia(opcao)
+            } enquanto (opcao!=1)
+            pare
+          }
+        }    
+
+        se (opcao==2) {
+          opcaoDefesa = verdadeiro
+          escreva("\nVocê escolheu se defender, o próximo ataque do seu inimigo causará metade do dano!")
+        }
+
+        escreva("\n\nVEZ DO INIMIGO\n\n")
+        u.aguarde(1000)
+
+        danoRecebido = ataqueSerpenteVenenosa - defesajogador
+        se (opcaoDefesa==verdadeiro) {
+          vidajogador -= danoRecebido/2
+          escreva("A fera lhe atacou e causou ", danoRecebido/2, " de dano!")
+          se (vidajogador<=0) {
+            cadeia opcao
+            faca {
+              escreva("Você perdeu. \n")
+              escreva("\n1. Recomeçar | 2. Sair: ")
+              leia (opcao)
+            } enquanto (opcao!=1 e opcao!=2)
+
+            se (opcao==1) {
+              menu()
+            } 
+
+            se (opcao==2) {
+              pare
+              pare
+            }
+            pare
+          } 
+        } senao {
+          vidajogador -= danoRecebido
+          escreva("A fera lhe atacou e causou ", danoRecebido, " de dano!")
+          se (vidajogador<=0) {
+            cadeia opcao
+            faca {
+              escreva("Você perdeu. \n")
+              escreva("\n1. Recomeçar | 2. Sair: ")
+              leia (opcao)
+            } enquanto (opcao!=1 e opcao!=2)
+
+            se (opcao==1) {
+              menu()
+            } 
+
+            se (opcao==2) {
+              pare
+              pare
+            }
+            pare
+          }
+        }
+
+        u.aguarde(2000)
+        turno++
+      } enquanto (vidajogador>0 e vidaSerpenteVenenosa>0)
+  }
+
+  funcao inteiro posSerpente (inteiro vidaJogador) {
+    cadeia opcao
+    faca {
+      limpa()
+      escreva("Você respira aliviado após a batalha, mas percebe que cada passo adentra ainda mais na escuridão.\n")
+      escreva("Galhos secos estalam sob seus pés e sons estranhos ecoam à distância.\n")
+      escreva("A trilha leva você a uma antiga ponte de madeira que atravessa um rio enevoado.\n")
+      escreva("Ao atravessar a ponte, sente um calafrio... algo maior está por vir.\n")
+      escreva("1. Seguir o caminho: ")
+      leia(opcao)
+    } enquanto (opcao!=1)
+
+    limpa()
+    u.aguarde(1000)
+
+    escreva("De repente, um estrondo! Algo gigantesco quebra as árvores à sua frente!\n")
+    u.aguarde(1000)
+    escreva("Sem tempo para reagir, um braço colossal surge das sombras...\n")
+    u.aguarde(1000)
+    escreva("*POW!* \n")
+    u.aguarde(1000)
+    escreva("O Guardião da Floresta desfere um soco brutal contra você!\n")
+    u.aguarde(2500)
+
+    inteiro danoInicial = 10
+    vidaJogador = vidaJogador - danoInicial
+
+    faca {
+      escreva("Você é arremessado contra o tronco de uma árvore, sentindo uma dor lancinante. Vida restante: ", vidaJogador, "\n")
+      escreva("O Guardião ruge furiosamente, seus olhos vermelhos brilhando na penumbra. Não há escapatória\n")
+      escreva("1. Tentar sobreviver: ")
+      leia(opcao)
+    } enquanto (opcao!=1)
     
-
-
-    
+    retorne vidaJogador
   }
 
   funcao introGuardiao () {
-      inteiro vidaGuardiao = 120, ataqueguardiao = 70, defesaguardiao = 50
-      inteiro opcao
+      inteiro vidaGuardiao = 120, ataqueguardiao = 80, defesaguardiao = 70
+      cadeia opcao
+    
       faca {
         escreva("|                                                                                                                \n")
         escreva("|                                                         -*                                                     \n")
@@ -365,18 +630,13 @@ programa {
         escreva("|                     @@*-.#.=#@                                                      @#=.*.-*@@                 \n\n")
         escreva("1. Continuar: ")
         leia(opcao)
-      } enquanto (opcao!=1)
-
-      se (opcao==1) {
-        batalhaGuardiao(vida[classe], ataque[classe], defesa[classe])
-      }
-      
+      } enquanto (opcao!=1)      
       
     }
 
     funcao batalhaGuardiao (inteiro vidajogador, inteiro ataquejogador, inteiro defesajogador) {
 
-      inteiro vidaGuardiao = 120, ataqueguardiao = 70, defesaguardiao = 50
+      inteiro vidaGuardiao = 120, ataqueguardiao = 80, defesaguardiao = 70
 
       inteiro turno = 1, opcao, danoCausado, danoRecebido
       logico opcaoDefesa = falso
@@ -384,66 +644,171 @@ programa {
       
       faca {
         faca {
-        opcaoDefesa = falso
+          opcaoDefesa = falso
+          limpa()
+          escreva("-BATALHA-\n\n")
+          escreva(nomeHeroi ," x Guardião da Floresta\n\n" )
+          escreva("SUA VIDA: ", vidajogador, " | VIDA DO INIMIGO: ", vidaGuardiao)
+          escreva("\nTURNO: ", turno)
+          escreva("\n\nSUA VEZ: O QUE DESEJA FAZER?\n1. Atacar | 2. Defender\n\nDigite a opção escolhida: ")
+          leia(opcao)
+        } enquanto (opcao>2 ou opcao<1)
+
+        se (opcao==1) {
+          danoCausado = ataquejogador - defesaguardiao
+          se (danoCausado<0) {
+            danoCausado = 0
+          } 
+          vidaGuardiao -= danoCausado
+
+          escreva("\nVocê causou ", danoCausado, " de dano!")
+          u.aguarde(2000)
+          se (vidaGuardiao<=0) {
+            escreva("você venceu")
+            pare
+          }
+        }    
+
+        se (opcao==2) {
+          opcaoDefesa = verdadeiro
+          escreva("\nVocê escolheu se defender, o próximo ataque do seu inimigo causará metade do dano!")
+        }
+
+        escreva("\n\nVEZ DO INIMIGO\n\n")
+        u.aguarde(1000)
+
+        danoRecebido = ataqueguardiao - defesajogador
+        se (opcaoDefesa==verdadeiro) {
+          vidajogador -= danoRecebido/2
+          escreva("O guardião lhe atacou e causou ", danoRecebido/2, " de dano!")
+          se (vidajogador<=20) {
+            escreva("\nVocê está prestes a desmaiar...\n")
+            u.aguarde(1000)
+            escreva("??? (gritando): Abaixaaaaaaa!!!\n")
+            u.aguarde(1000)
+            escreva("* Uma flecha silva no ar e atinge o Guardião! *\n")
+            u.aguarde(2000)
+            escreva("Eyla: 'Você está bem? Eu ouvi barulhos vindos da floresta... Não se preocupe, estou com você agora.'\n")
+            u.aguarde(3000)
+            escreva("* O Guardião da Floresta recua para as sombras... *\n")
+            u.aguarde(1000)
+            escreva("Você desmaia devido aos ferimentos, mas sente que está seguro.\n")
+            u.aguarde(5000)
+            faca {
+              escreva("\n1. Continuar: ")
+              leia (opcao)
+            } enquanto (opcao!=1)
+            pare
+          } 
+        } senao {
+          vidajogador -= danoRecebido
+          escreva("O guardião lhe atacou e causou ", danoRecebido, " de dano!")
+          se (vidajogador<=20) {
+            inteiro opcao
+            escreva("\nVocê está prestes a desmaiar...\n")
+            u.aguarde(1000)
+            escreva("??? (gritando): Abaixaaaaaaa!!!\n")
+            u.aguarde(1000)
+            escreva("* Uma flecha silva no ar e atinge o Guardião! *\n")
+            u.aguarde(2000)
+            escreva("Eyla: 'Você está bem? Eu ouvi barulhos vindos da floresta... Não se preocupe, estou com você agora.'\n")
+            u.aguarde(3000)
+            escreva("* O Guardião da Floresta recua para as sombras... *\n")
+            u.aguarde(1000)
+            escreva("Você desmaia devido aos ferimentos, mas sente que está seguro.\n")
+            u.aguarde(5000)
+            faca {
+              escreva("\n1. Continuar: ")
+              leia (opcao)
+            } enquanto (opcao!=1)
+            pare
+          }
+        }
+
+        u.aguarde(2000)
+        turno++
+      } enquanto (vidajogador>20 e vidaGuardiao>0)
+
+    }
+
+    funcao eyla () {
+      cadeia opcao 
+      faca {
         limpa()
-        escreva("-BATALHA-\n\n")
-        escreva(nomeHeroi ," x Guardião da Floresta\n\n" )
-        escreva("VIDA: ", vidajogador, " | VIDA: ", vidaGuardiao)
-        escreva("\nTURNO: ", turno)
-        escreva("\n\nSUA VEZ: O QUE DESEJA FAZER?\n1. Atacar | 2. Defender | 3. Carregar ataque\n\nDigite a opção escolhida: ")
+        escreva("|                              @@@@@@           @@@@              \n")      
+        escreva("|                      @@%%++@@           @@++@@@@                \n")
+        escreva("|          @@@@@     @@%%++@@               @@%%+#@@ @@@@         \n")
+        escreva("|          @@@+@@@ @@%%++@@                   @@%#+@@@%@@         \n")
+        escreva("|          @@@+@@@ @@%%++@@@@@@@@@@@@@@@@@@@   @@@+@@@%@@         \n")
+        escreva("|          @@@+++@@@%%%++@@::      :::      @@@@@@+*%%%@@         EYLA\n")
+        escreva("|          @@@%*+++++++++++@@@@       .:        @@+++#%@@         \n")
+        escreva("|     @@@@ @@@%%%%%%%%%+++++++#@@@=     ::  @@@@+++*%%%@@         VIDA: ???\n")
+        escreva("|     @@++@@ @@@%%%%%%%%%%%%%+++++%@@@@@@@@@+++++*%%%@@@ @@@@     \n")
+        escreva("|     @@%%+*@@@@+++#%%%%%%%%%%%%#+%@-...  @@++++%%%%%@@@@%%@@     ATAQUE: ???\n")
+        escreva("|       @@%#+++*%%%%%@@@@@@@@%%%@@.   :===  @@%%%%@@@@%%%@@       \n")
+        escreva("|       @@@@###@@@@@@++++++++@@@@@:     ==::@@@@@@=#@@@@@@@       DEFESA: ???\n")
+        escreva("|         @@@@@@@%***--    ::+++++*#      @@++++*+-#@@@@@         \n")
+        escreva("|          @@@===.       ..::.... -***++++::  .::. *@@@@          \n")
+        escreva("|          @@@+++:       ::......  .-=====    .... +@@@@@         \n")
+        escreva("|          @@@%*+:...    ::    ..             ..   :%%%@@         \n")
+        escreva("|          @@@+:   =+    ::   ...             ..    :=+@@         \n")
+        escreva("|          @@@@#===@@    ::....:..............::.. .=@@@          \n")
+        escreva("|          @@@:#@@@@%****:::::::::::::::::::::::::*@@@            \n")
+        escreva("|          @@@  -@@@%******:::::::::::::::::::::::*@@@            \n")
+        escreva("|          @@@---@@@%*************-:::::::::::*****@@@            \n")
+        escreva("|         @@  ---@@@%%%*******+:.   .:    ::    ***@@@            \n")
+        escreva("|         @@  ---@@#***%%%%%%%%+++. :+++  ++++  %@@@              \n")
+        escreva("|         @@  -%@%*********:::=@*.  :*..  **..  :=@@              \n")
+        escreva("|         @@---%@%*******:::::=@@%. .:+*  ::%%  :=@@              \n")
+        escreva("|          @@@@#:=*****::::::@@%%%%%-:+***::%%%#:=@@              \n")
+        escreva("|          @@@***::::::....::@@%%%=:=***::%%%%%*.:@@              \n")
+        escreva("|          @@@*******::::@@@@@@@@@*:=***::@@@@@@:=@@              \n")
+        escreva("|            @@@@@@@@@@@@@@       @@@@@@@@@@@@@@@@@@              \n")
+        escreva("|                    @@@@                 @@@@                    \n\n")
+        escreva("1. Continuar: ")
         leia(opcao)
-      } enquanto (opcao>3 ou opcao<1)
+      } enquanto (opcao!=1)
 
-      se (opcao==1) {
-        danoCausado = ataquejogador - defesaguardiao
-        se (danoCausado<0) {
-          danoCausado = 0
-        } 
-        vidaGuardiao -= danoCausado
+      limpa()
+      escreva("Eyla:\n")
+      escreva("\n- Você está a salvo… por enquanto. As trevas de Eldoria são impiedosas, mas não deixarei que o consumam tão cedo.")
+      u.aguarde(1000)
+      escreva("\n- Meu nome... é Eyla. Quem eu sou de verdade não importa agora. O que importa… é que você continue em frente.")
+      u.aguarde(1000)
+      escreva("\n- Venha. O caminho é longo, e você não deve trilhá-lo sozinho.")
+      u.aguarde(5000)
+      faca {
+        escreva("\n\n1. Continuar: ")
+        leia(opcao)
+      } enquanto (opcao!=1)
 
-        escreva("\nVocê causou ", danoCausado, " de dano!")
-      }    
+      faca {
+        limpa()
+        escreva("Antes que prossigamos... há algo que preciso lhe ensinar.\n")
+        escreva("Em Eldoria, a força bruta nem sempre vence… é a disciplina que molda o verdadeiro guerreiro.\n")
+        escreva("Concentre sua energia, respire fundo… e acumule sua Força Interior.\n")
+        escreva("Quando fizer isso, seu próximo golpe será devastador, esmagando seu inimigo com poder muito além do normal.\n")
+        escreva("Mas cuidado... esse esforço tem um preço. Seu corpo se desgastará, e só poderá usar essa técnica poucas vezes em cada batalha.\n")
+        escreva("Aprenda a equilibrar poder e prudência. Isso pode ser a diferença entre a vitória… e a sua ruína.\n")
+        escreva("\n1. Continuar: ")
+        leia(opcao)
+      } enquanto (opcao!=1)
 
-      se (opcao==2) {
-        opcaoDefesa = verdadeiro
+      faca {
+        limpa()
+        escreva(">>> NOVA HABILIDADE DESBLOQUEADA: FORÇA INTERIOR <<<\n")
+        escreva("Você aprendeu a concentrar sua energia para potencializar seu próximo ataque!\n")
+        escreva("Efeito: Ao usar 'Força Interior', seu próximo ataque causará 50% de dano adicional.\n")
+        escreva("Cuidado: Essa técnica desgasta seu corpo e só pode ser usada um número limitado de vezes por batalha.\n")
+        escreva("Agora você pode usar o comando especial durante as lutas:\n")
+        escreva("Digite '3' em combate para ativar 'Força Interior' e preparar um ataque devastador!\n")
+        escreva("\n1. Continuar: ")
+        leia(opcao)
+      } enquanto (opcao!=1)
 
-        escreva("\nVocê escolheu se defender, o próximo ataque do seu inimigo causará metade do dano!")
-      }
+    }
 
-      se (opcao==3) {
-        ataquejogador += ataquejogador/2
-        
-        escreva("Seu poder de ataque foi aumentado em 50%!")
-      } 
-
-      u.aguarde(2000)
-      escreva("\n\nVEZ DO INIMIGO\n\n")
-
-      danoRecebido = ataqueguardiao - defesajogador
-      se (opcaoDefesa==verdadeiro) {
-        vidajogador -= danoRecebido/2
-        escreva("O guardião lhe atacou e causou ", danoRecebido/2, " de dano!")
-      } senao {
-        vidajogador -= danoRecebido
-        escreva("O guardião lhe atacou e causou ", danoRecebido, " de dano!")
-      }
-
-      u.aguarde(2000)
-      turno++
-      } enquanto (vidajogador>0 e vidaGuardiao>0)
-
-      se (vidajogador<=0) {
-        escreva("você perdeu")
-      }
+    funcao vilaAbandonada () {
       
-      se (vidaGuardiao<=0) {
-        escreva("você venceu")
-      }
-
-
-
-      
-
-
-    } 
+  } 
 }
