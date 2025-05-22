@@ -2,26 +2,26 @@ programa {
 
   inclua biblioteca Util --> u
 
+  cadeia nomeJogador = "Lucas"
   cadeia classe
-  inteiro vidaMax
-  inteiro ataque
-  inteiro defesa
+  inteiro vidaMax = 120
+  inteiro vidaAtual = vidaMax
+  inteiro ataque = 10
+  inteiro defesa = 15
   inteiro xp
-  inteiro nivel
+  inteiro nivel = 2
 
   funcao inicio() {
-    cadeia nomeJogador
-    inteiro escolhaMenu
-    inteiro numeroDaClasse
+    cadeia escolhaMenu
 
     escolhaMenu = menu_inicio()
 
     se(escolhaMenu == 1){
       limpa()
-      /*nomeJogador = novo_jogo()*/
-      classe()
-      u.aguarde(1000)
-      introducao_heroi()
+      //novo_jogo()
+      //classe()
+      //u.aguarde(1000)
+      //introducao_heroi()
       menu_acoes_jogo()
 
     }
@@ -33,9 +33,10 @@ programa {
     }
     
   }
-  funcao inteiro menu_inicio(){
-    inteiro escolhaMenu
+  funcao cadeia menu_inicio(){
+    cadeia escolhaMenu
     enquanto(escolhaMenu !=1 e escolhaMenu !=2 e escolhaMenu !=3){
+      limpa()
       escreva("✨Eldoria: A Jornada em busca da Luz✨\n-------------------------------\n")
       escreva("══════「MENU」══════\n")
       escreva("1 - Novo jogo\n")
@@ -47,18 +48,31 @@ programa {
   }
 
   funcao menu_acoes_jogo(){
-    inteiro escolhaAcao
-    escreva("══════「AÇÕES」══════\n")
-    escreva("1 - Explorar Região\n")
-    escreva("2 - Status do Herói\n")
-    escreva("3 - Inventário\n")
-    escreva("4 - Sair do jogo\n")
-    leia(escolhaAcao)
+    cadeia escolhaAcao
+    enquanto(escolhaAcao != 1 e escolhaAcao != 2 e escolhaAcao != 3 e escolhaAcao != 4){
+      limpa()
+      escreva("══════「AÇÕES」══════\n")
+      escreva("1 - Explorar Região\n")
+      escreva("2 - Status do Herói\n")
+      escreva("3 - Inventário\n")
+      escreva("4 - Sair do jogo\n")
+      leia(escolhaAcao)
+    }
+    se(escolhaAcao == 1){
+      intro_floresta_lobo()
+      batalha_floresta()
+    }
+    se(escolhaAcao == 2){
+      status_heroi()
+    }
 
+
+
+
+    
   }
 
-  /*funcao cadeia novo_jogo(){
-    cadeia nome
+  /*funcao novo_jogo(){
     escreva("| Há muito tempo, o Reino de Eldoria vivia em paz.\n")
     u.aguarde(1000)
     escreva("| No centro do reino, a Pedra da Luz brilhava, afastando as trevas.\n")
@@ -72,16 +86,16 @@ programa {
     escreva("| Esse herói... é você.\n")
     u.aguarde(1000)
     escreva("| Como posso lhe chamar?\n")
-    leia(nome)
+    leia(nomeJogador)
     limpa()
     u.aguarde(500)
-    escreva("| É um prazer grande herói ",nome,", eu sou o ARQUITETO.\n")
+    escreva("| É um prazer grande herói ",nomeJogador,", eu sou o ARQUITETO.\n")
     u.aguarde(1000)
     escreva("| Irei aparecer em sua jornada com dicas e explicações sobre os acontecimentos que estão por vir...\n")
     u.aguarde(1000)
     escreva("| No momento vamos escolher sua classe.\n")
-    retorne nome
   }*/
+
   funcao introducao_heroi(){
     cadeia continuar
     limpa()
@@ -112,14 +126,17 @@ programa {
       u.aguarde(500)
     }
   }
-  funcao classe(){
-    inteiro numeroDaClasse
-    escreva("══════「✦CLASSES✦」══════\n")
-    escreva("1. ⚔️ Guerreiro (Alta vida e defesa)\n")
-    escreva("2. 🏹 Arqueiro (Equilibrado)\n")
-    escreva("3. 🔮 Mago (Alto ataque, baixa defesa)\n")
-    leia(numeroDaClasse)
 
+  funcao classe(){
+    cadeia numeroDaClasse
+    enquanto(numeroDaClasse != 1 e numeroDaClasse != 2 e numeroDaClasse != 3 ){
+      limpa()
+      escreva("══════════「✦CLASSES✦」══════════\n")
+      escreva("1. ⚔️ Guerreiro (Alta vida e defesa)\n")
+      escreva("2. 🏹 Arqueiro (Equilibrado)\n")
+      escreva("3. 🔮 Mago (Alto ataque, baixa defesa)\n")
+      leia(numeroDaClasse)
+    }
     logico voltar = falso
 
       enquanto(voltar == falso){
@@ -129,7 +146,7 @@ programa {
           limpa()
           classe = "⚔️ Guerreiro"
           vidaMax = 120
-          ataque = 10
+          ataque = 20
           defesa = 15
           xp = 0
           nivel = 1
@@ -187,7 +204,7 @@ programa {
           limpa()
           classe = "🔮 Mago"
           vidaMax = 70
-          ataque = 20
+          ataque = 25
           defesa = 5
           xp = 0
           nivel = 1
@@ -216,6 +233,92 @@ programa {
       }
   }
 
+  funcao status_heroi(){
+    cadeia voltar
+    limpa()
+    enquanto(voltar != ""){
+      limpa()
+      escreva("══════════「STATUS」══════════\n")
+      escreva(classe," Nv.",nivel," XP [",xp,"/100"+"]\n")
+      escreva("----------------------------\n")
+      escreva("❤️ Vida: ",vidaMax,"\n")
+      escreva("🗡️ Ataque: ",ataque,"\n")
+      escreva("🛡️ Defesa: ",defesa,"\n")
+      escreva("\n\nPressione \"Enter\" para voltar\n")
+      leia(voltar)
+    }
+    se(voltar == ""){
+      menu_acoes_jogo()
+    }
+  }
+
+  funcao intro_floresta_lobo(){
+    cadeia voltar
+    limpa()
+    enquanto(voltar != ""){
+      escreva("| Você adentra a Floresta da Névoa...\n")
+      escreva("| A luz do sol mal atravessa as copas espessas das árvores.\n")
+      escreva("| O ar é denso, carregado com o cheiro de folhas úmidas e perigo iminente.\n")
+      escreva("| Você ouve galhos se partindo ao longe... algo está se aproximando.\n")
+      escreva("| Um uivo rompe o silêncio. De dentro da neblina, surge um LOBO TERRÍVEL!\n")
+      escreva("| Os olhos da criatura brilham em vermelho, famintos por batalha...\n")
+      escreva("                              __       \n")
+      escreva("                            .d$$b      \n")
+      escreva("                          .' TO$;\\     \n")
+      escreva("                         /  : TP._;    \n")
+      escreva("                        / _.;  :Tb|    \n")
+      escreva("                       /   /   ;j$j    \n")
+      escreva("                   _.-\"       d$$$$    \n")
+      escreva("                 .' ..       d$$$$;    \n")
+      escreva("                /  /P'      d$$$$P. |\\ \n")
+      escreva("               /   \"      .d$$$P' |\\^\"l\n")
+      escreva("             .'           `T$P^\"\"\"\"\"  :\n")
+      escreva("         ._.'      _.'                ;\n")
+      escreva("      `-.-\".-'-' ._.       _.-\"    .-\" \n")
+      escreva("    `.-\" _____  ._              .-\"    \n")
+      escreva("   -(.g$$$$$$$b.              .'       \n")
+      escreva("     \"\"^^T$$$P^)            .(:        \n")
+      escreva("       _/  -\"  /.'         /:/;        \n")
+      escreva("    ._.'-'`-'  \")/         /;/;        \n")
+      escreva(" `-.-\"..--\"\"   \" /         /  ;        \n")
+      escreva(".-\" ..--\"\"        -'          :        \n")
+      escreva("..--\"\"--.-\"         (\\      .-(\\       \n")
+      escreva("  ..--\"\"              `-\\(\\/;`         \n")
+      escreva("    _.                      :          \n")
+      escreva("                            ;`-        \n")
+      escreva("                           :\\          \n")
+      escreva("                           ;           \n")
+      escreva("       --LOBO TERRÍVEL--            \n")
+      escreva("\n\nPressione \" Enter para começar a batalha\"\n")
+      leia(voltar)
+    }
+  }
+  funcao batalha_floresta(){
+    limpa()
+    inteiro vidaMaxInimigo = 60
+    inteiro vidaAtualInimigo = vidaMaxInimigo
+    inteiro ataqueInimigo = 25
+    inteiro defesaInimigo = 5
+    cadeia escolher
+    enquanto (vidaAtualInimigo > 0 e vidaAtual > 0){
+      limpa()
+      escreva("LOBO TERRÍVEL Nv. 2 \n")
+      escreva("VIDA: ",vidaAtualInimigo,"/",vidaMaxInimigo,"        DEFESA: ",defesaInimigo,"\n")
+      escreva("―――――――――――――――――――――――――――――――――――――――――――\n")
+      escreva("                     X                        \n")
+      escreva(nomeJogador," Nv. ",nivel,"\n")
+      escreva("VIDA: ",vidaAtual,"/",vidaMax,"        DEFESA: ",defesaInimigo,"\n")
+      escreva("―――――――――――――――――――――――――――――――――――――――――――\n")
+      escreva("1 - Atacar   |   2 - Defender\n")
+      leia(escolher)
+
+      se(escolher == 1){
+        inteiro dano = ataque - defesaInimigo
+        escreva("Você ataca o inimigo!")
+        vidaAtualInimigo = vidaAtualInimigo - dano
+      }
+    }
+  }
   funcao creditos(){
     escreva("════════「🌟 CRÉDITOS 🌟」════════\n")
     u.aguarde(600)
