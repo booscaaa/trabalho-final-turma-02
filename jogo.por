@@ -1,8 +1,22 @@
 programa {inclua biblioteca Util--> u
-  funcao inicio() {
-    cadeia inicio 
+  cadeia inicio 
     cadeia nomeAventureiro
     cadeia classe
+    inteiro resultadoDado
+    inteiro hpAtual
+    inteiro hpMaximo
+    inteiro ataqueBase
+    inteiro manaAtual
+    inteiro manaMaxima
+  funcao inicio() {
+
+
+  
+
+    para(inteiro i = 3; i < 3; i++){
+
+    }
+   
 
 
     escreva("||HellChampions Studios Apresenta||")
@@ -130,7 +144,8 @@ escreva("                                                    ##::--::--..##     
 escreva("                                                      ##::----@@                                                                             \n")
 escreva("                                                        ######--                                                                             \n")
 escreva("                                                                                                                                             \n")
-u.aguarde(2000)
+u.aguarde(3000)
+limpa()
 
 escreva("Guerreiro: Especialidade Em Vida e Defesa e capacitado a aguentar mais dano, Guerreiro usa espadas,Lanças,machados ou escudos Vida Inicial 35 Defesa 25.")
 escreva("############################################################################################################################################\n")
@@ -195,44 +210,46 @@ escreva("######################################################::######++##MM##-
 escreva("######################################################mm##############::##::##########mm####################################################\n")
 escreva("######################################################################::####################################################################\n")
 escreva("############################################################################################################################################\n")
-
+u.aguarde(3000)
+limpa()
 escreva("Mago: Alta Capacidade de magia bom a longa e curta distancia porem pouca resistencia Vida Inicial 20 Defesa 10 .")
    
-    escreva("                                                                        ::####--                                                    ")
-    escreva("                                                                      ##mm      MM--                                                ")
-    escreva("                                                                    MMmm::..::MM--  ::++                                            ")
-    escreva("                                                                ++--mmMMmm    --    ++##  ##                                        ")
-    escreva("                                                              MM::  ..                        ::MM                                  ")
-    escreva("                                                          ..MM                              --      mm@@..                          ")
-    escreva("                                                        @@  mm                                      ..::..  ..MM::                  ")
-    escreva("                                                    --::++                    ----                  ..MM::::--..--                  ")
-    escreva("                                                  ##  ..                MM@@                          ::@@@@..  mm@@                ")
-    escreva("                                              ++..++          --::::++++mm..  ++                      ::mm----  ..##                ")
-    escreva("                                            @@            --..@@  mm  ..      mm                      ....      ..##                ")
-    escreva("                                        ##..            mm..    --            mm                    MMmm        ++##                ")
-    escreva("                                    ..MM                  @@..  ++--      ++@@--                mm++@@--          @@                ")
-    escreva("                                  @@++..      ::            MM##  ..MM++    ++                  ..      mm      ..                  ")
-    escreva("                                ##++..                            @@..      --              ..  --..  ..      --MM                  ")
-    escreva("                            ..mm--  ....                              ::@@mm              ..          --mm    ..++                  ")
-    escreva("                            ##  ..  --                                                  --            --..  ..##                    ")
-    escreva("                          --      mm  @@                                            ..--..          ..----..::                      ")
-    escreva("                            ::##mm    @@                                          ::mm              ....++..                        ")
-    escreva("                                MM  MM    mm                                    ::MM..            mm++  ##                          ")
-    escreva("                                MM..    ##    mm                              ....++              ::##++--                          ")
-    escreva("                            MM  @@--  ++    ::mm..++                    ++--....--            MM::@@                               ")
-    escreva("                          ##    ++      --@@..    @@  ::--@@MM::----..++@@++@@  ....        MM++@@                                   ")
-    escreva("                          @@  ::mm      ::  MM@@mm  ..MM..MM  --++::  ::--..  --MM        --..--                                     ")
-    escreva("                            ++..--::MM..--MM::--####  ..  ##  MM      ++::    mm        --++                                         ")
-    escreva("                                ##MM  mmmm::      --mm##      ##      ..              @@@@                                           ")
-    escreva("                                    mm..MM          ##::MM++      ##  ++          ::::@@                                             ")
-    escreva("                                      --          @@++..  @@  ##  ----..      ..  ##--                                               ")
-    escreva("                                    ..::      ..@@  ++  ++          ++mm    ++--                                                     ")
-    escreva("                                  ::++##++..  ::@@  MM..----        ::    ++mm@@                                                     ")
-    escreva("                                          @@..--  ..##--@@          mm    --MM                                                       ")
-    escreva("                                          ##..          ##  MM..  --@@..::..                                                         ")
-    escreva("                                                            ##  --##  ++                                                             ")
-    escreva("                                                                MM  --MM                                                             ")
-    escreva("                                                                  ----                                                               ")
+    escreva("                                                                        ::####--                                                    \n")
+    escreva("                                                                      ##mm      MM--                                                \n")
+    escreva("                                                                    MMmm::..::MM--  ::++                                            \n")
+    escreva("                                                                ++--mmMMmm    --    ++##  ##                                        \n")
+    escreva("                                                              MM::  ..                        ::MM                                  \n")
+    escreva("                                                          ..MM                              --      mm@@..                          \n")
+    escreva("                                                        @@  mm                                      ..::..  ..MM::                  \n")
+    escreva("                                                    --::++                    ----                  ..MM::::--..--                  \n")
+    escreva("                                                  ##  ..                MM@@                          ::@@@@..  mm@@                \n")
+    escreva("                                              ++..++          --::::++++mm..  ++                      ::mm----  ..##                \n")
+    escreva("                                            @@            --..@@  mm  ..      mm                      ....      ..##                \n")
+    escreva("                                        ##..            mm..    --            mm                    MMmm        ++##                \n")
+    escreva("                                    ..MM                  @@..  ++--      ++@@--                mm++@@--          @@                \n")
+    escreva("                                  @@++..      ::            MM##  ..MM++    ++                  ..      mm      ..                  \n")
+    escreva("                                ##++..                            @@..      --              ..  --..  ..      --MM                  \n")
+    escreva("                            ..mm--  ....                              ::@@mm              ..          --mm    ..++                  \n")
+    escreva("                            ##  ..  --                                                  --            --..  ..##                    \n")
+    escreva("                          --      mm  @@                                            ..--..          ..----..::                      \n")
+    escreva("                            ::##mm    @@                                          ::mm              ....++..                        \n")
+    escreva("                                MM  MM    mm                                    ::MM..            mm++  ##                          \n")
+    escreva("                                MM..    ##    mm                              ....++              ::##++--                          \n")
+    escreva("                            MM  @@--  ++    ::mm..++                    ++--....--            MM::@@                               \n")
+    escreva("                          ##    ++      --@@..    @@  ::--@@MM::----..++@@++@@  ....        MM++@@                                   \n")
+    escreva("                          @@  ::mm      ::  MM@@mm  ..MM..MM  --++::  ::--..  --MM        --..--                                     \n")
+    escreva("                            ++..--::MM..--MM::--####  ..  ##  MM      ++::    mm        --++                                         \n")
+    escreva("                                ##MM  mmmm::      --mm##      ##      ..              @@@@                                           \n")
+    escreva("                                    mm..MM          ##::MM++      ##  ++          ::::@@                                             \n")
+    escreva("                                      --          @@++..  @@  ##  ----..      ..  ##--                                               \n")
+    escreva("                                    ..::      ..@@  ++  ++          ++mm    ++--                                                     \n")
+    escreva("                                  ::++##++..  ::@@  MM..----        ::    ++mm@@                                                     \n")
+    escreva("                                          @@..--  ..##--@@          mm    --MM                                                       \n")
+    escreva("                                          ##..          ##  MM..  --@@..::..                                                         \n")
+    escreva("                                                            ##  --##  ++                                                             \n")
+    escreva("                                                                MM  --MM                                                             \n")
+    escreva("                                                                  ----                                                              \n ")
+    u.aguarde(3000)
     
 
 
@@ -256,10 +273,66 @@ escreva("Mago: Alta Capacidade de magia bom a longa e curta distancia porem pouc
       escreva(".")
       u.aguarde(3000)
       limpa()
-      
+
+     
       
     }
     
+    
+    
 
   }
-}
+  funcao inteiro lancarDado(){
+    inteiro numeroSorteado
+
+    numeroSorteado == u.sorteia(1,6)
+
+
+
+    retorne numeroSorteado
+  }
+
+  
+  }
+   funcao logico escolherClasse() {
+        inteiro escolha
+        escreva("\nEscolha sua classe:\n")
+        escreva("1. Guerreiro (HP Alto, Ataque Moderado)\n")
+        escreva("2. Arqueiro (HP Médio, Ataque Preciso)\n")
+        escreva("3. Mago     (HP Baixo, Ataque Mágico Forte, Usa Mana)\n")
+        escreva("Digite o número da classe: ")
+        leia(escolha)
+   
+
+        se (escolha == 1) {
+            classePersonagem = "Guerreiro"
+            hpMaximo = 150
+            hpAtual = hpMaximo
+            ataqueBase = 15
+            manaAtual = 0 // Guerreiros não usam mana neste exemplo
+            manaMaxima = 0
+            retorna verdadeiro
+        } senao se (escolha == 2) {
+            classePersonagem = "Arqueiro"
+            hpMaximo = 100
+            hpAtual = hpMaximo
+            ataqueBase = 12 // Ataque base pode ser menor, mas habilidades compensam
+            manaAtual = 0 // Arqueiros não usam mana neste exemplo
+            manaMaxima = 0
+            // flechas = 20 // Exemplo
+            retorna verdadeiro
+        } senao se (escolha == 3) {
+            classePersonagem = "Mago"
+            hpMaximo = 80
+            hpAtual = hpMaximo
+            ataqueBase = 8  // Ataque base físico baixo, magia é o forte
+            manaMaxima = 100
+            manaAtual = manaMaxima
+            retorna verdadeiro
+        } senao {
+            escreva("Escolha inválida!\n")
+            retorna falso
+        }
+   }
+   
+
