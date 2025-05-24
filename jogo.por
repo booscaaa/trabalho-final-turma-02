@@ -11,21 +11,50 @@ programa {
     inteiro classeEscolhida
 
     funcao inicio() {
+        contarHistoria()
+        u.aguarde (2000)
         menu()
     }
-
+    
+    funcao contarHistoria(){
+        escreva("Há eras incontáveis, o Reino de Eldoria florescia sob a proteção da lendária Pedra da Luz, um artefato místico guardado pelos Anciãos do Castelo Dourado. Sua energia mantinha o equilíbrio, afastava as sombras e fazia a vida prosperar.\n")
+        u.aguarde(15000)
+        limpa()
+        escreva("Mas a escuridão tem paciência...")
+        u.aguarde(3000)
+        limpa()
+        escreva("Das profundezas esquecidas surgiu O Devastador, uma entidade envolta em sombras e ódio. Em uma noite silenciosa, ele rasgou os céus, destruiu defesas e roubou a Pedra sagrada. O mundo mudou.\n")
+        u.aguarde(10000)
+        escreva("As florestas, antes vivas, apodreceram. As vilas foram queimadas e abandonadas. Criaturas de pesadelo passaram a andar sob a lua. A esperança virou lenda.\n")
+        u.aguarde(8000)
+        limpa()
+        escreva("Mas nem todas as lendas morrem...")
+        u.aguarde(3000)
+        limpa()
+        escreva("Em meio ao caos, a antiga profecia ressurge — um herói escolhido pela própria luz despertará, forjado na dor e na coragem. Esse herói... é você.\n")
+        u.aguarde(8000)
+        escreva("Você deve cruzar as cinco regiões corrompidas, dominar seus poderes, encarar terrores esquecidos e encarar o próprio Devastador. Cada passo é uma escolha. Cada batalha, um teste. O futuro de Eldoria está em suas mãos.\n")
+        u.aguarde(10000)
+        limpa()
+        escreva("Prepare-se\n")
+        u.aguarde(1500)
+        escreva("A lenda começa agora!")
+    }
+    
     funcao menu() {
         inteiro opcao
         faca {
             limpa()
             escreva("┌────────────────────────────┐\n")
             escreva("│     A JORNADA DO HERÓI     │\n")
-            escreva("├────────────────────────────┤\n")
+            escreva("└────────────────────────────┘\n")
+            u.aguarde(2000)
+            escreva("┌────────────────────────────┐\n")
             escreva("│   1. Novo Jogo             │\n")
             escreva("│   2. Créditos              │\n")
             escreva("│   3. Sair                  │\n")
             escreva("└────────────────────────────┘\n")
-            escreva("\n")
+            escreva("\nEscolha uma opção: ")
             leia(opcao)
 
             se (opcao == 1) {
@@ -45,6 +74,7 @@ programa {
                 limpa()
                 escreva("Saindo do jogo...")
                 u.aguarde(500) 
+                
                 pare
             }
         } enquanto (opcao < 1 ou opcao > 3)
@@ -82,20 +112,22 @@ programa {
     funcao criacaoDoHeroi() {
         limpa()
         escreva("┌────────────────────────────┐\n")
-        escreva("│   CRIAÇÃO DO HERÓI         │\n")
+        escreva("│      CRIAÇÃO DO HERÓI      │\n")
         escreva("├────────────────────────────┤\n")
         escreva("│ Digite o nome do seu herói:│\n")
         escreva("└────────────────────────────┘\n")
+         escreva("\nNome: ")
         leia(nomeHeroi)
         limpa ()
         
-        escreva("┌────────────────────────────┐\n")
-        escreva("│   ESCOLHA SUA CLASSE       │\n")
-        escreva("├────────────────────────────┤\n")
-        escreva("│ 1. Guerreiro               │\n")
-        escreva("│ 2. Mago                    │\n")
-        escreva("│ 3. Arqueiro                │\n")
-        escreva("└────────────────────────────┘\n")
+        escreva("┌───────────────────────────────────┐\n")
+        escreva("│        ESCOLHA SUA CLASSE         │\n")
+        escreva("├───────────────────────────────────┤\n")
+        escreva("│ 1. Guerreiro HP:120 ATK:15 DEF:10 │\n")
+        escreva("│ 2. Mago HP:80 ATK:25 DEF:5        │\n")
+        escreva("│ 3. Arqueiro HP:100 ATK:20 DEF:8   │\n")
+        escreva("└───────────────────────────────────┘\n")
+         escreva("\nEscolha uma opção: ")
         leia(classeEscolhida)
 
         se (classeEscolhida == 1) {
@@ -116,6 +148,7 @@ programa {
 
         limpa()
         escreva("Seu herói foi criado!\n")
+        escreva ("\n")
         escreva("Nome: " + nomeHeroi + "\n")
         escreva("Classe: " + nomeClasse[classeEscolhida - 1] + "\n")
         escreva("Vida: " + vida[0] + "\n")
@@ -125,12 +158,11 @@ programa {
     }
 
     funcao batalhaInicial() {
-        // Implementação básica da batalha
         limpa()
         escreva("┌────────────────────────────┐\n")
         escreva("│       BATALHA              │\n")
         escreva("├────────────────────────────┤\n")
-        escreva("│ Seu herói está pronto!     │\n")
+        escreva("│   Seu herói está pronto!   │\n")
         escreva("└────────────────────────────┘\n")
         u.aguarde(2000)
     }
