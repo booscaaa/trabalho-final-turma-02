@@ -207,91 +207,235 @@ programa {
           ataque += 6
           defesa += 4
           agilidade += 2
+
+          afinidadeFOGO += 35
+          afinidadeESCURIDAO += 35
         pare
         caso "CAVALEIRO DA CENTELHA":
           ataque += 2
           defesa += 5
-          defesa += 5
+          agilidade += 5
+
+          afinidadeVENTO += 40
+          afinidadeTERRA += 30
         pare
         caso "CAVALEIRO RADIANTE":
           ataque += 4
           defesa += 4
           agilidade += 4
+
+          afinidadeLUZ += 35
+          afinidadeAGUA += 25
+          afinidadeFOGO += 10
         pare
         caso "SHOGUN":
           ataque += 5
           defesa += 2
           agilidade += 5
+
+          afinidadeTERRA += 45
+          afinidadeNEUTRO += 25
         pare
         caso "NITORYUU":
           ataque += 5
           defesa += 1
           agilidade += 6
+
+          afinidadeVENTO += 70
         pare
         caso "RONIN":
           ataque += 6
           defesa += 3
           agilidade += 3
+
+          afinidadeNEUTRO += 70
         pare
         caso "PARAGON":
           ataque += 4
           defesa += 5
           agilidade += 3
+
+          afinidadeAGUA += 10
+          afinidadeFOGO += 10
+          afinidadeTERRA += 10
+          afinidadeVENTO += 10
+          afinidadeLUZ += 10
+          afinidadeESCURIDAO += 10
+          afinidadeNEUTRO += 10
         pare
         caso "PALADINO DO DRAGÃO GIGANTE":
           ataque += 3
           defesa += 6
           agilidade += 3
+
+          afinidadeAGUA += 20
+          afinidadeVENTO += 25
+          afinidadeFOGO += 25
         pare
         caso "PALADINO DE NEMESIS":
           ataque += 3
           defesa += 7
           agilidade += 2
+
+          afinidadeAGUA +=35
+          afinidadeTERRA += 35
         pare
         caso "ARQUIMAGO":
           ataque += 10
           defesa += 1
           agilidade += 1
+
+          afinidadeAGUA += 17
+          afinidadeFOGO += 17
+          afinidadeTERRA += 17
+          afinidadeVENTO += 17
+          afinidadeNEUTRO += 2
         pare
         caso "MAGO DE FOGO RAPIDO":
           ataque += 6
           defesa += 0
           agilidade += 6
+
+          afinidadeFOGO += 25
+          afinidadeVENTO += 25
+          afinidadeLUZ += 20
         pare
         caso "SABIO":
           ataque += 6
           defesa += 2
           agilidade += 4
+
+          afinidadeLUZ += 35
+          afinidadeESCURIDAO += 35
         pare
         caso "INVOCADOR":
           ataque += 4
           defesa += 3
           agilidade += 6
+
+          afinidadeNEUTRO += 35
+          afinidadeESCURIDAO += 35
         pare
         caso "ESPIRITUALISTA":
           ataque += 5
           defesa += 2
           agilidade += 5
+
+          afinidadeAGUA += 14
+          afinidadeFOGO += 14
+          afinidadeTERRA += 14
+          afinidadeVENTO += 14
+          afinidadeESCURIDAO += 14
         pare
         caso "DRUIDA":
           ataque += 5
           defesa += 3
           agilidade += 4
+
+          afinidadeAGUA += 24
+          afinidadeTERRA += 24
+          afinidadeLUZ += 22
         pare
         caso "SHAMAN":
           ataque += 6
           defesa += 2
           agilidade += 4
+
+          afinidadeFOGO += 20
+          afinidadeTERRA += 20
+          afinidadeESCURIDAO += 30
         pare
         caso "BRUXO DO PESADELO":
           ataque += 6
           defesa += 1
           agilidade += 5
+
+          afinidadeESCURIDAO += 50
+          afinidadeFOGO += 20
         pare
         caso "MAGO NEGRO":
           ataque += 5
           defesa += 5
           agilidade += 2
+
+          afinidadeESCURIDAO += 70
+        pare
+        caso "CAÇADOR DE ESTRELAS":
+          ataque += 4
+          defesa += 3
+          agilidade += 5
+
+          afinidadeLUZ += 40
+          afinidadeVENTO += 15
+          afinidadeFOGO += 15
+        pare
+        caso "CAÇADOR SOMBRIO":
+          ataque += 5
+          defesa += 3
+          agilidade += 4
+
+          afinidadeESCURIDAO += 30
+          afinidadeVENTO += 10
+          afinidadeNEUTRO += 30
+        pare
+        caso "CAÇADOR ANCESTRAL":
+          ataque += 5
+          defesa += 5
+          agilidade += 2
+
+          afinidadeTERRA += 30
+          afinidadeLUZ += 20
+          afinidadeESCURIDAO += 20
+        pare
+        caso "ARTILHEIRO":
+          ataque += 7
+          defesa += 2
+          agilidade += 3
+
+          afinidadeNEUTRO += 35
+          afinidadeFOGO += 35
+        pare
+        caso "ASSASSINO":
+          ataque += 8
+          defesa += 2
+          agilidade += 2
+
+          afinidadeNEUTRO += 20
+          afinidadeAGUA += 20
+          afinidadeESCURIDAO += 30
+        pare
+        caso "EXECUTOR CARMESIM":
+          ataque += 6
+          defesa += 0
+          agilidade += 6
+
+          afinidadeFOGO += 50
+          afinidadeNEUTRO += 20
+        pare
+        caso "SENTINELA SOLAR":
+          ataque += 4
+          defesa += 4
+          agilidade += 4
+
+          afinidadeLUZ += 35
+          afinidadeFOGO += 35
+        pare
+        caso "GUARDIÃO CELESTE":
+          ataque += 5
+          defesa += 4
+          agilidade += 3
+
+          afinidadeAGUA += 25
+          afinidadeVENTO += 25
+          afinidadeLUZ += 20
+        pare
+        caso "OLHO DO ABISMO":
+          ataque += 4
+          defesa += 4
+          agilidade += 4
+
+          afinidadeAGUA += 35
+          afinidadeESCURIDAO += 35
         pare
 
       }
@@ -354,14 +498,19 @@ programa {
           avancoDeClasseEvocador()
         pare
         caso "ONMYOJI":
+          avancoDeClasseOnmyoji()
         pare
         caso "BRUXO":
+          avancoDeClasseBruxo()
         pare
         caso "CAÇADOR":
+          avancoDeClasseCacador()
         pare
         caso "ATIRADOR":
+          avancoDeClasseAtirador()
         pare
         caso "VIGIA":
+          avancoDeClasseVigia()
         pare
       }
     }
@@ -406,12 +555,32 @@ funcao avancoDeClasseGuerreiro() {
     }
     
     escreva(nomeDoPersonagem, ", agora é um: ", classe, ".\n")
+    mostrarAtributos()
 }
 
 funcao avancoDeClasseCavaleiro(){
   inteiro opcaoDeAvancoFinal
 
   escreva(nomeDoPersonagem, " alcançou o nível maximo na sua classe atual, agora escolha uma das opções de avanço de classe. Este será seu ultimo avanço de classe.\n")
+  
+  escreva(nomeDoPersonagem, " alcançou o nível maximo na sua classe inicial, agora escolha uma das opções de avanço de classe.\n")
+  escreva("1 - CAVALEIRO DO SUBMUNDO\n")
+  escreva("Um guerreiro que abraçou as chamas e as sombras da batalha.\n")
+  escreva("Focado em ataque, o Cavaleiro do Submundo utiliza fogo e escuridão para causar dano intenso aos inimigos.\n")
+  escreva("Sua defesa é menor, mas compensa com habilidades ofensivas poderosas.\n")
+  escreva("Ideal para quem busca dominar o campo com força bruta e energia obscura.\n\n")
+
+  escreva("2 - CAVALEIRO DA CENTELHA\n")
+  escreva("Um cavaleiro que canaliza a Centelha da Alma como fonte de energia e determinação.\n")
+  escreva("Equilibra defesa e agilidade, utilizando eletricidade (representando o vento) para atacar e o poder da terra para se proteger.\n")
+  escreva("Perfeito para quem procura versatilidade em combate, mantendo mobilidade sem abrir mão da proteção.\n\n")
+
+  escreva("3 - CAVALEIRO RADIANTE\n")
+  escreva("A personificação da luz em forma de guerreiro. O Cavaleiro Radiante domina o equilíbrio entre ataque, defesa e agilidade.\n")
+  escreva("Usa habilidades baseadas em luz para combater inimigos se proteger, mantendo-se firme em qualquer situação.\n")
+  escreva("Uma escolha excelente para quem busca estabilidade e poder em igual medida.\n")
+  escreva("Digite o número de seu avanço de classe escolhido: \n")
+
   leia(opcaoDeAvancoFinal)
   
   enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
@@ -430,11 +599,36 @@ funcao avancoDeClasseCavaleiro(){
       classe = "CAVALEIRO RADIANTE"
     pare
   }
+
+  escreva(nomeDoPersonagem, ", agora é um: ", classe, ".\n")
+  mostrarAtributos()
+
 }
 funcao avancoDeClasseSamurai(){
   inteiro opcaoDeAvancoFinal
 
   escreva(nomeDoPersonagem, " alcançou o nível maximo na sua classe atual, agora escolha uma das opções de avanço de classe. Este será seu ultimo avanço de classe.\n")
+  
+  escreva("1 - SHOGUN\n")
+  escreva("Um líder de guerra que mantém o equilíbrio entre força e velocidade.\n")
+  escreva("O Shogun é um mestre do combate físico, utilizando a terra como base para manter-se firme\n")
+  escreva("enquanto desfere ataques rápidos e precisos. Não tão veloz quanto outros, mas mais resistente.\n")
+  escreva("Ideal para quem quer potência ofensiva sem abrir mão de alguma estabilidade.\n\n")
+
+  escreva("2 - NITORYUU\n")
+  escreva("O espadachim que domina duas lâminas em perfeita harmonia com o vento.\n")
+  escreva("O Nitoryuu ataca com velocidade extrema, sacrificando quase toda sua defesa em troca de dano.\n")
+  escreva("Sua maestria permite realizar ataques duplos e se mover com uma leveza quase sobrenatural.\n")
+  escreva("Excelente escolha para quem prefere ofensiva total e combate veloz.\n\n")
+
+  escreva("3 - RONNIN\n")  
+  escreva("Um guerreiro errante que domina o combate físico com disciplina e foco.\n")
+  escreva("O Ronnin é ofensivo, mas não tão extremo quanto outras opções. Sua força vem da constância e precisão.\n")
+  escreva("Mantém um leve equilíbrio, mas sempre prioriza causar dano direto com suas habilidades com a espada.\n")
+  escreva("Recomendado para quem quer um atacante puro, porém mais controlado.\n")
+  escreva("Digite o número de seu avanço de classe escolhido: \n")
+
+
   leia(opcaoDeAvancoFinal)
   
   enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
@@ -446,18 +640,43 @@ funcao avancoDeClasseSamurai(){
     caso 1:
       classe = "SHOGUN"
     pare
-      classe = "NITORYUU"
     caso 2:
+      classe = "NITORYUU"
     pare
     caso 3:
       classe = "RONIN"
     pare
   }
+
+  escreva(nomeDoPersonagem, ", agora é um: ", classe, ".\n")
+  mostrarAtributos()
 }
 funcao avancoDeClassePaladino(){
   inteiro opcaoDeAvancoFinal
 
   escreva(nomeDoPersonagem, " alcançou o nível maximo na sua classe atual, agora escolha uma das opções de avanço de classe. Este será seu ultimo avanço de classe.\n")
+  
+  escreva("1 - PARAGON\n")
+  escreva("A personificação da perfeição e do heroísmo. O Paragon é o paladino idealizado, símbolo de equilíbrio.\n")
+  escreva("Domina de forma moderada todos os elementos ? água, fogo, vento, terra, luz, escuridão e o neutro ?,\n")
+  escreva("e mantém um excelente balanço entre ataque, defesa e agilidade.\n")
+  escreva("Recomendado para quem busca versatilidade total e quer ser um verdadeiro campeão da justiça.\n\n")
+
+  escreva("2 - PALADINO DO DRAGÃO GIGANTE\n")
+  escreva("Conhecidos como Paladinos de Fellgrand, são cavaleiros sagrados que fizeram um juramento ao grande dragão ancestral.\n")
+  escreva("Focados em defesa, podem invocar parte do poder de Fellgrand para feitos incríveis em combate.\n")
+  escreva("Têm afinidade especial com os elementos fogo, vento e água, canalizados através das bênçãos dracônicas.\n")
+  escreva("Perfeitos para quem deseja ser um bastião resistente, com o poder dos dragões ao seu lado.\n\n")
+
+  escreva("3 - PALADINO DE NÊMESIS\n")
+  escreva("Defensores absolutos da justiça, acreditam que todo bem ou mal deve ser retribuído na mesma medida.\n")
+  escreva("Entre os paladinos, são os que possuem a maior defesa, capazes de resistir a quase qualquer golpe.\n")
+  escreva("Especializados em contra-ataques, devolvem o dano recebido com força equivalente.\n")
+  escreva("Têm domínio sobre os elementos água e terra, simbolizando firmeza e equilíbrio.\n")
+  escreva("Indicados para quem prefere enfrentar o inimigo de forma impenetrável e implacável.\n")
+  escreva("Digite o número de seu avanço de classe escolhido: \n")
+
+
   leia(opcaoDeAvancoFinal)
   
   enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
@@ -476,6 +695,9 @@ funcao avancoDeClassePaladino(){
       classe = "PALADINO DE NEMESIS"
     pare
   }
+
+  escreva(nomeDoPersonagem, ", agora é um: ", classe, ".\n")
+  mostrarAtributos()
 }
 funcao avancoDeClasseEvocador(){
   inteiro opcaoDeAvancoFinal
@@ -485,22 +707,269 @@ funcao avancoDeClasseEvocador(){
   
   enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
     escreva("Opção inválida, tente novamente. As opções válidas são 1, 2 e 3.\n")
+
+  escreva("1 - ARQUIMAGO\n")
+  escreva("O mestre absoluto da magia elemental. O Arquimago atinge níveis altíssimos de poder ofensivo,\n")
+  escreva("com domínio sobre os elementos água, fogo, terra, vento e neutro.\n")
+  escreva("Sua defesa é baixa, mas seu ataque destrutivo compensa com facilidade.\n")
+  escreva("Ideal para quem quer causar grandes danos com uma variedade de feitiços elementais.\n\n")
+
+  escreva("2 - MAGO DO FOGO RÁPIDO\n")
+  escreva("Um especialista em conjuração veloz e destruição imediata. Seu corpo é frágil, ainda mais que o do Arquimago,\n")
+  escreva("mas sua agilidade e dano explosivo o tornam mortal em combate.\n")
+  escreva("Foca em magias de fogo, vento e luz, queimando tudo à sua frente antes mesmo de ser tocado.\n")
+  escreva("Perfeito para quem prefere velocidade e impacto acima de tudo.\n\n")
+
+  escreva("3 - SÁBIO\n")
+  escreva("Guardião do conhecimento profundo e do equilíbrio entre forças opostas.\n")
+  escreva("Embora mais equilibrado que os outros magos, ainda possui a fragilidade comum à sua classe.\n")
+  escreva("Controla com maestria os poderes da luz e da escuridão, usando-os para atacar, proteger e manipular o campo de batalha.\n")
+  escreva("Uma boa escolha para quem busca versatilidade mágica e sabedoria arcana.\n")
+  escreva("Digite o número de seu avanço de classe escolhido: \n")
+
+
     leia(opcaoDeAvancoFinal)
   }
 
   escolha(opcaoDeAvancoFinal){
     caso 1:
+      classe = "ARQUIMAGO"
     pare
     caso 2:
+     classe = "MAGO DE FOGO RAPIDO"
     pare
     caso 3:
+      classe = "SABIO"
+    pare
+    
+  }
+
+  escreva(nomeDoPersonagem, ", agora é um: ", classe, ".\n")
+  mostrarAtributos()
+}
+funcao avancoDeClasseOnmyoji(){
+  inteiro opcaoDeAvancoFinal
+
+  escreva(nomeDoPersonagem, " alcançou o nível maximo na sua classe atual, agora escolha uma das opções de avanço de classe. Este será seu ultimo avanço de classe.\n")
+  
+  escreva("1 - INVOCADOR\n")
+  escreva("Um místico que transcendeu a invocação de criaturas, passando a chamar fenômenos,\n")
+  escreva("ecos do passado e milagres sobrenaturais. Sua magia é enigmática e poderosa,\n")
+  escreva("mas sua afinidade com os elementos é limitada, exceto pela escuridão e o neutro.\n")
+  escreva("Escolha ideal para quem deseja dominar o campo com efeitos misteriosos e imprevisíveis.\n\n")
+
+  escreva("2 - ESPIRITUALISTA\n")
+  escreva("A continuação natural do Onmyoji tradicional, o Espiritualista invoca espíritos elementais\n")
+  escreva("para lutar ao seu lado e canalizar seus poderes. Possui grande afinidade com os elementos\n")
+  escreva("água, fogo, vento, terra e escuridão, tornando-se um mestre das forças espirituais da natureza.\n")
+  escreva("Uma escolha poderosa para quem valoriza o suporte e a versatilidade elemental.\n\n")
+
+  escreva("3 - DRUIDA\n")
+  escreva("Um guardião da harmonia natural, o Druida usa sua comunhão com a natureza para se fortalecer e proteger.\n")
+  escreva("Especializa-se nos elementos água, terra e luz, canalizando suas energias para curar,\n")
+  escreva("defender ou devastar com a força do mundo natural.\n")
+  escreva("Indicado para jogadores que buscam uma conexão profunda com a terra e o equilíbrio mágico.\n")
+  escreva("Digite o número de seu avanço de classe escolhido: \n")
+  
+  leia(opcaoDeAvancoFinal)
+  
+  enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
+    escreva("Opção inválida, tente novamente. As opções válidas são 1, 2 e 3.\n")
+    leia(opcaoDeAvancoFinal)
+  }
+
+  escolha(opcaoDeAvancoFinal){
+    caso 1:
+      classe = "INVOCADOR"
+    pare
+    caso 2:
+      classe = "ESPIRITUALISTA"
+    pare
+    caso 3:
+      classe = "DRUIDA"
     pare
   }
+
+  escreva(nomeDoPersonagem, ", agora é um: ", classe, ".\n")
+  mostrarAtributos()
 }
+funcao avancoDeClasseBruxo(){
+  inteiro opcaoDeAvancoFinal
 
+  escreva(nomeDoPersonagem, " alcançou o nível maximo na sua classe atual, agora escolha uma das opções de avanço de classe. Este será seu ultimo avanço de classe.\n")
+  
+  escreva("1 - SHAMAN\n")
+  escreva("Um mestre das maldições e da força vital. O Shaman é o oposto do Druida,\n")
+  escreva("fortalecendo a si mesmo enquanto enfraquece seus inimigos com rituais antigos.\n")
+  escreva("Manipula os elementos fogo, terra e escuridão, drenando energia e quebrando resistências.\n")
+  escreva("Ideal para quem deseja dominar o campo com malefícios e resistência constante.\n\n")
 
+  escreva("2 - BRUXO DO PESADELO\n")
+  escreva("Um ilusionista sombrio que mergulha a mente de seus inimigos em pesadelos aterrorizantes.\n")
+  escreva("Enquanto o inimigo está indefeso, o Bruxo do Pesadelo o destrói lentamente, sem piedade.\n")
+  escreva("Seu foco está na escuridão, mas também possui certa maestria com o fogo para alimentar seus horrores.\n")
+  escreva("Uma escolha excelente para quem prefere controle mental e dano psicológico.\n\n")
 
+  escreva("3 - MAGO NEGRO\n")
+  escreva("Diferente de todos os outros magos, o Mago Negro rompe com a fragilidade tradicional da classe.\n")
+  escreva("Equilibra bem ataque e defesa, tornando-se uma ameaça sólida e constante em campo.\n")
+  escreva("Seu poder é concentrado inteiramente na escuridão, usando-a para causar destruição direta e implacável.\n")
+  escreva("Recomendado para jogadores que desejam poder bruto, com um toque de resistência rara para um mago.\n")
+  escreva("Digite o número de seu avanço de classe escolhido: \n")
+  
+  leia(opcaoDeAvancoFinal)
+  
+  enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
+    escreva("Opção inválida, tente novamente. As opções válidas são 1, 2 e 3.\n")
+    leia(opcaoDeAvancoFinal)
+  }
 
+  escolha(opcaoDeAvancoFinal){
+    caso 1:
+      classe = "SHAMAN"
+    pare
+    caso 2:
+      classe = "BRUXO DO PESADELO"
+    pare
+    caso 3:
+      classe = "MAGO NEGRO"
+    pare
+  }
+
+  escreva(nomeDoPersonagem, ", agora é um: ", classe, ".\n")
+  mostrarAtributos()
+}
+funcao avancoDeClasseCacador(){
+  inteiro opcaoDeAvancoFinal
+
+  escreva(nomeDoPersonagem, " alcançou o nível maximo na sua classe atual, agora escolha uma das opções de avanço de classe. Este será seu ultimo avanço de classe.\n")
+  
+  escreva("1 - CAÇADOR DE ESTRELAS\n")
+  escreva("Um arqueiro lendário, veloz e mortal, cuja precisão é comparada ao poder de derrubar estrelas.\n")
+  escreva("Combina alta agilidade e ataque com habilidades elementais de luz, vento e fogo.\n")
+  escreva("Ideal para quem busca um estilo ofensivo ágil e devastador, sempre em movimento.\n\n")
+
+  escreva("2 - CAÇADOR SOMBRIO\n")
+  escreva("Especialista em emboscadas e ataques nas sombras. O Caçador Sombrio domina a arte do ataque furtivo,\n")
+  escreva("mantendo o equilíbrio clássico dos arqueiros, mas com foco tático e preciso.\n")
+  escreva("Utiliza os elementos escuridão, vento e neutro para surpreender seus inimigos de forma letal.\n")
+  escreva("Excelente para quem prefere a astúcia e o ataque sorrateiro ao confronto direto.\n\n")
+
+  escreva("3 - CAÇADOR ANCESTRAL\n")
+  escreva("Um guerreiro conectado às forças primitivas da natureza. O Caçador Ancestral canaliza o poder da terra\n")
+  escreva("em seus disparos, tornando suas flechas mais pesadas e impactantes.\n")
+  escreva("É mais resistente que os outros caçadores, mas ligeiramente mais lento.\n")
+  escreva("Possui afinidade com os elementos terra, luz e escuridão. Uma ótima escolha para quem busca força e estabilidade.\n")
+  escreva("Digite o número de seu avanço de classe escolhido: \n")
+  
+  leia(opcaoDeAvancoFinal)
+  
+  enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
+    escreva("Opção inválida, tente novamente. As opções válidas são 1, 2 e 3.\n")
+    leia(opcaoDeAvancoFinal)
+  }
+
+  escolha(opcaoDeAvancoFinal){
+    caso 1:
+      classe = "CAÇADOR DE ESTRELAS"
+    pare
+    caso 2:
+      classe = "CAÇADOR SOMBRIO"
+    pare
+    caso 3:
+      classe = "CAÇADOR ANCESTRAL"
+    pare
+  }
+
+  escreva(nomeDoPersonagem, ", agora é um: ", classe, ".\n")
+  mostrarAtributos()
+}
+funcao avancoDeClasseAtirador(){
+  inteiro opcaoDeAvancoFinal
+
+  escreva(nomeDoPersonagem, " alcançou o nível maximo na sua classe atual, agora escolha uma das opções de avanço de classe. Este será seu ultimo avanço de classe.\n")
+  escreva("1 - ARTILHEIRO\n")
+  escreva("Um mestre do armamento pesado, o Artilheiro leva o conceito de dano a um novo patamar.\n")
+  escreva("Focado inteiramente no ataque, utiliza os elementos fogo e neutro para ampliar ainda mais seu poder destrutivo.\n")
+  escreva("Ideal para quem prefere eliminar o inimigo antes mesmo de ser alcançado.\n\n")
+
+  escreva("2 - ASSASSINO\n")
+  escreva("Especialista em ataques fatais e silenciosos, o Assassino luta para encerrar a batalha com um único golpe.\n")
+  escreva("Seu estilo é rápido, letal e preciso, com afinidade com os elementos neutro, água e escuridão.\n")
+  escreva("Perfeito para quem busca dano extremo com mobilidade furtiva e finalizações velozes.\n\n")
+
+  escreva("3 - EXECUTOR CARMESIM\n")
+  escreva("Um atirador cruel e implacável, que sacrificou toda defesa em prol de velocidade e letalidade.\n")
+  escreva("Equilibra bem ataque e agilidade, mas qualquer golpe recebido pode ser fatal.\n")
+  escreva("Canaliza os elementos fogo e neutro para executar seus inimigos com estilo e brutalidade.\n")
+  escreva("Recomendado para quem vive no fio da navalha: mata rápido ou morre rápido.\n")
+  escreva("Digite o número de seu avanço de classe escolhido: \n")
+  
+  leia(opcaoDeAvancoFinal)
+  
+  enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
+    escreva("Opção inválida, tente novamente. As opções válidas são 1, 2 e 3.\n")
+    leia(opcaoDeAvancoFinal)
+  }
+
+  escolha(opcaoDeAvancoFinal){
+    caso 1:
+      classe = "ARTILHEIRO"
+    pare
+    caso 2:
+      classe = "ASSASSINO"
+    pare
+    caso 3:
+      classe = "EXECUTOR CARMESIM"
+    pare
+  }
+
+  escreva(nomeDoPersonagem, ", agora é um: ", classe, ".\n")
+  mostrarAtributos()
+}
+funcao avancoDeClasseVigia(){
+  inteiro opcaoDeAvancoFinal
+
+  escreva(nomeDoPersonagem, " alcançou o nível maximo na sua classe atual, agora escolha uma das opções de avanço de classe. Este será seu ultimo avanço de classe.\n")
+  escreva("1 - SENTINELA SOLAR\n")
+  escreva("Um arqueiro equilibrado que canaliza a energia do sol para iluminar o campo de batalha.\n")
+  escreva("Mantém os atributos balanceados do Vigia, combinando-os com os elementos fogo e luz.\n")
+  escreva("Ideal para quem deseja manter versatilidade com um toque de brilho ofensivo e precisão sagrada.\n\n")
+
+  escreva("2 - GUARDIÃO CELESTIAL\n")
+  escreva("Um arqueiro abençoado pelos céus, que aprimora seus disparos com o poder dos fenômenos celestes.\n")
+  escreva("Possui afinidade com os elementos água, vento e luz, e é levemente mais ofensivo que o Vigia tradicional.\n")
+  escreva("Excelente para quem prefere uma abordagem ofensiva sem abrir mão da graciosidade celestial.\n\n")
+
+  escreva("3 - VIGIA DO ABISMO\n")
+  escreva("Um arqueiro sombrio que extrai sua força dos abismos profundos da terra e do oceano.\n")
+  escreva("Mantém os atributos equilibrados do Vigia, mas canaliza os elementos água e escuridão\n")
+  escreva("para disparos misteriosos, silenciosos e muitas vezes fatais.\n")
+  escreva("Recomendado para jogadores que gostam de manter o equilíbrio enquanto exploram o lado mais sombrio da natureza.\n")
+  escreva("Digite o número de seu avanço de classe escolhido: \n")  
+  
+  leia(opcaoDeAvancoFinal)
+  
+  enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
+    escreva("Opção inválida, tente novamente. As opções válidas são 1, 2 e 3.\n")
+    leia(opcaoDeAvancoFinal)
+  }
+
+  escolha(opcaoDeAvancoFinal){
+    caso 1:
+      classe = "SENTINELA SOLAR"
+    pare
+    caso 2:
+      classe = "GUARDIÃO CELESTE"
+    pare
+    caso 3:
+      classe = "OLHO DO ABISMO"
+    pare
+  }
+
+  escreva(nomeDoPersonagem, ", agora é um: ", classe, ".\n")
+  mostrarAtributos()
+}
 // Função para avanço de classe do Mago
 funcao avancoDeClasseMago() {
     inteiro opcaoDeAvanco
@@ -524,7 +993,7 @@ funcao avancoDeClasseMago() {
     leia(opcaoDeAvanco)
     
     enquanto(opcaoDeAvanco < 1 ou opcaoDeAvanco > 3) {
-        escreva("Opção inválida tente novamente.")
+        escreva("Opção inválida tente novamente. As opções válidas são 1, 2 e 3.\n")
         leia(opcaoDeAvanco)
     }
     
@@ -541,6 +1010,7 @@ funcao avancoDeClasseMago() {
     }
     
     escreva(nomeDoPersonagem, ", agora é um: ", classe, ".\n")
+    mostrarAtributos()
 }
 
 // Função para avanço de classe do Arqueiro
@@ -582,20 +1052,20 @@ funcao avancoDeClasseArqueiro() {
         pare
     }
     escreva(nomeDoPersonagem, ", agora é um: ", classe, ".\n")
+    mostrarAtributos()
   }
   funcao turnoDeBatalha(){
     enquanto(vida >= 0 ou vidaDoInimigo >= 0){
-      enquanto(vida > 0 e vidaDoInimigo > 0) {
-        escreva("Turno do jogador\n")
-        escreva("1 - Atacar\n2 - Defender\nEscolha: ")
-        inteiro acao
-        leia(acao)
+      escreva("Turno do jogador\n")
+      escreva("1 - Atacar\n2 - Defender\nEscolha: ")
+      inteiro acao
+      leia(acao)
 
-        se (acao == 1) {
-            inteiro danoCausado = ataque - inimigoDEF
-            se (danoCausado < 0) {
-                danoCausado = 0
-            }
+      se (acao == 1) {
+          inteiro danoCausado = ataque - inimigoDEF
+          se (danoCausado < 0) {
+              danoCausado = 0
+          }
             vidaDoInimigo = vidaDoInimigo - danoCausado
             escreva("Você causou ", danoCausado, " de dano.\n")
         } senao se (acao == 2) {
@@ -604,23 +1074,22 @@ funcao avancoDeClasseArqueiro() {
         }
 
         // Turno do inimigo
-        se (vidaDoInimigo > 0) {
-            escreva("Turno do inimigo\n")
-            inteiro danoRecebido = inimigoATK - defesa
-            se (danoRecebido < 0) {
-                danoRecebido = 0
+      se (vidaDoInimigo > 0) {
+          escreva("Turno do inimigo\n")
+          inteiro danoRecebido = inimigoATK - defesa
+          se (danoRecebido < 0) {          
+              danoRecebido = 0
             }
             vida = vida - danoRecebido
             escreva("Você recebeu ", danoRecebido, " de dano.\n")
-        }
-    }
+          }
 
-    se (vida <= 0) {
+      se (vida <= 0) {
         escreva("Você foi derrotado...\n")
-    } senao {
+      } senao {
         escreva("Inimigo derrotado!\n")
         ganharExperiencia(10) // ou qualquer valor adequado
-    }
+      }
 
 
     }
