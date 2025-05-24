@@ -2,8 +2,8 @@ programa {
 
   inclua biblioteca Util --> u
 
-   cadeia nomeClasse[3], nomeHeroi
-   inteiro vidaMaxima[3], xp = 0, nivel = 1, vidaAtual[3], ataque[3], defesa[3], classe
+   cadeia nomeClasse[3], nomeHeroi, regioes[5]
+   inteiro vidaMaxima[3], xp = 0, nivel = 1, vidaAtual[3], ataque[3], defesa[3], classe, contadorRegiao
 
   funcao inicio() {
 
@@ -71,23 +71,31 @@ programa {
 
   funcao novoJogo () {
 
+    contadorRegiao = 0
+
+    regioes[0] = "Floresta da Névoa"
+    regioes[1] = "Vila Abandonada"
+    regioes[2] = "Caverna Sombria"
+    regioes[3] = "Pântano dos Lamentos"
+    regioes[4] = "Castelo Dourado"
+
     nivel = 1
     xp = 0
 
     nomeClasse[0] = "Guerreiro"
     vidaMaxima[0] = 90
-    ataque[0] = 60
-    defesa[0] = 50
+    ataque[0] = 30
+    defesa[0] = 25
 
     nomeClasse[1] = "Mago"
     vidaMaxima[1] = 50
-    ataque[1] = 100
-    defesa[1] = 40
+    ataque[1] = 55
+    defesa[1] = 20
 
     nomeClasse[2] = "Arqueiro"
     vidaMaxima[2] = 60
-    ataque[2] = 80
-    defesa[2] = 50
+    ataque[2] = 40
+    defesa[2] = 25
 
     para (inteiro i = 0; i<3; i++) {
       vidaAtual[i] = vidaMaxima[i]
@@ -168,7 +176,7 @@ programa {
       escreva("|       +*********:     **+           **+                                .**=        :**:                                  .***.         -**-              \n\n\n")
       leia(classe)
 
-    } enquanto (classe!=2 e classe!=1)
+    } enquanto (classe!=3 e classe!=2 e classe!=1)
 
     se (classe==1) {
       cadeia opcao
@@ -290,7 +298,16 @@ programa {
   }
 
   funcao statusHeroi() {
-    escreva("Nome: ", nomeHeroi, " | Classe: ", nomeClasse[classe], " | Nível: ", nivel, " | XP: ", xp , "/100 | Vida: ", vidaAtual[classe], "/", vidaMaxima[classe], " | Ataque: ", ataque[classe], " | Defesa: ", defesa[classe], "\n\n")
+    escreva("====================================\n")
+escreva("Nome: ", nomeHeroi, "\n")
+escreva("Classe: ", nomeClasse[classe], "\n")
+escreva("Nível: ", nivel, " | XP: ", xp , "/100\n")
+escreva("Vida: ", vidaAtual[classe], "/", vidaMaxima[classe], "\n")
+escreva("Ataque: ", ataque[classe], " | Defesa: ", defesa[classe], "\n")
+escreva("Região: ", regioes[contadorRegiao], "\n")
+escreva("====================================\n\n")
+
+
   }
 
   funcao subirDeNivel() {
@@ -404,22 +421,27 @@ programa {
 
   funcao batalhaFeraSombria () {
 
-      inteiro vidaFeraSombria = 110, ataqueFeraSombria = 60, defesaFeraSombria = 20
+      logico contraAtaque = falso
 
-      inteiro turno = 1, danoCausado, danoRecebido
+      inteiro vidaFeraSombria = 110, ataqueFeraSombria = 30, defesaFeraSombria = 10
+
+      inteiro turno = 1, danoCausado, danoRecebido, danoContrAtaque, numSort
       logico opcaoDefesa = falso
       cadeia opcao
+
+      danoContrAtaque = ataque[classe]/2
 
 
       faca {
         faca {
+          contraAtaque = falso
           opcaoDefesa = falso
           limpa()
-          escreva("-BATALHA-\n\n")
+          escreva("|-----BATALHA-----|\n\n")
           escreva(nomeHeroi ," x Fera Sombria\n\n" )
           escreva("SUA VIDA: ", vidaAtual[classe], " | VIDA DO INIMIGO: ", vidaFeraSombria)
           escreva("\nTURNO: ", turno)
-          escreva("\n\nSUA VEZ: O QUE DESEJA FAZER?\n1. Atacar | 2. Defender\n\nDigite a opção escolhida: ")
+          escreva("\n\nSUA VEZ: O QUE DESEJA FAZER?\n1. Atacar | 2. Defender (Chance de contra-ataque: 33%)\n\nDigite a opção escolhida: ")
           leia(opcao)
         } enquanto (opcao!=1 e opcao!=2)
 
@@ -444,8 +466,13 @@ programa {
         }    
 
         se (opcao==2) {
+          numSort = u.sorteia(1,3)
           opcaoDefesa = verdadeiro
           escreva("\nVocê escolheu se defender, o próximo ataque do seu inimigo causará metade do dano!")
+
+          se (numSort==2) {
+            contraAtaque = verdadeiro
+          }
         }
 
         escreva("\n\nVEZ DO INIMIGO\n\n")
@@ -455,6 +482,11 @@ programa {
         se (opcaoDefesa==verdadeiro) {
           vidaAtual[classe] -= danoRecebido/2
           escreva("A fera lhe atacou e causou ", danoRecebido/2, " de dano!")
+          se (contraAtaque==verdadeiro) {
+            u.aguarde(1000)
+            escreva("\nVocê conseguiu contra-atacar e causou ", danoContrAtaque, " de dano!")
+            vidaFeraSombria -= danoContrAtaque - defesaFeraSombria
+          }
           se (vidaAtual[classe]<=0) {
             cadeia opcao
             faca {
@@ -519,24 +551,31 @@ programa {
   }
 
   funcao batalhaSerpenteVenenosa () {
-    inteiro vidaSerpenteVenenosa = 150, ataqueSerpenteVenenosa = 75, defesaSerpenteVenenosa = 0
+    
+      logico contraAtaque = falso
 
-      inteiro turno = 1, danoCausado, danoRecebido
+      inteiro vidaSerpenteVenenosa = 150, ataqueSerpenteVenenosa = 35, defesaSerpenteVenenosa = 10
+
+      inteiro turno = 1, danoCausado, danoRecebido, danoContrAtaque, numSort
       logico opcaoDefesa = falso
       cadeia opcao
+
+      danoContrAtaque = ataque[classe]/2
 
 
       faca {
         faca {
+          contraAtaque = falso
           opcaoDefesa = falso
           limpa()
-          escreva("-BATALHA-\n\n")
-          escreva(nomeHeroi ," x Serpente venenosa\n\n" )
+          escreva("|-----BATALHA-----|\n\n")
+          escreva(nomeHeroi ," x Serpente Venenosa\n\n" )
           escreva("SUA VIDA: ", vidaAtual[classe], " | VIDA DO INIMIGO: ", vidaSerpenteVenenosa)
           escreva("\nTURNO: ", turno)
-          escreva("\n\nSUA VEZ: O QUE DESEJA FAZER?\n1. Atacar | 2. Defender\n\nDigite a opção escolhida: ")
+          escreva("\n\nSUA VEZ: O QUE DESEJA FAZER?\n1. Atacar | 2. Defender (Chance de contra-ataque: 33%)\n\nDigite a opção escolhida: ")
           leia(opcao)
         } enquanto (opcao!=1 e opcao!=2)
+
 
         se (opcao==1) {
           danoCausado = ataque[classe] - defesaSerpenteVenenosa
@@ -550,7 +589,7 @@ programa {
           se (vidaSerpenteVenenosa<=0) {
             faca {
               limpa()
-              escreva("Você derrotou a serpente!\n\n")
+              escreva("Você derrotou a Serpente!\n\n")
               escreva("1. Prosseguir: ")
               leia(opcao)
             } enquanto (opcao!=1)
@@ -559,8 +598,13 @@ programa {
         }    
 
         se (opcao==2) {
+          numSort = u.sorteia(1,3)
           opcaoDefesa = verdadeiro
           escreva("\nVocê escolheu se defender, o próximo ataque do seu inimigo causará metade do dano!")
+
+          se (numSort==2) {
+            contraAtaque = verdadeiro
+          }
         }
 
         escreva("\n\nVEZ DO INIMIGO\n\n")
@@ -570,6 +614,11 @@ programa {
         se (opcaoDefesa==verdadeiro) {
           vidaAtual[classe] -= danoRecebido/2
           escreva("A fera lhe atacou e causou ", danoRecebido/2, " de dano!")
+          se (contraAtaque==verdadeiro) {
+            u.aguarde(1000)
+            escreva("\nVocê conseguiu contra-atacar e causou ", danoContrAtaque, " de dano!")
+            vidaSerpenteVenenosa -= danoContrAtaque - defesaSerpenteVenenosa
+          }
           se (vidaAtual[classe]<=0) {
             cadeia opcao
             faca {
@@ -590,7 +639,7 @@ programa {
           } 
         } senao {
           vidaAtual[classe] -= danoRecebido
-          escreva("A serpente lhe atacou e causou ", danoRecebido, " de dano!")
+          escreva("A fera lhe atacou e causou ", danoRecebido, " de dano!")
           se (vidaAtual[classe]<=0) {
             cadeia opcao
             faca {
@@ -659,7 +708,7 @@ programa {
   }
 
   funcao introGuardiao () {
-      inteiro vidaGuardiao = 120, ataqueguardiao = 75, defesaguardiao = 60
+      inteiro vidaGuardiao = 140, ataqueGuardiao = 35, defesaGuardiao = 20
       cadeia opcao
 
       faca {
@@ -680,9 +729,9 @@ programa {
         escreva("|     @@%%%%%%%%%%%%%##%%%@            @@@#*#######%#####%%###########%%#%@###%%######%*#*@                      \n")
         escreva("|    @@%%@%%%%%%%%%%%%%%%%@@@    @@%#@#*##%########%#####%#**######%@@%##%%@@#**%####%#*##*#%#@                  VIDA: ", vidaGuardiao ,"\n")
         escreva("|    @%%%%@%%%%%%%%%@@%%%%%@%  @%*####%###%%############%*++++++####@@@%#%%%%*+++*@####%####****#@               \n")
-        escreva("|    @%%@%%%%%%%%%%%%%%%%@%@@@%%*@%#%%#%@#%##%%########*++++++===+#%#####%#%+++++++%#%%%#%#######*@              ATAQUE: ", ataqueguardiao ,"\n")
+        escreva("|    @%%@%%%%%%%%%%%%%%%%@%@@@%%*@%#%%#%@#%##%%########*++++++===+#%#####%#%+++++++%#%%%#%#######*@              ATAQUE: ", ataqueGuardiao ,"\n")
         escreva("|    @@@%%%%%%#%%%%%%%%%%%%%%#*****#####@###############***##**+++++++**#*+++***=++*%@@@@%###***###@             \n")
-        escreva("|    @@%%%%%%%%%%%%%%%#%%%%@   @##%%%%##@@@@@%%%%###****+++++++++++++**###%%%####%+**@@ @@%%#**+#%#@             DEFESA: ", defesaguardiao ,"\n")
+        escreva("|    @@%%%%%%%%%%%%%%%#%%%%@   @##%%%%##@@@@@%%%%###****+++++++++++++**###%%%####%+**@@ @@%%#**+#%#@             DEFESA: ", defesaGuardiao ,"\n")
         escreva("|     @%%%##%%%%%%%%%%%%%%%@    %%%%%%%@@   %*++++***+++++=+++++************####**********%#####*######@@        \n")
         escreva("|     @%@%%%%%%%%##%%%%#@@                  %+=#*+++++++======================+++++++*@  @@##%@@@@@%###@@        \n")
         escreva("|      @@@@%%%%%%%%%%%@@                    %#+++++++++=================+++====+++++++@     @@@@                 \n")
@@ -705,26 +754,31 @@ programa {
 
     funcao batalhaGuardiao () {
 
-      inteiro vidaGuardiao = 120, ataqueguardiao = 75, defesaguardiao = 60
+      inteiro vidaGuardiao = 140, ataqueGuardiao = 35, defesaGuardiao = 20
 
-      inteiro turno = 1, opcao, danoCausado, danoRecebido
+      logico contraAtaque = falso
+
+      inteiro turno = 1, opcao, danoCausado, danoRecebido, danoContrAtaque, numSort
       logico opcaoDefesa = falso
+
+      danoContrAtaque = ataque[classe]*0.30
 
 
       faca {
         faca {
+          contraAtaque = falso
           opcaoDefesa = falso
           limpa()
-          escreva("-BATALHA-\n\n")
+          escreva("|-----BATALHA-----|\n\n")
           escreva(nomeHeroi ," x Guardião da Floresta\n\n" )
           escreva("SUA VIDA: ", vidaAtual[classe], " | VIDA DO INIMIGO: ", vidaGuardiao)
           escreva("\nTURNO: ", turno)
-          escreva("\n\nSUA VEZ: O QUE DESEJA FAZER?\n1. Atacar | 2. Defender\n\nDigite a opção escolhida: ")
+          escreva("\n\nSUA VEZ: O QUE DESEJA FAZER?\n1. Atacar | 2. Defender (Chance de contra-ataque: 33%)\n\nDigite a opção escolhida: ")
           leia(opcao)
         } enquanto (opcao>2 ou opcao<1)
 
         se (opcao==1) {
-          danoCausado = ataque[classe] - defesaguardiao
+          danoCausado = ataque[classe] - defesaGuardiao
           se (danoCausado<0) {
             danoCausado = 0
           } 
@@ -733,24 +787,40 @@ programa {
           escreva("\nVocê causou ", danoCausado, " de dano!")
           u.aguarde(2000)
           se (vidaGuardiao<=0) {
-            escreva("você venceu")
+             faca {
+              limpa()
+              escreva("Você derrotou o Guardião!\n\n")
+              escreva("1. Prosseguir: ")
+              leia(opcao)
+            } enquanto (opcao!=1)
             pare
+            ganharXp(100)
           }
         }    
 
         se (opcao==2) {
+          numSort = u.sorteia(1,3)
           opcaoDefesa = verdadeiro
           escreva("\nVocê escolheu se defender, o próximo ataque do seu inimigo causará metade do dano!")
+
+          se (numSort==2) {
+            contraAtaque = verdadeiro
+          }
         }
 
         escreva("\n\nVEZ DO INIMIGO\n\n")
         u.aguarde(1000)
 
-        danoRecebido = ataqueguardiao - defesa[classe]
+        danoRecebido = ataqueGuardiao - defesa[classe]
         se (opcaoDefesa==verdadeiro) {
           vidaAtual[classe] -= danoRecebido/2
           escreva("O guardião lhe atacou e causou ", danoRecebido/2, " de dano!")
-          se (vidaAtual[classe]<=20) {
+          se (contraAtaque==verdadeiro) {
+            u.aguarde(1000)
+            escreva("\nVocê conseguiu contra-atacar e causou ", danoContrAtaque, " de dano!")
+            vidaGuardiao -= danoContrAtaque
+          }
+          se (vidaAtual[classe]<=5) {
             escreva("\nVocê está prestes a desmaiar...\n")
             u.aguarde(1000)
             escreva("??? (gritando): Abaixaaaaaaa!!!\n")
@@ -772,7 +842,7 @@ programa {
         } senao {
           vidaAtual[classe] -= danoRecebido
           escreva("O guardião lhe atacou e causou ", danoRecebido, " de dano!")
-          se (vidaAtual[classe]<=20) {
+          se (vidaAtual[classe]<=5) {
             inteiro opcao
             escreva("\nVocê está prestes a desmaiar...\n")
             u.aguarde(1000)
@@ -796,7 +866,7 @@ programa {
 
         u.aguarde(2000)
         turno++
-      } enquanto (vidaAtual[classe]>20 e vidaGuardiao>0)
+      } enquanto (vidaAtual[classe]>0 e vidaGuardiao>0)
 
     }
 
@@ -881,7 +951,224 @@ programa {
     }
 
     funcao vilaAbandonada () {
+      prologoVila()
+      ganharXp(90)
+      contadorRegiao++
+      historiaVila()
+      chegadaVila()
+      batalhaCeifadorErrante()
+      ganharXp(70)
+    }
 
+  funcao prologoVila () {
+      cadeia opcao
+      faca {
+        limpa()
+        statusHeroi ()
+        escreva("Você deixa para trás a densa Floresta da Névoa, com cicatrizes que jamais se apagarão.\n")
+        escreva("O caminho à frente é silencioso, exceto pelo assovio do vento entre as árvores mortas.\n")
+        escreva("Logo, ruínas antigas surgem no horizonte... é a Vila Abandonada, o próximo desafio.\n")
+        escreva("O ar fica mais pesado, como se a própria terra lamentasse o destino daquele lugar.\n\n")
+        escreva("1. Entrar na Vila Abandonada: ")
+        leia(opcao) 
+      } enquanto (opcao!=1)
+  }
+
+
+  funcao historiaVila () {
+      cadeia opcao
+      faca {
+        limpa()
+        statusHeroi ()
+        escreva("\n")
+        escreva("Você adentra a Vila Abandonada...\n")
+        escreva("As ruas estão cobertas por uma névoa densa.\n")
+        escreva("Portas quebradas rangem ao vento e o silêncio é perturbador.\n")
+        escreva("Há sinais de uma antiga vida... mas nenhuma alma à vista.\n")
+        escreva("Enquanto explora uma casa em ruínas, você encontra uma carta envelhecida sobre uma mesa.\n\n")
+        escreva("1. Ler carta | 2. Ignorar e seguir o caminho: ")
+        leia(opcao) 
+      } enquanto (opcao!=1 e opcao!=2)
+
+      se (opcao==1) {
+        cartaVila()
+      }
+  }
+
+  funcao cartaVila() {
+    cadeia opcao
+    faca {
+      limpa()
+      statusHeroi ()
+      escreva("O papel está rasgado, mas ainda é possível ler alguns trechos:\n\n")
+      escreva("\"...eles vieram ao cair da noite... não houve tempo para escapar...\"\n")
+      escreva("\"...quem encontrar esta carta, não confie naquilo que parece humano...\"\n")
+      escreva("\"...o sino da igreja toca sozinho, e com ele, a perdição...\"\n\n")
+      escreva("1. Guardar a carta: ")
+      leia(opcao)
+    } enquanto (opcao!=1)
+
+    ganharXp(40)
+
+    faca {
+      limpa()
+      statusHeroi ()
+      escreva("Você guarda a carta e sente um calafrio percorrer sua espinha.\n")
+      escreva("Algo nesta vila permanece... aguardando...\n")
+      escreva("Melhor seguir em frente, mas com extrema cautela.\n\n")
+      escreva("1. Seguir pela Vila Abandonada: ")
+      leia(opcao)
+    } enquanto (opcao!=1)
+  }
+
+  funcao chegadaVila() {
+    cadeia opcao
+    faca {
+      limpa()
+      statusHeroi()
+      escreva("A névoa cobre cada rua, tornando difícil distinguir amigos de inimigos.\n")
+      escreva("O chão range sob seus pés, e o som de algo — ou alguém — se aproximando, ecoa pelas vielas.\n")
+      escreva("De repente, uma sombra salta de trás de uma carroça quebrada!\n")
+      escreva("Prepare-se... o primeiro inimigo da Vila Abandonada está à sua frente!\n\n")
+      escreva("1. Lutar: ")
+      leia(opcao)
+    } enquanto (opcao!=1)
+  }
+
+  funcao batalhaCeifadorErrante () {
+        
+      logico contraAtaque = falso
+
+      inteiro vidaCeifadorErrante = 150, ataqueCeifadorErrante = 40, defesaCeifadorErrante = 20
+
+      inteiro turno = 1, danoCausado, danoRecebido, danoContrAtaque, numSort, recargaHabilidade = 0
+      logico opcaoDefesa = falso, voltar = falso, ataqueCarregado = falso
+      cadeia opcao
+
+      danoContrAtaque = ataque[classe]/2
+
+
+      faca {
+        faca {
+          voltar = falso
+          contraAtaque = falso
+          opcaoDefesa = falso
+          limpa()
+          escreva("|-----BATALHA-----|\n\n")
+          escreva(nomeHeroi ," x Ceifador Errante\n\n" )
+          escreva("SUA VIDA: ", vidaAtual[classe], " | VIDA DO INIMIGO: ", vidaCeifadorErrante)
+          escreva("\nTURNO: ", turno)
+          escreva("\n\nSUA VEZ: O QUE DESEJA FAZER?\n1. Atacar | 2. Defender (Chance de contra-ataque: 33%) | 3. Carregar ataque (Tempo de recarga: ", recargaHabilidade," Turnos)\n\nDigite a opção escolhida: ")
+          leia(opcao)
+        } enquanto (opcao!=1 e opcao!=2 e opcao!=3 ou voltar==verdadeiro)
+
+
+        se (opcao==1) {
+          danoCausado = ataque[classe] - defesaCeifadorErrante
+          se (ataqueCarregado==verdadeiro) {
+            danoCausado += danoCausado/2
+            ataqueCarregado = falso
+          }
+          se (danoCausado<0) {
+            danoCausado = 0
+          } 
+          vidaCeifadorErrante -= danoCausado
+
+          escreva("\nVocê causou ", danoCausado, " de dano!")
+          u.aguarde(2000)
+          se (vidaCeifadorErrante<=0) {
+            faca {
+              limpa()
+              escreva("Você derrotou o Ceifador!\n\n")
+              escreva("1. Prosseguir: ")
+              leia(opcao)
+            } enquanto (opcao!=1)
+            pare
+          }
+        }    
+
+        se (opcao==2) {
+          numSort = u.sorteia(1,3)
+          opcaoDefesa = verdadeiro
+          escreva("\nVocê escolheu se defender, o próximo ataque do seu inimigo causará metade do dano!")
+
+          se (numSort==2) {
+            contraAtaque = verdadeiro
+          }
+        }
+
+        se (opcao==3) {
+          se (recargaHabilidade==0) {
+            escreva("\nSeu próximo ataque causará 50% de dano a mais!")
+            ataqueCarregado = verdadeiro
+            recargaHabilidade += 43
+            u.aguarde(2000)
+          } senao {
+            escreva("\nA habilidade ainda não está pronta. Tempo restante: ", recargaHabilidade, " turnos!")
+            u.aguarde(2000)
+            voltar = verdadeiro
+          }
+        }
+
+        escreva("\n\nVEZ DO INIMIGO\n\n")
+        u.aguarde(1000)
+
+        danoRecebido = ataqueCeifadorErrante - defesa[classe]
+        se (opcaoDefesa==verdadeiro) {
+          vidaAtual[classe] -= danoRecebido/2
+          escreva("O Ceifador lhe atacou e causou ", danoRecebido/2, " de dano!")
+          se (contraAtaque==verdadeiro) {
+            u.aguarde(1000)
+            escreva("\nVocê conseguiu contra-atacar e causou ", danoContrAtaque, " de dano!")
+            vidaCeifadorErrante -= danoContrAtaque - defesaCeifadorErrante
+          }
+          se (vidaAtual[classe]<=0) {
+            cadeia opcao
+            faca {
+              escreva("Você perdeu. \n")
+              escreva("\n1. Recomeçar | 2. Sair: ")
+              leia (opcao)
+            } enquanto (opcao!=1 e opcao!=2)
+
+            se (opcao==1) {
+              menu()
+            } 
+
+            se (opcao==2) {
+              pare
+              pare
+            }
+            pare
+          } 
+        } senao {
+          vidaAtual[classe] -= danoRecebido
+          escreva("O Ceifador lhe atacou e causou ", danoRecebido, " de dano!")
+          se (vidaAtual[classe]<=0) {
+            cadeia opcao
+            faca {
+              escreva("Você perdeu. \n")
+              escreva("\n1. Recomeçar | 2. Sair: ")
+              leia (opcao)
+            } enquanto (opcao!=1 e opcao!=2)
+
+            se (opcao==1) {
+              menu()
+            } 
+
+            se (opcao==2) {
+              pare
+              pare
+            }
+            pare
+          }
+        }
+
+        u.aguarde(2000)
+        turno++
+        se (recargaHabilidade>0) {
+          recargaHabilidade--
+        }
+      } enquanto (vidaAtual[classe]>0 e vidaCeifadorErrante>0)
   }
 
 
