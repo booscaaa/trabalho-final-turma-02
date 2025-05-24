@@ -2,15 +2,15 @@ programa {
     
     inclua biblioteca Util
 
-    inteiro xp, niveldocampeao, xpparasubirdenivel 
+    inteiro xp=0, niveldocampeao=1, xpparasubirdenivel=100 
     inteiro danodaespecializacao, vidadaespecializacao, agilidadedaespecializacao, defesadaespecializacao
 
-    funcao nivelupado(inteiro xp, inteiro xpparasubirdenivel, inteiro niveldocampeao) {
-        enquanto (xp >= xpparasubirdenivel) {
-            xp = xp - xpparasubirdenivel
-            niveldocampeao = niveldocampeao + 1
-            escreva("\n🎉 Parabéns! Você subiu para o nível ", niveldocampeao, "!\n")
-
+    funcao nivelupado() {
+    se (xp >= xpparasubirdenivel) {
+        xp = xp - xpparasubirdenivel  // Subtrai o XP gasto no level up
+        niveldocampeao++
+        escreva("\n🎉 Parabéns! Você subiu para o nível ", niveldocampeao, "!\n")
+        
             // Escolha de atributo
             escreva("Escolha um atributo para melhorar:\n")
             escreva("1 - Dano\n")
@@ -48,9 +48,7 @@ programa {
         cadeia nomedocampeao
         cadeia armadaespecializacao
 
-        xp = 0
-        niveldocampeao = 1
-        xpparasubirdenivel = 100
+        
 
         escreva("--------------------------------------\n")
         escreva("!!BEM VINDO AO GAME A JORNADA DO HERÓI!!\n")
@@ -351,7 +349,69 @@ programa {
                             }
                               escreva("Sua vida",vidadaespecializacao,"\n")
                               escreva("Voce continua sua jornada pela floresta...\n")
+                              escreva("Ao andar pela floresta da névoa voce encontra um caminho com cogumelos verdes...\n")
+                              escreva("O outro caminho parece ser mais calmo , porém mais longo...\n")
+                              escreva("POR QUAL CAMINHO PROSSEGUIR?\n")
+                              escreva("\n\n\n\n")
+                              escreva("ESCOLHA ONDE DESEJA IR JOGADOR...\n")
+                              escreva("1-CAMINHO DOS COGUMELOS...\n")
+                              escreva("2-CAMINHO MAIS LONGO...\n")
+                              inteiro caminhoparaprosseguirflorestadanevoa2
+                              leia(caminhoparaprosseguirflorestadanevoa2)
+                              escolha(caminhoparaprosseguirflorestadanevoa2){
+                                caso 1:
+                                escreva("VOCÊ ENCONTROU UM GOLEM DE COGUMELOS!!\n")
+                              inteiro vidaDogolemdecogumelos = 25
+                              inteiro danoDogolemdecogumelos = 6
+                              inteiro acaodocombatedogolemdecogumelos
+                              logico defendeuseNesteTurnocontraogolemdecogumelos = falso
+                              enquanto(vidadaespecializacao > 0 e vidaDogolemdecogumelos > 0) {
+                                escreva("\nSUA VIDA:", vidadaespecializacao, "\nVIDA DO INIMIGO:", vidaDogolemdecogumelos, "\n")
+                                escreva("1-ATACAR\n")
+                                escreva("2-DEFENDER-SE\n")
+                                leia(acaodocombatedogolemdecogumelos)
+                                defendeuseNesteTurnocontraogolemdecogumelos = falso
+                                se(acaodocombatedogolemdecogumelos == 1) {
+                                    vidaDogolemdecogumelos = vidaDogolemdecogumelos - danodaespecializacao
+                                    escreva("Muito bem herói, você causou:", danodaespecializacao, "de dano no inimigo")
+                                }
+                                senao se(acaodocombatedogolemdecogumelos == 2) {
+                                    defendeuseNesteTurnocontraogolemdecogumelos = verdadeiro 
+                                    inteiro danoreduzidoNestecombategolemdecogumelos = danoDogolemdecogumelos / 2
+                                    vidadaespecializacao = vidadaespecializacao - danoreduzidoNestecombategolemdecogumelos
+                                    escreva("Voce acabou se defendendo campeao, e o inimigo causou apenas", danoreduzidoNestecombategolemdecogumelos, "de dano\n")
+                                }
+                                senao {
+                                    escreva("O inimigo aproveitou a sua indecisão!!")
+                                }
+                            
+                                se(vidaDogolemdecogumelos > 0 e defendeuseNesteTurnocontraogolemdecogumelos == falso) {
+                                    vidadaespecializacao = vidadaespecializacao - danoDogolemdecogumelos
+                                    escreva("O goblin atacou você causando", danoDogolemdecogumelos, "de dano\n")
+                                }
+                                senao se(vidaDoGoblin <= 0) {
+                                escreva("Parabéns ", nomedocampeao, ", Voce derrotou o inimigo!!\n")
+                                inteiro xpganhocontraogolemdoscogumelos = 100
+                                xp = xp + xpganhocontraogolemdoscogumelos
+                                escreva("Parabéns ", nomedocampeao, ", Voce recebeu", xpganhocontraogolemdoscogumelos, "de XP\n")
+                                nivelupado()
+                                escreva("Meus parabéns",nomedocampeao,"você derrotou seu primeiro inimigo!Sabiamos que você consegueria!!\n")
+                                }
+                            }
+                            
+                              
 
+                                pare
+                                caso 2: 
+                                escreva("Voce prossegue pela floresta no caminho calmo porém anda acontece...\n")
+                                escreva(nomedocampeao,"aproveita a vista de uma floresta que é linda , porém conturbada...\n")
+                                pare
+                               }
+                               escreva("Muito bem herói após suas escolhas anteriores voce segue com os seguintes status base:\n")
+                               escreva(vidadaespecializacao,"\n")
+                               escreva(danodaespecializacao,"\n")
+                               escreva(agilidadedaespecializacao,"\n")
+                               escreva(defesadaespecializacao,"\n")
                             
                             
                             }senao{escreva("jogador...é necessário colaborar para que o jogo desenvolva conforme o solicitado,por favor coopere!\n")}
