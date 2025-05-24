@@ -3,7 +3,7 @@ programa {
   inclua biblioteca Util --> u
 
    cadeia nomeClasse[3], nomeHeroi
-   inteiro vida[3], xp = 0, nivel = 1, vida[3], ataque[3], defesa[3], classe
+   inteiro vidaMaxima[3], xp = 0, nivel = 1, vidaAtual[3], ataque[3], defesa[3], classe
 
   funcao inicio() {
 
@@ -39,7 +39,7 @@ programa {
         se (opcao==1) {
           menu()
         }
-      
+
       }
 
       se (opcao==3) {
@@ -47,7 +47,7 @@ programa {
       }
     } enquanto (opcao!=1 e opcao!=2 e opcao!=3)
 
-    
+
   }
 
   funcao creditos () {
@@ -71,20 +71,27 @@ programa {
 
   funcao novoJogo () {
 
+    nivel = 1
+    xp = 0
+
     nomeClasse[0] = "Guerreiro"
-    vida[0] = 90
+    vidaMaxima[0] = 90
     ataque[0] = 60
     defesa[0] = 50
 
     nomeClasse[1] = "Mago"
-    vida[1] = 50
+    vidaMaxima[1] = 50
     ataque[1] = 100
-    defesa[1] = 50
+    defesa[1] = 40
 
     nomeClasse[2] = "Arqueiro"
-    vida[2] = 60
+    vidaMaxima[2] = 60
     ataque[2] = 80
-    defesa[2] = 60
+    defesa[2] = 50
+
+    para (inteiro i = 0; i<3; i++) {
+      vidaAtual[i] = vidaMaxima[i]
+    }
 
     cadeia opcao
     faca{
@@ -103,7 +110,7 @@ programa {
         menu()
       }
     } enquanto (opcao!=1 e opcao!=2)
-    
+
   }
 
   funcao carregamentoJogo () {
@@ -161,7 +168,7 @@ programa {
       escreva("|       +*********:     **+           **+                                .**=        :**:                                  .***.         -**-              \n\n\n")
       leia(classe)
 
-    } enquanto (classe>3 ou classe<1)
+    } enquanto (classe!=2 e classe!=1)
 
     se (classe==1) {
       cadeia opcao
@@ -180,7 +187,7 @@ programa {
         escreva("|                 %%*####+=-=+++#@+++++++@*+#++@.             \n")
         escreva("|                 %%*####+=-------========---=+%.             DEFESA: ", defesa[classe-1], "\n")
         escreva("|                 %%*####*******+-:=+++=-=--*%%               \n")
-        escreva("|                 %%*####*+++++*+-:------=--+%%               VIDA: ", vida[classe-1], "\n")
+        escreva("|                 %%*####*+++++*+-:------=--+%%               VIDA: ", vidaMaxima[classe-1], "\n")
         escreva("|              ..@@%***###*++++*+--------=--*%#               \n")
         escreva("|            .:#@**************+++++++++++**@-                \n")
         escreva("|            .@#**###*********************##@-                \n")
@@ -191,10 +198,14 @@ programa {
         escreva("|       %@*****###@*    @@@@..        .%@@@=                  \n")
         escreva("|       +*********:     **+.          +**.                    \n")
         escreva("|       +*********:     **+           **+                     \n")
-        escreva("\n1. Prosseguir\n\n")
+        escreva("\n1. Prosseguir | 2. Voltar\n\n")
         leia(opcao)
-      } enquanto (opcao!=1)
-      
+      } enquanto (opcao!=1 e opcao!=2)
+
+      se (opcao==2) {
+        criacaoDoHeroi ()
+      }
+
     }
 
     se (classe==2) {
@@ -214,7 +225,7 @@ programa {
         escreva("|                  %%**+*****++%%%%%%+*%#****@=.           \n")
         escreva("|               .-@@%********#%%##*+++++%####.             DEFESA: ", defesa[classe-1], "\n")
         escreva("|              #%#*#****+*#++++++===---=%@+:               \n")
-        escreva("|            .@#******++%#==%*==-::::#*-*@=                VIDA: ", vida[classe-1], "\n")
+        escreva("|            .@#******++%#==%*==-::::#*-*@=                VIDA: ", vidaMaxima[classe-1], "\n")
         escreva("|           -##***++*#%%%*=-=-:::::::=--*@=                \n")
         escreva("|           =@*+++%%%%%%%*=::::::::::::-*@=                \n")
         escreva("|            .++++@%%%######**++====*+*#%+:                \n")
@@ -225,10 +236,14 @@ programa {
         escreva("|                   -==@@@@@@@@@@@@@@@#-                   \n")
         escreva("|                     .@@@%       :@@@+                    \n")
         escreva("|                     .**=        :**:                     \n")
-        escreva("\n1. Prosseguir\n\n")
+        escreva("\n1. Prosseguir | 2. Voltar\n\n")
         leia(opcao)
-      } enquanto (opcao!=1)
-      
+      } enquanto (opcao!=1 e opcao!=2)
+
+      se (opcao==2) {
+        criacaoDoHeroi ()
+      }
+
     }
 
     se (classe==3) {
@@ -248,7 +263,7 @@ programa {
         escreva("|               =@+++-=+@%+==++==========++#@+#@.         \n")
         escreva("|               .-%%+=++@%+----:::::::::---+@+#@.         DEFESA: ", defesa[classe-1], "\n")
         escreva("|                .@@@@%+@%+--=-:::::::::-=-+@+#@.         \n")
-        escreva("|                .@%+#*+@%+----------------+@+#@.         VIDA: ", vida[classe-1], "\n")
+        escreva("|                .@%+#*+@%+----------------+@+#@.         VIDA: ", vidaMaxima[classe-1], "\n")
         escreva("|                .@%+#%@#*+++++++++++++++++==@+           \n")
         escreva("|                .@%+#%@@#===++++=========-+%:.           \n")
         escreva("|               =@+*#@%*+*@@#--=+++++=--*@@%#@+           \n")
@@ -259,27 +274,78 @@ programa {
         escreva("|              %%+###@@@@@@@@@++-@@@==+@@@@@@             \n")
         escreva("|              %@@@@@: .@@@@+.@@@. .@@@@@@.               \n")
         escreva("|                      .***.         -**-                 \n")
-        escreva("\n1. Prosseguir\n\n")
+        escreva("\n1. Prosseguir | 2. Voltar\n\n")
         leia(opcao)
-      } enquanto (opcao!=1)
-      
+      } enquanto (opcao!=1 e opcao!=2)
+
+      se (opcao==2) {
+        criacaoDoHeroi ()
+      }
+
     }
 
     retorne classe
 
 
   }
-  
+
+  funcao statusHeroi() {
+    escreva("Nome: ", nomeHeroi, " | Classe: ", nomeClasse[classe], " | Nível: ", nivel, " | XP: ", xp , "/100 | Vida: ", vidaAtual[classe], "/", vidaMaxima[classe], " | Ataque: ", ataque[classe], " | Defesa: ", defesa[classe], "\n\n")
+  }
+
+  funcao subirDeNivel() {
+    cadeia opcao
+    nivel++
+    xp -= 100
+    inteiro melhoriaAtaque = ataque[classe] * 0.10
+    inteiro melhoriaDefesa = defesa[classe] * 0.10
+    inteiro melhoriaVida = vidaMaxima[classe] * 0.10
+    ataque[classe] += melhoriaAtaque
+    defesa[classe] += melhoriaDefesa
+    vidaMaxima[classe] += melhoriaVida
+    vidaAtual[classe] = vidaMaxima[classe]
+    faca {
+      limpa()
+      escreva(">>VOCÊ SUBIU DE NÍVEL!<<\n\n")
+      escreva("Nível ", nivel-1, " --> ", nivel)
+      escreva("\nMelhorias:\n")
+      escreva("+ ", melhoriaAtaque, " de ataque\n" )
+      escreva("+ ", melhoriaDefesa, " de defesa\n" )
+      escreva("+ ", melhoriaVida, " de vida máxima\n" )
+      escreva("\n1. Continuar: ")
+      leia(opcao)
+    } enquanto (opcao!=1)
+    
+  }
+
+  funcao ganharXp (inteiro xpGanho) {
+    cadeia opcao
+    xp += xpGanho
+    faca {
+      limpa()
+      escreva("\nXP GANHO: ", xpGanho)
+      escreva("\n\n1. Prosseguir: ")
+      leia(opcao)
+    } enquanto (opcao!=1)
+
+    se (xp>=100) {
+      subirDeNivel ()
+    }
+  }
+
+
   funcao florestadaNevoa () {
 
       prologo()
       historiaFloresta()
       chegadaFloresta()
-      batalhaFeraSombria (vida[classe], ataque[classe], defesa[classe])
+      batalhaFeraSombria ()
+      ganharXp(50)
       serpenteVenenosa ()
-      vida[classe] = posSerpente (vida[classe])
+      ganharXp(60)
+      posSerpente ()
       introGuardiao()
-      batalhaGuardiao(vida[classe], ataque[classe], defesa[classe])
+      batalhaGuardiao()
       eyla()
 
   }
@@ -299,22 +365,24 @@ programa {
 
   funcao historiaFloresta () {
     cadeia opcao
-    
+
       limpa()
       faca {
       limpa()
+      statusHeroi()
       escreva("Capítulo 1: Floresta da Névoa – O Despertar do Herói\n\nSua jornada começa na sombria Floresta da Névoa, onde a névoa esconde feras mutantes, \nsombras que sussurram, e ilusões traiçoeiras. Antigamente um santuário dos druidas, a floresta agora devora os incautos. \n\n")
 
       escreva("\n\n1. Explorar: ")
       leia(opcao)
     } enquanto (opcao!=1)
-        
+
   }
 
   funcao chegadaFloresta () {
     cadeia opcao
     faca {
       limpa()
+      statusHeroi()
       escreva("Você adentra a temida Floresta da Névoa, onde criaturas ocultas espreitam a cada passo.\n")
       escreva("O ar é denso, a luz do sol mal atravessa as copas das árvores.\n")
       escreva("Enquanto caminha com cautela, ouve um rosnado vindo de um arbusto próximo...\n\n")
@@ -326,36 +394,37 @@ programa {
     u.aguarde(1000)
     faca {
       limpa()
+      statusHeroi()
       escreva("Uma Fera Sombria salta em sua direção! Prepare-se para lutar!\n")
       escreva("1. Lutar: ")
       leia(opcao)
     } enquanto (opcao!=1)
-     
+
   }
 
-  funcao batalhaFeraSombria (inteiro vidajogador, inteiro ataquejogador, inteiro defesajogador) {
+  funcao batalhaFeraSombria () {
 
-      inteiro vidaFeraSombria = 110, ataqueFeraSombria = 60, defesaFeraSombria = 50
+      inteiro vidaFeraSombria = 110, ataqueFeraSombria = 60, defesaFeraSombria = 20
 
       inteiro turno = 1, danoCausado, danoRecebido
       logico opcaoDefesa = falso
       cadeia opcao
-      
-      
+
+
       faca {
         faca {
           opcaoDefesa = falso
           limpa()
           escreva("-BATALHA-\n\n")
           escreva(nomeHeroi ," x Fera Sombria\n\n" )
-          escreva("SUA VIDA: ", vidajogador, " | VIDA DO INIMIGO: ", vidaFeraSombria)
+          escreva("SUA VIDA: ", vidaAtual[classe], " | VIDA DO INIMIGO: ", vidaFeraSombria)
           escreva("\nTURNO: ", turno)
           escreva("\n\nSUA VEZ: O QUE DESEJA FAZER?\n1. Atacar | 2. Defender\n\nDigite a opção escolhida: ")
           leia(opcao)
-        } enquanto (opcao>2 ou opcao<1)
+        } enquanto (opcao!=1 e opcao!=2)
 
         se (opcao==1) {
-          danoCausado = ataquejogador - defesaFeraSombria
+          danoCausado = ataque[classe] - defesaFeraSombria
           se (danoCausado<0) {
             danoCausado = 0
           } 
@@ -382,11 +451,11 @@ programa {
         escreva("\n\nVEZ DO INIMIGO\n\n")
         u.aguarde(1000)
 
-        danoRecebido = ataqueFeraSombria - defesajogador
+        danoRecebido = ataqueFeraSombria - defesa[classe]
         se (opcaoDefesa==verdadeiro) {
-          vidajogador -= danoRecebido/2
+          vidaAtual[classe] -= danoRecebido/2
           escreva("A fera lhe atacou e causou ", danoRecebido/2, " de dano!")
-          se (vidajogador<=0) {
+          se (vidaAtual[classe]<=0) {
             cadeia opcao
             faca {
               escreva("Você perdeu. \n")
@@ -405,9 +474,9 @@ programa {
             pare
           } 
         } senao {
-          vidajogador -= danoRecebido
+          vidaAtual[classe] -= danoRecebido
           escreva("A fera lhe atacou e causou ", danoRecebido, " de dano!")
-          se (vidajogador<=0) {
+          se (vidaAtual[classe]<=0) {
             cadeia opcao
             faca {
               escreva("Você perdeu. \n")
@@ -429,13 +498,15 @@ programa {
 
         u.aguarde(2000)
         turno++
-      } enquanto (vidajogador>0 e vidaFeraSombria>0)
+      } enquanto (vidaAtual[classe]>0 e vidaFeraSombria>0)
   }
 
   funcao serpenteVenenosa () {
     cadeia opcao
     faca {
       limpa()
+      vidaAtual[classe] = vidaMaxima[classe]
+      statusHeroi()
       escreva("Após isso, você segue explorando em busca de um local para descansar...\n")
       escreva("Enquanto explora a clareira, uma Serpente Venenosa surge das sombras e se enrola em sua perna!\n")
       escreva("Prepare-se para mais um combate!\n")
@@ -443,32 +514,32 @@ programa {
       leia(opcao)
     } enquanto (opcao!=1)
 
-    batalhaSerpenteVenenosa (vida[classe], ataque[classe], defesa[classe])
+    batalhaSerpenteVenenosa ()
 
   }
 
-  funcao batalhaSerpenteVenenosa (inteiro vidajogador, inteiro ataquejogador, inteiro defesajogador) {
+  funcao batalhaSerpenteVenenosa () {
     inteiro vidaSerpenteVenenosa = 150, ataqueSerpenteVenenosa = 75, defesaSerpenteVenenosa = 0
 
       inteiro turno = 1, danoCausado, danoRecebido
       logico opcaoDefesa = falso
       cadeia opcao
-      
-      
+
+
       faca {
         faca {
           opcaoDefesa = falso
           limpa()
           escreva("-BATALHA-\n\n")
           escreva(nomeHeroi ," x Serpente venenosa\n\n" )
-          escreva("SUA VIDA: ", vidajogador, " | VIDA DO INIMIGO: ", vidaSerpenteVenenosa)
+          escreva("SUA VIDA: ", vidaAtual[classe], " | VIDA DO INIMIGO: ", vidaSerpenteVenenosa)
           escreva("\nTURNO: ", turno)
           escreva("\n\nSUA VEZ: O QUE DESEJA FAZER?\n1. Atacar | 2. Defender\n\nDigite a opção escolhida: ")
           leia(opcao)
-        } enquanto (opcao>2 ou opcao<1)
+        } enquanto (opcao!=1 e opcao!=2)
 
         se (opcao==1) {
-          danoCausado = ataquejogador - defesaSerpenteVenenosa
+          danoCausado = ataque[classe] - defesaSerpenteVenenosa
           se (danoCausado<0) {
             danoCausado = 0
           } 
@@ -495,11 +566,11 @@ programa {
         escreva("\n\nVEZ DO INIMIGO\n\n")
         u.aguarde(1000)
 
-        danoRecebido = ataqueSerpenteVenenosa - defesajogador
+        danoRecebido = ataqueSerpenteVenenosa - defesa[classe]
         se (opcaoDefesa==verdadeiro) {
-          vidajogador -= danoRecebido/2
+          vidaAtual[classe] -= danoRecebido/2
           escreva("A fera lhe atacou e causou ", danoRecebido/2, " de dano!")
-          se (vidajogador<=0) {
+          se (vidaAtual[classe]<=0) {
             cadeia opcao
             faca {
               escreva("Você perdeu. \n")
@@ -518,9 +589,9 @@ programa {
             pare
           } 
         } senao {
-          vidajogador -= danoRecebido
-          escreva("A fera lhe atacou e causou ", danoRecebido, " de dano!")
-          se (vidajogador<=0) {
+          vidaAtual[classe] -= danoRecebido
+          escreva("A serpente lhe atacou e causou ", danoRecebido, " de dano!")
+          se (vidaAtual[classe]<=0) {
             cadeia opcao
             faca {
               escreva("Você perdeu. \n")
@@ -542,13 +613,15 @@ programa {
 
         u.aguarde(2000)
         turno++
-      } enquanto (vidajogador>0 e vidaSerpenteVenenosa>0)
+      } enquanto (vidaAtual[classe]>0 e vidaSerpenteVenenosa>0)
   }
 
-  funcao inteiro posSerpente (inteiro vidaJogador) {
+  funcao posSerpente () {
     cadeia opcao
     faca {
       limpa()
+      vidaAtual[classe] = vidaMaxima[classe]
+      statusHeroi()
       escreva("Você respira aliviado após a batalha, mas percebe que cada passo adentra ainda mais na escuridão.\n")
       escreva("Galhos secos estalam sob seus pés e sons estranhos ecoam à distância.\n")
       escreva("A trilha leva você a uma antiga ponte de madeira que atravessa um rio enevoado.\n")
@@ -558,6 +631,7 @@ programa {
     } enquanto (opcao!=1)
 
     limpa()
+    statusHeroi()
     u.aguarde(1000)
 
     escreva("De repente, um estrondo! Algo gigantesco quebra as árvores à sua frente!\n")
@@ -570,92 +644,87 @@ programa {
     u.aguarde(2500)
 
     inteiro danoInicial = 10
-    vidaJogador = vidaJogador - danoInicial
+    vidaAtual[classe] -= danoInicial
+
+    escreva("Você é arremessado contra o tronco de uma árvore, sentindo uma dor lancinante. Vida restante: ", vidaAtual[classe], "\n")
+    u.aguarde(2500)
 
     faca {
-      escreva("Você é arremessado contra o tronco de uma árvore, sentindo uma dor lancinante. Vida restante: ", vidaJogador, "\n")
+      limpa()
       escreva("O Guardião ruge furiosamente, seus olhos vermelhos brilhando na penumbra. Não há escapatória\n")
       escreva("1. Tentar sobreviver: ")
       leia(opcao)
     } enquanto (opcao!=1)
-    
-    retorne vidaJogador
+
   }
 
   funcao introGuardiao () {
-      inteiro vidaGuardiao = 120, ataqueguardiao = 80, defesaguardiao = 70
+      inteiro vidaGuardiao = 120, ataqueguardiao = 75, defesaguardiao = 60
       cadeia opcao
-    
+
       faca {
-        escreva("|                                                                                                                \n")
-        escreva("|                                                         -*                                                     \n")
-        escreva("|                                                         -*-                                                    \n")
-        escreva("|                                                         ***                                                    \n")
-        escreva("|                                                     - -*#@%+  @                                                \n")
-        escreva("|                                                    @ -%@#*%%%-@                                                \n")
-        escreva("|                                                   @. %@@@@@@= .@         @@@                                   \n")
-        escreva("|                                     %.-..@      @-.-=%   @+. #..@      @... #                                  \n")
-        escreva("|                      @#=*@%#+**+=---=    +      @++:+ -+-=---+.  @     @.-  *--#--=*%%%@ @@                    \n")
-        escreva("|                    =.   . .--+=---#++         @@  :%-.-=-+=.:+%##=@    @ .  *===-------. .  .++                GUARDIÃO DA FLORESTA\n")
-        escreva("|                  %....:  -. :+++*+=-=      @@##=.:%@+----=---#@. .##%@@@..  =--#**++-=*.  ..::.-%              \n")
-        escreva("|                 @:.####. . .. *+-=-:=  = @%%#=@- =@@@***@@***@@+-.#+#%%%.   +---==-#- :.. -@@#*.-              \n")
-        escreva("|                %.:##@@@@=.. ... .   ::...@%#-.@%   +@@@@@@@@@@   ==:+##%-...%@%     - ..#@@@@@##.+             \n")
-        escreva("|                +.+#@@@@@@@%..   @@@@@@@%%##=:  @:=:  .@  * =  #=+% -*####%%%@@@@@@+  .%@@@@@@@%#:.@            VIDA: ", vidaGuardiao ,"\n")
-        escreva("|               @.-##%@@@@@@@@@@@@@@@@@%%%###+-:: .#-.-# --+----#+# .-+-*###@#%@@@@@@@@@@@@@@@@@+..@             \n")
-        escreva("|                +.:  =@@@@@@@@@@@@@@@##%%#**==--:+   ##+*----**%  -*.---=*#-%%#@   %@@@@@@@@@%#- .              \n")
-        escreva("|                 @*-:####%@@@@@.    %#%%**=-+------*-          *+--=%=---*+##%##@ .=#  =@@@@#=.:+               ATAQUE: ", ataqueguardiao ,"\n")
-        escreva("|                   *:.:#####.  +-   %###@=*=------=.---=--:..:--*=.:-*...=#####%@      +. +:..+@                \n")
-        escreva("|                     #.:..  =       %####*-%------+#------------*----#----#####%@        . -%                   \n")
-        escreva("|                       #+*%@@@      @%#=+##. ---:-*%== .  ===+--#**-.----+#--+#%@     @@@@@@                    DEFESA: ", defesaguardiao ,"\n")
-        escreva("|                     @:. .--.. .=@  @@#*--++--:=...  =.=--- ..  .%=--=---+-+*##@  @-. ..--. .:@                 \n")
-        escreva("|                  #--   *    %    -= @@##*.  .----.----+#==-+-=-. +*%=:.  -###@ =-    %    #   --#              \n")
-        escreva("|                 @.  #%#------=*.:.-=@ @%#--:   :**-*@#@@@@@@*@*-- -   ::-=#%@@=-.:.*=------#%#  .@             \n")
-        escreva("|                @-:.%*+=------=+#*. -+@@@@@=+-+-+--:@@#%@**%@*@@*-----+==+%@@ *= .*#+=------=+*%.--@            \n")
-        escreva("|                @=:@#++=------=#=*%++=*  @%%@@%+#--=@#*=%%%@+**@.:*=-*+@@@%%@ =+=%*=#+------=++#@-=@            \n")
-        escreva("|                @*%@=++=-----+#-++#%:=#   @%%#-=*--.%@@%#***#@@ .-@@@%=*%%%   =:%#++-#+-----=++=%%*@            \n")
-        escreva("|                @%%%*+      :   :+#%#@    @-#@#--=-%: @@@@@@@  --=@=-+%%@#@   @#%#+:   :      =*%%%@            \n")
-        escreva("|                @%: .  .   .:    : :%@ @%%- @=+@@%%*--::.   :---=@%%%@=%  *%@ @%- :    :.   .  . .%@            \n")
-        escreva("|                *.   ......*... .    *%%%=.:+-=#@@@@%%#=----=%#%@@@@%  -  +*%%*      ...*......   .+            \n")
-        escreva("|               %.  ..=@@@@@@@@%+...  -@+#- +*.  %@@@@@@@@@@@@@@@@@@%  .#  ++*@-  ...+%@@@@@@@@=..  .%           \n")
-        escreva("|              @*..:...   #@-   .:%..= #%=+ .#++.  *@@@@@@@@@@@@@@%:..:#..=++@% +..%:.   -@#   ...:..*%          \n")
-        escreva("|              %.-*- ::.: = .-%*.. -+.+%@+--+%*:-=-:: +:%%%%%%%=   :-:.#%++==@%+.== ..*%-. = :.:: :*=.%          \n")
-        escreva("|              #+#@*:=+-. *#:++=.  .-++*@#@%#+:======##: =  . :%:-+==-:.+#%@=@*++-.  .=++:## .-+=:+@#+#          \n")
-        escreva("|              @-:@+.--..   :=*++++@=*++@  @+:===-==#%*-=-----#%*---==-=.+@  @++*=@++++*=:   ..--.+@::@          \n")
-        escreva("|              @*+#+.-----.%---++-=*%%+*@  #-++===-*##+-=--**-*%#--====+@    @*+%%*=-=+--:%.-----.+#+*@          \n")
-        escreva("|               @%+=.#..--:*==++++%%%%#@    @*-=*=####*--===---#@+=-+==#       #%%%%++++==*:--:.#.=+#@           \n")
-        escreva("|                 @*.-----:=.:--+*#%%@         @%%%@##=-=++++--##@#++@@         @%%#*+--:.=:-----.+@             \n")
-        escreva("|                  =.=----.@-----=*@               %**---=---+-+#@                @*=----:@.----=.-              \n")
-        escreva("|                  +:+:::=+@%=.:---@                @=--==+++=-*@                 @=--:.=%@+=:::+:+              \n")
-        escreva("|                    @-----@.-----=@                    @@@@@@                    @=-----.@-----@                \n")
-        escreva("|                     @@*-.#.=#@                                                      @#=.*.-*@@                 \n\n")
+        escreva("|                                                          @%@        @%#@                                       \n")
+        escreva("|                                                         %*@           @##@                                     \n")
+        escreva("|                                                        %##@            @%*%@                                   \n")
+        escreva("|                                                       @%*%              @#*#@                                  \n")
+        escreva("|                                                       @#*%              @%#*%                                  \n")
+        escreva("|                                                      @%#*%               @##+@                                 \n")
+        escreva("|                                                      @%##*@              @###+@                                \n")
+        escreva("|                                                      @%##**@            @####+@                                \n")
+        escreva("|                                                       @####*%          @%####+@                                \n")
+        escreva("|                                                       @#####**#@@   @@#######+@                                \n")
+        escreva("|                                                @@%@@   @#########**###########@%%@                             \n")
+        escreva("|        @@@@@@@@@@%@                        @#*#******%#*%############%#######@##***@@                          GUARDIÃO DA FLORESTA\n")
+        escreva("|        @@%%%%@%%%%%%@                    @@*###%#####*%##%############%######*#####*@@                         \n")
+        escreva("|      @@%%%%%%#%%%%%%%%%%@               @#*#####%######%#%############%#############%#@                        \n")
+        escreva("|     @@%%%%%%%%%%%%%##%%%@            @@@#*#######%#####%%###########%%#%@###%%######%*#*@                      \n")
+        escreva("|    @@%%@%%%%%%%%%%%%%%%%@@@    @@%#@#*##%########%#####%#**######%@@%##%%@@#**%####%#*##*#%#@                  VIDA: ", vidaGuardiao ,"\n")
+        escreva("|    @%%%%@%%%%%%%%%@@%%%%%@%  @%*####%###%%############%*++++++####@@@%#%%%%*+++*@####%####****#@               \n")
+        escreva("|    @%%@%%%%%%%%%%%%%%%%@%@@@%%*@%#%%#%@#%##%%########*++++++===+#%#####%#%+++++++%#%%%#%#######*@              ATAQUE: ", ataqueguardiao ,"\n")
+        escreva("|    @@@%%%%%%#%%%%%%%%%%%%%%#*****#####@###############***##**+++++++**#*+++***=++*%@@@@%###***###@             \n")
+        escreva("|    @@%%%%%%%%%%%%%%%#%%%%@   @##%%%%##@@@@@%%%%###****+++++++++++++**###%%%####%+**@@ @@%%#**+#%#@             DEFESA: ", defesaguardiao ,"\n")
+        escreva("|     @%%%##%%%%%%%%%%%%%%%@    %%%%%%%@@   %*++++***+++++=+++++************####**********%#####*######@@        \n")
+        escreva("|     @%@%%%%%%%%##%%%%#@@                  %+=#*+++++++======================+++++++*@  @@##%@@@@@%###@@        \n")
+        escreva("|      @@@@%%%%%%%%%%%@@                    %#+++++++++=================+++====+++++++@     @@@@                 \n")
+        escreva("|          @@%@@@@@%%@                      %++++++++++======--=##*+++=====+*#=-=+++++@                          \n")
+        escreva("|                                           %*++++++++=====##==================*#==++*@                          \n")
+        escreva("|                                           @#+++++=-+#++=======================++**=@                           \n")
+        escreva("|                                            #*+==##+++++======================+++++#                            \n")
+        escreva("|                                             %#*++++++++++==================++++++%@                            \n")
+        escreva("|                                              @#++++++++++++==---+#%%###%#==++++##%@                            \n")
+        escreva("|                                             @%###*++++==+**###*******##***##*#####%                            \n")
+        escreva("|                                             @%###%@@%%####**********##***#%@%#####%@                           \n")
+        escreva("|                                            @%#%@@      @@@%%#####%%%%%@@@     @@%%##@                          \n")
+        escreva("|                                             @%%@                                 %#%@                          \n")
+        escreva("|                                              @@                                   @@                           \n\n")
         escreva("1. Continuar: ")
         leia(opcao)
       } enquanto (opcao!=1)      
-      
+
     }
 
-    funcao batalhaGuardiao (inteiro vidajogador, inteiro ataquejogador, inteiro defesajogador) {
+    funcao batalhaGuardiao () {
 
-      inteiro vidaGuardiao = 120, ataqueguardiao = 80, defesaguardiao = 70
+      inteiro vidaGuardiao = 120, ataqueguardiao = 75, defesaguardiao = 60
 
       inteiro turno = 1, opcao, danoCausado, danoRecebido
       logico opcaoDefesa = falso
-      
-      
+
+
       faca {
         faca {
           opcaoDefesa = falso
           limpa()
           escreva("-BATALHA-\n\n")
           escreva(nomeHeroi ," x Guardião da Floresta\n\n" )
-          escreva("SUA VIDA: ", vidajogador, " | VIDA DO INIMIGO: ", vidaGuardiao)
+          escreva("SUA VIDA: ", vidaAtual[classe], " | VIDA DO INIMIGO: ", vidaGuardiao)
           escreva("\nTURNO: ", turno)
           escreva("\n\nSUA VEZ: O QUE DESEJA FAZER?\n1. Atacar | 2. Defender\n\nDigite a opção escolhida: ")
           leia(opcao)
         } enquanto (opcao>2 ou opcao<1)
 
         se (opcao==1) {
-          danoCausado = ataquejogador - defesaguardiao
+          danoCausado = ataque[classe] - defesaguardiao
           se (danoCausado<0) {
             danoCausado = 0
           } 
@@ -677,11 +746,11 @@ programa {
         escreva("\n\nVEZ DO INIMIGO\n\n")
         u.aguarde(1000)
 
-        danoRecebido = ataqueguardiao - defesajogador
+        danoRecebido = ataqueguardiao - defesa[classe]
         se (opcaoDefesa==verdadeiro) {
-          vidajogador -= danoRecebido/2
+          vidaAtual[classe] -= danoRecebido/2
           escreva("O guardião lhe atacou e causou ", danoRecebido/2, " de dano!")
-          se (vidajogador<=20) {
+          se (vidaAtual[classe]<=20) {
             escreva("\nVocê está prestes a desmaiar...\n")
             u.aguarde(1000)
             escreva("??? (gritando): Abaixaaaaaaa!!!\n")
@@ -701,9 +770,9 @@ programa {
             pare
           } 
         } senao {
-          vidajogador -= danoRecebido
+          vidaAtual[classe] -= danoRecebido
           escreva("O guardião lhe atacou e causou ", danoRecebido, " de dano!")
-          se (vidajogador<=20) {
+          se (vidaAtual[classe]<=20) {
             inteiro opcao
             escreva("\nVocê está prestes a desmaiar...\n")
             u.aguarde(1000)
@@ -718,7 +787,7 @@ programa {
             escreva("Você desmaia devido aos ferimentos, mas sente que está seguro.\n")
             u.aguarde(5000)
             faca {
-              escreva("\n1. Continuar: ")
+              escreva("\n1. Perguntar: 'Quem é você?': ")
               leia (opcao)
             } enquanto (opcao!=1)
             pare
@@ -727,7 +796,7 @@ programa {
 
         u.aguarde(2000)
         turno++
-      } enquanto (vidajogador>20 e vidaGuardiao>0)
+      } enquanto (vidaAtual[classe]>20 e vidaGuardiao>0)
 
     }
 
@@ -770,6 +839,8 @@ programa {
       } enquanto (opcao!=1)
 
       limpa()
+      vidaAtual[classe] = vidaMaxima[classe]
+      statusHeroi()
       escreva("Eyla:\n")
       escreva("\n- Você está a salvo… por enquanto. As trevas de Eldoria são impiedosas, mas não deixarei que o consumam tão cedo.")
       u.aguarde(1000)
@@ -778,19 +849,20 @@ programa {
       escreva("\n- Venha. O caminho é longo, e você não deve trilhá-lo sozinho.")
       u.aguarde(5000)
       faca {
-        escreva("\n\n1. Continuar: ")
+        escreva("\n\n1. Seguir Eyla: ")
         leia(opcao)
       } enquanto (opcao!=1)
 
       faca {
         limpa()
+        statusHeroi()
         escreva("Antes que prossigamos... há algo que preciso lhe ensinar.\n")
         escreva("Em Eldoria, a força bruta nem sempre vence… é a disciplina que molda o verdadeiro guerreiro.\n")
         escreva("Concentre sua energia, respire fundo… e acumule sua Força Interior.\n")
         escreva("Quando fizer isso, seu próximo golpe será devastador, esmagando seu inimigo com poder muito além do normal.\n")
         escreva("Mas cuidado... esse esforço tem um preço. Seu corpo se desgastará, e só poderá usar essa técnica poucas vezes em cada batalha.\n")
         escreva("Aprenda a equilibrar poder e prudência. Isso pode ser a diferença entre a vitória… e a sua ruína.\n")
-        escreva("\n1. Continuar: ")
+        escreva("\n1. Concentrar energia: ")
         leia(opcao)
       } enquanto (opcao!=1)
 
@@ -809,6 +881,8 @@ programa {
     }
 
     funcao vilaAbandonada () {
-      
-  } 
+
+  }
+
+
 }
