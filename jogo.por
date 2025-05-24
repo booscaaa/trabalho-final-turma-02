@@ -3,13 +3,13 @@ programa {
   inclua biblioteca Util --> u
 
   cadeia nomeJogador = "Lucas"
-  cadeia classe
-  inteiro vidaMax = 120
-  inteiro vidaAtual = vidaMax
-  inteiro ataque = 10
-  inteiro defesa = 15
-  inteiro xp
-  inteiro nivel = 2
+  cadeia classe = ""
+  inteiro vidaMax = 0
+  inteiro vidaAtual = 0
+  inteiro ataque = 0
+  inteiro defesa = 0
+  inteiro xp = 0
+  inteiro nivel = 0
   inteiro contadorInimigo = 0
 
   funcao inicio() {
@@ -60,9 +60,8 @@ programa {
       leia(escolhaAcao)
     }
     se(escolhaAcao == 1){
-      se(contadorInimigo == 0){
-        intro_floresta_lobo()
-      }
+      intro_floresta_lobo()
+
 
     }
     se(escolhaAcao == 2){
@@ -142,16 +141,19 @@ programa {
       se(numeroDaClasse == 1){
         classe = "⚔️ Guerreiro"
         vidaMax = 120
+        vidaAtual = vidaMax
         ataque = 20
         defesa = 15
       }senao se(numeroDaClasse == 2){
         classe = "🏹 Arqueiro"
         vidaMax = 90
+        vidaAtual = vidaMax
         ataque = 15
         defesa = 10
       }senao se(numeroDaClasse == 3){
         classe = "🔮 Mago"
         vidaMax = 70
+        vidaAtual = vidaMax
         ataque = 25
         defesa = 5
       }
@@ -207,80 +209,24 @@ programa {
       escreva("| Você ouve galhos se partindo ao longe... algo está se aproximando.\n")
       escreva("| Um uivo rompe o silêncio. De dentro da neblina, surge um LOBO TERRÍVEL!\n")
       escreva("| Os olhos da criatura brilham em vermelho, famintos por batalha...\n")
-      escreva("                                                               :        \n")      
-      escreva("                                                       .#@%             \n")
-      escreva("                                                       #@@@=            \n")
-      escreva("                                                     :@@@@%%            \n")
-      escreva("                                                    *@@@@#@#            \n")
-      escreva("                                                .*@%@@@@@@@# ==.        \n")
-      escreva("                                               =@@*@@@@@@@@@@@@%        \n")
-      escreva("                                              +@@@@@@@@@@@@@@@#         \n")
-      escreva("                                             =@@@@@@@@@@@@@@@=          \n")
-      escreva("                                           .%@@@@@@@@@@@@@@@+           \n")
-      escreva("                                        .+%@@@@@@@@@@@@@@@@%:           \n")
-      escreva("                                      .#@@@%=-%@@@@%%@@@@@@%.           \n")
-      escreva("                                         =@@@@@%%%@%+=@@@@@@:           \n")
-      escreva("                                           *@@@@+*%*#@@@@@@@*           \n")
-      escreva("                                          +@@@@@@@%@#%@@@@@@+:          \n")
-      escreva("                                         *%@@@@@@@@@@@@@@@@@%-          \n")
-      escreva("                                         :@@@@@@@@@@@@@@@@@@%-=         \n")
-      escreva("                                        +@@@@@@@@@@@@@@@@@@@#%*         \n")
-      escreva("                                        :@@@@@@@@@@@@@@@@@@@@=          \n")
-      escreva("                                      :+@@@@@@@@@@@@@@@@@@@+*@-         \n")
-      escreva("                                      :%@@@@@@@@@@@@@@@@@@@@=.*         \n")
-      escreva("                                   .*@@@@@@@@@@@@@@@@@@@@@@@@+.         \n")
-      escreva("                                     =@@@@@@@@@@@@@@@@@@@@@@=..         \n")
-      escreva("                                    +@@@@@@@@@@@@@@@@@@@@@@@#=          \n")
-      escreva("                                  :%@@@@@@@@@@@@@@@@@@@@@@@@*:          \n")
-      escreva("                                .+@@@@@@@@@@@@@@@@@@@@@@@@@=@-          \n")
-      escreva("                               -@@@@@@@@@@@@@@@@@@@@@@@@@%@*:-          \n")
-      escreva("                             =@@@@@@@@@@@@@@@@@@@@@@@@@@@*+*            \n")
-      escreva("                          -#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@# :            \n")
-      escreva("                        +@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=              \n")
-      escreva("                      .@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*=:              \n")
-      escreva("                     :@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.                \n")
-      escreva("                    .%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+.                \n")
-      escreva("                    +@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#+#+                 \n")
-      escreva("                   :@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-*@#                  \n")
-      escreva("                   +@@@@@@@@@@@@@@@@@@@#@@@@@@@#*%@@%.                  \n")
-      escreva("                   @@@@@@@@@@@@@@@@@@@+#@@@@@@##@@@%-                   \n")
-      escreva("                  -@@@@@@@@@@@@@@@%+=@#%@@@@@@*@@@@+                    \n")
-      escreva("                  @@@@@@@@@@@@@**=%@@@%#@@@@@@@@@@%.  .                 \n")
-      escreva("                 =@@@@@@@@@@@@@*@%@@@@@+@@@@@+@@@@#                     \n")
-      escreva("                .@@@@@@@@@@@@@=@@@@@@@@:@@@@@=@@@@:                     \n")
-      escreva("                *@@@@@*@@@@@@#..@@@@@@* %@@@@=@@@@                      \n")
-      escreva("               +@@@@@% @@@@@%:  @@@@@#  +@@@@=@@@#                      \n")
-      escreva("             .%@@@@@@* *@@@@.   @@@@#    @@@@+@@@=                      \n")
-      escreva("  .+=.    .=%@@@@@@@#- @@@#    #@@%:     @@@#*@@@:                      \n")
-      escreva("   :@@@@@@@@@@@@@@@@=.%@@=    #@@@-      @@@+#@@@.                      \n")
-      escreva("     *@@@@@@@@@@@@+* #@@+     -@@#.      @@@=%@@@                       \n")
-      escreva("     :*%@@@@@@@@@+   *@@=      =@@-      @@@=@@@@                       \n")
-      escreva("         =%@#+.=.    -@@=       *@%     .@@@=@@@@                       \n")
-      escreva("                     .@@=       .#@#    .#@@* @@@.                      \n")
-      escreva("                     .@@+        -@@@=.  :@@@ *@@*                      \n")
-      escreva("                     :@@%:        =@@@@@-.@@@*-@@@@#-                   \n")
-      escreva("                     -@@@@+         -==-..%@@@@@@@@@@-                  \n")
-      escreva("                     :@@@@@#              =@@@@@@:::.                   \n")
-      escreva("-----------------------------❗ LOBO TERRÍVEL ❗-----------------------------\n")
+      escreva("⚠️ O LOBO TERRÍVEL se aproxima, cuidado!!\n")
+      escreva("-----------❗ LOBO TERRÍVEL ❗-----------\n")
       escreva("\nPressione \"Enter\" para começar a batalha\"\n")
       leia(voltar)
     }
-    batalha_floresta()
+    batalha_floresta(60,20,6,"🐺LOBO TERRÍVEL",2)
   }
-  funcao batalha_floresta(){
+  funcao batalha_floresta(inteiro vidaMaxInimigo, inteiro ataqueInimigo, inteiro defesaInimigo, cadeia nomeInimigo, inteiro nivelInimigo){
     limpa()
-    inteiro vidaMaxInimigo = 60
     inteiro vidaAtualInimigo = vidaMaxInimigo
-    inteiro ataqueInimigo = 25
     inteiro danoInimigo
-    inteiro defesaInimigo = 5
     cadeia escolher
     logico defendendo = falso
 
     enquanto (vidaAtualInimigo > 0 e vidaAtual > 0){
       enquanto(escolher != 1 e escolher != 2){
       limpa()
-      escreva("LOBO TERRÍVEL Nv. 2\n")
+      escreva(nomeInimigo," Nv.",nivelInimigo,"\n")
       escreva("❤️ Vida: ",vidaAtualInimigo,"/",vidaMaxInimigo,"\n")
       escreva("🛡️ Defesa: ",defesaInimigo,"\n")
       escreva("----------------------------------\n")
@@ -294,7 +240,7 @@ programa {
       limpa()
       }
       se(escolher == 1){
-        inteiro dano = ataque - defesaInimigo
+        inteiro dano = u.sorteia(1,ataque)
         se(dano < 0){
           dano = 0
         }
@@ -310,9 +256,9 @@ programa {
       u.aguarde(1000)
 
       se(vidaAtualInimigo > 0){
-        danoInimigo = ataqueInimigo - defesa
+        danoInimigo = u.sorteia(1,ataqueInimigo)
         se(defendendo){
-          danoInimigo = danoInimigo / 2
+          danoInimigo = danoInimigo - u.sorteia(1,defesa)
         }
       }
       se(danoInimigo < 0){
@@ -334,7 +280,6 @@ programa {
       escreva("🎉 Você derrotou o Lobo Terrível!\n")
       escreva("🏆 + 50 XP\n")
       xp = xp + 50
-      contadorInimigo++
       se(xp >= 100){
         nivel = nivel + 1
         xp = xp - 100
@@ -344,13 +289,18 @@ programa {
         escreva("⬆️ Você subiu para o nível ",nivel,"!\n")
       }
     }
+    se(vidaAtual > 0){
     cadeia continuar
     enquanto(continuar != ""){
     escreva("\nPressione \"Enter\" para voltar ao menu de ações\n")
     leia(continuar)
+    limpa()
     }
     menu_acoes_jogo()
+    }senao{
+    }
   }
+
   funcao creditos(){
     escreva("════════「🌟 CRÉDITOS 🌟」════════\n")
     u.aguarde(600)
