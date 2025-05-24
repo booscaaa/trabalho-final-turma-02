@@ -8,7 +8,7 @@ programa {
   inteiro defesaDoPersonagem = 0
   inteiro xpDoPersonagem = 0 
   inteiro nivel = 0
-  inteiro auxVidaDoPersonagem
+  inteiro auxVidaDoPersonagem = 0
   inteiro sorteio = 0
   inteiro pOSSUIpOCAO? = 0
 
@@ -192,7 +192,7 @@ programa {
   funcao introducaoPosCriacao(){
     limpa()
     
-    auxVidaDoPersonagem = vidaDoPersonagem
+    
     escreva("PERFEITO, bora começar de fato com a sua jornada, que provavelmente será bem sangrenta e sofrida...\n")
     u.aguarde(3000)
 
@@ -237,18 +237,19 @@ programa {
     inteiro contador = 5
     cadeia opcao
 
-    escreva("\nVocê caminha vagarosamente pela Floresta, vendo como aquele lugar é sombrio, e com tanta Névoa que nem dá pra ver um palmo a sua frente\nQuando ouve sons de passos próximos.\n")
+    escreva("\nSeguimos!\nVocê caminha vagarosamente pela Floresta, vendo como aquele lugar é sombrio, e com tanta Névoa que nem dá pra ver um palmo a sua frente\nQuando ouve sons de passos próximos.\n")
     u.aguarde(2500)
     escreva("Calmamente, você se aproxima e acaba sendo surpreendido por um Lobo, que te ataca e te derruba no chão.\n")
     u.aguarde(2500)
     escreva("Isso te machuchou(levou 5 de dano) mas por sorte, você consegue se livrar dele, mas ele está rosnando, a batalha irá começar!\n")
     u.aguarde(2500)
 
-    escreva("Bora começar sua primeira batalha?Sim?Não?\n")
+    escreva("Está preparado? Sim? Não?\n")
     leia(opcao)
     
     enquanto(opcao != "Sim"){
-      escreva("É Sim ou Sim, não escreva outra coisa e muito menos tente fugir")
+      escreva("\nÉ Sim ou Sim, não escreva outra coisa e muito menos tente fugir:\n")
+      leia(opcao)
     }
     escreva("Isso mesmo, boa sorte(você vai precisar)\n")
     vidaDoPersonagem = vidaDoPersonagem - 5
@@ -398,6 +399,7 @@ programa {
             escreva("PARABÉNS, DEU SORTE, você conseguiu uma poção de recuperação de vida, ela pode recuperar 10 pontos do seu HP.\n")
             u.aguarde(1000)
             
+            
             escreva("\nVocê quer utilizar ela agora ou guarda-la pra usar futuramente?\n\n1-Usar\n2-Guardar\n")
             leia(opcao)
             enquanto(opcao != 2 e opcao != 1){
@@ -408,18 +410,19 @@ programa {
               caso 1:
 
               se(pOSSUIpOCAO == 1){
+                pocao()
                 
               }
 
-              se(classe == "Guerreiro" e vidaDoPersonagem == 40){
+              se(classe == "Guerreiro" e vidaDoPersonagem == auxVidaDoPersonagem){
                 escreva("\nPRA QUE TU VAI USAR SENDO QUE TU TA COM A VIDA CHEIA? vou te poupar dessa, vou deixar tua poção guardada")
                 pOSSUIpOCAO = 1
               }
-              se(classe == "Mago" e vidaDoPersonagem == 15){
+              se(classe == "Mago" e vidaDoPersonagem == auxVidaDoPersonagem){
                 escreva("\nPRA QUE TU VAI USAR SENDO QUE TU TA COM A VIDA CHEIA? vou te poupar dessa, vou deixar tua poção guardada")
                 pOSSUIpOCAO = 1
               }
-              se(classe == "Arqueiro" e vidaDoPersonagem == 30){
+              se(classe == "Arqueiro" e vidaDoPersonagem == auxVidaDoPersonagem){
                 escreva("\nPRA QUE TU VAI USAR SENDO QUE TU TA COM A VIDA CHEIA? vou te poupar dessa, vou deixar tua poção guardada")
                 pOSSUIpOCAO = 1
               }
@@ -431,17 +434,11 @@ programa {
               pare
 
               caso 2:
-
-              se(pOSSUIpOCAO == 1 e vidaDoPersonagem == auxVidaDoPersonagem){
-                escreva("Você já possui uma poção e não poderá carregar mais uma, e também já ta com a vida máxima, ou seja...sem poção extra")
-              } senao se(pOSSUIpOCAO == 1 e vidaDoPersonagem < auxVidaDoPersonagem){
-                escreva("Você já possui uma poção e não poderá carregar mais uma, mas não está com a")
-
-                }senao{
-
-              escreva("Ok então, poção guardada!\n")
-              pOSSUIpOCAO = 1
-              }
+     
+              casoEncontrePocao()
+              
+              
+              
             }
 
 
@@ -461,9 +458,36 @@ programa {
   }
 
 
+  funcao casoEncontrePocao(){
+    inteiro opcao
+    se(pOSSUIpOCAO == 1 e vidaDoPersonagem == auxVidaDoPersonagem){
+      escreva("\nVocê já possui uma poção e não poderá carregar mais uma, e também já ta com a vida máxima, ou seja...sem poção extra")
+    } senao se(pOSSUIpOCAO == 1 e vidaDoPersonagem < auxVidaDoPersonagem){
+      
+      escreva("\nVocê já possui uma poção e não poderá carregar mais uma, mas não está com a vida máxima, quer usar a poção que encontrou agora?Sim?Não?\n")
 
+  
+      leia(opcao)
+      enquanto(opcao != "Sim" e opcao != "Não"){
+        escreva("Sim OU Não?")
+        leia(opcao)
+      }
+      se(opcao == "Sim"){
+        pocao()
 
+      } senao{
+        escrva("Ok então,")
 
+      }
+      
+  
+    } 
+    senao{
+      escreva("Ok então, poção guardada!\n")
+      pOSSUIpOCAO = 1
+    }
+
+  }
 
   funcao pocao (){
     se(classe == "Guerreiro" e vidaDoPersonagem > 30){
