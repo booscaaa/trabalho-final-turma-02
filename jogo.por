@@ -138,7 +138,7 @@ programa {
         escreva("Eldoria Saga v1.0\n\n")
     }
     funcao subirDeNivel(){
-      enquanto(experiencia >= (nivel+1)*10 e nivel < 10) {
+      enquanto(experiencia >= (nivel+1)*10 e nivel < 15) {
       nivel = nivel + 1
       vida = vida + nivel
       escreva("Seu herói subiu para o nível: ", nivel, "\n")
@@ -203,10 +203,104 @@ programa {
           defesa += 3
           agilidade += 3
         pare
+        caso "CAVALEIRO DO SUBMUNDO":
+          ataque += 6
+          defesa += 4
+          agilidade += 2
+        pare
+        caso "CAVALEIRO DA CENTELHA":
+          ataque += 2
+          defesa += 5
+          defesa += 5
+        pare
+        caso "CAVALEIRO RADIANTE":
+          ataque += 4
+          defesa += 4
+          agilidade += 4
+        pare
+        caso "SHOGUN":
+          ataque += 5
+          defesa += 2
+          agilidade += 5
+        pare
+        caso "NITORYUU":
+          ataque += 5
+          defesa += 1
+          agilidade += 6
+        pare
+        caso "RONIN":
+          ataque += 6
+          defesa += 3
+          agilidade += 3
+        pare
+        caso "PARAGON":
+          ataque += 4
+          defesa += 5
+          agilidade += 3
+        pare
+        caso "PALADINO DO DRAGÃO GIGANTE":
+          ataque += 3
+          defesa += 6
+          agilidade += 3
+        pare
+        caso "PALADINO DE NEMESIS":
+          ataque += 3
+          defesa += 7
+          agilidade += 2
+        pare
+        caso "ARQUIMAGO":
+          ataque += 10
+          defesa += 1
+          agilidade += 1
+        pare
+        caso "MAGO DE FOGO RAPIDO":
+          ataque += 6
+          defesa += 0
+          agilidade += 6
+        pare
+        caso "SABIO":
+          ataque += 6
+          defesa += 2
+          agilidade += 4
+        pare
+        caso "INVOCADOR":
+          ataque += 4
+          defesa += 3
+          agilidade += 6
+        pare
+        caso "ESPIRITUALISTA":
+          ataque += 5
+          defesa += 2
+          agilidade += 5
+        pare
+        caso "DRUIDA":
+          ataque += 5
+          defesa += 3
+          agilidade += 4
+        pare
+        caso "SHAMAN":
+          ataque += 6
+          defesa += 2
+          agilidade += 4
+        pare
+        caso "BRUXO DO PESADELO":
+          ataque += 6
+          defesa += 1
+          agilidade += 5
+        pare
+        caso "MAGO NEGRO":
+          ataque += 5
+          defesa += 5
+          agilidade += 2
+        pare
+
       }
       mostrarAtributos()
       se(nivel == 5){
         avancoDeClasse()
+      }
+      se(nivel == 10){
+        avancoDeClasseFinal()
       }
       }
       
@@ -244,6 +338,34 @@ programa {
     }
       
   }
+  funcao avancoDeClasseFinal(){
+    se(nivel == 10){
+      escolha(classe){
+        caso "CAVALEIRO":
+          avancoDeClasseCavaleiro()
+        pare
+        caso "SAMURAI":
+          avancoDeClasseSamurai()
+        pare
+        caso "PALADINO":
+          avancoDeClassePaladino()
+        pare
+        caso "EVOCADOR":
+          avancoDeClasseEvocador()
+        pare
+        caso "ONMYOJI":
+        pare
+        caso "BRUXO":
+        pare
+        caso "CAÇADOR":
+        pare
+        caso "ATIRADOR":
+        pare
+        caso "VIGIA":
+        pare
+      }
+    }
+  }
   // Função para avanço de classe do Guerreiro
 funcao avancoDeClasseGuerreiro() {
     inteiro opcaoDeAvanco
@@ -274,14 +396,110 @@ funcao avancoDeClasseGuerreiro() {
     escolha (opcaoDeAvanco) {
         caso 1:
             classe = "CAVALEIRO"
+        pare
         caso 2:
             classe = "SAMURAI"
+        pare
         caso 3:
             classe = "PALADINO"
+        pare
     }
     
     escreva(nomeDoPersonagem, ", agora é um: ", classe, ".\n")
 }
+
+funcao avancoDeClasseCavaleiro(){
+  inteiro opcaoDeAvancoFinal
+
+  escreva(nomeDoPersonagem, " alcançou o nível maximo na sua classe atual, agora escolha uma das opções de avanço de classe. Este será seu ultimo avanço de classe.\n")
+  leia(opcaoDeAvancoFinal)
+  
+  enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
+    escreva("Opção inválida, tente novamente. As opções válidas são 1, 2 e 3.\n")
+    leia(opcaoDeAvancoFinal)
+  }
+
+  escolha(opcaoDeAvancoFinal){
+    caso 1:
+     classe = "CAVALEIRO DO SUBMUNDO"
+    pare
+    caso 2:
+      classe = "CAVALEIRO DA CENTELHA"
+    pare
+    caso 3:
+      classe = "CAVALEIRO RADIANTE"
+    pare
+  }
+}
+funcao avancoDeClasseSamurai(){
+  inteiro opcaoDeAvancoFinal
+
+  escreva(nomeDoPersonagem, " alcançou o nível maximo na sua classe atual, agora escolha uma das opções de avanço de classe. Este será seu ultimo avanço de classe.\n")
+  leia(opcaoDeAvancoFinal)
+  
+  enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
+    escreva("Opção inválida, tente novamente. As opções válidas são 1, 2 e 3.\n")
+    leia(opcaoDeAvancoFinal)
+  }
+
+  escolha(opcaoDeAvancoFinal){
+    caso 1:
+      classe = "SHOGUN"
+    pare
+      classe = "NITORYUU"
+    caso 2:
+    pare
+    caso 3:
+      classe = "RONIN"
+    pare
+  }
+}
+funcao avancoDeClassePaladino(){
+  inteiro opcaoDeAvancoFinal
+
+  escreva(nomeDoPersonagem, " alcançou o nível maximo na sua classe atual, agora escolha uma das opções de avanço de classe. Este será seu ultimo avanço de classe.\n")
+  leia(opcaoDeAvancoFinal)
+  
+  enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
+    escreva("Opção inválida, tente novamente. As opções válidas são 1, 2 e 3.\n")
+    leia(opcaoDeAvancoFinal)
+  }
+
+  escolha(opcaoDeAvancoFinal){
+    caso 1:
+      classe = "PARAGON"
+    pare
+    caso 2:
+      classe = "PALADINO DO DRAGÃO GIGANTE"
+    pare
+    caso 3:
+      classe = "PALADINO DE NEMESIS"
+    pare
+  }
+}
+funcao avancoDeClasseEvocador(){
+  inteiro opcaoDeAvancoFinal
+
+  escreva(nomeDoPersonagem, " alcançou o nível maximo na sua classe atual, agora escolha uma das opções de avanço de classe. Este será seu ultimo avanço de classe.\n")
+  leia(opcaoDeAvancoFinal)
+  
+  enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
+    escreva("Opção inválida, tente novamente. As opções válidas são 1, 2 e 3.\n")
+    leia(opcaoDeAvancoFinal)
+  }
+
+  escolha(opcaoDeAvancoFinal){
+    caso 1:
+    pare
+    caso 2:
+    pare
+    caso 3:
+    pare
+  }
+}
+
+
+
 
 // Função para avanço de classe do Mago
 funcao avancoDeClasseMago() {
@@ -313,10 +531,13 @@ funcao avancoDeClasseMago() {
     escolha (opcaoDeAvanco) {
         caso 1:
             classe = "EVOCADOR"
+        pare
         caso 2:
             classe = "ONMYOJI"
+        pare
         caso 3:
             classe = "BRUXO"
+        pare
     }
     
     escreva(nomeDoPersonagem, ", agora é um: ", classe, ".\n")
@@ -352,10 +573,13 @@ funcao avancoDeClasseArqueiro() {
     escolha (opcaoDeAvanco) {
         caso 1:
             classe = "CAÇADOR"
+        pare
         caso 2:
             classe = "ATIRADOR"
+        pare
         caso 3:
             classe = "VIGIA"
+        pare
     }
     escreva(nomeDoPersonagem, ", agora é um: ", classe, ".\n")
   }
