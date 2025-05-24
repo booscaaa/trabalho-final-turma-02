@@ -4,14 +4,15 @@ programa {
 
     inteiro xp=0, niveldocampeao=1, xpparasubirdenivel=100 
     inteiro danodaespecializacao, vidadaespecializacao, agilidadedaespecializacao, defesadaespecializacao
+    
 
     funcao nivelupado() {
     se (xp >= xpparasubirdenivel) {
-        xp = xp - xpparasubirdenivel  // Subtrai o XP gasto no level up
+        xp = xp - xpparasubirdenivel 
         niveldocampeao++
         escreva("\n🎉 Parabéns! Você subiu para o nível ", niveldocampeao, "!\n")
         
-            // Escolha de atributo
+            
             escreva("Escolha um atributo para melhorar:\n")
             escreva("1 - Dano\n")
             escreva("2 - Vida\n")
@@ -41,7 +42,9 @@ programa {
             }
         }
     }
-
+    funcao inteiro sortear(inteiro min, inteiro max) {
+    retorne Util.aleatorio(min, max)
+}
     funcao inicio() {
         inteiro opcao
         inteiro opcaodecontinuarcomojogo
@@ -361,43 +364,45 @@ programa {
                               escolha(caminhoparaprosseguirflorestadanevoa2){
                                 caso 1:
                                 escreva("VOCÊ ENCONTROU UM GOLEM DE COGUMELOS!!\n")
-                              inteiro vidaDogolemdecogumelos = 25
-                              inteiro danoDogolemdecogumelos = 6
-                              inteiro acaodocombatedogolemdecogumelos
-                              logico defendeuseNesteTurnocontraogolemdecogumelos = falso
-                              enquanto(vidadaespecializacao > 0 e vidaDogolemdecogumelos > 0) {
-                                escreva("\nSUA VIDA:", vidadaespecializacao, "\nVIDA DO INIMIGO:", vidaDogolemdecogumelos, "\n")
-                                escreva("1-ATACAR\n")
-                                escreva("2-DEFENDER-SE\n")
-                                leia(acaodocombatedogolemdecogumelos)
-                                defendeuseNesteTurnocontraogolemdecogumelos = falso
-                                se(acaodocombatedogolemdecogumelos == 1) {
-                                    vidaDogolemdecogumelos = vidaDogolemdecogumelos - danodaespecializacao
-                                    escreva("Muito bem herói, você causou:", danodaespecializacao, "de dano no inimigo")
+                                inteiro vidaDoGolemDeCogumelos = 25
+                                inteiro danoDoGolemDeCogumelos = 6
+                                inteiro acaoDoCombateDoGolemDeCogumelos
+                                logico defendeuSeNesteTurnoContraOGolemDeCogumelos = falso
+
+                                enquanto(vidadaespecializacao > 0 e vidaDoGolemDeCogumelos > 0) {
+                                    escreva("\nSUA VIDA:", vidadaespecializacao, "\nVIDA DO INIMIGO:", vidaDoGolemDeCogumelos, "\n")
+                                    escreva("1-ATACAR\n")
+                                    escreva("2-DEFENDER-SE\n")
+                                    leia(acaoDoCombateDoGolemDeCogumelos)
+                                    defendeuSeNesteTurnoContraOGolemDeCogumelos = falso
+                                    
+                                    se(acaoDoCombateDoGolemDeCogumelos == 1) {
+                                        vidaDoGolemDeCogumelos = vidaDoGolemDeCogumelos - danodaespecializacao
+                                        escreva("Muito bem herói, você causou:", danodaespecializacao, "de dano no inimigo")
+                                    }
+                                    senao se(acaoDoCombateDoGolemDeCogumelos == 2) {
+                                        defendeuSeNesteTurnoContraOGolemDeCogumelos = verdadeiro 
+                                        inteiro danoReduzidoNesteCombateGolemDeCogumelos = danoDoGolemDeCogumelos / 2
+                                        vidadaespecializacao = vidadaespecializacao - danoReduzidoNesteCombateGolemDeCogumelos
+                                        escreva("Voce acabou se defendendo campeao, e o inimigo causou apenas", danoReduzidoNesteCombateGolemDeCogumelos, "de dano\n")
+                                    }
+                                    senao {
+                                        escreva("O inimigo aproveitou a sua indecisão!!")
+                                    }
+
+                                    se(vidaDoGolemDeCogumelos > 0 e defendeuSeNesteTurnoContraOGolemDeCogumelos == falso) {
+                                        vidadaespecializacao = vidadaespecializacao - danoDoGolemDeCogumelos
+                                        escreva("O golem atacou você causando", danoDoGolemDeCogumelos, "de dano\n")
+                                    }
+                                    senao se(vidaDoGolemDeCogumelos <= 0) {
+                                        escreva("Parabéns ",nomedocampeao, ", Voce derrotou o inimigo!!\n")
+                                        inteiro xpGanhoContraOGolemDosCogumelos = 100
+                                        xp = xp + xpGanhoContraOGolemDosCogumelos
+                                        escreva("Parabéns ",nomedocampeao, ", Voce recebeu", xpGanhoContraOGolemDosCogumelos, "de XP\n")
+                                        nivelupado(xp, xpparasubirdenivel, niveldocampeao)
+                                        escreva("Meus parabéns ",nomedocampeao, " você derrotou seu primeiro inimigo! Sabiamos que você consegueria!!\n")
+                                    }
                                 }
-                                senao se(acaodocombatedogolemdecogumelos == 2) {
-                                    defendeuseNesteTurnocontraogolemdecogumelos = verdadeiro 
-                                    inteiro danoreduzidoNestecombategolemdecogumelos = danoDogolemdecogumelos / 2
-                                    vidadaespecializacao = vidadaespecializacao - danoreduzidoNestecombategolemdecogumelos
-                                    escreva("Voce acabou se defendendo campeao, e o inimigo causou apenas", danoreduzidoNestecombategolemdecogumelos, "de dano\n")
-                                }
-                                senao {
-                                    escreva("O inimigo aproveitou a sua indecisão!!")
-                                }
-                            
-                                se(vidaDogolemdecogumelos > 0 e defendeuseNesteTurnocontraogolemdecogumelos == falso) {
-                                    vidadaespecializacao = vidadaespecializacao - danoDogolemdecogumelos
-                                    escreva("O goblin atacou você causando", danoDogolemdecogumelos, "de dano\n")
-                                }
-                                senao se(vidaDoGoblin <= 0) {
-                                escreva("Parabéns ", nomedocampeao, ", Voce derrotou o inimigo!!\n")
-                                inteiro xpganhocontraogolemdoscogumelos = 100
-                                xp = xp + xpganhocontraogolemdoscogumelos
-                                escreva("Parabéns ", nomedocampeao, ", Voce recebeu", xpganhocontraogolemdoscogumelos, "de XP\n")
-                                nivelupado()
-                                escreva("Meus parabéns",nomedocampeao,"você derrotou seu primeiro inimigo!Sabiamos que você consegueria!!\n")
-                                }
-                            }
                             
                               
 
@@ -405,13 +410,71 @@ programa {
                                 caso 2: 
                                 escreva("Voce prossegue pela floresta no caminho calmo porém anda acontece...\n")
                                 escreva(nomedocampeao,"aproveita a vista de uma floresta que é linda , porém conturbada...\n")
+                                escreva("Voce anda um pouco mais e acaba encontrando uma fogueira...")
+                                escreva("Provavelmetne ela foi deixada por algum explorador que ali passava...")
+                                escreva("Você resolve reascendê-la com alguns galhos que você encontrou ali por perto...")
                                 pare
                                }
+                               escreva("\n\n\n\n")
                                escreva("Muito bem herói após suas escolhas anteriores voce segue com os seguintes status base:\n")
-                               escreva(vidadaespecializacao,"\n")
-                               escreva(danodaespecializacao,"\n")
-                               escreva(agilidadedaespecializacao,"\n")
-                               escreva(defesadaespecializacao,"\n")
+                               escreva(vidadaespecializacao,"de vida\n")
+                               escreva(danodaespecializacao,"de dano\n")
+                               escreva(agilidadedaespecializacao,"de agilidade\n")
+                               escreva(defesadaespecializacao,"de defesa\n")
+
+                               escreva(nomedocampeao,"acaba saindo por um caminho que se co-liga com as outras duas estradas anteriores...\n")
+                               escreva("Você acaba encontrando rastros de florestas destruidas por um trecho da floresta...\n")
+                               Util.aguarde(3000)
+                               escreva("Ao avancar por todo o trecho, voce encontra uma carroagem de guerreiros de Eldoria...\n")
+                               escreva(nomedocampeao,"encontrou uma carroagem destruida...\n")
+                               escreva("Ao encontrar aquilo",nomedocampeao,"vai até um dos guerreiros da pedra sagrada de Eldoria")
+                               
+                               inteiro opcao_de_dialogo_com_o_guerreiro_ferido
+                               escreva("--DESCUBRA QUEM FEZ AQUILO--\n")
+                               escreva("1==TENTAR AJUDÁ-LO\n")
+                               escreva("2==PERGUNTAR QUEM FEZ AQUILO\n")
+                               escreva("3==DEIXÁ-LO MORRER\n")
+                               leia(opcao_de_dialogo_com_o_guerreiro_ferido)
+                               
+                               escolha(opcao_de_dialogo_com_o_guerreiro_ferido){
+                                caso 1:
+                                escreva("Obrigado meu caro...mas creio que não tenho muitas chances de sair daqui...\n")
+                                escreva("Vá embora enquanto ainda lhe resta tempo...\n")
+                                escreva("É impossível de vence-lo...ele é imbatível...maldito...\n")
+                                escreva("Xa....vii...us...\n")
+                                escreva("O guerreiro se engasga e dá seu último suspiro...\n")
+                                pare
+
+                                caso 2:
+                                escreva("Foi ele ...Xavius\n")
+                                escreva("Com seus ataques devastadores ele possui uma forca bruta indescritível...\n")
+                                escreva("Vejo que voce quer enfrentá-lo , mas tome cuidado...\n")
+                                escreva("Mal....dit...ooo.. cof cof\n")
+                                escreva("O guerreiro se engasga e dá seu último suspiro...\n")
+                                pare
+                                caso 3:
+                                escreva("Você observa o guerreiro morrer...\n")
+                                escreva("O guerreiro lhe observa...e gagueja suas ultimas palavras...\n")
+                                escreva(nomedocampeao,"acabe com ele...por favor..\n")
+                                pare
+                               }
+                                escreva("Voce se pergunta como ele sabia seu nome...\n")
+                                Util.aguarde(4000)
+                                escreva("\n\n\n\n")
+                                escreva("Voce resolve continuar sua jornada...\n")
+                                Util.aguarde(4000)
+                                inteiro ir_para_a_primeira_fase_final
+                                escreva("1-ENTRAR NO TERRITÓRIO DE XAVIUS\n")
+                                leia(ir_para_a_primeira_fase_final)
+                                se (ir_para_a_primeira_fase_final == 1) {
+                                 escreva("\n\n\n\n")
+                                escreva("-------------------------------------------------\n")
+                                escreva("VOCÊ ENCONTROU XAVIUS -O COLOSSO DOS MIL MUNDOS-\n")
+                                escreva("--------------------------------------------------\n")
+                                } senao {
+                                escreva("Nao seja um covarde...", nomedocampeao, "\n")
+                                }
+
                             
                             
                             }senao{escreva("jogador...é necessário colaborar para que o jogo desenvolva conforme o solicitado,por favor coopere!\n")}
