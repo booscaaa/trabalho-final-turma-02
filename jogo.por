@@ -1129,8 +1129,35 @@ funcao avancoDeClasseArqueiro() {
       // pensar ná logica aqui.
     }senao{
       escreva("Você decidiu permanecer na região atual.\n")
-      escreva(nomeDoPersonagem, " continua na região da: ", regioes[regiaoAtual], ".\n")
+      escreva(nomeDoPersonagem, " continua na região: ", regioes[regiaoAtual], ".\n")
     }
+  }
+  funcao voltarRegiao(){
+    se(regiaoAtual == 0){
+      escreva("Você já está na primeira região de Eldoria.\n")
+      escreva("Não há mais para onde voltar depois daqui.\n")
+    }
+    inteiro opcaoDeRegiaoVoltar
+    escreva("Você já viu o necessário dessa região, deseja voltar?\n")
+    escreva("Se sim digite 1 \t | \t Senão digite 2.")
+    leia(opcaoDeRegiaoVoltar)
+
+    enquanto(opcaoDeRegiaoVoltar < 1 ou opcaoDeRegiaoVoltar > 2){
+      escreva("Opção inválida, tente novamente. As opções válidas são 1 e 2.")
+      leia(opcaoDeRegiaoVoltar)
+    }
+    se(opcaoDeRegiaoVoltar == 1){
+      regiaoAtual--
+      escreva(nomeDoPersonagem, " Volto a região anerior.\n")
+      escreva(nomeDoPersonagem, "Agora está ná região da: ", regioes[regiaoAtual], "\n")
+      escreva("Você está na região:", (regiaoAtual + 1), "de 8.\n")
+    }senao{
+      escreva("Você decidiu permanecer na região atual.\n")
+      escreva(nomeDoPersonagem, " continua na região: ", regioes[regiaoAtual], ".\n")
+    }
+  }
+  funcao menuDeNavegacao(){
+    // pensar em como fazer aqui, escolha provavelmente.
   }
   funcao mostrarRegiaoAtual(){
 
@@ -1166,21 +1193,21 @@ funcao avancoDeClasseArqueiro() {
 
   funcao campanha(){
     escreva("Há muito tempo, no Reino de Eldoria, a paz era mantida pela mística Pedra da Luz, protegida pelos Anciãos do Castelo Dourado.\n")
-    u.aguarde(3)
+    u.aguarde(300)
 
     escreva("\nUm dia, uma força sombria conhecida como O Devastador invadiu o reino, roubando a relíquia sagrada e mergulhando as terras em trevas e caos.\n")
-    u.aguarde(3)
+    u.aguarde(300)
 
     escreva("\nVilas foram saqueadas, florestas corrompidas, e criaturas sombrias começaram a vagar pelas regiões.\n")
-    u.aguarde(3)
+    u.aguarde(300)
 
     escreva("\nDiante da crise, uma antiga profecia se cumpriu: um herói escolhido surgirá das sombras para restaurar a luz. Você é esse herói.\n")
-    u.aguarde(3)
+    u.aguarde(300)
 
     escreva("\nSua missão é atravessar cinco regiões dominadas pelo mal, enfrentando inimigos, evoluindo suas habilidades e se preparando para confrontar O Devastador no Castelo Dourado.\n")
-    u.aguarde(3)
+    u.aguarde(300)
 
     escreva("\nA jornada será repleta de perigos, escolhas e batalhas. Seu destino e o de Eldoria estão entrelaçados.\n")
-    u.aguarde(3)
+    u.aguarde(300)
   }
 }
