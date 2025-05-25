@@ -111,16 +111,19 @@ programa {
         escreva("\nPersonagem criado com sucesso!\n")
         
         se(classe == "GUERREIRO"){
+          vida = vida + 50
           ataque += 7
           defesa += 7
           agilidade += 1
         }
         se(classe == "MAGO"){
+          vida = vida + 20
           ataque += 10
           defesa += 2
           agilidade += 3
         }
         se(classe == "ARQUEIRO"){
+          vida = vida + 30
           ataque += 5
           defesa += 5
           agilidade += 5
@@ -706,11 +709,7 @@ funcao avancoDeClasseEvocador(){
   inteiro opcaoDeAvancoFinal
 
   escreva(nomeDoPersonagem, " alcançou o nível maximo na sua classe atual, agora escolha uma das opções de avanço de classe. Este será seu ultimo avanço de classe.\n")
-  leia(opcaoDeAvancoFinal)
   
-  enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
-    escreva("Opção inválida, tente novamente. As opções válidas são 1, 2 e 3.\n")
-
   escreva("1 - ARQUIMAGO\n")
   escreva("O mestre absoluto da magia elemental. O Arquimago atinge níveis altíssimos de poder ofensivo,\n")
   escreva("com domínio sobre os elementos água, fogo, terra, vento e neutro.\n")
@@ -729,9 +728,12 @@ funcao avancoDeClasseEvocador(){
   escreva("Controla com maestria os poderes da luz e da escuridão, usando-os para atacar, proteger e manipular o campo de batalha.\n")
   escreva("Uma boa escolha para quem busca versatilidade mágica e sabedoria arcana.\n")
   escreva("Digite o número de seu avanço de classe escolhido: \n")
-
-
-    leia(opcaoDeAvancoFinal)
+  
+  leia(opcaoDeAvancoFinal)
+  
+  enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
+  escreva("Opção inválida, tente novamente. As opções válidas são 1, 2 e 3.\n")
+  leia(opcaoDeAvancoFinal)
   }
 
   escolha(opcaoDeAvancoFinal){
