@@ -21,10 +21,9 @@ programa {
       limpa()
       //novo_jogo()
       classe()
-      //u.aguarde(1000)
+      u.aguarde(1000)
       //introducao_heroi()
       menu_acoes_jogo()
-
     }
     senao se(escolhaMenu == 2){
       limpa()
@@ -69,7 +68,7 @@ programa {
     }
   }
 
-  /*funcao novo_jogo(){
+  funcao novo_jogo(){
     escreva("| Há muito tempo, o Reino de Eldoria vivia em paz.\n")
     u.aguarde(1000)
     escreva("| No centro do reino, a Pedra da Luz brilhava, afastando as trevas.\n")
@@ -91,7 +90,7 @@ programa {
     escreva("| Irei aparecer em sua jornada com dicas e explicações sobre os acontecimentos que estão por vir...\n")
     u.aguarde(1000)
     escreva("| No momento vamos escolher sua classe.\n")
-  }*/
+  }
 
   funcao introducao_heroi(){
     cadeia continuar
@@ -208,8 +207,8 @@ programa {
       escreva("| O ar é denso, carregado com o cheiro de folhas úmidas e perigo iminente.\n")
       escreva("| Você ouve galhos se partindo ao longe... algo está se aproximando.\n")
       escreva("| Um uivo rompe o silêncio. De dentro da neblina, surge um LOBO TERRÍVEL!\n")
-      escreva("| Os olhos da criatura brilham em vermelho, famintos por batalha...\n")
-      escreva("⚠️ O LOBO TERRÍVEL se aproxima, cuidado!!\n")
+      escreva("| Os olhos da criatura brilham em vermelho, famintos por batalha...\n\n")
+      escreva("⚠️ O LOBO TERRÍVEL se aproxima, cuidado!!\n\n")
       escreva("-----------❗ LOBO TERRÍVEL ❗-----------\n")
       escreva("\nPressione \"Enter\" para começar a batalha\"\n")
       leia(voltar)
@@ -298,6 +297,42 @@ programa {
     }
     menu_acoes_jogo()
     }senao{
+    }
+  }
+  funcao descansar(){
+    cadeia descanso
+    enquanto(descanso != 1 e descanso !=2){
+      escreva("Você está bem ferido, deseja descansar para recuperar um pouco de vida?\n")
+      escreva("1 - Sim ✅    |    2 - Não ❌\n")
+      leia(descanso)
+
+      se(descanso == 1){
+        limpa()
+        escreva("Cochilando💤")
+        u.aguarde(700)
+        escreva("💤")
+        u.aguarde(700)
+        escreva("💤")
+        u.aguarde(700)
+        limpa()
+        escreva("Cochilando💤")
+        u.aguarde(700)
+        escreva("💤")
+        u.aguarde(700)
+        escreva("💤")
+        u.aguarde(700)
+        limpa()
+        escreva("🛏️ Você descansa tranquilamente\n")
+        u.aguarde(700)
+        escreva("✨ +20 pontos de vida!\n")
+        vidaAtual += 20
+        u.aguarde(700)
+        escreva("❤️ Vida atual: ", vidaAtual, "/", vidaMax, "\n")
+      }senao se(descanso == 2){
+        limpa()
+        u.aguarde(500)
+        escreva("⚔️ Você decide continuar sua jornada sem descansar.\n")
+      }
     }
   }
 
