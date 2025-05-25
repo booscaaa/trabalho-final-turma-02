@@ -1,7 +1,7 @@
 programa {
   inclua biblioteca Util --> u
                       //0                   1                    2                  3                  4                      5           6                      7
-  cadeia regioes[8] = {"VILA DOS COME«OS", "FLORESTA DA N…VOA", "VILA ABANDONADA", "CAVERNA SOMBRIA", "LABIRINTO ESCONDIDO", "COLISEU", "P¬NTANO DOS LAMENTOS", "CASTELO DOURAD0"}
+  cadeia regioes[8] = {"VILA DOS COME√áOS", "FLORESTA DA N√âVOA", "VILA ABANDONADA", "CAVERNA SOMBRIA", "LABIRINTO ESCONDIDO", "COLISEU", "P√ÇNTANO DOS LAMENTOS", "CASTELO DOURAD0"}
   inteiro regiaoAtual = 0
 
   cadeia nomeDoPersonagem, classe
@@ -29,7 +29,7 @@ programa {
   inteiro inimigoDEF
   inteiro inimigoAGI
     
-    // FunÁ„o principal
+    // Fun√ß√£o principal
     funcao inicio() {
         inteiro opcao = 0
         
@@ -48,50 +48,50 @@ programa {
                     escreva("Saindo do jogo...\n")
                 pare
                 caso contrario:
-                    escreva("OpÁ„o inv·lida! Tente novamente.\n")
+                    escreva("Op√ß√£o inv√°lida! Tente novamente.\n")
                 pare
             }
       }
     }
     
-    // FunÁ„o para exibir o menu inicial e retornar a opÁ„o escolhida
+    // Fun√ß√£o para exibir o menu inicial e retornar a op√ß√£o escolhida
     funcao inteiro menuDeInicializacao() {
         inteiro opcao = 0
         
         escreva("\nBem vindo a Eldoria Saga\n")
         escreva("--1: Novo jogo--\n")
-        escreva("--2: CrÈditos--\n")
+        escreva("--2: Cr√©ditos--\n")
         escreva("--3: Sair--\n")
-        escreva("Escolha uma opÁ„o: ")
+        escreva("Escolha uma op√ß√£o: ")
       
         
         // Garante que a leitura seja feita pelo menos uma vez
         leia(opcao)
         se(opcao < 1 ou opcao > 3) {
-            escreva("OpÁ„o inv·lida! Tente novamente: ")
+            escreva("Op√ß√£o inv√°lida! Tente novamente: ")
             leia(opcao)
         }
         
         retorne opcao
     }
     
-    // FunÁ„o para criar um novo personagem
+    // Fun√ß√£o para criar um novo personagem
     funcao criarPersonagem() {
 
-        escreva("\n--- CriaÁ„o de Personagem ---\n")
+        escreva("\n--- Cria√ß√£o de Personagem ---\n")
         escreva("Digite o nome do seu personagem: ")
         leia(nomeDoPersonagem)
         
-        // Mostra menu de classes atÈ receber uma opÁ„o v·lida
+        // Mostra menu de classes at√© receber uma op√ß√£o v√°lida
         escreva("\nEscolha sua classe:\n")
-        escreva("1 - GUERREIRO, Foco em vida e defesa. Ideal para resistÍncia prolongada.\n")
-        escreva("2 - MAGO, Ataque poderoso, porÈm fr·gil. Especialista em dano r·pido.\n")
-        escreva("3 - ARQUEIRO, Equilibrado entre ataque e mobilidade. Vers·til.\n")
-        escreva("OpÁ„o: ")
+        escreva("1 - GUERREIRO, Foco em vida e defesa. Ideal para resist√™ncia prolongada.\n")
+        escreva("2 - MAGO, Ataque poderoso, por√©m fr√°gil. Especialista em dano r√°pido.\n")
+        escreva("3 - ARQUEIRO, Equilibrado entre ataque e mobilidade. Vers√°til.\n")
+        escreva("Op√ß√£o: ")
         
         leia(opcaoDeClase)
         enquanto(opcaoDeClase < 1 ou opcaoDeClase > 3) {
-            escreva("OpÁ„o inv·lida! Tente novamente: ")
+            escreva("Op√ß√£o inv√°lida! Tente novamente: ")
             leia(opcaoDeClase)
         }
         
@@ -107,7 +107,7 @@ programa {
             pare
         }
         
-        // Aqui vocÍ pode adicionar a inicializaÁ„o dos atributos do personagem
+        // Aqui voc√™ pode adicionar a inicializa√ß√£o dos atributos do personagem
         escreva("\nPersonagem criado com sucesso!\n")
         
         se(classe == "GUERREIRO"){
@@ -128,15 +128,15 @@ programa {
         escreva("Nome: ", nomeDoPersonagem, "\n")
         escreva("Classe: ", classe, "\n\n")
         escreva("Vida: ", vida, "\n")
-        escreva("NÌvel: ", nivel, "\n")
+        escreva("N√≠vel: ", nivel, "\n")
         escreva("Ataque: ", ataque, "\n")
         escreva("Defesa: ", defesa, "\n")
         escreva("Agilidade: ", agilidade, "\n")
     }
     
-    // FunÁ„o para mostrar os crÈditos
+    // Fun√ß√£o para mostrar os cr√©ditos
     funcao mostrarCreditos() {
-        escreva("\n--- CrÈditos ---\n")
+        escreva("\n--- Cr√©ditos ---\n")
         escreva("Desenvolvido por: Patrick-fed\n")
         escreva("Eldoria Saga v1.0\n\n")
     }
@@ -144,7 +144,7 @@ programa {
       enquanto(experiencia >= (nivel+1)*10 e nivel < 15) {
       nivel = nivel + 1
       vida = vida + nivel
-      escreva("Seu herÛi subiu para o nÌvel: ", nivel, "\n")
+      escreva("Seu her√≥i subiu para o n√≠vel: ", nivel, "\n")
 
       escolha(classe) {
         caso "GUERREIRO":
@@ -191,7 +191,7 @@ programa {
           defesa += 2
           agilidade += 2
         pare
-        caso "CA«ADOR":
+        caso "CA√áADOR":
           ataque += 2
           defesa += 5
           agilidade += 2
@@ -266,7 +266,7 @@ programa {
           afinidadeESCURIDAO += 10
           afinidadeNEUTRO += 10
         pare
-        caso "PALADINO DO DRAG√O GIGANTE":
+        caso "PALADINO DO DRAG√ÉO GIGANTE":
           ataque += 3
           defesa += 6
           agilidade += 3
@@ -363,7 +363,7 @@ programa {
 
           afinidadeESCURIDAO += 70
         pare
-        caso "CA«ADOR DE ESTRELAS":
+        caso "CA√áADOR DE ESTRELAS":
           ataque += 4
           defesa += 3
           agilidade += 5
@@ -372,7 +372,7 @@ programa {
           afinidadeVENTO += 15
           afinidadeFOGO += 15
         pare
-        caso "CA«ADOR SOMBRIO":
+        caso "CA√áADOR SOMBRIO":
           ataque += 5
           defesa += 3
           agilidade += 4
@@ -381,7 +381,7 @@ programa {
           afinidadeVENTO += 10
           afinidadeNEUTRO += 30
         pare
-        caso "CA«ADOR ANCESTRAL":
+        caso "CA√áADOR ANCESTRAL":
           ataque += 5
           defesa += 5
           agilidade += 2
@@ -423,7 +423,7 @@ programa {
           afinidadeLUZ += 35
           afinidadeFOGO += 35
         pare
-        caso "GUARDI√O CELESTE":
+        caso "GUARDI√ÉO CELESTE":
           ataque += 5
           defesa += 4
           agilidade += 3
@@ -458,7 +458,7 @@ programa {
       escreva("Vida: ", vida, "\n")
       escreva("Ataque: ", ataque, "\n")
       escreva("Defesa: ", defesa, "\n")
-      escreva("ExperiÍncia: ", experiencia, " / ", (nivel+1)*10, "\n")
+      escreva("Experi√™ncia: ", experiencia, " / ", (nivel+1)*10, "\n")
   }
   funcao ganharExperiencia(inteiro quantidadeXP){
     experiencia = experiencia + quantidadeXP
@@ -506,7 +506,7 @@ programa {
         caso "BRUXO":
           avancoDeClasseBruxo()
         pare
-        caso "CA«ADOR":
+        caso "CA√áADOR":
           avancoDeClasseCacador()
         pare
         caso "ATIRADOR":
@@ -518,30 +518,30 @@ programa {
       }
     }
   }
-  // FunÁ„o para avanÁo de classe do Guerreiro
+  // Fun√ß√£o para avan√ßo de classe do Guerreiro
 funcao avancoDeClasseGuerreiro() {
     inteiro opcaoDeAvanco
     
-    escreva(nomeDoPersonagem, " alcanÁou o nÌvel maximo na sua classe inicial, agora escolha uma das opÁıes de avanÁo de classe.\n")
+    escreva(nomeDoPersonagem, " alcan√ßou o n√≠vel maximo na sua classe inicial, agora escolha uma das op√ß√µes de avan√ßo de classe.\n")
     escreva("1 - CAVALEIRO\n")
-    escreva("Classe que evolui diretamente do Guerreiro, o Cavaleiro mantÈm um bom equilÌbrio entre ataque e defesa.\n")
-    escreva("… uma escolha sÛlida para quem quer enfrentar inimigos de forma direta, com forÁa e resistÍncia parecidas.\n")
-    escreva("N„o se destaca em um ˙nico ponto, mas È confi·vel em qualquer situaÁ„o.\n\n")
+    escreva("Classe que evolui diretamente do Guerreiro, o Cavaleiro mant√©m um bom equil√≠brio entre ataque e defesa.\n")
+    escreva("√â uma escolha s√≥lida para quem quer enfrentar inimigos de forma direta, com for√ßa e resist√™ncia parecidas.\n")
+    escreva("N√£o se destaca em um √∫nico ponto, mas √© confi√°vel em qualquer situa√ß√£o.\n\n")
 
     escreva("2 - SAMURAI\n")
     escreva("O Samurai foca na agilidade e no ataque. Ele causa mais dano e se move com mais rapidez,\n")
     escreva("mas tem uma defesa um pouco mais baixa.\n")
-    escreva("… ideal para quem prefere atacar primeiro e r·pido, mesmo que isso signifique receber mais dano se for atingido.\n\n")
+    escreva("√â ideal para quem prefere atacar primeiro e r√°pido, mesmo que isso signifique receber mais dano se for atingido.\n\n")
 
     escreva("3 - PALADINO\n")
     escreva("Classe voltada para a defesa. O Paladino resiste bem aos ataques e consegue aguentar mais tempo em combate.\n")
-    escreva("Em compensaÁ„o, seu ataque n„o È t„o forte.\n")
-    escreva("… uma boa escolha para quem prefere jogar de forma segura e com mais proteÁ„o.\n")
-    escreva("Digite o n˙mero de seu avanÁo de classe escolhido: \n")
+    escreva("Em compensa√ß√£o, seu ataque n√£o √© t√£o forte.\n")
+    escreva("√â uma boa escolha para quem prefere jogar de forma segura e com mais prote√ß√£o.\n")
+    escreva("Digite o n√∫mero de seu avan√ßo de classe escolhido: \n")
     leia(opcaoDeAvanco)
     
     enquanto(opcaoDeAvanco < 1 ou opcaoDeAvanco > 3) {
-        escreva("OpÁ„o inv·lida, tente novamente. As opÁıes v·lidas s„o 1, 2 e 3.\n")
+        escreva("Op√ß√£o inv√°lida, tente novamente. As op√ß√µes v√°lidas s√£o 1, 2 e 3.\n")
         leia(opcaoDeAvanco)
     }
     
@@ -557,37 +557,37 @@ funcao avancoDeClasseGuerreiro() {
         pare
     }
     
-    escreva(nomeDoPersonagem, ", agora È um: ", classe, ".\n")
+    escreva(nomeDoPersonagem, ", agora √© um: ", classe, ".\n")
     mostrarAtributos()
 }
 
 funcao avancoDeClasseCavaleiro(){
   inteiro opcaoDeAvancoFinal
 
-  escreva(nomeDoPersonagem, " alcanÁou o nÌvel maximo na sua classe atual, agora escolha uma das opÁıes de avanÁo de classe. Este ser· seu ultimo avanÁo de classe.\n")
+  escreva(nomeDoPersonagem, " alcan√ßou o n√≠vel maximo na sua classe atual, agora escolha uma das op√ß√µes de avan√ßo de classe. Este ser√° seu ultimo avan√ßo de classe.\n")
   
-  escreva(nomeDoPersonagem, " alcanÁou o nÌvel maximo na sua classe inicial, agora escolha uma das opÁıes de avanÁo de classe.\n")
+  escreva(nomeDoPersonagem, " alcan√ßou o n√≠vel maximo na sua classe inicial, agora escolha uma das op√ß√µes de avan√ßo de classe.\n")
   escreva("1 - CAVALEIRO DO SUBMUNDO\n")
-  escreva("Um guerreiro que abraÁou as chamas e as sombras da batalha.\n")
-  escreva("Focado em ataque, o Cavaleiro do Submundo utiliza fogo e escurid„o para causar dano intenso aos inimigos.\n")
-  escreva("Sua defesa È menor, mas compensa com habilidades ofensivas poderosas.\n")
-  escreva("Ideal para quem busca dominar o campo com forÁa bruta e energia obscura.\n\n")
+  escreva("Um guerreiro que abra√ßou as chamas e as sombras da batalha.\n")
+  escreva("Focado em ataque, o Cavaleiro do Submundo utiliza fogo e escurid√£o para causar dano intenso aos inimigos.\n")
+  escreva("Sua defesa √© menor, mas compensa com habilidades ofensivas poderosas.\n")
+  escreva("Ideal para quem busca dominar o campo com for√ßa bruta e energia obscura.\n\n")
 
   escreva("2 - CAVALEIRO DA CENTELHA\n")
-  escreva("Um cavaleiro que canaliza a Centelha da Alma como fonte de energia e determinaÁ„o.\n")
+  escreva("Um cavaleiro que canaliza a Centelha da Alma como fonte de energia e determina√ß√£o.\n")
   escreva("Equilibra defesa e agilidade, utilizando eletricidade (representando o vento) para atacar e o poder da terra para se proteger.\n")
-  escreva("Perfeito para quem procura versatilidade em combate, mantendo mobilidade sem abrir m„o da proteÁ„o.\n\n")
+  escreva("Perfeito para quem procura versatilidade em combate, mantendo mobilidade sem abrir m√£o da prote√ß√£o.\n\n")
 
   escreva("3 - CAVALEIRO RADIANTE\n")
-  escreva("A personificaÁ„o da luz em forma de guerreiro. O Cavaleiro Radiante domina o equilÌbrio entre ataque, defesa e agilidade.\n")
-  escreva("Usa habilidades baseadas em luz para combater inimigos se proteger, mantendo-se firme em qualquer situaÁ„o.\n")
+  escreva("A personifica√ß√£o da luz em forma de guerreiro. O Cavaleiro Radiante domina o equil√≠brio entre ataque, defesa e agilidade.\n")
+  escreva("Usa habilidades baseadas em luz para combater inimigos se proteger, mantendo-se firme em qualquer situa√ß√£o.\n")
   escreva("Uma escolha excelente para quem busca estabilidade e poder em igual medida.\n")
-  escreva("Digite o n˙mero de seu avanÁo de classe escolhido: \n")
+  escreva("Digite o n√∫mero de seu avan√ßo de classe escolhido: \n")
 
   leia(opcaoDeAvancoFinal)
   
   enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
-    escreva("OpÁ„o inv·lida, tente novamente. As opÁıes v·lidas s„o 1, 2 e 3.\n")
+    escreva("Op√ß√£o inv√°lida, tente novamente. As op√ß√µes v√°lidas s√£o 1, 2 e 3.\n")
     leia(opcaoDeAvancoFinal)
   }
 
@@ -603,39 +603,39 @@ funcao avancoDeClasseCavaleiro(){
     pare
   }
 
-  escreva(nomeDoPersonagem, ", agora È um: ", classe, ".\n")
+  escreva(nomeDoPersonagem, ", agora √© um: ", classe, ".\n")
   mostrarAtributos()
 
 }
 funcao avancoDeClasseSamurai(){
   inteiro opcaoDeAvancoFinal
 
-  escreva(nomeDoPersonagem, " alcanÁou o nÌvel maximo na sua classe atual, agora escolha uma das opÁıes de avanÁo de classe. Este ser· seu ultimo avanÁo de classe.\n")
+  escreva(nomeDoPersonagem, " alcan√ßou o n√≠vel maximo na sua classe atual, agora escolha uma das op√ß√µes de avan√ßo de classe. Este ser√° seu ultimo avan√ßo de classe.\n")
   
   escreva("1 - SHOGUN\n")
-  escreva("Um lÌder de guerra que mantÈm o equilÌbrio entre forÁa e velocidade.\n")
-  escreva("O Shogun È um mestre do combate fÌsico, utilizando a terra como base para manter-se firme\n")
-  escreva("enquanto desfere ataques r·pidos e precisos. N„o t„o veloz quanto outros, mas mais resistente.\n")
-  escreva("Ideal para quem quer potÍncia ofensiva sem abrir m„o de alguma estabilidade.\n\n")
+  escreva("Um l√≠der de guerra que mant√©m o equil√≠brio entre for√ßa e velocidade.\n")
+  escreva("O Shogun √© um mestre do combate f√≠sico, utilizando a terra como base para manter-se firme\n")
+  escreva("enquanto desfere ataques r√°pidos e precisos. N√£o t√£o veloz quanto outros, mas mais resistente.\n")
+  escreva("Ideal para quem quer pot√™ncia ofensiva sem abrir m√£o de alguma estabilidade.\n\n")
 
   escreva("2 - NITORYUU\n")
-  escreva("O espadachim que domina duas l‚minas em perfeita harmonia com o vento.\n")
+  escreva("O espadachim que domina duas l√¢minas em perfeita harmonia com o vento.\n")
   escreva("O Nitoryuu ataca com velocidade extrema, sacrificando quase toda sua defesa em troca de dano.\n")
   escreva("Sua maestria permite realizar ataques duplos e se mover com uma leveza quase sobrenatural.\n")
   escreva("Excelente escolha para quem prefere ofensiva total e combate veloz.\n\n")
 
   escreva("3 - RONNIN\n")  
-  escreva("Um guerreiro errante que domina o combate fÌsico com disciplina e foco.\n")
-  escreva("O Ronnin È ofensivo, mas n„o t„o extremo quanto outras opÁıes. Sua forÁa vem da const‚ncia e precis„o.\n")
-  escreva("MantÈm um leve equilÌbrio, mas sempre prioriza causar dano direto com suas habilidades com a espada.\n")
-  escreva("Recomendado para quem quer um atacante puro, porÈm mais controlado.\n")
-  escreva("Digite o n˙mero de seu avanÁo de classe escolhido: \n")
+  escreva("Um guerreiro errante que domina o combate f√≠sico com disciplina e foco.\n")
+  escreva("O Ronnin √© ofensivo, mas n√£o t√£o extremo quanto outras op√ß√µes. Sua for√ßa vem da const√¢ncia e precis√£o.\n")
+  escreva("Mant√©m um leve equil√≠brio, mas sempre prioriza causar dano direto com suas habilidades com a espada.\n")
+  escreva("Recomendado para quem quer um atacante puro, por√©m mais controlado.\n")
+  escreva("Digite o n√∫mero de seu avan√ßo de classe escolhido: \n")
 
 
   leia(opcaoDeAvancoFinal)
   
   enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
-    escreva("OpÁ„o inv·lida, tente novamente. As opÁıes v·lidas s„o 1, 2 e 3.\n")
+    escreva("Op√ß√£o inv√°lida, tente novamente. As op√ß√µes v√°lidas s√£o 1, 2 e 3.\n")
     leia(opcaoDeAvancoFinal)
   }
 
@@ -651,39 +651,39 @@ funcao avancoDeClasseSamurai(){
     pare
   }
 
-  escreva(nomeDoPersonagem, ", agora È um: ", classe, ".\n")
+  escreva(nomeDoPersonagem, ", agora √© um: ", classe, ".\n")
   mostrarAtributos()
 }
 funcao avancoDeClassePaladino(){
   inteiro opcaoDeAvancoFinal
 
-  escreva(nomeDoPersonagem, " alcanÁou o nÌvel maximo na sua classe atual, agora escolha uma das opÁıes de avanÁo de classe. Este ser· seu ultimo avanÁo de classe.\n")
+  escreva(nomeDoPersonagem, " alcan√ßou o n√≠vel maximo na sua classe atual, agora escolha uma das op√ß√µes de avan√ßo de classe. Este ser√° seu ultimo avan√ßo de classe.\n")
   
   escreva("1 - PARAGON\n")
-  escreva("A personificaÁ„o da perfeiÁ„o e do heroÌsmo. O Paragon È o paladino idealizado, sÌmbolo de equilÌbrio.\n")
-  escreva("Domina de forma moderada todos os elementos ? ·gua, fogo, vento, terra, luz, escurid„o e o neutro ?,\n")
-  escreva("e mantÈm um excelente balanÁo entre ataque, defesa e agilidade.\n")
-  escreva("Recomendado para quem busca versatilidade total e quer ser um verdadeiro campe„o da justiÁa.\n\n")
+  escreva("A personifica√ß√£o da perfei√ß√£o e do hero√≠smo. O Paragon √© o paladino idealizado, s√≠mbolo de equil√≠brio.\n")
+  escreva("Domina de forma moderada todos os elementos ‚Äî √°gua, fogo, vento, terra, luz, escurid√£o e o neutro ‚Äî,\n")
+  escreva("e mant√©m um excelente balan√ßo entre ataque, defesa e agilidade.\n")
+  escreva("Recomendado para quem busca versatilidade total e quer ser um verdadeiro campe√£o da justi√ßa.\n\n")
 
-  escreva("2 - PALADINO DO DRAG√O GIGANTE\n")
-  escreva("Conhecidos como Paladinos de Fellgrand, s„o cavaleiros sagrados que fizeram um juramento ao grande drag„o ancestral.\n")
-  escreva("Focados em defesa, podem invocar parte do poder de Fellgrand para feitos incrÌveis em combate.\n")
-  escreva("TÍm afinidade especial com os elementos fogo, vento e ·gua, canalizados atravÈs das bÍnÁ„os dracÙnicas.\n")
-  escreva("Perfeitos para quem deseja ser um basti„o resistente, com o poder dos dragıes ao seu lado.\n\n")
+  escreva("2 - PALADINO DO DRAG√ÉO GIGANTE\n")
+  escreva("Conhecidos como Paladinos de Fellgrand, s√£o cavaleiros sagrados que fizeram um juramento ao grande drag√£o ancestral.\n")
+  escreva("Focados em defesa, podem invocar parte do poder de Fellgrand para feitos incr√≠veis em combate.\n")
+  escreva("T√™m afinidade especial com os elementos fogo, vento e √°gua, canalizados atrav√©s das b√™n√ß√£os drac√¥nicas.\n")
+  escreva("Perfeitos para quem deseja ser um basti√£o resistente, com o poder dos drag√µes ao seu lado.\n\n")
 
-  escreva("3 - PALADINO DE N MESIS\n")
-  escreva("Defensores absolutos da justiÁa, acreditam que todo bem ou mal deve ser retribuÌdo na mesma medida.\n")
-  escreva("Entre os paladinos, s„o os que possuem a maior defesa, capazes de resistir a quase qualquer golpe.\n")
-  escreva("Especializados em contra-ataques, devolvem o dano recebido com forÁa equivalente.\n")
-  escreva("TÍm domÌnio sobre os elementos ·gua e terra, simbolizando firmeza e equilÌbrio.\n")
-  escreva("Indicados para quem prefere enfrentar o inimigo de forma impenetr·vel e implac·vel.\n")
-  escreva("Digite o n˙mero de seu avanÁo de classe escolhido: \n")
+  escreva("3 - PALADINO DE N√äMESIS\n")
+  escreva("Defensores absolutos da justi√ßa, acreditam que todo bem ou mal deve ser retribu√≠do na mesma medida.\n")
+  escreva("Entre os paladinos, s√£o os que possuem a maior defesa, capazes de resistir a quase qualquer golpe.\n")
+  escreva("Especializados em contra-ataques, devolvem o dano recebido com for√ßa equivalente.\n")
+  escreva("T√™m dom√≠nio sobre os elementos √°gua e terra, simbolizando firmeza e equil√≠brio.\n")
+  escreva("Indicados para quem prefere enfrentar o inimigo de forma impenetr√°vel e implac√°vel.\n")
+  escreva("Digite o n√∫mero de seu avan√ßo de classe escolhido: \n")
 
 
   leia(opcaoDeAvancoFinal)
   
   enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
-    escreva("OpÁ„o inv·lida, tente novamente. As opÁıes v·lidas s„o 1, 2 e 3.\n")
+    escreva("Op√ß√£o inv√°lida, tente novamente. As op√ß√µes v√°lidas s√£o 1, 2 e 3.\n")
     leia(opcaoDeAvancoFinal)
   }
 
@@ -692,43 +692,43 @@ funcao avancoDeClassePaladino(){
       classe = "PARAGON"
     pare
     caso 2:
-      classe = "PALADINO DO DRAG√O GIGANTE"
+      classe = "PALADINO DO DRAG√ÉO GIGANTE"
     pare
     caso 3:
       classe = "PALADINO DE NEMESIS"
     pare
   }
 
-  escreva(nomeDoPersonagem, ", agora È um: ", classe, ".\n")
+  escreva(nomeDoPersonagem, ", agora √© um: ", classe, ".\n")
   mostrarAtributos()
 }
 funcao avancoDeClasseEvocador(){
   inteiro opcaoDeAvancoFinal
 
-  escreva(nomeDoPersonagem, " alcanÁou o nÌvel maximo na sua classe atual, agora escolha uma das opÁıes de avanÁo de classe. Este ser· seu ultimo avanÁo de classe.\n")
+  escreva(nomeDoPersonagem, " alcan√ßou o n√≠vel maximo na sua classe atual, agora escolha uma das op√ß√µes de avan√ßo de classe. Este ser√° seu ultimo avan√ßo de classe.\n")
   leia(opcaoDeAvancoFinal)
   
   enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
-    escreva("OpÁ„o inv·lida, tente novamente. As opÁıes v·lidas s„o 1, 2 e 3.\n")
+    escreva("Op√ß√£o inv√°lida, tente novamente. As op√ß√µes v√°lidas s√£o 1, 2 e 3.\n")
 
   escreva("1 - ARQUIMAGO\n")
-  escreva("O mestre absoluto da magia elemental. O Arquimago atinge nÌveis altÌssimos de poder ofensivo,\n")
-  escreva("com domÌnio sobre os elementos ·gua, fogo, terra, vento e neutro.\n")
-  escreva("Sua defesa È baixa, mas seu ataque destrutivo compensa com facilidade.\n")
-  escreva("Ideal para quem quer causar grandes danos com uma variedade de feitiÁos elementais.\n\n")
+  escreva("O mestre absoluto da magia elemental. O Arquimago atinge n√≠veis alt√≠ssimos de poder ofensivo,\n")
+  escreva("com dom√≠nio sobre os elementos √°gua, fogo, terra, vento e neutro.\n")
+  escreva("Sua defesa √© baixa, mas seu ataque destrutivo compensa com facilidade.\n")
+  escreva("Ideal para quem quer causar grandes danos com uma variedade de feiti√ßos elementais.\n\n")
 
-  escreva("2 - MAGO DO FOGO R¡PIDO\n")
-  escreva("Um especialista em conjuraÁ„o veloz e destruiÁ„o imediata. Seu corpo È fr·gil, ainda mais que o do Arquimago,\n")
+  escreva("2 - MAGO DO FOGO R√ÅPIDO\n")
+  escreva("Um especialista em conjura√ß√£o veloz e destrui√ß√£o imediata. Seu corpo √© fr√°gil, ainda mais que o do Arquimago,\n")
   escreva("mas sua agilidade e dano explosivo o tornam mortal em combate.\n")
-  escreva("Foca em magias de fogo, vento e luz, queimando tudo ‡ sua frente antes mesmo de ser tocado.\n")
+  escreva("Foca em magias de fogo, vento e luz, queimando tudo √† sua frente antes mesmo de ser tocado.\n")
   escreva("Perfeito para quem prefere velocidade e impacto acima de tudo.\n\n")
 
-  escreva("3 - S¡BIO\n")
-  escreva("Guardi„o do conhecimento profundo e do equilÌbrio entre forÁas opostas.\n")
-  escreva("Embora mais equilibrado que os outros magos, ainda possui a fragilidade comum ‡ sua classe.\n")
-  escreva("Controla com maestria os poderes da luz e da escurid„o, usando-os para atacar, proteger e manipular o campo de batalha.\n")
-  escreva("Uma boa escolha para quem busca versatilidade m·gica e sabedoria arcana.\n")
-  escreva("Digite o n˙mero de seu avanÁo de classe escolhido: \n")
+  escreva("3 - S√ÅBIO\n")
+  escreva("Guardi√£o do conhecimento profundo e do equil√≠brio entre for√ßas opostas.\n")
+  escreva("Embora mais equilibrado que os outros magos, ainda possui a fragilidade comum √† sua classe.\n")
+  escreva("Controla com maestria os poderes da luz e da escurid√£o, usando-os para atacar, proteger e manipular o campo de batalha.\n")
+  escreva("Uma boa escolha para quem busca versatilidade m√°gica e sabedoria arcana.\n")
+  escreva("Digite o n√∫mero de seu avan√ßo de classe escolhido: \n")
 
 
     leia(opcaoDeAvancoFinal)
@@ -747,37 +747,37 @@ funcao avancoDeClasseEvocador(){
     
   }
 
-  escreva(nomeDoPersonagem, ", agora È um: ", classe, ".\n")
+  escreva(nomeDoPersonagem, ", agora √© um: ", classe, ".\n")
   mostrarAtributos()
 }
 funcao avancoDeClasseOnmyoji(){
   inteiro opcaoDeAvancoFinal
 
-  escreva(nomeDoPersonagem, " alcanÁou o nÌvel maximo na sua classe atual, agora escolha uma das opÁıes de avanÁo de classe. Este ser· seu ultimo avanÁo de classe.\n")
+  escreva(nomeDoPersonagem, " alcan√ßou o n√≠vel maximo na sua classe atual, agora escolha uma das op√ß√µes de avan√ßo de classe. Este ser√° seu ultimo avan√ßo de classe.\n")
   
   escreva("1 - INVOCADOR\n")
-  escreva("Um mÌstico que transcendeu a invocaÁ„o de criaturas, passando a chamar fenÙmenos,\n")
-  escreva("ecos do passado e milagres sobrenaturais. Sua magia È enigm·tica e poderosa,\n")
-  escreva("mas sua afinidade com os elementos È limitada, exceto pela escurid„o e o neutro.\n")
-  escreva("Escolha ideal para quem deseja dominar o campo com efeitos misteriosos e imprevisÌveis.\n\n")
+  escreva("Um m√≠stico que transcendeu a invoca√ß√£o de criaturas, passando a chamar fen√¥menos,\n")
+  escreva("ecos do passado e milagres sobrenaturais. Sua magia √© enigm√°tica e poderosa,\n")
+  escreva("mas sua afinidade com os elementos √© limitada, exceto pela escurid√£o e o neutro.\n")
+  escreva("Escolha ideal para quem deseja dominar o campo com efeitos misteriosos e imprevis√≠veis.\n\n")
 
   escreva("2 - ESPIRITUALISTA\n")
-  escreva("A continuaÁ„o natural do Onmyoji tradicional, o Espiritualista invoca espÌritos elementais\n")
+  escreva("A continua√ß√£o natural do Onmyoji tradicional, o Espiritualista invoca esp√≠ritos elementais\n")
   escreva("para lutar ao seu lado e canalizar seus poderes. Possui grande afinidade com os elementos\n")
-  escreva("·gua, fogo, vento, terra e escurid„o, tornando-se um mestre das forÁas espirituais da natureza.\n")
+  escreva("√°gua, fogo, vento, terra e escurid√£o, tornando-se um mestre das for√ßas espirituais da natureza.\n")
   escreva("Uma escolha poderosa para quem valoriza o suporte e a versatilidade elemental.\n\n")
 
   escreva("3 - DRUIDA\n")
-  escreva("Um guardi„o da harmonia natural, o Druida usa sua comunh„o com a natureza para se fortalecer e proteger.\n")
-  escreva("Especializa-se nos elementos ·gua, terra e luz, canalizando suas energias para curar,\n")
-  escreva("defender ou devastar com a forÁa do mundo natural.\n")
-  escreva("Indicado para jogadores que buscam uma conex„o profunda com a terra e o equilÌbrio m·gico.\n")
-  escreva("Digite o n˙mero de seu avanÁo de classe escolhido: \n")
+  escreva("Um guardi√£o da harmonia natural, o Druida usa sua comunh√£o com a natureza para se fortalecer e proteger.\n")
+  escreva("Especializa-se nos elementos √°gua, terra e luz, canalizando suas energias para curar,\n")
+  escreva("defender ou devastar com a for√ßa do mundo natural.\n")
+  escreva("Indicado para jogadores que buscam uma conex√£o profunda com a terra e o equil√≠brio m√°gico.\n")
+  escreva("Digite o n√∫mero de seu avan√ßo de classe escolhido: \n")
   
   leia(opcaoDeAvancoFinal)
   
   enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
-    escreva("OpÁ„o inv·lida, tente novamente. As opÁıes v·lidas s„o 1, 2 e 3.\n")
+    escreva("Op√ß√£o inv√°lida, tente novamente. As op√ß√µes v√°lidas s√£o 1, 2 e 3.\n")
     leia(opcaoDeAvancoFinal)
   }
 
@@ -793,37 +793,37 @@ funcao avancoDeClasseOnmyoji(){
     pare
   }
 
-  escreva(nomeDoPersonagem, ", agora È um: ", classe, ".\n")
+  escreva(nomeDoPersonagem, ", agora √© um: ", classe, ".\n")
   mostrarAtributos()
 }
 funcao avancoDeClasseBruxo(){
   inteiro opcaoDeAvancoFinal
 
-  escreva(nomeDoPersonagem, " alcanÁou o nÌvel maximo na sua classe atual, agora escolha uma das opÁıes de avanÁo de classe. Este ser· seu ultimo avanÁo de classe.\n")
+  escreva(nomeDoPersonagem, " alcan√ßou o n√≠vel maximo na sua classe atual, agora escolha uma das op√ß√µes de avan√ßo de classe. Este ser√° seu ultimo avan√ßo de classe.\n")
   
   escreva("1 - SHAMAN\n")
-  escreva("Um mestre das maldiÁıes e da forÁa vital. O Shaman È o oposto do Druida,\n")
+  escreva("Um mestre das maldi√ß√µes e da for√ßa vital. O Shaman √© o oposto do Druida,\n")
   escreva("fortalecendo a si mesmo enquanto enfraquece seus inimigos com rituais antigos.\n")
-  escreva("Manipula os elementos fogo, terra e escurid„o, drenando energia e quebrando resistÍncias.\n")
-  escreva("Ideal para quem deseja dominar o campo com malefÌcios e resistÍncia constante.\n\n")
+  escreva("Manipula os elementos fogo, terra e escurid√£o, drenando energia e quebrando resist√™ncias.\n")
+  escreva("Ideal para quem deseja dominar o campo com malef√≠cios e resist√™ncia constante.\n\n")
 
   escreva("2 - BRUXO DO PESADELO\n")
   escreva("Um ilusionista sombrio que mergulha a mente de seus inimigos em pesadelos aterrorizantes.\n")
-  escreva("Enquanto o inimigo est· indefeso, o Bruxo do Pesadelo o destrÛi lentamente, sem piedade.\n")
-  escreva("Seu foco est· na escurid„o, mas tambÈm possui certa maestria com o fogo para alimentar seus horrores.\n")
-  escreva("Uma escolha excelente para quem prefere controle mental e dano psicolÛgico.\n\n")
+  escreva("Enquanto o inimigo est√° indefeso, o Bruxo do Pesadelo o destr√≥i lentamente, sem piedade.\n")
+  escreva("Seu foco est√° na escurid√£o, mas tamb√©m possui certa maestria com o fogo para alimentar seus horrores.\n")
+  escreva("Uma escolha excelente para quem prefere controle mental e dano psicol√≥gico.\n\n")
 
   escreva("3 - MAGO NEGRO\n")
   escreva("Diferente de todos os outros magos, o Mago Negro rompe com a fragilidade tradicional da classe.\n")
-  escreva("Equilibra bem ataque e defesa, tornando-se uma ameaÁa sÛlida e constante em campo.\n")
-  escreva("Seu poder È concentrado inteiramente na escurid„o, usando-a para causar destruiÁ„o direta e implac·vel.\n")
-  escreva("Recomendado para jogadores que desejam poder bruto, com um toque de resistÍncia rara para um mago.\n")
-  escreva("Digite o n˙mero de seu avanÁo de classe escolhido: \n")
+  escreva("Equilibra bem ataque e defesa, tornando-se uma amea√ßa s√≥lida e constante em campo.\n")
+  escreva("Seu poder √© concentrado inteiramente na escurid√£o, usando-a para causar destrui√ß√£o direta e implac√°vel.\n")
+  escreva("Recomendado para jogadores que desejam poder bruto, com um toque de resist√™ncia rara para um mago.\n")
+  escreva("Digite o n√∫mero de seu avan√ßo de classe escolhido: \n")
   
   leia(opcaoDeAvancoFinal)
   
   enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
-    escreva("OpÁ„o inv·lida, tente novamente. As opÁıes v·lidas s„o 1, 2 e 3.\n")
+    escreva("Op√ß√£o inv√°lida, tente novamente. As op√ß√µes v√°lidas s√£o 1, 2 e 3.\n")
     leia(opcaoDeAvancoFinal)
   }
 
@@ -839,79 +839,79 @@ funcao avancoDeClasseBruxo(){
     pare
   }
 
-  escreva(nomeDoPersonagem, ", agora È um: ", classe, ".\n")
+  escreva(nomeDoPersonagem, ", agora √© um: ", classe, ".\n")
   mostrarAtributos()
 }
 funcao avancoDeClasseCacador(){
   inteiro opcaoDeAvancoFinal
 
-  escreva(nomeDoPersonagem, " alcanÁou o nÌvel maximo na sua classe atual, agora escolha uma das opÁıes de avanÁo de classe. Este ser· seu ultimo avanÁo de classe.\n")
+  escreva(nomeDoPersonagem, " alcan√ßou o n√≠vel maximo na sua classe atual, agora escolha uma das op√ß√µes de avan√ßo de classe. Este ser√° seu ultimo avan√ßo de classe.\n")
   
-  escreva("1 - CA«ADOR DE ESTRELAS\n")
-  escreva("Um arqueiro lend·rio, veloz e mortal, cuja precis„o È comparada ao poder de derrubar estrelas.\n")
+  escreva("1 - CA√áADOR DE ESTRELAS\n")
+  escreva("Um arqueiro lend√°rio, veloz e mortal, cuja precis√£o √© comparada ao poder de derrubar estrelas.\n")
   escreva("Combina alta agilidade e ataque com habilidades elementais de luz, vento e fogo.\n")
-  escreva("Ideal para quem busca um estilo ofensivo ·gil e devastador, sempre em movimento.\n\n")
+  escreva("Ideal para quem busca um estilo ofensivo √°gil e devastador, sempre em movimento.\n\n")
 
-  escreva("2 - CA«ADOR SOMBRIO\n")
-  escreva("Especialista em emboscadas e ataques nas sombras. O CaÁador Sombrio domina a arte do ataque furtivo,\n")
-  escreva("mantendo o equilÌbrio cl·ssico dos arqueiros, mas com foco t·tico e preciso.\n")
-  escreva("Utiliza os elementos escurid„o, vento e neutro para surpreender seus inimigos de forma letal.\n")
-  escreva("Excelente para quem prefere a ast˙cia e o ataque sorrateiro ao confronto direto.\n\n")
+  escreva("2 - CA√áADOR SOMBRIO\n")
+  escreva("Especialista em emboscadas e ataques nas sombras. O Ca√ßador Sombrio domina a arte do ataque furtivo,\n")
+  escreva("mantendo o equil√≠brio cl√°ssico dos arqueiros, mas com foco t√°tico e preciso.\n")
+  escreva("Utiliza os elementos escurid√£o, vento e neutro para surpreender seus inimigos de forma letal.\n")
+  escreva("Excelente para quem prefere a ast√∫cia e o ataque sorrateiro ao confronto direto.\n\n")
 
-  escreva("3 - CA«ADOR ANCESTRAL\n")
-  escreva("Um guerreiro conectado ‡s forÁas primitivas da natureza. O CaÁador Ancestral canaliza o poder da terra\n")
+  escreva("3 - CA√áADOR ANCESTRAL\n")
+  escreva("Um guerreiro conectado √†s for√ßas primitivas da natureza. O Ca√ßador Ancestral canaliza o poder da terra\n")
   escreva("em seus disparos, tornando suas flechas mais pesadas e impactantes.\n")
-  escreva("… mais resistente que os outros caÁadores, mas ligeiramente mais lento.\n")
-  escreva("Possui afinidade com os elementos terra, luz e escurid„o. Uma Ûtima escolha para quem busca forÁa e estabilidade.\n")
-  escreva("Digite o n˙mero de seu avanÁo de classe escolhido: \n")
+  escreva("√â mais resistente que os outros ca√ßadores, mas ligeiramente mais lento.\n")
+  escreva("Possui afinidade com os elementos terra, luz e escurid√£o. Uma √≥tima escolha para quem busca for√ßa e estabilidade.\n")
+  escreva("Digite o n√∫mero de seu avan√ßo de classe escolhido: \n")
   
   leia(opcaoDeAvancoFinal)
   
   enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
-    escreva("OpÁ„o inv·lida, tente novamente. As opÁıes v·lidas s„o 1, 2 e 3.\n")
+    escreva("Op√ß√£o inv√°lida, tente novamente. As op√ß√µes v√°lidas s√£o 1, 2 e 3.\n")
     leia(opcaoDeAvancoFinal)
   }
 
   escolha(opcaoDeAvancoFinal){
     caso 1:
-      classe = "CA«ADOR DE ESTRELAS"
+      classe = "CA√áADOR DE ESTRELAS"
     pare
     caso 2:
-      classe = "CA«ADOR SOMBRIO"
+      classe = "CA√áADOR SOMBRIO"
     pare
     caso 3:
-      classe = "CA«ADOR ANCESTRAL"
+      classe = "CA√áADOR ANCESTRAL"
     pare
   }
 
-  escreva(nomeDoPersonagem, ", agora È um: ", classe, ".\n")
+  escreva(nomeDoPersonagem, ", agora √© um: ", classe, ".\n")
   mostrarAtributos()
 }
 funcao avancoDeClasseAtirador(){
   inteiro opcaoDeAvancoFinal
 
-  escreva(nomeDoPersonagem, " alcanÁou o nÌvel maximo na sua classe atual, agora escolha uma das opÁıes de avanÁo de classe. Este ser· seu ultimo avanÁo de classe.\n")
+  escreva(nomeDoPersonagem, " alcan√ßou o n√≠vel maximo na sua classe atual, agora escolha uma das op√ß√µes de avan√ßo de classe. Este ser√° seu ultimo avan√ßo de classe.\n")
   escreva("1 - ARTILHEIRO\n")
   escreva("Um mestre do armamento pesado, o Artilheiro leva o conceito de dano a um novo patamar.\n")
   escreva("Focado inteiramente no ataque, utiliza os elementos fogo e neutro para ampliar ainda mais seu poder destrutivo.\n")
-  escreva("Ideal para quem prefere eliminar o inimigo antes mesmo de ser alcanÁado.\n\n")
+  escreva("Ideal para quem prefere eliminar o inimigo antes mesmo de ser alcan√ßado.\n\n")
 
   escreva("2 - ASSASSINO\n")
-  escreva("Especialista em ataques fatais e silenciosos, o Assassino luta para encerrar a batalha com um ˙nico golpe.\n")
-  escreva("Seu estilo È r·pido, letal e preciso, com afinidade com os elementos neutro, ·gua e escurid„o.\n")
-  escreva("Perfeito para quem busca dano extremo com mobilidade furtiva e finalizaÁıes velozes.\n\n")
+  escreva("Especialista em ataques fatais e silenciosos, o Assassino luta para encerrar a batalha com um √∫nico golpe.\n")
+  escreva("Seu estilo √© r√°pido, letal e preciso, com afinidade com os elementos neutro, √°gua e escurid√£o.\n")
+  escreva("Perfeito para quem busca dano extremo com mobilidade furtiva e finaliza√ß√µes velozes.\n\n")
 
   escreva("3 - EXECUTOR CARMESIM\n")
-  escreva("Um atirador cruel e implac·vel, que sacrificou toda defesa em prol de velocidade e letalidade.\n")
+  escreva("Um atirador cruel e implac√°vel, que sacrificou toda defesa em prol de velocidade e letalidade.\n")
   escreva("Equilibra bem ataque e agilidade, mas qualquer golpe recebido pode ser fatal.\n")
   escreva("Canaliza os elementos fogo e neutro para executar seus inimigos com estilo e brutalidade.\n")
-  escreva("Recomendado para quem vive no fio da navalha: mata r·pido ou morre r·pido.\n")
-  escreva("Digite o n˙mero de seu avanÁo de classe escolhido: \n")
+  escreva("Recomendado para quem vive no fio da navalha: mata r√°pido ou morre r√°pido.\n")
+  escreva("Digite o n√∫mero de seu avan√ßo de classe escolhido: \n")
   
   leia(opcaoDeAvancoFinal)
   
   enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
-    escreva("OpÁ„o inv·lida, tente novamente. As opÁıes v·lidas s„o 1, 2 e 3.\n")
+    escreva("Op√ß√£o inv√°lida, tente novamente. As op√ß√µes v√°lidas s√£o 1, 2 e 3.\n")
     leia(opcaoDeAvancoFinal)
   }
 
@@ -927,34 +927,34 @@ funcao avancoDeClasseAtirador(){
     pare
   }
 
-  escreva(nomeDoPersonagem, ", agora È um: ", classe, ".\n")
+  escreva(nomeDoPersonagem, ", agora √© um: ", classe, ".\n")
   mostrarAtributos()
 }
 funcao avancoDeClasseVigia(){
   inteiro opcaoDeAvancoFinal
 
-  escreva(nomeDoPersonagem, " alcanÁou o nÌvel maximo na sua classe atual, agora escolha uma das opÁıes de avanÁo de classe. Este ser· seu ultimo avanÁo de classe.\n")
+  escreva(nomeDoPersonagem, " alcan√ßou o n√≠vel maximo na sua classe atual, agora escolha uma das op√ß√µes de avan√ßo de classe. Este ser√° seu ultimo avan√ßo de classe.\n")
   escreva("1 - SENTINELA SOLAR\n")
   escreva("Um arqueiro equilibrado que canaliza a energia do sol para iluminar o campo de batalha.\n")
-  escreva("MantÈm os atributos balanceados do Vigia, combinando-os com os elementos fogo e luz.\n")
-  escreva("Ideal para quem deseja manter versatilidade com um toque de brilho ofensivo e precis„o sagrada.\n\n")
+  escreva("Mant√©m os atributos balanceados do Vigia, combinando-os com os elementos fogo e luz.\n")
+  escreva("Ideal para quem deseja manter versatilidade com um toque de brilho ofensivo e precis√£o sagrada.\n\n")
 
-  escreva("2 - GUARDI√O CELESTIAL\n")
-  escreva("Um arqueiro abenÁoado pelos cÈus, que aprimora seus disparos com o poder dos fenÙmenos celestes.\n")
-  escreva("Possui afinidade com os elementos ·gua, vento e luz, e È levemente mais ofensivo que o Vigia tradicional.\n")
-  escreva("Excelente para quem prefere uma abordagem ofensiva sem abrir m„o da graciosidade celestial.\n\n")
+  escreva("2 - GUARDI√ÉO CELESTIAL\n")
+  escreva("Um arqueiro aben√ßoado pelos c√©us, que aprimora seus disparos com o poder dos fen√¥menos celestes.\n")
+  escreva("Possui afinidade com os elementos √°gua, vento e luz, e √© levemente mais ofensivo que o Vigia tradicional.\n")
+  escreva("Excelente para quem prefere uma abordagem ofensiva sem abrir m√£o da graciosidade celestial.\n\n")
 
   escreva("3 - VIGIA DO ABISMO\n")
-  escreva("Um arqueiro sombrio que extrai sua forÁa dos abismos profundos da terra e do oceano.\n")
-  escreva("MantÈm os atributos equilibrados do Vigia, mas canaliza os elementos ·gua e escurid„o\n")
+  escreva("Um arqueiro sombrio que extrai sua for√ßa dos abismos profundos da terra e do oceano.\n")
+  escreva("Mant√©m os atributos equilibrados do Vigia, mas canaliza os elementos √°gua e escurid√£o\n")
   escreva("para disparos misteriosos, silenciosos e muitas vezes fatais.\n")
-  escreva("Recomendado para jogadores que gostam de manter o equilÌbrio enquanto exploram o lado mais sombrio da natureza.\n")
-  escreva("Digite o n˙mero de seu avanÁo de classe escolhido: \n")  
+  escreva("Recomendado para jogadores que gostam de manter o equil√≠brio enquanto exploram o lado mais sombrio da natureza.\n")
+  escreva("Digite o n√∫mero de seu avan√ßo de classe escolhido: \n")  
   
   leia(opcaoDeAvancoFinal)
   
   enquanto(opcaoDeAvancoFinal < 1 ou opcaoDeAvancoFinal > 3){
-    escreva("OpÁ„o inv·lida, tente novamente. As opÁıes v·lidas s„o 1, 2 e 3.\n")
+    escreva("Op√ß√£o inv√°lida, tente novamente. As op√ß√µes v√°lidas s√£o 1, 2 e 3.\n")
     leia(opcaoDeAvancoFinal)
   }
 
@@ -963,40 +963,40 @@ funcao avancoDeClasseVigia(){
       classe = "SENTINELA SOLAR"
     pare
     caso 2:
-      classe = "GUARDI√O CELESTE"
+      classe = "GUARDI√ÉO CELESTE"
     pare
     caso 3:
       classe = "OLHO DO ABISMO"
     pare
   }
 
-  escreva(nomeDoPersonagem, ", agora È um: ", classe, ".\n")
+  escreva(nomeDoPersonagem, ", agora √© um: ", classe, ".\n")
   mostrarAtributos()
 }
-// FunÁ„o para avanÁo de classe do Mago
+// Fun√ß√£o para avan√ßo de classe do Mago
 funcao avancoDeClasseMago() {
     inteiro opcaoDeAvanco
     
-    escreva(nomeDoPersonagem, " alcanÁou o nÌvel m·ximo na sua classe inicial, agora escolha uma das opÁıes de avanÁo de classe.\n")
+    escreva(nomeDoPersonagem, " alcan√ßou o n√≠vel m√°ximo na sua classe inicial, agora escolha uma das op√ß√µes de avan√ßo de classe.\n")
     escreva("1 - EVOCADOR\n")
     escreva("Classe que continua o caminho do Mago, com foco total em ataques poderosos.\n")
-    escreva("MantÈm uma defesa fraca, mas È capaz de causar grande dano de forma r·pida e direta.\n")
-    escreva("Ideal para quem quer continuar atacando com forÁa, mesmo sendo mais vulner·vel.\n\n")
+    escreva("Mant√©m uma defesa fraca, mas √© capaz de causar grande dano de forma r√°pida e direta.\n")
+    escreva("Ideal para quem quer continuar atacando com for√ßa, mesmo sendo mais vulner√°vel.\n\n")
 
     escreva("2 - ONMYOJI\n")
     escreva("Classe que troca parte do poder direto por mais velocidade e controle.\n")
-    escreva("Pode invocar pequenas criaturas para ajudar nos combates, alÈm de se mover com mais agilidade.\n")
-    escreva("Boa escolha para quem gosta de estratÈgia e movimentaÁ„o.\n\n")
+    escreva("Pode invocar pequenas criaturas para ajudar nos combates, al√©m de se mover com mais agilidade.\n")
+    escreva("Boa escolha para quem gosta de estrat√©gia e movimenta√ß√£o.\n\n")
 
     escreva("3 - BRUXO\n")
     escreva("Foca em enfraquecer o inimigo e se fortalecer durante o combate.\n")
-    escreva("N„o È t„o r·pido quanto outras classes, mas consegue virar o jogo aos poucos.\n")
+    escreva("N√£o √© t√£o r√°pido quanto outras classes, mas consegue virar o jogo aos poucos.\n")
     escreva("Indicado para quem prefere um estilo mais calculado e resistente.\n")
-    escreva("Digite o n˙mero de seu avanÁo de classe escolhido: \n")
+    escreva("Digite o n√∫mero de seu avan√ßo de classe escolhido: \n")
     leia(opcaoDeAvanco)
     
     enquanto(opcaoDeAvanco < 1 ou opcaoDeAvanco > 3) {
-        escreva("OpÁ„o inv·lida tente novamente. As opÁıes v·lidas s„o 1, 2 e 3.\n")
+        escreva("Op√ß√£o inv√°lida tente novamente. As op√ß√µes v√°lidas s√£o 1, 2 e 3.\n")
         leia(opcaoDeAvanco)
     }
     
@@ -1012,40 +1012,40 @@ funcao avancoDeClasseMago() {
         pare
     }
     
-    escreva(nomeDoPersonagem, ", agora È um: ", classe, ".\n")
+    escreva(nomeDoPersonagem, ", agora √© um: ", classe, ".\n")
     mostrarAtributos()
 }
 
-// FunÁ„o para avanÁo de classe do Arqueiro
+// Fun√ß√£o para avan√ßo de classe do Arqueiro
 funcao avancoDeClasseArqueiro() {
     inteiro opcaoDeAvanco
     
-    escreva(nomeDoPersonagem, " alcanÁou o nÌvel m·ximo na sua classe inicial, agora escolha uma das opÁıes de avanÁo de classe.\n")
+    escreva(nomeDoPersonagem, " alcan√ßou o n√≠vel m√°ximo na sua classe inicial, agora escolha uma das op√ß√µes de avan√ßo de classe.\n")
 
-    escreva("1 - CA«ADOR\n")
+    escreva("1 - CA√áADOR\n")
     escreva("Classe com foco total na agilidade. Se move rapidamente e ataca com velocidade.\n")
     escreva("Boa para quem quer estar sempre em movimento e evitar ser atingido.\n\n")
 
     escreva("2 - ATIRADOR\n")
-    escreva("Especializado em causar o m·ximo de dano com seus ataques ‡ dist‚ncia.\n")
-    escreva("Tem menos mobilidade, mas acerta com mais forÁa.\n")
+    escreva("Especializado em causar o m√°ximo de dano com seus ataques √† dist√¢ncia.\n")
+    escreva("Tem menos mobilidade, mas acerta com mais for√ßa.\n")
     escreva("Recomendado para quem prefere eliminar os inimigos rapidamente.\n\n")
 
     escreva("3 - VIGIA\n")
-    escreva("EvoluÁ„o equilibrada do Arqueiro, mantendo o bom desempenho entre ataque e mobilidade.\n")
-    escreva("Vers·til e confi·vel em qualquer situaÁ„o.\n\n")
+    escreva("Evolu√ß√£o equilibrada do Arqueiro, mantendo o bom desempenho entre ataque e mobilidade.\n")
+    escreva("Vers√°til e confi√°vel em qualquer situa√ß√£o.\n\n")
 
-    escreva("Digite o n˙mero de seu avanÁo de classe escolhido: \n")
+    escreva("Digite o n√∫mero de seu avan√ßo de classe escolhido: \n")
     leia(opcaoDeAvanco)
 
     enquanto(opcaoDeAvanco < 1 ou opcaoDeAvanco > 3) {
-        escreva("OpÁ„o inv·lida tente novamente. As opÁıes v·lidas s„o 1, 2 e 3.\n")
+        escreva("Op√ß√£o inv√°lida tente novamente. As op√ß√µes v√°lidas s√£o 1, 2 e 3.\n")
         leia(opcaoDeAvanco)       
     }
     
     escolha (opcaoDeAvanco) {
         caso 1:
-            classe = "CA«ADOR"
+            classe = "CA√áADOR"
         pare
         caso 2:
             classe = "ATIRADOR"
@@ -1054,7 +1054,7 @@ funcao avancoDeClasseArqueiro() {
             classe = "VIGIA"
         pare
     }
-    escreva(nomeDoPersonagem, ", agora È um: ", classe, ".\n")
+    escreva(nomeDoPersonagem, ", agora √© um: ", classe, ".\n")
     mostrarAtributos()
   }
   funcao turnoDeBatalha(){
@@ -1070,10 +1070,10 @@ funcao avancoDeClasseArqueiro() {
               danoCausado = 0
           }
             vidaDoInimigo = vidaDoInimigo - danoCausado
-            escreva("VocÍ causou ", danoCausado, " de dano.\n")
+            escreva("Voc√™ causou ", danoCausado, " de dano.\n")
         } senao se (acao == 2) {
-            escreva("VocÍ se defendeu e recebeu menos dano.\n")
-            // Pode implementar bÙnus de defesa aqui
+            escreva("Voc√™ se defendeu e recebeu menos dano.\n")
+            // Pode implementar b√¥nus de defesa aqui
         }
 
         // Turno do inimigo
@@ -1084,11 +1084,11 @@ funcao avancoDeClasseArqueiro() {
               danoRecebido = 0
             }
             vida = vida - danoRecebido
-            escreva("VocÍ recebeu ", danoRecebido, " de dano.\n")
+            escreva("Voc√™ recebeu ", danoRecebido, " de dano.\n")
           }
 
       se (vida <= 0) {
-        escreva("VocÍ foi derrotado...\n")
+        escreva("Voc√™ foi derrotado...\n")
       } senao {
         escreva("Inimigo derrotado!\n")
         ganharExperiencia(10) // ou qualquer valor adequado
@@ -1108,79 +1108,79 @@ funcao avancoDeClasseArqueiro() {
   }
   funcao proximaRegiao(){
     se(regiaoAtual >= 7){
-      escreva("VocÍ j· est· na ultima regi„o de Eldoria.\n")
-      escreva("N„o h· mais o que explorar a frente.\n")
+      escreva("Voc√™ j√° est√° na ultima regi√£o de Eldoria.\n")
+      escreva("N√£o h√° mais o que explorar a frente.\n")
     }
 
     inteiro opcaoDeRegiao
-    escreva("VocÍ chegou a borda da regi„o atual deseja seguir em frente?")
-    escreva("Se sim digite 1 \t | \t Sen„o digite 2.")
+    escreva("Voc√™ chegou a borda da regi√£o atual deseja seguir em frente?")
+    escreva("Se sim digite 1 \t | \t Sen√£o digite 2.")
     leia(opcaoDeRegiao)
 
     enquanto(opcaoDeRegiao < 1 ou opcaoDeRegiao > 2){
-      escreva("OpÁ„o inv·lida, tente novamente. As opÁıes v·lidas s„o 1 e 2.")
+      escreva("Op√ß√£o inv√°lida, tente novamente. As op√ß√µes v√°lidas s√£o 1 e 2.")
       leia(opcaoDeRegiao)
     }
     se(opcaoDeRegiao == 1){
       regiaoAtual++
-      escreva(nomeDoPersonagem, " AvanÁou para a prÛxima regi„o.\n")
-      escreva(nomeDoPersonagem, "Agora est· n· regi„o da: ", regioes[regiaoAtual], "\n")
-      escreva("VocÍ est· na regi„o:", (regiaoAtual + 1), "de 8.\n")
-      // pensar n· logica aqui.
+      escreva(nomeDoPersonagem, " Avan√ßou para a pr√≥xima regi√£o.\n")
+      escreva(nomeDoPersonagem, "Agora est√° n√° regi√£o da: ", regioes[regiaoAtual], "\n")
+      escreva("Voc√™ est√° na regi√£o:", (regiaoAtual + 1), "de 8.\n")
+      // pensar n√° logica aqui.
     }senao{
-      escreva("VocÍ decidiu permanecer na regi„o atual.\n")
-      escreva(nomeDoPersonagem, " continua na regi„o da: ", regioes[regiaoAtual], ".\n")
+      escreva("Voc√™ decidiu permanecer na regi√£o atual.\n")
+      escreva(nomeDoPersonagem, " continua na regi√£o da: ", regioes[regiaoAtual], ".\n")
     }
   }
   funcao mostrarRegiaoAtual(){
 
-    escreva("\n?? === REGI√O ATUAL ===\n")
-    escreva("Regi„o: ", regioes[regiaoAtual], "\n")
-    escreva("PosiÁ„o no mapa: ", (regiaoAtual + 1), " de 8\n")
+    escreva("\nüè∞ === REGI√ÉO ATUAL ===\n")
+    escreva("Regi√£o: ", regioes[regiaoAtual], "\n")
+    escreva("Posi√ß√£o no mapa: ", (regiaoAtual + 1), " de 8\n")
         
-    escreva("\n??? Mapa das regiıes:\n")
+    escreva("\nüó∫Ô∏è Mapa das regi√µes:\n")
     para(inteiro i = 0; i < 8; i++) {
       se(i == regiaoAtual){
-        escreva("? [", (i + 1), "] ", regioes[i], " ? (VOC  EST¡ AQUI)\n")
+        escreva("‚û§ [", (i + 1), "] ", regioes[i], " ‚≠ê (VOC√ä EST√Å AQUI)\n")
       }senao{
         escreva("  [", (i + 1), "] ", regioes[i], "\n")
       }
     }
         
-    // InformaÁıes de navegaÁ„o
-    escreva("\n?? InformaÁıes de navegaÁ„o:\n")
+    // Informa√ß√µes de navega√ß√£o
+    escreva("\nüìç Informa√ß√µes de navega√ß√£o:\n")
     se(regiaoAtual == 0){
-        escreva("? VocÍ est· na primeira regi„o\n")
-        escreva("? PrÛxima regi„o disponÌvel: ", regioes[regiaoAtual + 1], "\n")
+        escreva("‚Ä¢ Voc√™ est√° na primeira regi√£o\n")
+        escreva("‚Ä¢ Pr√≥xima regi√£o dispon√≠vel: ", regioes[regiaoAtual + 1], "\n")
       }
       senao se(regiaoAtual == 7){
-        escreva("? VocÍ est· na ˙ltima regi„o\n")
-        escreva("? Regi„o anterior disponÌvel: ", regioes[regiaoAtual - 1], "\n")
+        escreva("‚Ä¢ Voc√™ est√° na √∫ltima regi√£o\n")
+        escreva("‚Ä¢ Regi√£o anterior dispon√≠vel: ", regioes[regiaoAtual - 1], "\n")
       }
       senao{
-        escreva("? Regi„o anterior: ", regioes[regiaoAtual - 1], "\n")
-        escreva("? PrÛxima regi„o: ", regioes[regiaoAtual + 1], "\n")
+        escreva("‚Ä¢ Regi√£o anterior: ", regioes[regiaoAtual - 1], "\n")
+        escreva("‚Ä¢ Pr√≥xima regi√£o: ", regioes[regiaoAtual + 1], "\n")
       }
-    }
   }
+  
 
   funcao campanha(){
-    escreva("H· muito tempo, no Reino de Eldoria, a paz era mantida pela mÌstica Pedra da Luz, protegida pelos Anci„os do Castelo Dourado.\n")
+    escreva("H√° muito tempo, no Reino de Eldoria, a paz era mantida pela m√≠stica Pedra da Luz, protegida pelos Anci√£os do Castelo Dourado.\n")
     u.aguarde(3)
 
-    escreva("\nUm dia, uma forÁa sombria conhecida como O Devastador invadiu o reino, roubando a relÌquia sagrada e mergulhando as terras em trevas e caos.\n")
+    escreva("\nUm dia, uma for√ßa sombria conhecida como O Devastador invadiu o reino, roubando a rel√≠quia sagrada e mergulhando as terras em trevas e caos.\n")
     u.aguarde(3)
 
-    escreva("\nVilas foram saqueadas, florestas corrompidas, e criaturas sombrias comeÁaram a vagar pelas regiıes.\n")
+    escreva("\nVilas foram saqueadas, florestas corrompidas, e criaturas sombrias come√ßaram a vagar pelas regi√µes.\n")
     u.aguarde(3)
 
-    escreva("\nDiante da crise, uma antiga profecia se cumpriu: um herÛi escolhido surgir· das sombras para restaurar a luz. VocÍ È esse herÛi.\n")
+    escreva("\nDiante da crise, uma antiga profecia se cumpriu: um her√≥i escolhido surgir√° das sombras para restaurar a luz. Voc√™ √© esse her√≥i.\n")
     u.aguarde(3)
 
-    escreva("\nSua miss„o È atravessar cinco regiıes dominadas pelo mal, enfrentando inimigos, evoluindo suas habilidades e se preparando para confrontar O Devastador no Castelo Dourado.\n")
+    escreva("\nSua miss√£o √© atravessar cinco regi√µes dominadas pelo mal, enfrentando inimigos, evoluindo suas habilidades e se preparando para confrontar O Devastador no Castelo Dourado.\n")
     u.aguarde(3)
 
-    escreva("\nA jornada ser· repleta de perigos, escolhas e batalhas. Seu destino e o de Eldoria est„o entrelaÁados.\n")
+    escreva("\nA jornada ser√° repleta de perigos, escolhas e batalhas. Seu destino e o de Eldoria est√£o entrela√ßados.\n")
     u.aguarde(3)
   }
 }
