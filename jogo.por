@@ -1,5 +1,8 @@
 programa {
   inclua biblioteca Util --> u
+                      //0                   1                    2                  3                  4                      5           6                      7
+  cadeia regioes[8] = {"VILA DOS COMEÇOS", "FLORESTA DA NÉVOA", "VILA ABANDONADA", "CAVERNA SOMBRIA", "LABIRINTO ESCONDIDO", "COLISEU", "PÂNTANO DOS LAMENTOS", "CASTELO DOURAD0"}
+  inteiro regiaoAtual = 0
 
   cadeia nomeDoPersonagem, classe
   inteiro opcaoDeClase = 0
@@ -1102,7 +1105,64 @@ funcao avancoDeClasseArqueiro() {
     inimigoATK = 5 + nivel
     inimigoDEF = 2 + nivel
     inimigoAGI = 1 + nivel
-}
+  }
+  funcao proximaRegiao(){
+    se(regiaoAtual >= 7){
+      escreva("Você já está na ultima região de Eldoria.\n")
+      escreva("Não há mais o que explorar a frente.\n")
+    }
+
+    inteiro opcaoDeRegiao
+    escreva("Você chegou a borda da região atual deseja seguir em frente?")
+    escreva("Se sim digite 1 \t | \t Senão digite 2.")
+    leia(opcaoDeRegiao)
+
+    enquanto(opcaoDeRegiao < 1 ou opcaoDeRegiao > 2){
+      escreva("Opção inválida, tente novamente. As opções válidas são 1 e 2.")
+      leia(opcaoDeRegiao)
+    }
+    se(opcaoDeRegiao == 1){
+      regiaoAtual++
+      escreva(nomeDoPersonagem, " Avançou para a próxima região.\n")
+      escreva(nomeDoPersonagem, "Agora está ná região da: ", regioes[regiaoAtual], "\n")
+      escreva("Você está na região:", (regiaoAtual + 1), "de 8.\n")
+      // pensar ná logica aqui.
+    }senao{
+      escreva("Você decidiu permanecer na região atual.\n")
+      escreva(nomeDoPersonagem, " continua na região da: ", regioes[regiaoAtual], ".\n")
+    }
+  }
+  funcao mostrarRegiaoAtual(){
+
+    escreva("\n?? === REGIÃO ATUAL ===\n")
+    escreva("Região: ", regioes[regiaoAtual], "\n")
+    escreva("Posição no mapa: ", (regiaoAtual + 1), " de 8\n")
+        
+    escreva("\n??? Mapa das regiões:\n")
+    para(inteiro i = 0; i < 8; i++) {
+      se(i == regiaoAtual){
+        escreva("? [", (i + 1), "] ", regioes[i], " ? (VOCÊ ESTÁ AQUI)\n")
+      }senao{
+        escreva("  [", (i + 1), "] ", regioes[i], "\n")
+      }
+    }
+        
+    // Informações de navegação
+    escreva("\n?? Informações de navegação:\n")
+    se(regiaoAtual == 0){
+        escreva("? Você está na primeira região\n")
+        escreva("? Próxima região disponível: ", regioes[regiaoAtual + 1], "\n")
+      }
+      senao se(regiaoAtual == 7){
+        escreva("? Você está na última região\n")
+        escreva("? Região anterior disponível: ", regioes[regiaoAtual - 1], "\n")
+      }
+      senao{
+        escreva("? Região anterior: ", regioes[regiaoAtual - 1], "\n")
+        escreva("? Próxima região: ", regioes[regiaoAtual + 1], "\n")
+      }
+    }
+  }
 
   funcao campanha(){
     escreva("Há muito tempo, no Reino de Eldoria, a paz era mantida pela mística Pedra da Luz, protegida pelos Anciãos do Castelo Dourado.\n")
