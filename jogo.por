@@ -346,7 +346,7 @@ programa {
                               escreva("Você bebeu tudo...sua vida agora é",vidadaespecializacao,"\n")
                               pare
                               caso 2: 
-                              escrevaa("Você seguiu sua rota sem nenhuma alteracao\n")
+                              escreva("Você seguiu sua rota sem nenhuma alteracao\n")
                               escreva("Sua vida total é",vidadaespecializacao,"\n")
                               pare
                             }
@@ -471,6 +471,80 @@ programa {
                                 escreva("-------------------------------------------------\n")
                                 escreva("VOCÊ ENCONTROU XAVIUS -O COLOSSO DOS MIL MUNDOS-\n")
                                 escreva("--------------------------------------------------\n")
+                                inteiro vida_do_primeiro_chefe_xavius = 100
+                                inteiro dano_de_ataque_chefe_xavius = 27
+                                cadeia nome_chefe_xavius = "XAVIUS , O COLOSSO"
+                                logico defenderse_chefe_xavius = falso
+                                inteiro xp_recebido_de_xavius = 100
+                                
+                        enquanto(vidadaespecializacao > 0 e vida_do_primeiro_chefe_xavius > 0) {
+                                escreva("\nSUA VIDA:", vidadaespecializacao, "\nVIDA DO ", nome_chefe_xavius, ":", vida_do_primeiro_chefe_xavius, "\n")
+                                escreva("1-ATACAR\n")
+                                escreva("2-DEFENDER-SE\n")
+                                inteiro acao_combate_chefe_xavius
+                                leia(acao_combate_chefe_xavius)
+                                defenderse_chefe_xavius = falso
+
+                                se(acao_combate_chefe_xavius==1){
+                                  danodaespecializacao=Util.sorteia(danodaespecializacao-2,danodaespecializacao + 2)
+                                  agilidadedaespecializacao = Util.sorteia(1,100)
+                                  se(agilidadedaespecializacao<=15){
+                                    danodaespecializacao = danodaespecializacao * 2
+                                    escreva("VOCÊ CAUSOU UM ATAQUE CRÍTICO CAMPEÃO!!\n")
+                                  }
+                                vida_do_primeiro_chefe_xavius = vida_do_primeiro_chefe_xavius - danodaespecializacao
+                                escreva("\nVocê causou",danodaespecializacao,"de dano em",nome_chefe_xavius,"\n")
+                                }
+                                senao se(acao_combate_chefe_xavius==2){
+                                  defenderse_chefe_xavius = verdadeiro
+                                  inteiro dano_reduzido_do_chefe_xavius = (Util.sorteia(dano_de_ataque_chefe_xavius-2,dano_de_ataque_chefe_xavius)) / 2
+                                  se(dano_reduzido_do_chefe_xavius < 0){
+                                    dano_reduzido_do_chefe_xavius = 0
+                                  }
+                                  vidadaespecializacao = vidadaespecializacao - dano_reduzido_do_chefe_xavius
+                                  escreva("Voce se defendeu de ",nome_chefe_xavius,"o inimigo causou apenas",dano_reduzido_do_chefe_xavius,"\n")
+                                  }senao{escreva(nome_chefe_xavius,"Aproveitou as tua brecha",nomedocampeao,"  lhe atacou!!\n")}
+                                  se(vida_do_primeiro_chefe_xavius > 0 e defenderse_chefe_xavius==falso){
+                                    dano_de_ataque_chefe_xavius = Util.sorteia(dano_de_ataque_chefe_xavius-5,dano_de_ataque_chefe_xavius+5)
+                                    se(dano_de_ataque_chefe_xavius<0){
+                                      dano_de_ataque_chefe_xavius = 0
+                                    }
+                                    inteiro chance_de_esquiva_chefe_xavius=Util.sorteia(1,100)
+                                    se(chance_de_esquiva_chefe_xavius<=15){
+                                      escreva("\nVocê se esquivou de",nome_chefe_xavius,"\n")
+                                    }
+                                    senao{
+                                      vidadaespecializacao = vidadaespecializacao - dano_de_ataque_chefe_xavius
+                                      escreva("\nVoce recebeu",dano_de_ataque_chefe_xavius,"de",nome_chefe_xavius,"\n")
+                                    }
+                                  }
+                                 
+
+                                  
+
+                                }
+                                se(vidadaespecializacao <=0){
+                                  escreva("Voce foi derrotado por",nome_chefe_xavius,"\n")
+                                  escreva("Que os deuses guardem sua alma",nomedocampeao,"\n")
+                                  }
+                                senao se(vida_do_primeiro_chefe_xavius<=0){
+                                  escreva("Parabéns",nomedocampeao,"voce derrotou",nome_chefe_xavius,"\n")
+                                  xp = xp + xp_recebido_de_xavius
+                                  escreva(nomedocampeao," você recebeu ",vida_do_primeiro_chefe_xavius,"parabéns",nomedocampeao,"\n")
+                                  nivelupado(xp, xpparasubirdenivel, niveldocampeao)
+                                  escreva("Muito obrigado campeão, você libertou a floresta da névoa de",nome_chefe_xavius,"\n")
+                                  escreva("\n\n\n\n")
+                                  escreva("Voce resolve descansar após uma árdua batalha e se regenera em uma fogueira que havia lá por perto...\n")
+                                  inteiro sorteio_do_descanso_apos_concluir_florestadanevoa
+                                  sorteio_do_descanso_apos_concluir_florestadanevoa = Util.sorteia(10,50)
+                                  escreva("\nApós seu descanso você aumentou",sorteio_do_descanso_apos_concluir_florestadanevoa,"de vida máxima\n")
+                                  vidadaespecializacao = vidadaespecializacao + sorteio_do_descanso_apos_concluir_florestadanevoa
+                                  escreva("\nApós um bom descansoo",nomedocampeao,"acorda e revigora suas energias antes de ir para a sua próxima aventura...\n")
+                                  escreva("SUA VIDA:",vidadaespecializacao,"\n")
+                                  
+                                  escreva("Parabéns campeão escolha a região na qual você deseja ir...")
+                                }
+
                                 } senao {
                                 escreva("Nao seja um covarde...", nomedocampeao, "\n")
                                 }
