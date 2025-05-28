@@ -59,9 +59,11 @@ programa {
       leia(escolhaAcao)
     }
     se(escolhaAcao == 1){
-      intro_floresta_lobo()
-
-
+      se(contadorInimigo == 0){
+        intro_floresta_lobo()
+      }senao se(contadorInimigo == 1){
+        intro_floresta_esqueleto()
+      }
     }
     se(escolhaAcao == 2){
       status_heroi()
@@ -187,7 +189,7 @@ programa {
       escreva("══════════「STATUS」══════════\n")
       escreva(classe," Nv.",nivel," XP [",xp,"/100"+"]\n")
       escreva("----------------------------\n")
-      escreva("❤️ Vida: ",vidaMax,"\n")
+      escreva("❤️ Vida: ",vidaAtual,"/",vidaMax,"\n")
       escreva("🗡️ Ataque: ",ataque,"\n")
       escreva("🛡️ Defesa: ",defesa,"\n")
       escreva("\n\nPressione \"Enter\" para voltar\n")
@@ -213,9 +215,25 @@ programa {
       escreva("\nPressione \"Enter\" para começar a batalha\"\n")
       leia(voltar)
     }
-    batalha_floresta(60,20,6,"🐺LOBO TERRÍVEL",2)
+    batalha_floresta(60,20,6,"🐺LOBO TERRÍVEL",2,60)
   }
-  funcao batalha_floresta(inteiro vidaMaxInimigo, inteiro ataqueInimigo, inteiro defesaInimigo, cadeia nomeInimigo, inteiro nivelInimigo){
+
+  funcao intro_floresta_esqueleto(){
+    cadeia voltar
+    limpa()
+    enquanto(voltar != ""){
+      escreva("| Você continua a explorar a floresta misteriosa...\n")
+      escreva("| O vento sopra entre as árvores, carregando um silêncio estranho no ar.\n")
+      escreva("| De repente, você ouve um som de ossos se arrastando no chão...\n")
+      escreva("| Um Esqueleto Sombrio emerge da neblina.\n")
+      escreva("⚠️ Prepare-se para a batalha!\n\n")
+      escreva("-----------❗ ESQUELETO SOMBRIO ❗-----------\n")
+      escreva("\nPressione \"Enter\" para começar a batalha\"\n")
+      leia(voltar)
+    }
+    batalha_floresta(70, 22, 8, "💀 ESQUELETO SOMBRIO", 3, 120)
+  }
+  funcao batalha_floresta(inteiro vidaMaxInimigo, inteiro ataqueInimigo, inteiro defesaInimigo, cadeia nomeInimigo, inteiro nivelInimigo, inteiro xpinimigo){
     limpa()
     inteiro vidaAtualInimigo = vidaMaxInimigo
     inteiro danoInimigo
@@ -228,24 +246,29 @@ programa {
       escreva(nomeInimigo," Nv.",nivelInimigo,"\n")
       escreva("❤️ Vida: ",vidaAtualInimigo,"/",vidaMaxInimigo,"\n")
       escreva("🛡️ Defesa: ",defesaInimigo,"\n")
-      escreva("----------------------------------\n")
+      barra_de_vida_inimigo(vidaAtualInimigo, vidaMaxInimigo)
+      escreva("\n----------------------------------\n")
       escreva(nomeJogador," (",classe,") Nv. ",nivel,"\n")
       escreva("❤️ Vida: ",vidaAtual,"/",vidaMax,"\n")
       escreva("🛡️ Defesa: ",defesa,"\n")
-      escreva("----------------------------------\n")
+      barra_de_vida_heroi(vidaAtual, vidaMax)
+      escreva("\n----------------------------------\n")
       escreva("Escolha sua ação:\n")
       escreva("1 - Atacar   |   2 - Defender\n")
       leia(escolher)
       limpa()
       }
       se(escolher == 1){
-        inteiro dano = u.sorteia(1,ataque)
+        inteiro dano = u.sorteia(5,ataque)
         se(dano < 0){
           dano = 0
         }
-        escreva("💥 Você ataca o Lobo e causa ",dano," de dano!\n")
+        escreva("💥 Você ataca o inimigo e causa ",dano," de dano!\n")
         vidaAtualInimigo = vidaAtualInimigo - dano
         defendendo = falso
+        se(vidaAtualInimigo <= 0){
+          pare
+        }
       }
       se(escolher == 2){
         escreva("🛡️ Você se prepara para defender o próximo ataque.\n")
@@ -263,7 +286,7 @@ programa {
       se(danoInimigo < 0){
         danoInimigo = 0
       }
-      escreva("⚠️ O Lobo ataca e causa ",danoInimigo," de dano!\n")
+      escreva("⚠️ O inimigo ataca e causa ",danoInimigo," de dano!\n")
       vidaAtual = vidaAtual - danoInimigo
 
       u.aguarde(1000)
@@ -271,14 +294,15 @@ programa {
     }
     se(vidaAtual <= 0){
       limpa()
-      escreva("💀 Você foi derrotado pelo Lobo Terrível...\n")
+      escreva("💀 Você foi derrotado pelo ",nomeInimigo,"...\n")
       escreva("Fim de jogo.\n")
     }
     se(vidaAtualInimigo <= 0){
       limpa()
-      escreva("🎉 Você derrotou o Lobo Terrível!\n")
+      contadorInimigo++
+      escreva("🎉 Você derrotou o ",nomeInimigo,"!\n")
       escreva("🏆 + 50 XP\n")
-      xp = xp + 50
+      xp = xp + xpinimigo
       se(xp >= 100){
         nivel = nivel + 1
         xp = xp - 100
@@ -295,8 +319,38 @@ programa {
     leia(continuar)
     limpa()
     }
+    se(vidaAtual <= 45){
+    descansar()
+    u.aguarde(1000)
+    }
     menu_acoes_jogo()
     }senao{
+    }
+  }
+  funcao barra_de_vida_inimigo(inteiro vidaAtualInimigo, inteiro vidaMaxInimigo){
+    inteiro i
+    inteiro totalUnidades = vidaMaxInimigo / 10
+    inteiro unidadeCheias = (vidaAtualInimigo * totalUnidades) / vidaMaxInimigo
+
+    para(i = 0; i <= totalUnidades; i++){
+      se(i <= unidadeCheias){
+        escreva("❤️")
+      }senao{
+        escreva("🖤")
+      }
+    }
+  }
+  funcao barra_de_vida_heroi(inteiro vidaAtual, inteiro vidaMax){
+    inteiro i
+    inteiro totalUnidades = vidaMax / 10
+    inteiro unidadeCheias = (vidaAtual * totalUnidades) / vidaMax
+
+    para(i = 0; i <= totalUnidades; i++){
+      se(i <= unidadeCheias){
+        escreva("❤️")
+      }senao{
+        escreva("🖤")
+      }
     }
   }
   funcao descansar(){
