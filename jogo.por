@@ -10,7 +10,9 @@ programa {
   inteiro defesa = 0
   inteiro xp = 0
   inteiro nivel = 0
-  inteiro contadorInimigo = 0
+  inteiro quantidadePocao = 0
+  inteiro regiao[5] = {"Floresta da Névoa 🌫️🌲","Vila Abandonada 🏚️👻","Caverna Sombria 🕳️🦇","Pântano dos Lamentos 🐸🧪","Castelo Dourado 🏰✨"}
+  inteiro contarRegiao = 0
 
   funcao inicio() {
     cadeia escolhaMenu
@@ -49,24 +51,33 @@ programa {
 
   funcao menu_acoes_jogo(){
     cadeia escolhaAcao
-    enquanto(escolhaAcao != 1 e escolhaAcao != 2 e escolhaAcao != 3 e escolhaAcao != 4){
+    logico voltar = verdadeiro
+    enquanto(escolhaAcao != 1 e escolhaAcao != 2 e escolhaAcao != 3 e voltar == verdadeiro){
       limpa()
-      escreva("══════「AÇÕES」══════\n")
+      escreva("---------------------------")
+      escreva("\n",regiao[contarRegiao],"\n")
+      escreva("---------------------------")
+      escreva("\n══════「AÇÕES」══════\n")
       escreva("1 - Explorar Região\n")
       escreva("2 - Status do Herói\n")
-      escreva("3 - Inventário\n")
-      escreva("4 - Sair do jogo\n")
+      escreva("3 - Sair do jogo\n")
       leia(escolhaAcao)
-    }
+    
     se(escolhaAcao == 1){
-      se(contadorInimigo == 0){
-        intro_floresta_lobo()
-      }senao se(contadorInimigo == 1){
-        intro_floresta_esqueleto()
+      se(contarRegiao == 0){
+        // intro_floresta_lobo()
+        // intro_floresta_esqueleto()
+        intro_vila_abandonada()
+        contarRegiao++
+      }se(contarRegiao == 1){
+        menu_acoes_jogo()
       }
     }
     se(escolhaAcao == 2){
       status_heroi()
+    }senao se(escolhaAcao == 3){
+      sair()
+    }
     }
   }
 
@@ -92,6 +103,12 @@ programa {
     escreva("| Irei aparecer em sua jornada com dicas e explicações sobre os acontecimentos que estão por vir...\n")
     u.aguarde(1000)
     escreva("| No momento vamos escolher sua classe.\n")
+    cadeia continuar
+    enquanto(continuar != ""){
+      escreva("\nPressione \"Enter\" para visualizar as classes\n")
+      leia(continuar)
+      limpa()
+    }
   }
 
   funcao introducao_heroi(){
@@ -119,9 +136,9 @@ programa {
       leia(continuar)
       limpa()
       escreva("❗AVISO❗\n")
-      u.aguarde(500)
+      u.aguarde(1000)
       escreva("ENTRANDO NA FLORESTA DA NÉVOA...\n")
-      u.aguarde(500)
+      u.aguarde(1000)
     }
   }
 
@@ -143,7 +160,7 @@ programa {
         classe = "⚔️ Guerreiro"
         vidaMax = 120
         vidaAtual = vidaMax
-        ataque = 20
+        ataque = 2000
         defesa = 15
       }senao se(numeroDaClasse == 2){
         classe = "🏹 Arqueiro"
@@ -215,7 +232,7 @@ programa {
       escreva("\nPressione \"Enter\" para começar a batalha\"\n")
       leia(voltar)
     }
-    batalha_floresta(60,20,6,"🐺LOBO TERRÍVEL",2,60)
+    batalha_floresta(60,15,6,"🐺LOBO TERRÍVEL",2,60)
   }
 
   funcao intro_floresta_esqueleto(){
@@ -233,10 +250,11 @@ programa {
     }
     batalha_floresta(70, 22, 8, "💀 ESQUELETO SOMBRIO", 3, 120)
   }
+
   funcao batalha_floresta(inteiro vidaMaxInimigo, inteiro ataqueInimigo, inteiro defesaInimigo, cadeia nomeInimigo, inteiro nivelInimigo, inteiro xpinimigo){
     limpa()
     inteiro vidaAtualInimigo = vidaMaxInimigo
-    inteiro danoInimigo
+    inteiro danoInimigo = ataqueInimigo - defesa
     cadeia escolher
     logico defendendo = falso
 
@@ -259,7 +277,7 @@ programa {
       limpa()
       }
       se(escolher == 1){
-        inteiro dano = u.sorteia(5,ataque)
+        inteiro dano = u.sorteia(10,ataque)
         se(dano < 0){
           dano = 0
         }
@@ -278,9 +296,9 @@ programa {
       u.aguarde(1000)
 
       se(vidaAtualInimigo > 0){
-        danoInimigo = u.sorteia(1,ataqueInimigo)
+        danoInimigo = u.sorteia(5,ataqueInimigo)
         se(defendendo){
-          danoInimigo = danoInimigo - u.sorteia(1,defesa)
+          danoInimigo = ataqueInimigo - u.sorteia(3,defesa)
         }
       }
       se(danoInimigo < 0){
@@ -299,7 +317,6 @@ programa {
     }
     se(vidaAtualInimigo <= 0){
       limpa()
-      contadorInimigo++
       escreva("🎉 Você derrotou o ",nomeInimigo,"!\n")
       escreva("🏆 + 50 XP\n")
       xp = xp + xpinimigo
@@ -315,18 +332,50 @@ programa {
     se(vidaAtual > 0){
     cadeia continuar
     enquanto(continuar != ""){
-    escreva("\nPressione \"Enter\" para voltar ao menu de ações\n")
-    leia(continuar)
-    limpa()
+      escreva("\nPressione \"Enter\" para voltar ao menu de ações\n")
+      leia(continuar)
+      limpa()
     }
     se(vidaAtual <= 45){
     descansar()
     u.aguarde(1000)
     }
-    menu_acoes_jogo()
-    }senao{
     }
   }
+
+  funcao intro_vila_abandonada(){
+    limpa()
+    escreva("| Após atravessar a misteriosa Floresta da Névoa...\n")
+    escreva("| O herói segue por uma trilha coberta por galhos e folhas úmidas.\n")
+    escreva("| A névoa começa a desaparecer, revelando construções antigas e silenciosas.\n")
+    escreva("| O vento sopra entre as casas destruídas...\n")
+    escreva("| Portas rangem. Janelas batem com força.\n")
+    escreva("| Você chegou à Vila Abandonada.\n")
+    escreva("| Um lugar esquecido, tomado por sombras e memórias.\n")
+    cadeia continuar
+    enquanto(continuar != ""){
+      escreva("\nPressione \"Enter\" para continuar...")
+      leia(continuar)
+      limpa()
+    }
+      continuar = "a"
+      escreva("❗AVISO❗\n")
+      u.aguarde(1000)
+      escreva("VOCÊ CHEGOU À VILA ABANDONADA...\n\n")
+      u.aguarde(1000)
+      escreva("| Ao vasculhar as ruínas da vila, você encontra um velho baú coberto de poeira...\n")
+      escreva("| Com algum esforço, você o abre e encontra uma poção de cura em seu interior!\n")
+      quantidadePocao = quantidadePocao + 1
+      escreva("-------------\n")
+      escreva("+1 POÇÃO 🧪\n")
+      escreva("-------------\n")
+      escreva("| Você agora possui ", quantidadePocao, " poção de cura.\n")
+      enquanto(continuar != ""){
+        escreva("\nPressione \"Enter\" para continuar...")
+        leia(continuar)
+    }
+  }
+
   funcao barra_de_vida_inimigo(inteiro vidaAtualInimigo, inteiro vidaMaxInimigo){
     inteiro i
     inteiro totalUnidades = vidaMaxInimigo / 10
@@ -340,6 +389,7 @@ programa {
       }
     }
   }
+
   funcao barra_de_vida_heroi(inteiro vidaAtual, inteiro vidaMax){
     inteiro i
     inteiro totalUnidades = vidaMax / 10
@@ -353,6 +403,7 @@ programa {
       }
     }
   }
+  
   funcao descansar(){
     cadeia descanso
     enquanto(descanso != 1 e descanso !=2){
