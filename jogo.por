@@ -7,7 +7,35 @@ programa {
 
   funcao inicio() {
 
-    menu()
+    
+    contadorRegiao = 0
+
+    regioes[0] = "Floresta da Névoa"
+    regioes[1] = "Vila Abandonada"
+    regioes[2] = "Caverna Sombria"
+    regioes[3] = "Pântano dos Lamentos"
+    regioes[4] = "Castelo Dourado"
+
+    nivel = 1
+    xp = 0
+
+    nomeClasse[0] = "Guerreiro"
+    vidaMaxima[0] = 90
+    ataque[0] = 30
+    defesa[0] = 25
+
+    nomeClasse[1] = "Mago"
+    vidaMaxima[1] = 50
+    ataque[1] = 55
+    defesa[1] = 20
+
+    nomeClasse[2] = "Arqueiro"
+    vidaMaxima[2] = 60
+    ataque[2] = 40
+    defesa[2] = 25
+
+    menu ()
+    
   }
 
   funcao menu () {
@@ -70,32 +98,6 @@ programa {
     }
 
   funcao novoJogo () {
-
-    contadorRegiao = 0
-
-    regioes[0] = "Floresta da Névoa"
-    regioes[1] = "Vila Abandonada"
-    regioes[2] = "Caverna Sombria"
-    regioes[3] = "Pântano dos Lamentos"
-    regioes[4] = "Castelo Dourado"
-
-    nivel = 1
-    xp = 0
-
-    nomeClasse[0] = "Guerreiro"
-    vidaMaxima[0] = 90
-    ataque[0] = 30
-    defesa[0] = 25
-
-    nomeClasse[1] = "Mago"
-    vidaMaxima[1] = 50
-    ataque[1] = 55
-    defesa[1] = 20
-
-    nomeClasse[2] = "Arqueiro"
-    vidaMaxima[2] = 60
-    ataque[2] = 40
-    defesa[2] = 25
 
     para (inteiro i = 0; i<3; i++) {
       vidaAtual[i] = vidaMaxima[i]
@@ -958,6 +960,14 @@ escreva("====================================\n\n")
       chegadaVila()
       batalhaCeifadorErrante()
       ganharXp(70)
+      pocaoDeCura()
+      posCeifadorErrante()
+      batalhaLadraoDeAlmas()
+      ganharXp(100)
+      historiaAposLadraoAlmas()
+      cavaleiroEspectral()
+      batalhaCavaleiroEspectral()
+      ganharXp(200)
     }
 
   funcao prologoVila () {
@@ -1039,7 +1049,7 @@ escreva("====================================\n\n")
         
       logico contraAtaque = falso
 
-      inteiro vidaCeifadorErrante = 150, ataqueCeifadorErrante = 40, defesaCeifadorErrante = 20
+      inteiro vidaCeifadorErrante = 150, ataqueCeifadorErrante = 35, defesaCeifadorErrante = 20
 
       inteiro turno = 1, danoCausado, danoRecebido, danoContrAtaque, numSort, recargaHabilidade = 0
       logico opcaoDefesa = falso, voltar = falso, ataqueCarregado = falso
@@ -1101,7 +1111,7 @@ escreva("====================================\n\n")
           se (recargaHabilidade==0) {
             escreva("\nSeu próximo ataque causará 50% de dano a mais!")
             ataqueCarregado = verdadeiro
-            recargaHabilidade += 43
+            recargaHabilidade += 4
             u.aguarde(2000)
           } senao {
             escreva("\nA habilidade ainda não está pronta. Tempo restante: ", recargaHabilidade, " turnos!")
@@ -1110,65 +1120,473 @@ escreva("====================================\n\n")
           }
         }
 
-        escreva("\n\nVEZ DO INIMIGO\n\n")
-        u.aguarde(1000)
+        se (voltar==falso) {
+          escreva("\n\nVEZ DO INIMIGO\n\n")
+          u.aguarde(1000)
 
-        danoRecebido = ataqueCeifadorErrante - defesa[classe]
-        se (opcaoDefesa==verdadeiro) {
-          vidaAtual[classe] -= danoRecebido/2
-          escreva("O Ceifador lhe atacou e causou ", danoRecebido/2, " de dano!")
-          se (contraAtaque==verdadeiro) {
-            u.aguarde(1000)
-            escreva("\nVocê conseguiu contra-atacar e causou ", danoContrAtaque, " de dano!")
-            vidaCeifadorErrante -= danoContrAtaque - defesaCeifadorErrante
-          }
-          se (vidaAtual[classe]<=0) {
-            cadeia opcao
-            faca {
-              escreva("Você perdeu. \n")
-              escreva("\n1. Recomeçar | 2. Sair: ")
-              leia (opcao)
-            } enquanto (opcao!=1 e opcao!=2)
+          danoRecebido = ataqueCeifadorErrante - defesa[classe]
+          se (opcaoDefesa==verdadeiro) {
+            vidaAtual[classe] -= danoRecebido/2
+            escreva("O Ceifador lhe atacou e causou ", danoRecebido/2, " de dano!")
+            se (contraAtaque==verdadeiro) {
+              u.aguarde(1000)
+              escreva("\nVocê conseguiu contra-atacar e causou ", danoContrAtaque, " de dano!")
+              vidaCeifadorErrante -= danoContrAtaque - defesaCeifadorErrante
+            }
+            se (vidaAtual[classe]<=0) {
+              cadeia opcao
+              faca {
+                escreva("Você perdeu. \n")
+                escreva("\n1. Recomeçar | 2. Sair: ")
+                leia (opcao)
+              } enquanto (opcao!=1 e opcao!=2)
 
-            se (opcao==1) {
-              menu()
-            } 
+              se (opcao==1) {
+                menu()
+              } 
 
-            se (opcao==2) {
+              se (opcao==2) {
+                pare
+                pare
+              }
               pare
+            } 
+          } senao {
+            vidaAtual[classe] -= danoRecebido
+            escreva("O Ceifador lhe atacou e causou ", danoRecebido, " de dano!")
+            se (vidaAtual[classe]<=0) {
+              cadeia opcao
+              faca {
+                escreva("\nVocê perdeu. \n")
+                escreva("\n1. Recomeçar | 2. Sair: ")
+                leia (opcao)
+              } enquanto (opcao!=1 e opcao!=2)
+
+              se (opcao==1) {
+                menu()
+              } 
+
+              se (opcao==2) {
+                pare
+                pare
+              }
               pare
             }
-            pare
-          } 
-        } senao {
-          vidaAtual[classe] -= danoRecebido
-          escreva("O Ceifador lhe atacou e causou ", danoRecebido, " de dano!")
-          se (vidaAtual[classe]<=0) {
-            cadeia opcao
-            faca {
-              escreva("Você perdeu. \n")
-              escreva("\n1. Recomeçar | 2. Sair: ")
-              leia (opcao)
-            } enquanto (opcao!=1 e opcao!=2)
-
-            se (opcao==1) {
-              menu()
-            } 
-
-            se (opcao==2) {
-              pare
-              pare
-            }
-            pare
           }
-        }
 
-        u.aguarde(2000)
-        turno++
-        se (recargaHabilidade>0) {
-          recargaHabilidade--
+          u.aguarde(2000)
+          turno++
+          se (recargaHabilidade>0) {
+            recargaHabilidade--
+          }
         }
       } enquanto (vidaAtual[classe]>0 e vidaCeifadorErrante>0)
+  }
+
+  funcao pocaoDeCura() {
+    cadeia opcao
+
+    faca {
+      limpa()
+      statusHeroi()
+      escreva("Após derrotar o Ceifador Errante, você observa os escombros ao redor.\n")
+      escreva("Entre as tábuas quebradas e pedras antigas, algo brilha discretamente.\n")
+      escreva("Você se aproxima e encontra uma pequena poção misteriosa, ainda intacta.\n")
+      escreva("O que você deseja fazer? 1. Beber a poção | 2. Ignorar: ")
+      leia(opcao)
+    } enquanto (opcao!=1 e opcao!=2)
+
+    se (opcao==1)
+    cadeia opcao
+    faca {
+      limpa()
+      vidaAtual[classe] = vidaMaxima[classe]
+      statusHeroi()
+      escreva("Ao bebê-la, sente suas forças sendo parcialmente restauradas.\n")
+      escreva("\n")
+      escreva(">>> Sua vida foi totalmente recuperada! <<<\n")
+      escreva("1. Continuar: ")
+      leia(opcao)
+    } enquanto (opcao!=1)
+    
+  }
+
+  funcao posCeifadorErrante() {
+    cadeia opcao
+    faca {
+      limpa()
+      statusHeroi()
+      escreva("Você respira aliviado após a batalha, mas não por muito tempo.\n")
+      escreva("Enquanto limpa o suor do rosto, ouve passos pesados ecoando entre as casas destruídas.\n")
+      escreva("Do meio da névoa, surge uma silhueta robusta, arrastando uma corrente enferrujada.\n")
+      escreva("Os olhos da criatura brilham com um vermelho ameaçador, e seu rugido quebra o silêncio mortal da vila.\n")
+      escreva("Não há tempo para pensar... outro inimigo se aproxima!\n")
+      escreva("\n")
+      escreva("Prepare-se: O Ladrão de Almas está vindo em sua direção!\n")
+      escreva("1. Lutar: ")
+      leia(opcao)
+    } enquanto (opcao!=1)
+
+  }
+
+    funcao batalhaLadraoDeAlmas () {
+        
+      logico contraAtaque = falso
+
+      inteiro vidaLadraoDeAlmas = 200, ataqueLadraoDeAlmas = 40, defesaLadraoDeAlmas = 0
+
+      inteiro turno = 1, danoCausado, danoRecebido, danoContrAtaque, numSort, recargaHabilidade = 0
+      logico opcaoDefesa = falso, voltar = falso, ataqueCarregado = falso
+      cadeia opcao
+
+      danoContrAtaque = ataque[classe]/2
+
+
+      faca {
+        faca {
+          voltar = falso
+          contraAtaque = falso
+          opcaoDefesa = falso
+          limpa()
+          escreva("|-----BATALHA-----|\n\n")
+          escreva(nomeHeroi ," x Ladrão de Almas\n\n" )
+          escreva("SUA VIDA: ", vidaAtual[classe], " | VIDA DO INIMIGO: ", vidaLadraoDeAlmas)
+          escreva("\nTURNO: ", turno)
+          escreva("\n\nSUA VEZ: O QUE DESEJA FAZER?\n1. Atacar | 2. Defender (Chance de contra-ataque: 33%) | 3. Carregar ataque (Tempo de recarga: ", recargaHabilidade," Turnos)\n\nDigite a opção escolhida: ")
+          leia(opcao)
+        } enquanto (opcao!=1 e opcao!=2 e opcao!=3 ou voltar==verdadeiro)
+
+
+        se (opcao==1) {
+          danoCausado = ataque[classe] - defesaLadraoDeAlmas
+          se (ataqueCarregado==verdadeiro) {
+            danoCausado += danoCausado/2
+            ataqueCarregado = falso
+          }
+          se (danoCausado<0) {
+            danoCausado = 0
+          } 
+          vidaLadraoDeAlmas -= danoCausado
+
+          escreva("\nVocê causou ", danoCausado, " de dano!")
+          u.aguarde(2000)
+          se (vidaLadraoDeAlmas<=0) {
+            faca {
+              limpa()
+              escreva("Você derrotou o Ladrão de Almas!\n\n")
+              escreva("1. Prosseguir: ")
+              leia(opcao)
+            } enquanto (opcao!=1)
+            pare
+          }
+        }    
+
+        se (opcao==2) {
+          numSort = u.sorteia(1,3)
+          opcaoDefesa = verdadeiro
+          escreva("\nVocê escolheu se defender, o próximo ataque do seu inimigo causará metade do dano!")
+
+          se (numSort==2) {
+            contraAtaque = verdadeiro
+          }
+        }
+
+        se (opcao==3) {
+          se (recargaHabilidade==0) {
+            escreva("\nSeu próximo ataque causará 50% de dano a mais!")
+            ataqueCarregado = verdadeiro
+            recargaHabilidade += 4
+            u.aguarde(2000)
+          } senao {
+            escreva("\nA habilidade ainda não está pronta. Tempo restante: ", recargaHabilidade, " turnos!")
+            u.aguarde(2000)
+            voltar = verdadeiro
+          }
+        }
+
+        se (voltar==falso) {
+          escreva("\n\nVEZ DO INIMIGO\n\n")
+          u.aguarde(1000)
+
+          danoRecebido = ataqueLadraoDeAlmas - defesa[classe]
+          se (opcaoDefesa==verdadeiro) {
+            vidaAtual[classe] -= danoRecebido/2
+            escreva("O Ladrão de Almas lhe atacou e causou ", danoRecebido/2, " de dano!")
+            se (contraAtaque==verdadeiro) {
+              u.aguarde(1000)
+              escreva("\nVocê conseguiu contra-atacar e causou ", danoContrAtaque, " de dano!")
+              vidaLadraoDeAlmas -= danoContrAtaque - defesaLadraoDeAlmas
+            }
+            se (vidaAtual[classe]<=0) {
+              cadeia opcao
+              faca {
+                escreva("Você perdeu. \n")
+                escreva("\n1. Recomeçar | 2. Sair: ")
+                leia (opcao)
+              } enquanto (opcao!=1 e opcao!=2)
+
+              se (opcao==1) {
+                menu()
+              } 
+
+              se (opcao==2) {
+                pare
+                pare
+              }
+              pare
+            } 
+          } senao {
+            vidaAtual[classe] -= danoRecebido
+            escreva("O Ladrão de Almas lhe atacou e causou ", danoRecebido, " de dano!")
+            se (vidaAtual[classe]<=0) {
+              cadeia opcao
+              faca {
+                escreva("\nVocê perdeu. \n")
+                escreva("\n1. Recomeçar | 2. Sair: ")
+                leia (opcao)
+              } enquanto (opcao!=1 e opcao!=2)
+
+              se (opcao==1) {
+                menu()
+              } 
+
+              se (opcao==2) {
+                pare
+                pare
+              }
+              pare
+            }
+          }
+
+          u.aguarde(2000)
+          turno++
+          se (recargaHabilidade>0) {
+            recargaHabilidade--
+          }
+        }
+      } enquanto (vidaAtual[classe]>0 e vidaLadraoDeAlmas>0)
+  }
+
+  funcao historiaAposLadraoAlmas() {
+    cadeia opcao
+    faca {
+      limpa()
+      statusHeroi()
+      escreva("O Ladrão de Almas cai ao chão, sua essência se dissipando como fumaça na penumbra da Vila Abandonada.\n")
+      escreva("Enquanto você recupera o fôlego, sente o ar tornar-se ainda mais gélido, como se a própria morte rondasse os becos escuros.\n")
+      escreva("Você caminha lentamente pela rua deserta, quando percebe marcas profundas no chão, como arranhões causados por uma lâmina.\n")
+      escreva("Seguindo as trilhas, chega até o que resta da antiga capela da vila.\n")
+      escreva("As portas estão entreabertas e um sussurro espectral ecoa, chamando por sua alma.\n\n")
+      escreva("De repente, o chão treme levemente e uma figura surge em meio à névoa: um Cavaleiro Espectral, envolto em armadura corroída pelo tempo.\n")
+      escreva("Ele ergue sua espada maldita, pronto para proteger os segredos enterrados naquele lugar.\n\n")
+      escreva(">>> O Cavaleiro Espectral se aproxima em alta velocidade! <<<\n")
+      escreva("1. Ir pra cima com tudo | 2. Desviar: ")
+      leia(opcao)
+    } enquanto (opcao!=1 e opcao!=2)
+
+    se (opcao==1) {
+      faca {
+        limpa()
+        statusHeroi()
+        escreva(">>> HABILIDADE DO INIMIGO <<<\n")
+        escreva("Investida Espectral: sempre que você tenta desviar ou defender, o ataque do Cavaleiro causará 50% de dano a mais\n")
+        escreva("Você e o Cavaleiro colidem entre si\n")
+        escreva("O inimigo está muito enfurecido, a única opção é: \n")
+        escreva("1. LUTAR: ")
+        leia(opcao)
+      } enquanto (opcao!=1) 
+    }
+
+    se (opcao==2) {
+      faca {
+        limpa()
+        vidaAtual[classe] -= 20
+        statusHeroi()
+        escreva(">>> HABILIDADE DO INIMIGO <<<\n")
+        escreva("Investida Espectral: sempre que você tenta desviar ou defender, o ataque do Cavaleiro causará 50% de dano a mais\n")
+        escreva("Vida restante: ", vidaAtual[classe])
+        escreva("1. LUTAR: ")
+        leia(opcao)
+      } enquanto (opcao!=1) 
+    }
+  }
+
+  funcao cavaleiroEspectral() {
+    cadeia opcao
+    faca {
+      limpa()
+      escreva("                                                                                                                   \n")               
+      escreva("                                                                      :-*          :::                             \n")
+      escreva("                                                        %*           .--%*      ::::                               \n")
+      escreva("                                                        %%*=          #@@@@@:-----                                 \n")
+      escreva("                                                        %%@+=         :*%%@+:--                                    \n")
+      escreva("                                                        %%%--*+      .:::=%+=-                                     \n")
+      escreva("                                                        ##%@#::+-:..:-%*+---*%                                     \n")
+      escreva("                                                        %#%@@%%=::=+##@*+#@%%           #                          \n")
+      escreva("                                                         *%@@@@+#*#:-=##-*:::@+**  %%%#**                          CAVALEIRO ESPECTRAL\n")
+      escreva("                                                        *#=::+@@%%%%%%%=::::-:+#:=****++                           \n")
+      escreva("                                                       *#+=+#*##@@#%@%*:%%%-+*@@:+::-+                             \n")
+      escreva("                                                      ::#%%@@@@@@@=-:*%@%:%#+%@#%@@@##                             \n")
+      escreva("                                                    %*-*@@@@@#@@@@@@@%-##-%**@**%@@@                               VIDA: 250\n")
+      escreva("                                                 ::::=*%@@@%#   @@%%+#%%-:#%#@+#@@%@   :::                         \n")
+      escreva("                                                =-#%*=@          @@@@=:::::##:+%@%%%    %#:-::   :                 \n")
+      escreva("                                               **=#====            @@%#:::::::+%%%%#**++*%%-=   ::::               ATAQUE: 40\n")
+      escreva("                                           ::+#%#                   @#-::==:-*-@##***+###@%%::::::--               \n")
+      escreva("                                ##@    **=#*#%@                    @@%#+####**%%@**#@%%@@%%@*:::::                 \n")
+      escreva("                                ##@%##+:::*@@                    @@@%**@@%=+*##%#@%%##@@@%=-##:::                  DEFESA: 20\n")
+      escreva("                                  @@**%@%#*##%                  @%*+-:%%%%:***#%%%#%%%%%##+:+*                     \n")
+      escreva("                                 @*+#%@@                       @%#*%=::###*++*#++###%%%%@%=-*##                    \n")
+      escreva("                    *%%@@@      @%+###*#%@%@                   @##%++==+*#--*+=*:-*####%%%%*=+#                    \n")
+      escreva("                 *+=-=***%%%%####**%#=-+***#                  @%%@*==--:::**-=+#::+*###   %#+=+*                   \n")
+      escreva("               *#*+=::===*%*++:*%%*=-+::::::                  @%@%#*###*+#+#+:=#-::+*#     #+=-+*                  \n")
+      escreva("             *+=*=::::::-=+*:::::-#*:--:::                    %#@%@@@@@%*#%*#%@%*::+=      *#+:=-*                 \n")
+      escreva("            =:::::::::::::::::::::-::::::                     %%@%@@@@@@#@@@%##%-=++=       #+::++                 \n")
+      escreva("          ::::::::::::::::::::=::::::::                       @%@%%@@@@@@@%=+*+@=++++      -:-::-+                 \n")
+      escreva("         ::::-          :::::::: :::                           @%#++++=-:##%==*%%++++  :::::::::::                 \n")
+      escreva("       :::                                                    %#**--=+::::@#++*%% ++ ::  :::::::::                 \n")
+      escreva("                                                          :::#*#+-::--::::=@#-=#+          :::::::                 \n")
+      escreva("                                                 :     :::::+*##+-::::::==:@%*=*=+           ::::-                 \n")
+      escreva("                                              :::::   ::::::#%#*++=---=++=-%%*=+:+                                 \n")
+      escreva("                                             :::    :::::::#%#******+**++=#%#-=+-=+                                \n")
+      escreva("                                            :::       ::::#+####****#**=-=%#*:-++:==                               \n")
+      escreva("                                           ::::      :::::==%#**#%**##*::-#*-:=++-+=                               \n")
+      escreva("                                          ::::::::::::::::==##*#--*-:+:---::::=+*=+                                \n")
+      escreva("                                          ::::::::::::::--==#%####*###--::::-:%*==                                 \n")
+      escreva("                                          ::::::::::::--= #+####*+##   ::-::::-==+                                 \n")
+      escreva("                                             ::::::::    **===##%+%     =::=-=-==                                  \n")
+      escreva("                                                         #*::-=##%      *+==== ==                                  \n")
+      escreva("                                                         #**+*#%        *++===                                     \n")
+      escreva("                                                         #*#*%#          ++====                                    \n")
+      escreva("                                                         #***%#           +=====                                   \n")
+      escreva("                                                        +****%##          +===-==                                  \n")
+      escreva("                                                        *+=+*#*#           ---=--                                  \n")
+      escreva("                                                        *++*+###          :::::::-                                 \n")
+      escreva("                                                        =++++##*           ::::::-                                 \n")
+      escreva("                                                       :--:++#==                                                   \n")
+      escreva("                                                       :--:::--=-                                                  \n")
+      escreva("                                                        ---::--=                                                   \n")
+      escreva("                                                          ::--                                                     \n")
+      escreva("\n1. Continuar: ")
+      leia(opcao)
+    } enquanto (opcao!=1)
+  }
+
+      funcao batalhaCavaleiroEspectral () {
+        
+      logico contraAtaque = falso
+
+      inteiro vidaCavaleiroEspectral = 250, ataqueCavaleiroEspectral = 40, defesaCavaleiroEspectral = 20
+
+      inteiro turno = 1, danoCausado, danoRecebido, danoAtaqueCarregado
+      logico opcaoDefesa = falso, voltar = falso, ataqueCarregado = falso
+      cadeia opcao
+
+
+      faca {
+        faca {
+          voltar = falso
+          opcaoDefesa = falso
+          limpa()
+          escreva("|-----BATALHA-----|\n\n")
+          escreva(nomeHeroi ," x Cavaleiro Espectral\n\n" )
+          escreva("SUA VIDA: ", vidaAtual[classe], " | VIDA DO INIMIGO: ", vidaCavaleiroEspectral)
+          escreva("\nTURNO: ", turno)
+          escreva("\n\nSUA VEZ: O QUE DESEJA FAZER?\n1. Atacar | 2. Defender (Chance de contra-ataque: 33%) | 3. Carregar ataque (FÚRIA INCONTROLÁVEL: sem tempo de recarga)\n\nDigite a opção escolhida: ")
+          leia(opcao)
+        } enquanto (opcao!=1 e opcao!=2 e opcao!=3 ou voltar==verdadeiro)
+
+
+        se (opcao==1) {
+          danoCausado = ataque[classe] - defesaCavaleiroEspectral
+          se (ataqueCarregado==verdadeiro) {
+            ataqueCarregado = falso
+          }
+          se (danoCausado<0) {
+            danoCausado = 0
+          } 
+          vidaCavaleiroEspectral -= danoCausado
+
+          escreva("\nVocê causou ", danoCausado, " de dano!")
+          u.aguarde(2000)
+          se (vidaCavaleiroEspectral<=0) {
+            faca {
+              limpa()
+              escreva("Você derrotou o Cavaleiro Espectral!\n\n")
+              escreva("1. Prosseguir: ")
+              leia(opcao)
+            } enquanto (opcao!=1)
+            pare
+          }
+        }    
+
+        se (opcao==2) {
+          opcaoDefesa = verdadeiro
+          escreva("\nVocê tentou se defender, mas o Cavaleiro Espectral quebra sua defesa! ")
+        }
+
+        se (opcao==3) {
+            escreva("\nSeu próximo ataque causará 50% de dano a mais!")
+            ataqueCarregado = verdadeiro
+            u.aguarde(2000)
+        }
+
+        se (ataqueCarregado==verdadeiro) {
+          danoAtaqueCarregado = ataque[classe]/2
+          ataque[classe] += danoAtaqueCarregado
+        }
+
+        se (voltar==falso) {
+          escreva("\n\nVEZ DO INIMIGO\n\n")
+          u.aguarde(1000)
+
+          danoRecebido = ataqueCavaleiroEspectral - defesa[classe]
+          se (opcaoDefesa==verdadeiro) {
+            escreva("INVESTIDA ESPECTRAL: O Cavaleiro Espectral lhe atacou e causou ", danoRecebido + danoRecebido/2, " de dano!")
+            se (vidaAtual[classe]<=0) {
+              cadeia opcao
+              faca {
+                escreva("Você perdeu. \n")
+                escreva("\n1. Recomeçar | 2. Sair: ")
+                leia (opcao)
+              } enquanto (opcao!=1 e opcao!=2)
+
+              se (opcao==1) {
+                menu()
+              } 
+
+              se (opcao==2) {
+                pare
+                pare
+              }
+              pare
+            } 
+          } senao {
+            vidaAtual[classe] -= danoRecebido
+            escreva("O Cavaleiro lhe atacou e causou ", danoRecebido, " de dano!")
+            se (vidaAtual[classe]<=0) {
+              cadeia opcao
+              faca {
+                escreva("\nVocê perdeu. \n")
+                escreva("\n1. Recomeçar | 2. Sair: ")
+                leia (opcao)
+              } enquanto (opcao!=1 e opcao!=2)
+
+              se (opcao==1) {
+                menu()
+              } 
+
+              se (opcao==2) {
+                pare
+                pare
+              }
+              pare
+            }
+          }
+
+          u.aguarde(2000)
+          turno++
+        }
+      } enquanto (vidaAtual[classe]>0 e vidaCavaleiroEspectral>0)
   }
 
 
