@@ -539,14 +539,189 @@ programa {
                                   sorteio_do_descanso_apos_concluir_florestadanevoa = Util.sorteia(10,50)
                                   escreva("\nApós seu descanso você aumentou",sorteio_do_descanso_apos_concluir_florestadanevoa,"de vida máxima\n")
                                   vidadaespecializacao = vidadaespecializacao + sorteio_do_descanso_apos_concluir_florestadanevoa
-                                  escreva("\nApós um bom descansoo",nomedocampeao,"acorda e revigora suas energias antes de ir para a sua próxima aventura...\n")
+                                  escreva("\nApós um bom descanso",nomedocampeao,"acorda e revigora suas energias antes de ir para a sua próxima aventura...\n")
                                   escreva("SUA VIDA:",vidadaespecializacao,"\n")
+                                  Util.aguarde(4000)
+                                  escreva("\n\n\n\n")
                                   
-                                  escreva("Parabéns campeão escolha a região na qual você deseja ir...")
+                                  escreva("Parabéns campeão escolha a região na qual você deseja ir...\n")
+                                  escreva("REINO DE ELDORIA\n")
+                                  escreva("1-FLORESTA DA NÉVOA\n")
+                                  escreva("2-VILA ABANDONADA\n")
+                                  escreva("3-CAVERNA SOMBRIA\n")
+                                  escreva("4-PANTANO DOS LAMENTOS\n")
+                                  escreva("5-CASTELO DOURADO\n")
+                                  inteiro variavel_para_a_mudanca_de_mapa1
+                                  leia(variavel_para_a_mudanca_de_mapa1)
+                                  Util.aguarde(3000)
+                                  escolha (variavel_para_a_mudanca_de_mapa1){
+                                    
+                                    caso 1:
+                                    escreva("VOCE JA PASSOU POR ESTA REGIÃO", nomedocampeao,"\n")
+                                    Util.aguarde(1000)
+                                    escreva("VOCE CHEGOU ATÉ O NÍVEL",niveldocampeao,"\n")
+                                    Util.aguarde(1000)
+                                    escreva("VOCE DERROTOU",nome_chefe_xavius,"\n")
+                                    Util.aguarde(1000)
+                                    escreva(nomedocampeao,"NAO HÁ MAIS NADA A SER FEITO NESTA REGIÃO CAMPEÃO...\n")
+                                    Util.aguarde(1000)
+                                    escreva("LHE DESEJAMOS MUITA SORTE NOS PRÓXMIOS DESAFIOS",nomedocampeao,"\n")
+                                    Util.aguarde(1000)
+                                    pare
+
+                                    caso 2:
+                                    escreva("Bem vindo a sua próxima jornada campeão!!\n")
+                                    Util.aguarde(3000)
+                                    escreva("Mapa escolhido com sucesso!\n")
+                                    Util.aguarde(3000)
+                                    pare
+
+                                    caso 3:
+                                    escreva("IMPOSSÍVEL ESCOLHER A REGIÃO DE CAVERNAS SOMBRIAS SEM TER CONCLUÍDO A FASE ANTERIOR CAMPEÃO!\n")
+                                    Util.aguarde(3000)
+                                    escreva("POR FAVOR, CONCLUA A REGIÃO DE VILA ABANDONADA PARA SEGUIR COM A SUA JORNADA! \n")
+                                    Util.aguarde(3000)
+                                    pare
+                                    
+
+                                    caso 4:
+                                    escreva("IMPOSSÍVEL ESCOLHER A REGIÃO DE PÂNTANO DOS LAMENTOS SEM TER CONCLUÍDO A FASE ANTERIOR CAMPEÃO!\n")
+                                    Util.aguarde(3000)
+                                    escreva("POR FAVOR, CONCLUA A REGIÃO VILA ABANDONADA PARA SEGUIR COM A SUA JORNADA! \n")
+                                    Util.aguarde(3000)
+                                    pare
+
+                                    caso 5:
+                                    escreva("IMPOSSÍVEL ESCOLHER A REGIÃO DE CASTELO DOURADO SEM TER CONCLUÍDO A FASE ANTERIOR CAMPEÃO!\n")
+                                    Util.aguarde(3000)
+                                    escreva("POR FAVOR, CONCLUA A REGIÃO VILA ABANDONADA PARA SEGUIR COM A SUA JORNADA! \n")
+                                    Util.aguarde(3000)
+                                    pare
+                                    
+                                  }
+                                  limpa()
+                                  escreva(nomedocampeao," Voce segue por todo aquele caminho devastado feito por magia negra de Xavius\n")
+                                  Util.aguarde(250)
+                                  escreva("-Voce se pergunta como aquele guarda sabia de seu nome...\n")
+                                  Util.aguarde(250)
+                                  escreva("-Voce olha para os céus e eles ficam cada vez mais negros , extiguindo quase que toda a beleza das terras de Eldoria\n")
+                                  Util.aguarde(250)
+                                  escreva("-Observando o mapa de Eldoria, é possível reconhecer a antiga vila na qual o campeão cresceu...\n")
+                                  Util.aguarde(250)
+                                  escreva("-Na esperanca que algo se salvou", nomedocampeao,"segue para a Vila...\n")
+                                  Util.aguarde(250)
+                                  escreva("-Passa-se um calafrio pela sua espinha após ver o lugar que você nasceu destruído e devastado...\n")
+                                  Util.aguarde(250)
+                                  escreva("-Você se pergunta se valhe a pena continuar aquela arrepiante e nostalgicalmente traumática experiência...\n")
+                                  Util.aguarde(250)
+                                  inteiro prosseguir_para_a_vila_sombria_escolha
+                                  escreva("\n\n\n")
+                                  escreva("1-CONTINUAR PARA A VILA SOMBRIA...\n")
+                                  leia(prosseguir_para_a_vila_sombria_escolha)
+                                  se(prosseguir_para_a_vila_sombria_escolha==1){
+                                  escreva("\n\n\n")
+                                  escreva("Ao andar por toda a vila,você nota casas familiares...\n")
+                                   Util.aguarde(250)
+                                  escreva("O cheiro pútrido toma conta do ar...")
+                                   Util.aguarde(250)
+                                  escreva("Os sussuros estão muito altos, mas mesmo assim você sente-se forte por querer acabar com todo aquele mal...\n")
+                                   Util.aguarde(250)
+                                  escreva("\n\n\n")
+                                  escreva("**UMA VOZ ECOANTE MUITO FORTE ENTRA EM SUA CABECA***\n")
+                                   Util.aguarde(250)
+                                  escreva("GULDHAN:--HAHAHAHAHAHAHAHAHA, você se acha especial não é?",nomedocampeao,"\n")
+                                   Util.aguarde(250)
+                                  escreva("GULDHAN:--XAVIUS DEVIA SER UM FRACO PARA PERDER PARA UM VERME COMO VOCE!!\n")
+                                   Util.aguarde(250)
+                                  escreva("GULDHAN:--Vamos campeão, siga as suas emocoes, consigo sentir o ódio de ver a sua vila totalmente destruída pela minha magia...\n")
+                                   Util.aguarde(250)
+                                  escreva("GULDHAN:--Vou lhe dar uma chance campeão...\n")
+                                  Util.aguarde(250)
+                                  escreva("GULDHAN:--Renda-se ao meu poder ... sirva a mim e SEREMOS CONQUISTADORES!!\n")
+                                  Util.aguarde(250)
+                                  escreva("\n\n\n")
+                                  inteiro resistir_a_magia_de_guldhan1
+                                  cadeia nome_chefe_guldhan = "GULDHAN, O MALDITO"
+                                  escreva("**RESISTA A MAGIA DE **",nome_chefe_guldhan,"\n")
+                                  escreva("\n\n\n")
+                                  escreva("GULDHAN:--HAHAHAHAHA, AINDA RESTA ALGUMA CONSCIÊNCIA MORAL AÍ DENTRO?\n")
+                                  escreva("GULDHAN:--É OQUE VEREMOS...\n")
+                                  escreva("GULDHAN:--ME DIGA",nomedocampeao, "Poque é tão importante salvar esse mundo sarnento para você?\n")
+                                  escreva("**PORQUE SALVAR ELDORIA?**\n")
+                                  escreva(nomedocampeao,"-1:Não sei o porque...\n ")
+                                  escreva(nomedocampeao,"-2:Talvez eu não seja forte o suficiente...\n ")
+                                  escreva(nomedocampeao,"-3:Talvez eu não seja páreo para ele...\n ")
+                                  escreva(nomedocampeao,"-4:EU SOU O ESCOLHIDO!!\n ")
+                                  leia(resistir_a_magia_de_guldhan1)
+                                  inteiro atributos_reduzidos_caso_escolha123_guldhan = 13
+                                  escreva("\n\n")
+                                  escolha(resistir_a_magia_de_guldhan1){
+                                    
+                                    caso 1:
+                                    escreva("GULDHAN:--Se nem voce sabe disso herói...significa que você é fraco ...\n")
+                                    vidadaespecializacao = vidadaespecializacao - atributos_reduzidos_caso_escolha123_guldhan
+                                    danodaespecializacao = danodaespecializacao - atributos_reduzidos_caso_escolha123_guldhan
+                                    defesadaespecializacao = defesadaespecializacao - atributos_reduzidos_caso_escolha123_guldhan
+                                    escreva("GULDHAN:--RECEBA MEU PRESENTE DE BOAS VINDAS A NOVA TERRA DE ELDORIA...HAHAHAHA\n")
+                                    escreva("GULDHAN:--Aqui está oque merece de verdade...\n")
+                                    escreva("\n\n\n")
+                                    escreva(nome_chefe_guldhan," **AMALDICOOU VOCE CAMPEÃO!!\n")
+                                    escreva("SEUS NOVOS ATRIBUTOS...\n")
+                                    escreva(vidadaespecializacao," de vida\n")
+                                    escreva(danodaespecializacao," de dano\n")
+                                    escreva(defesadaespecializacao," de defesa\n")
+                                    escreva("GULDHAN:--EU SOU O MALDITO...NÃO HÁ COMO FUGIR DE MIM!\n")
+
+                                    caso 2:
+                                    escreva("GULDHAN:--Hahahahaha pobre coitado...")
+                                    escreva("GULDHAN:--tenho pena de você", nomedocampeao, "\n")
+                                    escreva("**AMALDICOOU VOCÊ COM (MEDO IMPLACÁVEL)\n")
+                                    danodaespecializacao = danodaespecializacao - atributos_reduzidos_caso_escolha123_guldhan
+                                    escreva("SEU DANO FOI REDUZIDO PARA: ", danodaespecializacao, " de dano \n")
+
+                                    caso 3:
+                                    escreva("GULDHAN:--SUA ALMA SOFRERÁ!\n")
+                                    vidadaespecializacao = vidadaespecializacao - atributos_reduzidos_caso_escolha123_guldhan
+                                    escreva("SUA VIDA FOI REDUZIDA PARA: ", danodaespecializacao, " de vida \n")
+
+                                    caso 4:
+                                    escreva("Acha mesmo que é pareo para mim?\n")
+                                    escreva("Voce não passa de um garoto\n")
+                                    inteiro aumentodevida_escolha_guldan1 = 8
+                                    vidadaespecializacao = Util.sorteia(aumentodevida_escolha_guldan1+5,aumentodevida_escolha_guldan1+8)
+                                    escreva("SUA VIDA AUMENTOU PARA:",vidadaespecializacao, "\n")
+                                    
+                                  }
+                                    escreva("\n\n\n\n")
+                                    escreva(nome_chefe_guldhan," :É lindo ver você tentando resistir a algo que vai além de sua compreensão...\n")
+                                    Util.aguarde(1000)
+                                    escreva(nome_chefe_guldhan," :Existe algo pior que morrer em outra dimensão herói?Veremos como seu corpo se comprtará...\n")
+                                    Util.aguarde(1000)
+                                    escreva(nome_chefe_guldhan," :FAREI SUA ALMA LACRIMEJAR POR DÉCADAS...\n")
+                                    Util.aguarde(4000)
+                                    limpa()
+
+                                    escreva("TELEPORTANDO-SE PARA O FIM DOS TEMPOS...\n")
+                                    Util.aguarde(3000)
+                                    escreva(nome_chefe_guldhan," teleporta você para uma ilha no seu mundo...\n")
+                                    Util.aguarde(3000)
+                                    escreva("-Uma ilha isolada com mares de sangue e esqueletos boiando nele...\n")
+                                    Util.aguarde(3000)
+                                    escreva("-Ao centro um orbe verde que mais parece um olho verde...\n")
+                                    Util.aguarde(3000)
+                                    inteiro encostar_no_orbe
+                                    escreva("1-ENCOSTAR NO ORBE...")
+                                    leia(encostar_no_orbe)
+                                    se(encostar_no_orbe==1){
+                                        
+
+                                    }senao{escreva("Você caiu no limbo do mundo de guldhan,um final terrível o aguarda...")}
+
+                                  }senao{escreva("Tudo bem, talvez você nao seja tudo aquilo mesmo...")}
                                 }
 
                                 } senao {
-                                escreva("Nao seja um covarde...", nomedocampeao, "\n")
+                                escreva("Nao seja um covarde... ", nomedocampeao, "\n")
                                 }
 
                             
