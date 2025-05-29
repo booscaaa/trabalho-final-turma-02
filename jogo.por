@@ -2,6 +2,9 @@ programa {
   inclua biblioteca Util --> u
   cadeia nomedoHeroi
   inteiro classeEscolhida
+  cadeia posicoesNoMapa[5] = {"Floresta Amaldiçoada", "Vilarejo abandonado", "Entrada do castelo", "Castelo", "Campo aberto com tempestade nada suspeito"}
+  inteiro contadordeMapas = 0
+
   funcao inicio() {
 
   inteiro opcaoEscolhidaMenu = 0
@@ -218,5 +221,26 @@ u.aguarde(1000)
     escreva("                        .*@@####%@@-=*@%##@@+=-@@#####@@+.\n")    
     u.aguarde(1000)
   }
+
+funcao PrimeiroMapa(){
+ inteiro vidaDaArvore = 10
+ inteiro ataqueDaArvore = 2
+  posicoesNoMapa[contadordeMapas]
+  escreva("Você saiu para andar com seus equipamentos e entrou na Floresta Amaldiçoada sem perceber!\n")
+  escreva("\nVocê tenta voltar mas a floresta se distorce e muda os seus locais.\n")
+  escreva("\nSó lhe resta seguir em frente para dentro da floresta.\n")
+  escreva("\nEnquanto você caminha pela floresta...\n")
+  escreva("\nAs árvores se fecham em formato de arena, no meio da escuridão você vê 2 olhos vermelhos como sangue.\n")
+  escreva("\nVocê encontra Árvore do Lamento, não há para onde correr sua unica escolha é batalhar!\n")
+  // imagem top
+
+  escreva("O que você você deseja fazer agora ?\n")
+  escreva("1- Atacar")
+  escreva("2- Usar um item")
+
+}
+
+
+
 
 }
