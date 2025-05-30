@@ -3,6 +3,8 @@ import difflib
 import pandas as pd
 from itertools import combinations
 
+#
+
 base_dir = "submissions"
 out_csv = "relatorios/resumo.csv"
 html_dir = "relatorios/html"
