@@ -850,6 +850,156 @@ programa {
                                   escreva("4-PANTANO DOS LAMENTOS\n")
                                   escreva("5-CASTELO DOURADO\n")
                                   leia(terceira_regiao_eldoria)
+                                  escolha(terceira_regiao_eldoria){
+                                    caso 1:
+                                    escreva("VOCE JA PASSOU POR ESTA REGIÃO", nomedocampeao,"\n")
+                                    Util.aguarde(1000)
+                                    escreva("VOCE CHEGOU ATÉ O NÍVEL",niveldocampeao,"\n")
+                                    Util.aguarde(1000)
+                                    escreva("VOCE DERROTOU",nome_chefe_xavius,"\n")
+                                    Util.aguarde(1000)
+                                    escreva(nomedocampeao,"NAO HÁ MAIS NADA A SER FEITO NESTA REGIÃO CAMPEÃO...\n")
+                                    Util.aguarde(1000)
+                                    escreva("LHE DESEJAMOS MUITA SORTE NOS PRÓXMIOS DESAFIOS",nomedocampeao,"\n")
+                                    Util.aguarde(1000)
+                                    pare
+
+                                    caso 2:
+                                    escreva("VOCE JA PASSOU POR ESTA REGIÃO", nomedocampeao,"\n")
+                                    Util.aguarde(1000)
+                                    escreva("VOCE CHEGOU ATÉ O NÍVEL",niveldocampeao,"\n")
+                                    Util.aguarde(1000)
+                                    escreva("VOCE DERROTOU",nome_chefe_guldhan,"\n")
+                                    Util.aguarde(1000)
+                                    escreva(nomedocampeao,"NAO HÁ MAIS NADA A SER FEITO NESTA REGIÃO CAMPEÃO...\n")
+                                    Util.aguarde(1000)
+                                    escreva("LHE DESEJAMOS MUITA SORTE NOS PRÓXIMIOS DESAFIOS",nomedocampeao,"\n")
+                                    Util.aguarde(1000)
+                                    pare
+
+                                    caso 3:
+                                    escreva("Bem vindo a sua próxima jornada campeão!!\n")
+                                    Util.aguarde(3000)
+                                    escreva("Mapa escolhido com sucesso!\n")
+                                    Util.aguarde(3000)
+                                    pare
+                                    
+                                    caso 4:
+                                    escreva("IMPOSSÍVEL ESCOLHER A REGIÃO DE PÂNTANO DOS LAMENTOS SEM TER CONCLUÍDO A FASE ANTERIOR CAMPEÃO!\n")
+                                    Util.aguarde(3000)
+                                    escreva("POR FAVOR, CONCLUA A REGIÃO CAVERNAS SOMBRIAS PARA SEGUIR COM A SUA JORNADA! \n")
+                                    Util.aguarde(3000)
+                                    pare
+
+                                    caso 5:
+                                    escreva("IMPOSSÍVEL ESCOLHER A REGIÃO DE CASTELO DOURADO SEM TER CONCLUÍDO A FASE ANTERIOR CAMPEÃO!\n")
+                                    Util.aguarde(3000)
+                                    escreva("POR FAVOR, CONCLUA A REGIÃO DE CAVERNAS SOMBRIAS PARA SEGUIR COM A SUA JORNADA! \n")
+                                    Util.aguarde(3000)
+                                    pare
+                                  }
+                                    limpa()
+                                     escreva("- APÓS UMA ÁRDUA BATALHA CONTRA O TEMÍVEL GULDHAN VOCÊ ENCONTRA UM PORTAL...\n")
+                                      inteiro portal_mundo_normal
+                                      escreva("1-ENTRAR NO PORTAL")
+                                      leia(portal_mundo_normal)
+                                      se(portal_mundo_normal==1){
+                                        escreva("Você retorna ao mundo de eldoria...\n")
+                                        escreva("- Você olha para trás e resolve continuar , porém sente que comeca a perder as forcas...\n")
+                                        escreva("-Se sente tonto...porém alguns quilometros antes da sua próxima aventura vocÊ encontra um celeiro...\n")
+                                        escreva("-Ao pensar bem você resolve entrar no estábulo para tentar arranjar algo para se manter de pé...\n")
+                                        escreva("\n**ONDE PROCURAR MANTIMENTOS**\n")
+                                        escreva("1-LOCAL ONDE FICAM OS CAVALOS(ADENTRAR A PARTE EM QUE OS CAVALOS DORMEM)\n")
+                                        escreva("2-PARTE DE CIMA DO CELEIRO\n")
+                                        escreva("3-ESTOQUE DE FENO\n")
+                                        escreva("4-SAIR DO CELEIRO\n")
+                                        escolha(portal_mundo_normal){
+                                          caso 1:
+                                          escreva("Voce anda lentamente onde ficam os cavalos...\n")
+                                          escreva("Porém não encontra nada , apenas o chão úmido e solido de concreto que ali estavam os animais\n")
+                                          escreva("Voce pensa seriamente em executar um deles para alimentar-se\n")
+                                          escreva("Ao executar um golpe que executaria um dos cavalos você comeca a se sentir mal e desmaia...\n")
+                                          pare
+
+                                          caso 2:
+                                          escreva("Voce sobe na parte de cima do celeiro\n")
+                                          escreva("A única coisa que você encontra é alguns remédios para os cavalos\n")
+                                          escreva("Voce desce a escada e acaba pisando em um degrau infalso\n")
+                                          escreva("Após isso , você escorrega e cai sobre aquele chão úmido...\n")
+                                          encreva("Enquanto seus olhos se fechavam você avista um semblante de um agricultor vindo na sua direcao vagarosamente...\n")
+                                          pare
+
+                                          caso 3:
+                                          escreva("Ao subir no estoque de feno , só se depara com muito feno e algumas pilhas de pasto...\n")
+                                          escreva("Mesmo com uma fome e cansaco implacáveis , voce resolve olhar pela janela do celeiro\n")
+                                          escreva("Uma grande tempestade está a caminho...\n ")
+                                          escreva("Voce se deita sobre os fenos...e a única coisa que lhe motiva é salvar Eldoria...\n")
+                                          escreva("Pouco antes de dormir voce nota um semblante de um homem se aproximar pouco a pouco..\n")
+                                          escreva("Você desmaia pouco depois de lhe avistar...")
+                                          pare
+
+                                          caso 4:
+                                          escreva("Voce tenta ir para fora do celeiro porém uma árdua jornada o aguarda...\n")
+                                          escreva("Uma forte tempestade comeca...\n")
+                                          escreva("Voce nota um movimento estranho na mata...\n")
+                                          escreva("Ao tentar correr...se depara com uma pedra na qual voce tropeca...\n")
+                                          escreva("Voce torce o tornozelo e bate a cabeca...\n")
+                                          escreva("Um homem grande se aproxima e após notá-lo voce desmaia...")
+                                          pare
+                                        }
+                                          
+                                          vidadaespecializacao = Util.sorteia(vidadaespecializacao+10,vidadaespecializacao+25)
+                                          cadeia nome_camponesamigo = "Joofrey"
+
+                                          escreva("*Após um bom descanso sua vida se restaurou!*\n")
+                                          escreva("SUA VIDA ATUAL",vidadaespecializacao)
+                                          escreva("-Após algum tempo , você acorda em uma casa de madeira...\n")
+                                          escreva("-Voce se pergunta quem é ele...\n")
+                                          escreva("-Eu vi você ai jovem...\n")
+                                          escreva("-pode se levantar se quiser , estou preparando algo para comer...venha!\n")
+                                          escreva("**Levantando-se da cama rapidamente**\n")
+                                          escreva("voce saca ",armadaespecializacao)
+                                          escreva("hahahahaha , nao precisa ter medo\n")
+                                          escreva("não quero machucá-lo menino...vamos, deve estar faminto...\n")
+                                          escreva("**VOCE PUXA A CADEIRA RAPIDAMENTE...**")
+                                          escreva("**COMENDO RAPIDO,QUASE QUE SE ENGASGANDO COM A COMIDA**")
+                                          escreva("Me chamo Joofrey, muito prazer garoto\n")
+                                          escreva(nomedocampeao,"Agradeco a refeica...",nome_camponesamigo,"Muito obrigado...\n")
+                                          escreva("hahahah não há de que , nada mais justo que eu lhe ajudar após salvar o lugar que eu nasci daquele monstro --\n")//variavel nome guldhan
+                                          escreva(nomedocampeao," :ele deve ter matado muitos inocentes não é?\n")
+                                          escreva(nome_camponesamigo," :Você não faz idéia...")
+                                          escreva(nome_camponesamigo," :Antes de prosseguir campeão...pegue isto...")
+                                          inteiro safira_azul = 20
+                                          escreva(nome_camponesamigo," :Ganhei isso de alguns amigos que moravam na vila devastada por Guldhan...\n")
+                                          escreva(nome_camponesamigo," :Ouvi conversas de monges que algum escolhido estaria a caminho de salvar nossa terra...\n")
+                                          escreva(nome_camponesamigo," :Acho que o encontrei...pegue campeão\n")
+                                          escreva(nomedocampeao," :obrigado... usarei-a com sabedoria!\n")
+                                          escreva("\n**ABRINDO A PORTA LENTAMENTE...**\n")
+                                          escreva(nome_camponesamigo," :Espere campeão, aqui , pegue este mapa para não se perder nas cavernas sombrias!\n")
+                                          escreva(nomedocampeao," :como vou saber por onde devo ir naquela caverna??")
+                                          escreva(nome_camponesamigo," :Ah claro quase esqueci, hahahaha eu encriptei este mapa para que os inimigos não soubessem como passar...\n")
+                                          escreva(nome_camponesamigo," :ao entrar na caverna , terá pedras nos caminhos e dessa forma você deve se basear nos seguintes túneis..\n")
+                                          escreva(nome_camponesamigo," :As cores das pedras são, Azul , Vermelha , Amarela e verde, e os caminhos são:")
+                                          escreva(nome_camponesamigo," :Primeiro caminho:Azul,Segundo caminho:Verde, Terceiro caminho:Verde e Quarto caminho:Amarela \n")
+                                          Util.aguarde(7000)
+                                          escreva(nomedocampeao," :Agradeco",nome_camponesamigo,"que os Deuses lhe iluminem...")
+                                          escreva(nome_camponesamigo," :Fique tranquilho,para chegar até as cavernas sombrias é só continuar a estrada até duas ameixeiras grandes\n")
+                                          escreva(nomedocampeao," :Certo, e obrigado pelo amuleto...")
+                                          escreva("**VOCE SAI DA CASA**\n")
+                                          escreva("\n\n\n")
+                                          escreva("-Voce segue pelo caminho na qual foi dito por Joofrey...\n")
+                                          escreva("-Ao avistar as ameixeiras nota que está no lugar certo\n")
+                                          escreva("-Ao ver a entrada , você se depara com a escuridão da caverna\n")
+                                          escreva("-Você acende uma tocha com uma pederneira que estava no seu bolso...\n")
+                                          escreva("1--ENTRAR NA CAVERNA SOMBRIA.\n")
+                                          inteiro entrar_caverna_sombria
+                                          leia(entrar_caverna_sombria)
+                                          se(entrar_caverna_sombria==1){
+                                            Util.aguarde(2000)
+                                            limpa()
+                                            escreva("BEM VINDO ÀS CAVERNAS SOMBRIAS CAMPEÃO!!\n")
+                                          }
+                                      }senao{escreva("opcao incorreta campeão...")}
                                   }
 
                                       }
