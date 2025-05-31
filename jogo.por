@@ -713,7 +713,152 @@ programa {
                                     escreva("1-ENCOSTAR NO ORBE...")
                                     leia(encostar_no_orbe)
                                     se(encostar_no_orbe==1){
-                                        
+                                    escreva("\n\n\n\n")
+                                    escreva(nome_chefe_guldhan," você vai aprender a respeitar o caos infinito...\n")
+                                    inteiro vida_aumentada_ao_encostar_no_orbe = 30
+                                    escreva("UMA ÁRUA NEGRA TOMA CONTA DE VOCÊ , E A SUA VIDA É AUMENTADA APÓS ENCOSTAR NO ORBE!!\n")
+                                    vidadaespecializacao = Util.sorteia(vida_aumentada_ao_encostar_no_orbe,vida_aumentada_ao_encostar_no_orbe+5)
+                                    escreva("SUA NOVA VIDA: ",vidadaespecializacao,"\n")
+                                    Util.aguarde(1000)
+                                    escreva(nome_chefe_guldhan,"IMPOSSÍVEL...\n")
+                                    escreva("**GULDHAN FICA IMPRESSIONADO COM A SUA REACAO APÓS ENCOSTAR NO ORBE**\n")
+                                    inteiro esquivarse_seta_sombria_guldhan
+                                    escreva(nome_chefe_guldhan," acha mesmo que isso muda algo?MALDITO!!..\n")
+                                    escreva(nome_chefe_guldhan," *ARREMESSOU UMA SETA SOMBRIA PARA O SEU LADO ESQUERDO HERÓI!!*\n")
+                                    escreva("ESQUIVAR-SE PARA QUAL LADO?\n")
+                                    escreva("1-LADO DIREITO\n")
+                                    escreva("2-LADO ESQUERDO\n")
+                                    leia(esquivarse_seta_sombria_guldhan)
+                                    escolha(esquivarse_seta_sombria_guldhan){
+                                      caso 1:
+                                      escreva("VOCÊ SE ESQUIVOU DA HABILIDADE DE", nome_chefe_guldhan," \n")
+
+                                      escreva(nome_chefe_guldhan,"Acha mesmo que vai sobreviver porque se esquivou de uma de minhas habilidades mortal?\n")
+                                      escreva(nome_chefe_guldhan," ACHA QUE SE ESQUIVAR DE UMA HABILIDADE MINHA VAI FAZER ALGUMA DIFERENCA?\n")
+                                      escreva(nome_chefe_guldhan,"VOCE SUCUMBIRÁ MESMO ASSIM!!\n")
+                                      Util.aguarde(3000)
+                                      pare
+
+                                      caso 2:
+                                      inteiro vida_reduzida_apos_setasombria_guldhan = 35
+                                      vidadaespecializacao = vidadaespecializacao - vida_reduzida_apos_setasombria_guldhan
+
+                                      escreva(nome_chefe_guldhan," --COMTEMPLE O PODER DO OBLÍVIO!\n")
+                                      Util.aguarde(3000)
+                                      escreva(nome_chefe_guldhan," --HAHAHHA, TÃO FRACO...\n")
+                                      escreva("SUA VIDA AGORA É",vidadaespecializacao)
+                                      Util.aguarde(3000)
+                                      pare
+                                    }
+
+                                      limpa()
+                                      escreva("Muito bem capeão, veremos se ainda consegue resistir a minha magia persuasiva\n")
+                                      escreva(nome_chefe_guldhan, "*USA A TEMÍVEL MAGIA DA PERSUASÃO!!**\n")
+                                      escreva("**VOCE PRECISA LEMBRAR O SEU NOME CAMPEAO!!**\n")
+                                      escreva(nome_chefe_guldhan," sua arma será sua ruína...\n")
+                                      escreva("**SUA ARMA REVIRA-SE CONTRA VOCê MESMO!!**\n")
+                                      escreva("**RELEMBRE SEU NOME PARA QUE VOCE NAO SE AUTO-SABOTE HERÓI!!\n")
+                                      inteiro magia_persuasiva_de_guldhan_escolha
+                                      escreva("**QUAL O SEU NOME??**\n")
+                                      leia(magia_persuasiva_de_guldhan_escolha)
+                                      se(magia_persuasiva_de_guldhan_escolha==nomedocampeao){
+                                        escreva("**VOCÊ RETOMOU CONTROLE DO SEU CORPO**\n")
+                                        escreva(nome_chefe_guldhan," VEJO QUE VOCE NÃO É TÃO FRACO ASSIM CAMPEÃO...")
+                                        Util.aguarde(2000)
+                                        escreva(nome_chefe_guldhan," ACHO QUE É DIGNO O SUFICIENTE PARA ME ENFRENTAR...\n")
+                                        Util.aguarde(2000)
+                                        inteiro vida_chefe_guldhan = 100
+                                        inteiro dano_de_ataque_guldhan = 8
+                                        inteiro xp_ganho_guldhan = 100
+                                        logico defenderse_de_guldhan = falso
+                                        limpa()
+                                        escreva("--------------------------------------------------------------\n")
+                                        escreva("VOCE ENCONTROU GULDHAN, O SENHOR DA MAGIA NEGRA!!\n")
+                                        escreva("--------------------------------------------------------------\n")
+                                enquanto(vidadaespecializacao > 0 e vida_chefe_guldhan > 0) {
+                                escreva("\nSUA VIDA:", vidadaespecializacao, "\nVIDA DO ", nome_chefe_guldhan, ":", vida_chefe_guldhan, "\n")
+                                escreva("1-ATACAR\n")
+                                escreva("2-DEFENDER-SE\n")
+                                inteiro acao_combate_chefe_guldhan
+                                leia(acao_combate_chefe_guldhan)
+                                defenderse_de_guldhan = falso
+
+                                se(acao_combate_chefe_guldhan==1){
+                                  danodaespecializacao=Util.sorteia(danodaespecializacao-2,danodaespecializacao + 2)
+                                  agilidadedaespecializacao = Util.sorteia(1,100)
+                                  se(agilidadedaespecializacao<=15){
+                                    danodaespecializacao = danodaespecializacao * 2
+                                    escreva("VOCÊ CAUSOU UM ATAQUE CRÍTICO CAMPEÃO!!\n")
+                                  }
+                                vida_chefe_guldhan = vida_chefe_guldhan - danodaespecializacao
+                                escreva("\nVocê causou",danodaespecializacao,"de dano em",nome_chefe_guldhan,"\n")
+                                }
+                                senao se(acao_combate_chefe_guldhan==2){
+                                  defenderse_de_guldhan = verdadeiro
+                                  inteiro dano_reduzido_do_chefe_guldhan = (Util.sorteia(dano_de_ataque_guldhan-2,dano_de_ataque_guldhan)) / 2
+                                  se(dano_reduzido_do_chefe_guldhan < 0){
+                                    dano_reduzido_do_chefe_guldhan = 0
+                                  }
+                                  vidadaespecializacao = vidadaespecializacao - dano_reduzido_do_chefe_guldhan
+                                  escreva("Voce se defendeu de ",nome_chefe_guldhan,"o inimigo causou apenas",dano_reduzido_do_chefe_guldhan,"\n")
+                                  }senao{escreva(nome_chefe_guldhan,"Aproveitou a sua brecha",nomedocampeao,"  lhe atacou!!\n")}
+                                  se(vida_chefe_guldhan > 0 e defenderse_de_guldhan==falso){
+                                    dano_de_ataque_guldhan = Util.sorteia(dano_de_ataque_guldhan-5,dano_de_ataque_guldhan+5)
+                                    se(dano_de_ataque_guldhan<0){
+                                      dano_de_ataque_guldhan = 0
+                                    }inteiro chance_de_esquiva_guldhan=Util.sorteia(1,100)
+                                    se(chance_de_esquiva_guldhan<=15){
+                                      escreva("\nVocê se esquivou de",nome_chefe_guldhan,"\n")
+                                    }
+                                    senao{
+                                      vidadaespecializacao = vidadaespecializacao - dano_de_ataque_guldhan
+                                      escreva("\nVoce recebeu",dano_de_ataque_guldhan,"de",nome_chefe_guldhan,"\n")
+                                    }
+                                  }
+                                 
+
+                                  
+
+                                }
+                                se(vidadaespecializacao <=0){
+                                  escreva("Voce foi derrotado por",nome_chefe_guldhan,"\n")
+                                  escreva("Que os deuses guardem sua alma",nomedocampeao,"\n")
+                                  }
+                                senao se(vida_chefe_guldhan<=0){
+                                  escreva("Parabéns",nomedocampeao,"voce derrotou",nome_chefe_guldhan,"\n")
+                                  xp = xp + xp_ganho_guldhan
+                                  escreva(nomedocampeao," você derrotou ",nome_chefe_guldhan,"parabéns",nomedocampeao,"\n")
+                                  nivelupado(xp, xpparasubirdenivel, niveldocampeao)
+                                  escreva("Muito obrigado campeão, você libertou a floresta da névoa de",nome_chefe_guldhan,"\n")
+                                  escreva("\n\n\n\n")
+                                  escreva("Voce resolve descansar após uma árdua batalha e se regenera em uma fogueira que havia lá por perto...\n")
+                                  inteiro sorteio_do_descanso_apos_concluir_vilasombria
+                                  sorteio_do_descanso_apos_concluir_vilasombria = Util.sorteia(10,50)
+                                  escreva("\nApós seu descanso você aumentou",sorteio_do_descanso_apos_concluir_vilasombria,"de vida máxima\n")
+                                  vidadaespecializacao = vidadaespecializacao + sorteio_do_descanso_apos_concluir_vilasombria
+                                  escreva("\nApós um bom descanso",nomedocampeao,"acorda e revigora suas energias antes de ir para a sua próxima aventura...\n")
+                                  escreva("SUA VIDA:",vidadaespecializacao,"\n")
+                                  Util.aguarde(4000)
+                                  escreva("\n\n\n\n")
+
+                                  inteiro terceira_regiao_eldoria
+                                  escreva("Parabéns campeão escolha a região na qual você deseja ir...\n")
+                                  escreva("REINO DE ELDORIA\n")
+                                  escreva("1-FLORESTA DA NÉVOA\n")
+                                  escreva("2-VILA ABANDONADA\n")
+                                  escreva("3-CAVERNA SOMBRIA\n")
+                                  escreva("4-PANTANO DOS LAMENTOS\n")
+                                  escreva("5-CASTELO DOURADO\n")
+                                  leia(terceira_regiao_eldoria)
+                                  }
+
+                                      }
+                                      
+                                        senao{escreva(nome_chefe_guldhan,"--HAHAHAHA , MUITO BEM VINDO MEU MAIS NOVO SERVO...\n")
+                                        escreva("**GULDHAN O TRANSFORMA EM SEU SERVICAL PARA TODO O SEMPRE !!**\n")
+                                        escreva("FIM DE JOGO...\n")}
+                                      
+
 
                                     }senao{escreva("Você caiu no limbo do mundo de guldhan,um final terrível o aguarda...")}
 
