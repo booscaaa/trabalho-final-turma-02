@@ -980,7 +980,8 @@ programa {
                                           escreva(nome_camponesamigo," :Ah claro quase esqueci, hahahaha eu encriptei este mapa para que os inimigos não soubessem como passar...\n")
                                           escreva(nome_camponesamigo," :ao entrar na caverna , terá pedras nos caminhos e dessa forma você deve se basear nos seguintes túneis..\n")
                                           escreva(nome_camponesamigo," :As cores das pedras são, Azul , Vermelha , Amarela e verde, e os caminhos são:")
-                                          escreva(nome_camponesamigo," :Primeiro caminho:Azul,Segundo caminho:Verde, Terceiro caminho:Verde e Quarto caminho:Amarela \n")
+                                          escreva("**--LEMBRE-SE DA SUA CONVERSA COM Joofrey***---")
+                                          escreva(nome_camponesamigo," :Primeiro caminho:Azul,Segundo caminho:Vermelho, Terceiro caminho:Verde e Quarto caminho:Amarelo \n")
                                           Util.aguarde(7000)
                                           escreva(nomedocampeao," :Agradeco",nome_camponesamigo,"que os Deuses lhe iluminem...")
                                           escreva(nome_camponesamigo," :Fique tranquilho,para chegar até as cavernas sombrias é só continuar a estrada até duas ameixeiras grandes\n")
@@ -998,6 +999,345 @@ programa {
                                             Util.aguarde(2000)
                                             limpa()
                                             escreva("BEM VINDO ÀS CAVERNAS SOMBRIAS CAMPEÃO!!\n")
+                                            escreva("SEUS STATUS ATÉ AGORA:\n")
+                                            escreva("VIDA: ",vidadaespecializacao,"\n")
+                                            escreva("DANO: ",danodaespecializacao,"\n")
+                                            escreva("DEFESA: ",defesadaespecializacao,"\n")
+                                            escreva("AGILIDADE: ",agilidadedaespecializacao,"\n")
+                                            escreva("\n\n\n\n")
+                                            escreva("-Após uma intensa jornada você encontra o início das cavernas sombrias...\n")
+                                            escreva("1--ENTRAR NAS CAVERNAS SOMBRIAS\n")
+                                            inteiro entrar_nas_cavernas_sombrias
+                                            leia(entrar_nas_cavernas_sombrias)
+                                            se(entrar_nas_cavernas_sombrias==1){
+                                              limpa()
+                                              escreva("Após adentrar nas cavernas sombrias você repara nas marcas nas paredes e em tudo oque tem lá...\n")
+                                              escreva("Depois de alguns metros , você se depara com escrituras antigas nas paredes , que aparentemente foram colocadas a pouco lá...\n")
+                                              escreva("Elas são muito úmidas e vocÊ você consegue escutar o barulho dos pingos caindo e as suas botas andando pelo chão\n")
+                                              escreva("Dentro da caverna é possível escutar o barulho das pedras caindo por todo o local!\n")
+                                              escreva("***UM BARULHO ESTRONDOSO ACONTECE ATRÁS DE VOCÊ***\n")
+                                             Util.aguarde(2000)
+
+                                              escreva("você olha pra trás e imediatamente vê a passagem de volta bloqueada, náo é possível retornar!\n")
+                                              escreva("\n\n\n\n")
+                                              escreva("VocÊ acende a tocha na qual tinha na sua mochila , junto com a safira azul\n")
+                                              escreva("Um poder ecoa sobre a safira azul, e você observa o poder que nela emana...\n")
+                                              escreva("Você observa alguns metros a frente alguns túneis , os mesmos na qual Joofrey havia comentado quando você estava na cabana...\n")
+                                              Util.aguarde(2000)
+                                              limpa()
+                                              escreva("**VOCÊ ENCONTROU 2 TÚNEIS**")
+                                              escreva("Observando as pedras que possuíam dentro dos mesmo , você nota que eles eram diferentes dos quais Joofrey comentou...\n")
+                                              escreva("Os dois túneis possuíam pedras de cores das quais Joofrey não havia comentado com você...\n")
+                                              escreva("Um deles possuia um cristal cinza e o outro um cristal roxo...\n")
+                                              escreva("Ao se aproximar do túnel roxo , você sente que a sua vida passa mais rápido, dessa forma a prejudicando...\n")
+                                              escreva("No momento em que chega perto do túnel cinza , sente sua forca se esvaindo , podendo ficar mais fraco...\n")
+                                              Util.aguarde(2000)                                          
+                                              escreva("POR ONDE DESEJA IR CAMPEÃO?\n")
+                                              escreva("1--TÚNEL DO CRISTAL ROXO.\n")
+                                              escreva("2--TÚNEL DO CRISTAL CINZA.\n")
+                                              inteiro escolher_tunel_cinza_roxo
+                                              leia(escolher_tunel_cinza_roxo)
+                                              escolha(escolher_tunel_cinza_roxo){
+                                                caso 1:
+                                                escreva("Ao entrar no túnel roxo, você caminha por alguns metros e nota que a sua forca diminui...\n")
+                                                escreva("Uma fadiga indescritível que não o deixa muito bem!!\n")
+                                                danodaespecializacao = 12
+                                                escreva("Você encontra a saída , e sai do túnel tossindo de forma incontrolável...\n")
+                                                escreva("Um labirinto traicoeiro,porém necessário para que até os mais bravos guerreiros sucumbam nele...\n")
+                                                escreva("SEU DANO FOI REDUZIDO PARA: ",danodaespecializacao,"\n")
+                                                pare
+
+                                                caso 2:
+                                                inteiro atributos_diminuidos_depois_tunelcinza=15
+                                                danodaespecializacao = 20
+                                                vidadaespecializacao = atributos_diminuidos_depois_tunelcinza - vidadaespecializacao
+                                                agilidadedaespecializacao = atributos_diminuidos_depois_tunelcinza - agilidadedaespecializacao
+                                                defesadaespecializacao = atributos_diminuidos_depois_tunelcinza - defesadaespecializacao 
+                                                escreva("Quando você entra no túnel cinza , sente uma profunda enxaqueca...\n")
+                                                escreva("Ela quase o desmaia,porém você comeca a correr...\n")
+                                                escreva("E chega no final do túnel...\n")
+                                                pare
+                                              }
+                                              escreva("SEUS STATUS:\n")
+                                              escreva("VIDA: ",vidadaespecializacao,"\n")
+                                              escreva("DANO: ",danodaespecializacao,"\n")
+                                              escreva("DEFESA: ",defesadaespecializacao,"\n")
+                                              escreva("AGILIDADE: ",agilidadedaespecializacao,"\n")
+                                              escreva("\n\n\n\n")
+                                              escreva("VocÊ anda um pouco mais a frente você encontra quatro túneis...\n")
+                                              escreva("Após atravessar o túnel anterior com um pouco de mal estar, vocÊ observa os cristais ali contidos\n")
+                                              escreva("**--LEMBRE-SE DA SUA CONVERSA COM Joofrey***---\n")
+                                              Util.aguarde(1000)
+                                              escreva("**VOCE ENCONTROU QUATRO TÚNEIS DISPONÍVEIS NA SUA FRENTE**\n")
+                                              escreva("1--TÚNEL COM O CRISTAL AZUL\n")
+                                              escreva("2--TÚNEL COM O CRISTAL VERMELHO\n")
+                                              escreva("3--TÚNEL COM O CRISTAL VERDE\n")
+                                              escreva("4--TÚNEL COM O CRISTAL AMARELO\n")
+                                              inteiro escolher_primeiro_tunel1
+                                              leia(escolher_primeiro_tunel1)
+                                              limpa()
+                                              escolha(escolher_primeiro_tunel1){
+                                                caso 1:
+                                                escreva("CAMINHO CERTO!!\n")
+                                                escreva("Após se recordar de onde se deve passar o primeiro caminho , você passa sem nenhuma dificuldade\n")
+                                                escreva("Você continua percorrendo pelo labirinto daquelas cavernas sombrias...\n")
+                                                pare
+
+                                                caso 2:
+                                                escreva("CAMINHO ERRADO!!\n")
+                                                escreva("Você se depara com uma névoa implacável , porém atravessa ela...\n")
+                                                escreva("Ao atravessar você tenta prender a respiracao,porém não aguenta mais e solta-a\n")
+                                                escreva("Ao inalar aquela névoa você sente um mal súbito...e sente sua agilidade indo embora...\n")
+                                                agilidadedaespecializacao = 15
+                                                escreva("SEU ATRIBUTO DIMINUI!!",agilidadedaespecializacao,"\n")
+                                                pare
+
+                                                
+                                                caso 3:
+                                                escreva("CAMINHO ERRADO!!\n")
+                                                escreva("Você se depara com um rio , porém atravessa ela...\n")
+                                                escreva("Ao atravessar você tenta prender a respiracao,porém não aguenta mais e solta-a\n")
+                                                escreva("Ao inalar aquela água você sente um mal súbito...e sente sua vida indo embora...\n")
+                                                vidadaespecializacao = 15
+                                                escreva("SEU ATRIBUTO DIMINUI!! ",vidadaespecializacao,"\n")
+                                                pare
+
+                                                caso 4:
+                                                escreva("CAMINHO ERRADO!!\n")
+                                                escreva("Você se depara com uma ponte e  um riacho , porém atravessa ela...\n")
+                                                escreva("Ao atravessar você tenta se equilibrar,porém não aguenta mais e cai\n")
+                                                escreva("Ao inalar aquela água você sente um mal súbito...e sente sua vida indo embora...\n")
+                                                escreva("porém consegue voltar para o caminho certo...\n")
+                                                defesadaespecializacao = 15
+                                                escreva("SEU ATRIBUTO DIMINUI!! ",defesadaespecializacao,"\n")
+                                                pare
+                                              }
+                                              escreva("Após uma escolha decisiva de caminhos, você prossegue com a jornada em busca de sair daquela caverna..\n")
+                                              escreva("Andando mas é possível ver desenhos nas paredes de um monstro um tanto quando esquisito...\n")
+                                              escreva("Aquilo lhe chama atencao,mas não tenta pensar muito naquilo...\n")
+                                              escreva("Você se depara com mais túneis!!\n")
+                                              escreva("**VOCE ENCONTROU QUATRO TÚNEIS DISPONÍVEIS NA SUA FRENTE**\n")
+                                              escreva("1--TÚNEL COM O CRISTAL AZUL\n")
+                                              escreva("2--TÚNEL COM O CRISTAL VERMELHO\n")
+                                              escreva("3--TÚNEL COM O CRISTAL VERDE\n")
+                                              escreva("4--TÚNEL COM O CRISTAL AMARELO\n")
+                                              inteiro escolher_segundo_tunel2
+                                              leia(escolher_segundo_tunel2)
+                                              limpa()
+                                              escolha(escolher_segundo_tunel2){
+                                                caso 1:
+                                                escreva("CAMINHO ERRADO!!\n")
+                                                escreva("Você se depara com uma ponte e  um riacho , porém atravessa ela...\n")
+                                                escreva("Ao atravessar você tenta se equilibrar,porém não aguenta mais e cai\n")
+                                                escreva("Ao inalar aquela água você sente um mal súbito...e sente sua vida indo embora...\n")
+                                                escreva("porém consegue voltar para o caminho certo...\n")
+                                                defesadaespecializacao = 10
+                                                escreva("SEU ATRIBUTO DIMINUI!! ",defesadaespecializacao,"\n")
+                                                pare
+
+                                                caso 2:
+                                                escreva("CAMINHO CERTO!!\n")
+                                                escreva("Após se recordar de onde se deve passar o primeiro caminho , você passa sem nenhuma dificuldade\n")
+                                                escreva("Você continua percorrendo pelo labirinto daquelas cavernas sombrias...\n")
+                                                pare
+
+                                                caso 3:
+                                                escreva("CAMINHO ERRADO!!\n")
+                                                escreva("Você se depara com um rio , porém atravessa ela...\n")
+                                                escreva("Ao atravessar você tenta prender a respiracao,porém não aguenta mais e solta-a\n")
+                                                escreva("Ao inalar aquela água você sente um mal súbito...e sente sua vida indo embora...\n")
+                                                vidadaespecializacao = 10
+                                                escreva("SEU ATRIBUTO DIMINUI!! ",vidadaespecializacao,"\n")
+                                                pare
+
+                                                caso 4:
+                                                escreva("CAMINHO ERRADO!!\n")
+                                                 escreva("CAMINHO ERRADO!!\n")
+                                                escreva("Você se depara com uma névoa implacável , porém atravessa ela...\n")
+                                                escreva("Ao atravessar você tenta prender a respiracao,porém não aguenta mais e solta-a\n")
+                                                escreva("Ao inalar aquela névoa você sente um mal súbito...e sente sua agilidade indo embora...\n")
+                                                agilidadedaespecializacao = 10
+                                                escreva("SEU ATRIBUTO DIMINUI!!",agilidadedaespecializacao,"\n")
+                                                pare
+
+                                              }
+                                              escreva("\n\n")
+                                              escreva("Após passar para o próximo estágio,você observa ecrituras com sangue nas paredes...\n")
+                                              escreva("Escrevitas com sangue não tão velho,e alguns pares de ossos no chão...\n")
+                                              escreva("É possível encontrar uma espécie de nome na parede, ao se aproximar dele você enxerga um nome..\n")
+                                              escreva("O nome parecia ser uma espécie de escritura entalhada em fogo e sangue...\n")
+                                              escreva("R\n")
+                                              escreva("A\n")
+                                              escreva("G\n")
+                                              escreva("N\n")
+                                              escreva("A\n")
+                                              escreva("R\n")
+                                              escreva("O\n")
+                                              escreva("S\n")
+                                              escreva("Você prossegue a sua aventura , pensando no nome que havia visto na parede...\n")
+                                              escreva("Você se depara com mais túneis!!\n")
+                                              escreva("**VOCE ENCONTROU QUATRO TÚNEIS DISPONÍVEIS NA SUA FRENTE**\n")
+                                              escreva("1--TÚNEL COM O CRISTAL AZUL\n")
+                                              escreva("2--TÚNEL COM O CRISTAL VERMELHO\n")
+                                              escreva("3--TÚNEL COM O CRISTAL VERDE\n")
+                                              escreva("4--TÚNEL COM O CRISTAL AMARELO\n")
+                                              inteiro escolher_terceiro_tunel3
+                                              leia(escolher_terceiro_tunel3)
+                                              limpa()
+                                              escolha(escolher_terceiro_tunel3){
+                                                caso 1:
+                                                escreva("CAMINHO ERRADO!!\n")
+                                                escreva("Você se depara com uma ponte e  um riacho , porém atravessa ela...\n")
+                                                escreva("Ao atravessar você tenta se equilibrar,porém não aguenta mais e cai\n")
+                                                escreva("Ao inalar aquela água você sente um mal súbito...e sente sua vida indo embora...\n")
+                                                escreva("porém consegue voltar para o caminho certo...\n")
+                                                defesadaespecializacao = 5
+                                                escreva("SEU ATRIBUTO DIMINUI!! ",defesadaespecializacao,"\n")
+                                                pare
+
+                                                caso 2:
+                                                escreva("CAMINHO ERRADO!!\n")
+                                                escreva("Você se depara com um rio , porém atravessa ela...\n")
+                                                escreva("Ao atravessar você tenta prender a respiracao,porém não aguenta mais e solta-a\n")
+                                                escreva("Ao inalar aquela água você sente um mal súbito...e sente sua vida indo embora...\n")
+                                                vidadaespecializacao = 5
+                                                escreva("SEU ATRIBUTO DIMINUI!! ",vidadaespecializacao,"\n")
+                                                pare
+
+                                                caso 3:
+                                                escreva("CAMINHO CERTO!!\n")
+                                                escreva("Após se recordar de onde se deve passar o primeiro caminho , você passa sem nenhuma dificuldade\n")
+                                                escreva("Você continua percorrendo pelo labirinto daquelas cavernas sombrias...\n")
+                                                pare
+
+                                                caso 4:
+                                                escreva("CAMINHO ERRADO!!\n")
+                                                escreva("Você se depara com uma névoa implacável , porém atravessa ela...\n")
+                                                escreva("Ao atravessar você tenta prender a respiracao,porém não aguenta mais e solta-a\n")
+                                                escreva("Ao inalar aquela névoa você sente um mal súbito...e sente sua agilidade indo embora...\n")
+                                                agilidadedaespecializacao = 5
+                                                escreva("SEU ATRIBUTO DIMINUI!!",agilidadedaespecializacao,"\n")
+                                                pare
+                                              }
+                                              escreva("Caminho atrás de caminho você prossegue...\n")
+                                              escreva("Após sair do último túnel , é possível deparar-se com corpos em decomposicao...\n")
+                                              escreva("O cheiro é insuportável..porém vocÊ anda firmemente até o último túnel...\n")
+                                              escreva("Conforme você se aproxima do último túnel , mais ossos são vistos...\n")
+                                              escreva("É preciso cuidar onde se vai pisar para não esbarrar nos ossos...e nas armas ao lado deles...\n")
+                                              escreva("Você se depara com mais túneis!!\n")
+                                              escreva("**VOCE ENCONTROU QUATRO TÚNEIS DISPONÍVEIS NA SUA FRENTE**\n")
+                                              escreva("1--TÚNEL COM O CRISTAL AZUL\n")
+                                              escreva("2--TÚNEL COM O CRISTAL VERMELHO\n")
+                                              escreva("3--TÚNEL COM O CRISTAL VERDE\n")
+                                              escreva("4--TÚNEL COM O CRISTAL AMARELO\n")
+                                              inteiro escolher_terceiro_tunel4
+                                              leia(escolher_terceiro_tunel4)
+                                              limpa()
+                                              escolha(escolher_terceiro_tunel4){
+                                                caso 1:
+                                                escreva("CAMINHO ERRADO!!\n")
+                                                escreva("Você se depara com uma névoa implacável , porém atravessa ela...\n")
+                                                escreva("Ao atravessar você tenta prender a respiracao,porém não aguenta mais e solta-a\n")
+                                                escreva("Ao inalar aquela névoa você sente um mal súbito...e sente sua agilidade indo embora...\n")
+                                                agilidadedaespecializacao = 1
+                                                escreva("SEU ATRIBUTO DIMINUI!!",agilidadedaespecializacao,"\n")
+                                                pare
+
+                                                caso 2:
+                                                escreva("CAMINHO ERRADO!!\n")
+                                                escreva("Você se depara com um rio , porém atravessa ela...\n")
+                                                escreva("Ao atravessar você tenta prender a respiracao,porém não aguenta mais e solta-a\n")
+                                                escreva("Ao inalar aquela água você sente um mal súbito...e sente sua vida indo embora...\n")
+                                                vidadaespecializacao = 1
+                                                escreva("SEU ATRIBUTO DIMINUI!! ",vidadaespecializacao,"\n")
+                                                pare
+
+                                                caso 3:
+                                                escreva("CAMINHO ERRADO!!\n")
+                                                escreva("Você se depara com uma ponte e  um riacho , porém atravessa ela...\n")
+                                                escreva("Ao atravessar você tenta se equilibrar,porém não aguenta mais e cai\n")
+                                                escreva("Ao inalar aquela água você sente um mal súbito...e sente sua vida indo embora...\n")
+                                                escreva("porém consegue voltar para o caminho certo...\n")
+                                                defesadaespecializacao = 1
+                                                escreva("SEU ATRIBUTO DIMINUI!! ",defesadaespecializacao,"\n")
+                                                pare
+
+                                                caso 3:
+                                                escreva("CAMINHO CERTO!!\n")
+                                                escreva("Após se recordar de onde se deve passar o primeiro caminho , você passa sem nenhuma dificuldade\n")
+                                                escreva("Você continua percorrendo pelo labirinto daquelas cavernas sombrias...\n")
+                                                pare
+                                              }
+                                              escreva("Você sai dos labirintos das cavernas sombrias...\n")
+                                              escreva("Porém é possível enxergar entalhes com fogo na parede....\n")
+                                              escreva("O  F0G0 & 7NC0NTR0L4VeL \n")
+                                              escreva("ᒪᗩᖇ ᗞᕮ ᖇᗩＧᘉᗩᖇOS\n")
+                                              escreva("Mais a frente é possível enxergar uma sala gigante com fogo...\n")
+                                              escreva("SEUS STATUS:\n")
+                                              escreva("VIDA: ",vidadaespecializacao,"\n")
+                                              escreva("DANO: ",danodaespecializacao,"\n")
+                                              escreva("DEFESA: ",defesadaespecializacao,"\n")
+                                              escreva("AGILIDADE: ",agilidadedaespecializacao,"\n")
+                                              escreva("\n\n\n")
+                                              escreva("Você resolve utilizar a safira na qual Joofrey lhe entregou...\n")
+                                              inteiro utilizar_safira_azul
+                                              escreva("**UTILIZE A SAFIRA AZUL**")
+                                              escreva("1==AUMENTAR A VIDA\n")
+                                              escreva("2==AUMENTAR O DANO\n")
+                                              escreva("3==AUMENTAR A AGILIDADE\n")
+                                              escreva("4==AUMENTAR A DEFESA\n")
+                                              leia(utilizar_safira_azul)
+                                              escreva("\n\n\n\n")
+                                              escolha(utilizar_safira_azul){
+
+                                              caso 1:
+                                              escreva("Você segura na mão aquela safira...e sente ela fazendo parte da sua alma...\n")
+                                              escreva("Seus olhos brilham...e você se sente renovado...\n")
+                                              vidadaespecializacao = safira_azul + vidadaespecializacao
+                                              pare
+
+                                              caso 2:
+                                              escreva("Você segura na mão aquela safira...e sente ela fazendo parte da sua alma...\n")
+                                              escreva("Seus olhos brilham...e você se sente maligno...\n")
+                                              danodaespecializacao = safira_azul + danodaespecializacao
+                                              pare
+
+                                              caso 3:
+                                              escreva("Você segura na mão aquela safira...e sente ela fazendo parte da sua alma...\n")
+                                              escreva("Seus olhos brilham...e você se sente mais esperto...\n")
+                                              agilidadedaespecializacao = safira_azul + agilidadedaespecializacao
+                                              pare
+
+                                              caso 4:
+                                              escreva("Você segura na mão aquela safira...e sente ela fazendo parte da sua alma...\n")
+                                              escreva("Seus olhos brilham...e você se sente mais esperto...\n")
+                                              defesadaespecializacao = safira_azul + defesadaespecializacao
+                                              pare
+                                              }
+                                              Util.aguarde(3000)
+                                              limpa()
+                                              inteiro entrar_covil_ragnaros
+                                              escreva("SEUS STATUS:\n")
+                                              escreva("VIDA: ",vidadaespecializacao,"\n")
+                                              escreva("DANO: ",danodaespecializacao,"\n")
+                                              escreva("DEFESA: ",defesadaespecializacao,"\n")
+                                              escreva("AGILIDADE: ",agilidadedaespecializacao,"\n")
+                                              escreva("\n\n\n")
+                                              escreva("Entalhes eram escritos sobre as rochas nas quais você estava a frente...\n")
+                                              escreva("FЦJΛ ΣПQЦΛПƬӨ ΗΛ ƬΣMPӨ...\n")
+                                              escreva("\n\n\n")
+                                              escreva("1--ENTRAR NO COVIL DE RAGNAROS...\n")
+                                              leia(entrar_covil_ragnaros)
+                                              limpa()
+                                              se(entrar_covil_ragnaros==1){
+                                              cadeia nome_chefe_ragnaros = "RAGNAROS , O SENHOR DO FOGO"
+                                              escreva(nome_chefe_ragnaros," :ᗰOᖇTᗩᒪ...ᑕOᗰO OᑌSᗩ ᐯIᖇ ᗩTᕮ́ O ᗰᕮᑌ ᒪᗩᖇ???\n")
+                                              escreva(nome_chefe_ragnaros," :O ᖴOＧO ᑕOᘉSᑌᗰIᖇᗩ́ ᕮSTᕮ ᗰᑌᘉᗞO ᑭᗩTᕮ́TIᑕO...\n")
+
+                                              }senao{escreva("O fogo lhe consomiu herói...")}
+
+                                            }senao{escreva("Voce precisa entrar nas cavernas sombrias campeão!!")}
+                                      
                                           }
                                       }senao{escreva("opcao incorreta campeão...")}
                                   }
