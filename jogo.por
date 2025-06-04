@@ -2,13 +2,14 @@ programa {
 
   inclua biblioteca Util --> u
 
-  cadeia nomeJogador = "Lucas"
+  cadeia nomeJogador = "Gelado amigo do Oruam"
   cadeia classe = ""
   inteiro vidaMax = 0
   inteiro vidaAtual = 0
   inteiro ataque = 0
   inteiro defesa = 0
   inteiro xp = 0
+  inteiro xpParaUpar = 100
   inteiro nivel = 0
   inteiro quantidadePocao = 0
   inteiro regiao[5] = {"Floresta da Névoa 🌫️🌲","Vila Abandonada 🏚️👻","Caverna Sombria 🕳️🦇","Pântano dos Lamentos 🐸🧪","Castelo Dourado 🏰✨"}
@@ -21,10 +22,7 @@ programa {
 
     se(escolhaMenu == 1){
       limpa()
-      //novo_jogo()
       classe()
-      u.aguarde(1000)
-      //introducao_heroi()
       menu_acoes_jogo()
     }
     senao se(escolhaMenu == 2){
@@ -33,7 +31,7 @@ programa {
     }senao se(escolhaMenu == 3){
       sair()
     }
-    
+
   }
   funcao cadeia menu_inicio(){
     cadeia escolhaMenu
@@ -51,8 +49,7 @@ programa {
 
   funcao menu_acoes_jogo(){
     cadeia escolhaAcao
-    logico voltar = verdadeiro
-    enquanto(escolhaAcao != 1 e escolhaAcao != 2 e escolhaAcao != 3 e voltar == verdadeiro){
+    enquanto(escolhaAcao != 1 e escolhaAcao != 2 e escolhaAcao != 3){
       limpa()
       escreva("---------------------------")
       escreva("\n",regiao[contarRegiao],"\n")
@@ -62,16 +59,77 @@ programa {
       escreva("2 - Status do Herói\n")
       escreva("3 - Sair do jogo\n")
       leia(escolhaAcao)
-    
+
     se(escolhaAcao == 1){
-      se(contarRegiao == 0){
-        // intro_floresta_lobo()
-        // intro_floresta_esqueleto()
-        intro_vila_abandonada()
-        contarRegiao++
-      }se(contarRegiao == 1){
-        menu_acoes_jogo()
-      }
+        se(contarRegiao == 0){
+          batalha(60, 15, 6,"🐺LOBO TERRÍVEL",2, 60)
+          se(vidaAtual <= 0){
+            pare
+          }
+          se(vidaAtual <= 45 e vidaAtual > 0){
+            descansar()
+            u.aguarde(1000)
+          }
+          batalha(70, 22, 8, "💀 ESQUELETO SOMBRIO", 3, 90)
+          se(vidaAtual <= 0){
+            pare
+          }
+          intro_vila_abandonada()
+          contarRegiao++
+          menu_acoes_jogo()
+        }
+        se(contarRegiao == 1){
+          batalha(80, 25, 10, "🗡️ LADRÃO MASCARADO", 4, 120)
+          se(vidaAtual <= 0){
+            pare
+          }
+          se(vidaAtual <= 45 e vidaAtual > 0){
+            descansar()
+            u.aguarde(1000)
+          }
+          batalha(90, 28, 12, "👻 ALMA PERDIDA", 5, 160)
+          se(vidaAtual <= 0){
+            pare
+          }
+          contarRegiao++
+          menu_acoes_jogo()
+        }
+        se(contarRegiao == 2){
+          batalha(100, 30, 14, "🦂 ESCORPIÃO DE PEDRA", 6, 120)
+          se(vidaAtual <= 0){
+            pare
+          }
+          se(vidaAtual <= 45 e vidaAtual > 0){
+            descansar()
+            u.aguarde(1000)
+          }
+          batalha(110, 34, 16, "👹 OGRO GIGANTE ", 7, 150)
+          se(vidaAtual <= 0){
+            pare
+          }
+          contarRegiao++
+          menu_acoes_jogo()
+        }
+        se(contarRegiao == 3){
+          batalha(120, 38, 18, "🦎 SALAMANDRA TÓXICA", 8, 160)
+          se(vidaAtual <= 0){
+            pare
+          }
+          se(vidaAtual <= 45 e vidaAtual > 0){
+            descansar()
+            u.aguarde(1000)
+          }
+          batalha(130, 42, 20, "🐲 DRAGÃO VENENOSO", 9, 200)
+          se(vidaAtual <= 0){
+            pare
+          }
+          contarRegiao++
+          menu_acoes_jogo()
+        }
+        se(contarRegiao == 4){
+          batalha(150, 48, 25, "⚔️ CAVALEIRO CORROMPIDO", 10, 200)
+          batalha(180, 55, 30, "👑 O DEVASTADOR", 12, 300)
+        }
     }
     se(escolhaAcao == 2){
       status_heroi()
@@ -103,43 +161,7 @@ programa {
     escreva("| Irei aparecer em sua jornada com dicas e explicações sobre os acontecimentos que estão por vir...\n")
     u.aguarde(1000)
     escreva("| No momento vamos escolher sua classe.\n")
-    cadeia continuar
-    enquanto(continuar != ""){
-      escreva("\nPressione \"Enter\" para visualizar as classes\n")
-      leia(continuar)
-      limpa()
-    }
-  }
-
-  funcao introducao_heroi(){
-    cadeia continuar
-    limpa()
-    escreva("| Sua jornada está prestes a começar...\n")
-    u.aguarde(500)
-    escreva("| Com sua coragem e habilidades, o destino de Eldoria agora repousa sobre seus ombros.\n")
-    u.aguarde(500)
-    escreva("| A aventura começa agora...\n")
-    u.aguarde(500)
-    escreva("---------------------------------------------------------------\n")
-    u.aguarde(500)
-    escreva("Pressione \"Enter\" para continuar\n")
-    leia(continuar)
-    se(continuar == ""){
-      limpa()
-      escreva("|*Você coloca o pé na estrada e começa sua jornada para encontrar a Pedra da Luz...*\n")
-      u.aguarde(500)
-      escreva("|*No caminho você encontra uma floresta corrompida e decide adentrar.*\n")
-      u.aguarde(500)
-      escreva("---------------------------------------------------------------\n")
-      u.aguarde(500)
-      escreva("Pressione \"Enter\" para continuar\n")
-      leia(continuar)
-      limpa()
-      escreva("❗AVISO❗\n")
-      u.aguarde(1000)
-      escreva("ENTRANDO NA FLORESTA DA NÉVOA...\n")
-      u.aguarde(1000)
-    }
+    botao_enter()
   }
 
   funcao classe(){
@@ -160,7 +182,7 @@ programa {
         classe = "⚔️ Guerreiro"
         vidaMax = 120
         vidaAtual = vidaMax
-        ataque = 2000
+        ataque = 20
         defesa = 15
       }senao se(numeroDaClasse == 2){
         classe = "🏹 Arqueiro"
@@ -204,7 +226,7 @@ programa {
     enquanto(voltar != ""){
       limpa()
       escreva("══════════「STATUS」══════════\n")
-      escreva(classe," Nv.",nivel," XP [",xp,"/100"+"]\n")
+      escreva(classe," Nv.",nivel," XP [",xp,"/",xpParaUpar,"]\n")
       escreva("----------------------------\n")
       escreva("❤️ Vida: ",vidaAtual,"/",vidaMax,"\n")
       escreva("🗡️ Ataque: ",ataque,"\n")
@@ -217,41 +239,7 @@ programa {
     }
   }
 
-  funcao intro_floresta_lobo(){
-    cadeia voltar
-    limpa()
-    enquanto(voltar != ""){
-      escreva("| Você adentra a Floresta da Névoa...\n")
-      escreva("| A luz do sol mal atravessa as copas espessas das árvores.\n")
-      escreva("| O ar é denso, carregado com o cheiro de folhas úmidas e perigo iminente.\n")
-      escreva("| Você ouve galhos se partindo ao longe... algo está se aproximando.\n")
-      escreva("| Um uivo rompe o silêncio. De dentro da neblina, surge um LOBO TERRÍVEL!\n")
-      escreva("| Os olhos da criatura brilham em vermelho, famintos por batalha...\n\n")
-      escreva("⚠️ O LOBO TERRÍVEL se aproxima, cuidado!!\n\n")
-      escreva("-----------❗ LOBO TERRÍVEL ❗-----------\n")
-      escreva("\nPressione \"Enter\" para começar a batalha\"\n")
-      leia(voltar)
-    }
-    batalha_floresta(60,15,6,"🐺LOBO TERRÍVEL",2,60)
-  }
-
-  funcao intro_floresta_esqueleto(){
-    cadeia voltar
-    limpa()
-    enquanto(voltar != ""){
-      escreva("| Você continua a explorar a floresta misteriosa...\n")
-      escreva("| O vento sopra entre as árvores, carregando um silêncio estranho no ar.\n")
-      escreva("| De repente, você ouve um som de ossos se arrastando no chão...\n")
-      escreva("| Um Esqueleto Sombrio emerge da neblina.\n")
-      escreva("⚠️ Prepare-se para a batalha!\n\n")
-      escreva("-----------❗ ESQUELETO SOMBRIO ❗-----------\n")
-      escreva("\nPressione \"Enter\" para começar a batalha\"\n")
-      leia(voltar)
-    }
-    batalha_floresta(70, 22, 8, "💀 ESQUELETO SOMBRIO", 3, 120)
-  }
-
-  funcao batalha_floresta(inteiro vidaMaxInimigo, inteiro ataqueInimigo, inteiro defesaInimigo, cadeia nomeInimigo, inteiro nivelInimigo, inteiro xpinimigo){
+  funcao batalha(inteiro vidaMaxInimigo, inteiro ataqueInimigo, inteiro defesaInimigo, cadeia nomeInimigo, inteiro nivelInimigo, inteiro xpinimigo){
     limpa()
     inteiro vidaAtualInimigo = vidaMaxInimigo
     inteiro danoInimigo = ataqueInimigo - defesa
@@ -259,20 +247,27 @@ programa {
     logico defendendo = falso
 
     enquanto (vidaAtualInimigo > 0 e vidaAtual > 0){
-      enquanto(escolher != 1 e escolher != 2){
+      logico acaoValida = verdadeiro
+      enquanto(escolher != 1 e escolher != 2 e escolher != 3){
+
       limpa()
       escreva(nomeInimigo," Nv.",nivelInimigo,"\n")
       escreva("❤️ Vida: ",vidaAtualInimigo,"/",vidaMaxInimigo,"\n")
       escreva("🛡️ Defesa: ",defesaInimigo,"\n")
       barra_de_vida_inimigo(vidaAtualInimigo, vidaMaxInimigo)
       escreva("\n----------------------------------\n")
+
       escreva(nomeJogador," (",classe,") Nv. ",nivel,"\n")
       escreva("❤️ Vida: ",vidaAtual,"/",vidaMax,"\n")
       escreva("🛡️ Defesa: ",defesa,"\n")
       barra_de_vida_heroi(vidaAtual, vidaMax)
       escreva("\n----------------------------------\n")
+
       escreva("Escolha sua ação:\n")
       escreva("1 - Atacar   |   2 - Defender\n")
+      se(quantidadePocao > 0 e contarRegiao > 0){
+        escreva("3 - Curar\n")
+      }
       leia(escolher)
       limpa()
       }
@@ -292,22 +287,32 @@ programa {
         escreva("🛡️ Você se prepara para defender o próximo ataque.\n")
         defendendo = verdadeiro
       }
+      se(escolher == 3){
+        se(quantidadePocao > 0){
+          vidaAtual = vidaMax
+          escreva("🧪 Você toma uma poção de cura e recupera toda a sua vida.\n")
+          quantidadePocao = quantidadePocao - 1
+        }senao{
+          escreva("⚠️ Você não tem mais poções!\n")
+          acaoValida = falso
+        }
+      }
 
       u.aguarde(1000)
 
-      se(vidaAtualInimigo > 0){
+      se(acaoValida e vidaAtualInimigo > 0){
         danoInimigo = u.sorteia(5,ataqueInimigo)
         se(defendendo){
           danoInimigo = ataqueInimigo - u.sorteia(3,defesa)
         }
-      }
+      
       se(danoInimigo < 0){
         danoInimigo = 0
       }
       escreva("⚠️ O inimigo ataca e causa ",danoInimigo," de dano!\n")
       vidaAtual = vidaAtual - danoInimigo
-
       u.aguarde(1000)
+      }
       escolher = ""
     }
     se(vidaAtual <= 0){
@@ -318,28 +323,21 @@ programa {
     se(vidaAtualInimigo <= 0){
       limpa()
       escreva("🎉 Você derrotou o ",nomeInimigo,"!\n")
-      escreva("🏆 + 50 XP\n")
+      escreva("🏆 + ",xpinimigo," XP\n")
       xp = xp + xpinimigo
-      se(xp >= 100){
+      se(xp >= xpParaUpar){
         nivel = nivel + 1
-        xp = xp - 100
-        vidaMax = vidaMax + 8
-        ataque = ataque + 6
+        xp = xp - xpParaUpar
+        vidaMax = vidaMax + (vidaMax * 0.1)
+        vidaAtual = vidaMax
+        ataque = ataque + (ataque * 0.15)
         defesa = defesa + 2
+        xpParaUpar += 10
         escreva("⬆️ Você subiu para o nível ",nivel,"!\n")
       }
     }
     se(vidaAtual > 0){
-    cadeia continuar
-    enquanto(continuar != ""){
-      escreva("\nPressione \"Enter\" para voltar ao menu de ações\n")
-      leia(continuar)
-      limpa()
-    }
-    se(vidaAtual <= 45){
-    descansar()
-    u.aguarde(1000)
-    }
+    botao_enter()
     }
   }
 
@@ -352,36 +350,33 @@ programa {
     escreva("| Portas rangem. Janelas batem com força.\n")
     escreva("| Você chegou à Vila Abandonada.\n")
     escreva("| Um lugar esquecido, tomado por sombras e memórias.\n")
-    cadeia continuar
-    enquanto(continuar != ""){
-      escreva("\nPressione \"Enter\" para continuar...")
-      leia(continuar)
-      limpa()
-    }
-      continuar = "a"
-      escreva("❗AVISO❗\n")
-      u.aguarde(1000)
-      escreva("VOCÊ CHEGOU À VILA ABANDONADA...\n\n")
-      u.aguarde(1000)
-      escreva("| Ao vasculhar as ruínas da vila, você encontra um velho baú coberto de poeira...\n")
-      escreva("| Com algum esforço, você o abre e encontra uma poção de cura em seu interior!\n")
-      quantidadePocao = quantidadePocao + 1
-      escreva("-------------\n")
-      escreva("+1 POÇÃO 🧪\n")
-      escreva("-------------\n")
-      escreva("| Você agora possui ", quantidadePocao, " poção de cura.\n")
-      enquanto(continuar != ""){
-        escreva("\nPressione \"Enter\" para continuar...")
-        leia(continuar)
-    }
+    botao_enter()
+    limpa()
+    escreva("❗AVISO❗\n")
+    u.aguarde(1000)
+    escreva("VOCÊ CHEGOU À VILA ABANDONADA...\n\n")
+    u.aguarde(1000)
+    escreva("| Ao vasculhar as ruínas da vila, você encontra um velho baú coberto de poeira...\n")
+    escreva("| Com algum esforço, você o abre e encontra uma poção de cura em seu interior!\n")
+    quantidadePocao = quantidadePocao + 1
+    escreva("-------------\n")
+    escreva("+1 POÇÃO 🧪\n")
+    escreva("-------------\n")
+    escreva("| Você agora possui ", quantidadePocao, " poção de cura.\n")
+    botao_enter()
+    limpa()
+    escreva("| Você aproveita e descansa para recuperar as energias.\n")
+    vidaAtual = vidaMax
+    escreva("❤️ Vida atual: ", vidaAtual, "/", vidaMax, "\n")
+    botao_enter()
   }
 
   funcao barra_de_vida_inimigo(inteiro vidaAtualInimigo, inteiro vidaMaxInimigo){
     inteiro i
-    inteiro totalUnidades = vidaMaxInimigo / 10
+    inteiro totalUnidades = 10
     inteiro unidadeCheias = (vidaAtualInimigo * totalUnidades) / vidaMaxInimigo
 
-    para(i = 0; i <= totalUnidades; i++){
+    para(i = 1; i <= totalUnidades; i++){
       se(i <= unidadeCheias){
         escreva("❤️")
       }senao{
@@ -392,10 +387,10 @@ programa {
 
   funcao barra_de_vida_heroi(inteiro vidaAtual, inteiro vidaMax){
     inteiro i
-    inteiro totalUnidades = vidaMax / 10
+    inteiro totalUnidades = 10
     inteiro unidadeCheias = (vidaAtual * totalUnidades) / vidaMax
 
-    para(i = 0; i <= totalUnidades; i++){
+    para(i = 1; i <= totalUnidades; i++){
       se(i <= unidadeCheias){
         escreva("❤️")
       }senao{
@@ -403,8 +398,9 @@ programa {
       }
     }
   }
-  
+
   funcao descansar(){
+    limpa()
     cadeia descanso
     enquanto(descanso != 1 e descanso !=2){
       escreva("Você está bem ferido, deseja descansar para recuperar um pouco de vida?\n")
@@ -452,7 +448,13 @@ programa {
     u.aguarde(600)
     escreva("📅 Iniciado no dia 17-05-2025\n")
   }
-
+  funcao botao_enter(){
+    cadeia continuar
+    enquanto(continuar != ""){
+      escreva("\nPressione \"Enter\" para continuar.\n")
+      leia(continuar)
+    }
+  }
   funcao sair(){
       limpa()
       escreva("🔚 Saindo.")
