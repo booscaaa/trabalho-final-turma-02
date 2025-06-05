@@ -33,6 +33,7 @@ programa {
     }
 
   }
+
   funcao cadeia menu_inicio(){
     cadeia escolhaMenu
     enquanto(escolhaMenu !=1 e escolhaMenu !=2 e escolhaMenu !=3){
@@ -61,74 +62,80 @@ programa {
       leia(escolhaAcao)
 
     se(escolhaAcao == 1){
+        // se(contarRegiao == 0){
+        //   batalha(60, 15, 6,"🐺LOBO TERRÍVEL",2, 60)
+        //   se(vidaAtual <= 0){
+        //     pare
+        //   }
+        //   se(vidaAtual <= 45 e vidaAtual > 0){
+        //     descansar()
+        //     u.aguarde(1000)
+        //   }
+        //   batalha(70, 22, 8, "💀 ESQUELETO SOMBRIO", 3, 90)
+        //   se(vidaAtual <= 0){
+        //     pare
+        //   }
+        //   intro_vila_abandonada()
+        //   contarRegiao++
+        //   menu_acoes_jogo()
+        // }
+        // se(contarRegiao == 1){
+        //   batalha(80, 25, 10, "🗡️ LADRÃO MASCARADO", 4, 120)
+        //   se(vidaAtual <= 0){
+        //     pare
+        //   }
+        //   se(vidaAtual <= 45 e vidaAtual > 0){
+        //     descansar()
+        //     u.aguarde(1000)
+        //   }
+        //   batalha(90, 28, 12, "👻 ALMA PERDIDA", 5, 160)
+        //   se(vidaAtual <= 0){
+        //     pare
+        //   }
+        //   contarRegiao++
+        //   menu_acoes_jogo()
+        // }
+        // se(contarRegiao == 2){
+        //   batalha(100, 30, 14, "🦂 ESCORPIÃO DE PEDRA", 6, 120)
+        //   se(vidaAtual <= 0){
+        //     pare
+        //   }
+        //   se(vidaAtual <= 45 e vidaAtual > 0){
+        //     descansar()
+        //     u.aguarde(1000)
+        //   }
+        //   batalha(110, 34, 16, "👹 OGRO GIGANTE ", 7, 150)
+        //   se(vidaAtual <= 0){
+        //     pare
+        //   }
+        //   contarRegiao++
+        //   menu_acoes_jogo()
+        // }
+        // se(contarRegiao == 3){
+        //   batalha(120, 38, 18, "🦎 SALAMANDRA TÓXICA", 8, 160)
+        //   se(vidaAtual <= 0){
+        //     pare
+        //   }
+        //   se(vidaAtual <= 45 e vidaAtual > 0){
+        //     descansar()
+        //     u.aguarde(1000)
+        //   }
+        //   batalha(130, 42, 20, "🐲 DRAGÃO VENENOSO", 9, 200)
+        //   se(vidaAtual <= 0){
+        //     pare
+        //   }
+        //   contarRegiao++
+        //   menu_acoes_jogo()
+        // }
         se(contarRegiao == 0){
-          batalha(60, 15, 6,"🐺LOBO TERRÍVEL",2, 60)
+          batalha_cavaleiro(150, 48, 25, "⚔️ CAVALEIRO CORROMPIDO", 10, 200)
           se(vidaAtual <= 0){
             pare
           }
-          se(vidaAtual <= 45 e vidaAtual > 0){
-            descansar()
-            u.aguarde(1000)
-          }
-          batalha(70, 22, 8, "💀 ESQUELETO SOMBRIO", 3, 90)
+          batalha_final(180, 55, 30, "👑 O DEVASTADOR", 12, 300)
           se(vidaAtual <= 0){
             pare
           }
-          intro_vila_abandonada()
-          contarRegiao++
-          menu_acoes_jogo()
-        }
-        se(contarRegiao == 1){
-          batalha(80, 25, 10, "🗡️ LADRÃO MASCARADO", 4, 120)
-          se(vidaAtual <= 0){
-            pare
-          }
-          se(vidaAtual <= 45 e vidaAtual > 0){
-            descansar()
-            u.aguarde(1000)
-          }
-          batalha(90, 28, 12, "👻 ALMA PERDIDA", 5, 160)
-          se(vidaAtual <= 0){
-            pare
-          }
-          contarRegiao++
-          menu_acoes_jogo()
-        }
-        se(contarRegiao == 2){
-          batalha(100, 30, 14, "🦂 ESCORPIÃO DE PEDRA", 6, 120)
-          se(vidaAtual <= 0){
-            pare
-          }
-          se(vidaAtual <= 45 e vidaAtual > 0){
-            descansar()
-            u.aguarde(1000)
-          }
-          batalha(110, 34, 16, "👹 OGRO GIGANTE ", 7, 150)
-          se(vidaAtual <= 0){
-            pare
-          }
-          contarRegiao++
-          menu_acoes_jogo()
-        }
-        se(contarRegiao == 3){
-          batalha(120, 38, 18, "🦎 SALAMANDRA TÓXICA", 8, 160)
-          se(vidaAtual <= 0){
-            pare
-          }
-          se(vidaAtual <= 45 e vidaAtual > 0){
-            descansar()
-            u.aguarde(1000)
-          }
-          batalha(130, 42, 20, "🐲 DRAGÃO VENENOSO", 9, 200)
-          se(vidaAtual <= 0){
-            pare
-          }
-          contarRegiao++
-          menu_acoes_jogo()
-        }
-        se(contarRegiao == 4){
-          batalha(150, 48, 25, "⚔️ CAVALEIRO CORROMPIDO", 10, 200)
-          batalha(180, 55, 30, "👑 O DEVASTADOR", 12, 300)
         }
     }
     se(escolhaAcao == 2){
@@ -180,9 +187,9 @@ programa {
     }
       se(numeroDaClasse == 1){
         classe = "⚔️ Guerreiro"
-        vidaMax = 120
+        vidaMax = 1200
         vidaAtual = vidaMax
-        ataque = 20
+        ataque = 2000
         defesa = 15
       }senao se(numeroDaClasse == 2){
         classe = "🏹 Arqueiro"
@@ -312,6 +319,156 @@ programa {
       escreva("⚠️ O inimigo ataca e causa ",danoInimigo," de dano!\n")
       vidaAtual = vidaAtual - danoInimigo
       u.aguarde(1000)
+      }
+      escolher = ""
+    }
+    se(vidaAtual <= 0){
+      limpa()
+      escreva("💀 Você foi derrotado pelo ",nomeInimigo,"...\n")
+      escreva("Fim de jogo.\n")
+    }
+    se(vidaAtualInimigo <= 0){
+      limpa()
+      escreva("🎉 Você derrotou o ",nomeInimigo,"!\n")
+      escreva("🏆 + ",xpinimigo," XP\n")
+      xp = xp + xpinimigo
+      se(xp >= xpParaUpar){
+        nivel = nivel + 1
+        xp = xp - xpParaUpar
+        vidaMax = vidaMax + (vidaMax * 0.1)
+        vidaAtual = vidaMax
+        ataque = ataque + (ataque * 0.15)
+        defesa = defesa + 2
+        xpParaUpar += 10
+        escreva("⬆️ Você subiu para o nível ",nivel,"!\n")
+      }
+    }
+    se(vidaAtual > 0){
+    botao_enter()
+    }
+  }
+
+  funcao batalha_cavaleiro(inteiro vidaMaxInimigo, inteiro ataqueInimigo, inteiro defesaInimigo, cadeia nomeInimigo, inteiro nivelInimigo, inteiro xpinimigo){
+    limpa()
+    inteiro vidaAtualInimigo = vidaMaxInimigo
+    inteiro danoInimigo = ataqueInimigo - defesa
+    cadeia escolher
+    logico defendendo = falso
+    logico atordoado = falso
+    enquanto (vidaAtualInimigo > 0 e vidaAtual > 0){
+      logico acaoValida = verdadeiro
+      enquanto(escolher != 1 e escolher != 2 e escolher != 3){
+
+      limpa()
+      escreva(nomeInimigo," Nv.",nivelInimigo,"\n")
+      escreva("❤️ Vida: ",vidaAtualInimigo,"/",vidaMaxInimigo,"\n")
+      escreva("🛡️ Defesa: ",defesaInimigo,"\n")
+      barra_de_vida_inimigo(vidaAtualInimigo, vidaMaxInimigo)
+      escreva("\n----------------------------------\n")
+
+      escreva(nomeJogador," (",classe,") Nv. ",nivel,"\n")
+      escreva("❤️ Vida: ",vidaAtual,"/",vidaMax,"\n")
+      escreva("🛡️ Defesa: ",defesa,"\n")
+      barra_de_vida_heroi(vidaAtual, vidaMax)
+      escreva("\n----------------------------------\n")
+
+      escreva("Escolha sua ação:\n")
+      escreva("1 - Atacar   |   2 - Defender\n")
+      se(quantidadePocao > 0 e contarRegiao > 0){
+        escreva("3 - Curar\n")
+      }
+      leia(escolher)
+      limpa()
+      }
+      se(escolher == 1){
+        inteiro dano = u.sorteia(10,ataque)
+        se(dano < 0){
+          dano = 0
+        }
+        escreva("💥 Você ataca o inimigo e causa ",dano," de dano!\n")
+        vidaAtualInimigo = vidaAtualInimigo - dano
+        defendendo = falso
+        se(vidaAtualInimigo <= 0){
+          pare
+        }
+      }
+      se(escolher == 2){
+        escreva("🛡️ Você se prepara para defender o próximo ataque.\n")
+        defendendo = verdadeiro
+      }
+      se(escolher == 3){
+        se(quantidadePocao > 0){
+          vidaAtual = vidaMax
+          escreva("🧪 Você toma uma poção de cura e recupera toda a sua vida.\n")
+          quantidadePocao = quantidadePocao - 1
+        }senao{
+          escreva("⚠️ Você não tem mais poções!\n")
+          acaoValida = falso
+        }
+      }
+
+      u.aguarde(1000)
+
+      se(acaoValida e vidaAtualInimigo > 0){
+
+        inteiro acao = u.sorteia(1,3)
+
+        se(acao == 1){
+        danoInimigo = u.sorteia(5,ataqueInimigo)
+        se(defendendo){
+          danoInimigo = ataqueInimigo - u.sorteia(3,defesa)
+        }
+      
+        se(danoInimigo < 0){
+          danoInimigo = 0
+        }
+        escreva("⚠️ O inimigo ataca e causa ",danoInimigo," de dano!\n")
+        vidaAtual = vidaAtual - danoInimigo
+        atordoado = falso
+        u.aguarde(1500)
+        }
+        se(acao == 2){
+          inteiro danoAtordoante = danoInimigo * 0.3
+      
+        se(danoInimigo < 0){
+          danoInimigo = 0
+        }
+        escreva("⚠️ O inimigo ataca usando o escudo e causa ",danoAtordoante," de dano!\n")
+        escreva("⚠️ Você fica atordoado e não pode atacar...\n")
+        vidaAtual = vidaAtual - danoAtordoante
+        atordoado = verdadeiro
+        u.aguarde(2000)
+
+        danoInimigo = u.sorteia(5,ataqueInimigo)
+        se(defendendo){
+          danoInimigo = ataqueInimigo - u.sorteia(3,defesa)
+        }
+      
+        se(danoInimigo < 0){
+          danoInimigo = 0
+        }
+        escreva("⚠️ O inimigo ataca novamente e causa ",danoInimigo," de dano!\n")
+        vidaAtual = vidaAtual - danoInimigo
+        atordoado = falso
+        u.aguarde(1500)
+        }
+        se(acao == 3){
+          inteiro danoCombo = (u.sorteia(7,danoInimigo * 0.4))
+
+          escreva("O CAVALEIRO da uma investida em sua direção e desfere um combo\n")
+          u.aguarde(1000)
+          escreva("⚠️ 1º Corte ",danoCombo," de dano!\n")
+          vidaAtual = vidaAtual - danoCombo
+          u.aguarde(1000)
+          danoCombo = u.sorteia(7,danoInimigo * 0.4)
+          escreva("⚠️ 2º Corte ",danoCombo," de dano!\n")
+          vidaAtual = vidaAtual - danoCombo
+          u.aguarde(1000)
+          danoCombo = u.sorteia(7,danoInimigo * 0.4)
+          escreva("⚠️ 3º Corte ",danoCombo," de dano!\n")
+          vidaAtual = vidaAtual - danoCombo
+          u.aguarde(1000)
+        }
       }
       escolher = ""
     }
