@@ -67,7 +67,7 @@ programa {
 
 
     inteiro inimigosPantanoDosLamentos[10]
-    inteiro nomeInimigos[10]
+    inteiro nomeInimigos[10] = {"Crocovile", "Crocovile Armadurado", "Crocovile Arqueiro", "Crocodilo Primal", "Crocodilo Lendario", "Crocovile Berseker", "Crocovile Brutamontes", "Crocovile Draconico", "Crocovile Tita", "Crocovile Enforcado"}
     inteiro vidaInimigoMaxima[10]
     inteiro defesaInimigo[10]
     inteiro manainimigoMaxima[10]
@@ -506,4 +506,5 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
         u.aguarde(2000)
         limpa()
     }
+    funcao esqueletos()
 }
