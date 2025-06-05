@@ -11,9 +11,12 @@ programa {
     cadeia classePersonagem
     inteiro hpAtual
     inteiro hpMaximo
+    inteiro defesa
     inteiro ataqueBase
     inteiro manaAtual
     inteiro manaMaxima
+    inteiro xpAtual = 0
+    inteiro xpMaximo = 100
     
     // ITENS ESPECIAIS
     logico possuiCajadoDoReiEsqueleto
@@ -24,10 +27,116 @@ programa {
     logico fugiuDeCombate
     logico bossDerrotadoPorCenario[TOTAL_CENARIOS]
     inteiro cenarioAtual
+    inteiro escolherDificuldade
+    logico aventura
+    logico cavaleiroDasAlmas
     
     // CENÁRIOS
     cadeia nomesCenarios[TOTAL_CENARIOS]
     cadeia descricoesCenarios[TOTAL_CENARIOS]
+
+
+    cadeia inimigosDificuldadeNormal[10] 
+
+    inteiro inimigosFlorestaDaNevoa[10]
+    cadeia nomeInimigos[10] = {"Esqueleto Espada Longa", "Esqueleto Armadurado", "Esqueleto Arqueiro", "Esqueleto Barbaro", "Esqueleto Brutamontes", "Esqueleto Demoniaco", "Esqueleto Corrompido", "Esqueleto Enforcado", "Esqueleto Real", "Esqueleto Plebeu"}
+    inteiro vidaInimigoMaxima[10]
+    inteiro defesaInimigo[10]
+    inteiro manainimigoMaxima[10]
+    inteiro xpInimigoFacil[10]
+
+
+
+
+    inteiro inimigosVilaAbandonada[10]
+    inteiro nomeInimigos[10] =  {"Bandido Comun", "Bandido Novato", "Bandido Experiente", "Bandido Berseker", "Pirata", "Capitão Esmaga Cranios", "Demonio Espreitador", "Soldado Corrupto", "Mago Corrompido", "Druida Da Chama Eterna"}
+    inteiro vidaInimigoMaxima[10]
+    inteiro defesaInimigo[10]
+    inteiro manainimigoMaxima[10]
+    inteiro xpInimigoFacil[10]
+
+
+
+    inteiro inimigosCavernaSombria[10]
+    inteiro nomeInimigos[10] = {"Lobo", "Lobo Cinzento", "Lobo Negro", "Alfa", "Humano Amaldiçoado", "Licantropo", "Licantropo Armadurado", "Licantropo Feiticeiro", "lobisomen Enfraquecido", "Licantropo Das Neves"}
+    inteiro vidaInimigoMaxima[10]
+    inteiro defesaInimigo[10]
+    inteiro manainimigoMaxima[10]
+    inteiro xpInimigoFacil[10]
+
+
+
+    inteiro inimigosPantanoDosLamentos[10]
+    inteiro nomeInimigos[10]
+    inteiro vidaInimigoMaxima[10]
+    inteiro defesaInimigo[10]
+    inteiro manainimigoMaxima[10]
+    inteiro xpInimigoFacil[10]
+
+
+
+    inteiro inimigosCasteloDourado[10]
+    inteiro nomeInimigos[10]
+    inteiro vidaInimigoMaxima[10]
+    inteiro defesaInimigo[10]
+    inteiro manainimigoMaxima[10]
+    inteiro xpInimigoFacil[10]
+
+
+
+
+
+
+
+
+
+    cadeia inimigosDificuldadeDificil[20]
+
+    inteiro inimigosFlorestaDaNevoa[20]
+    cadeia nomeInimigo[20] = {"Esqueleto Espada Longa", "Esqueleto Armadurado", "Esqueleto Arqueiro", "Esqueleto Barbaro", "Esqueleto Brutamontes", "Esqueleto Demoniaco", "Esqueleto Corrompido", "Esqueleto Enforcado", "Esqueleto Real", "Esqueleto Plebeu"}
+    inteiro vidaInimigoMaxima[20]
+    inteiro defesaInimigo[20]
+    inteiro manainimigoMaxima[20]
+    inteiro xpInimigoDificil[20]
+
+    inteiro inimigosVilaAbandonada[20] = {"Bandido Comun", "Bandido Novato", "Bandido Experiente", "Bandido Berseker", "Pirata", "Capitão Esmaga Cranios", ""}
+    inteiro nomeInimigos[20]
+    inteiro vidaInimigoMaxima[20]
+    inteiro defesaInimigo[20]
+    inteiro manainimigoMaxima[20]
+    inteiro xpInimigoFacil[20]
+
+
+
+    inteiro inimigosCavernaSombria[20]
+    inteiro nomeInimigos[20]
+    inteiro vidaInimigoMaxima[20]
+    inteiro defesaInimigo[20]
+    inteiro manainimigoMaxima[20]
+    inteiro xpInimigoFacil[20]
+
+
+
+    inteiro inimigosPantanoDosLamentos[20]
+    inteiro nomeInimigos[20]
+    inteiro vidaInimigoMaxima[20]
+    inteiro defesaInimigo[20]
+    inteiro manainimigoMaxima[20]
+    inteiro xpInimigoFacil[20]
+
+
+
+    inteiro inimigosCasteloDourado[20]
+    inteiro nomeInimigos[20]
+    inteiro vidaInimigoMaxima[20]
+    inteiro defesaInimigo[20]
+    inteiro manainimigoMaxima[20]
+    inteiro xpInimigoFacil[20]
+
+
+
+    cadeia nomeBoss
+    inteiro stageBoss
 
     // FUNÇÃO PRINCIPAL
     funcao inicio() {
@@ -59,10 +168,10 @@ programa {
             limpa()
             escreva("||HellChampions Studios Apresenta||\n")
             escreva("╔═════════════════════════════════╗\n")
-            escreva("║        ⛧ DARKEST SOULS ⛧       ║\n")
+            escreva("║        ⛧DARKEST SOULS⛧        ║\n")
             escreva("╠═════════════════════════════════╣\n")
             escreva("║                                 ║\n")
-            escreva("║      I   ▸ Nova História        ║\n")
+            escreva("║      I   ▸ Nova História8       ║\n")
             escreva("║     II   ▸ Créditos             ║\n")
             escreva("║    III   ▸ Sair do Jogo         ║\n")
             escreva("║V 1.1.0                          ║\n")
@@ -75,7 +184,42 @@ programa {
             escolha (opcaoMenu) {
                 caso "I":
                 caso "i":
+                
+                    escreva("╔═══════════════════════════════╗\n")
+                    escreva("║     🔥 ESCOLHA SUA JORNADA 🔥║\n")
+                    escreva("╠═══════════════════════════════╣\n")
+                    escreva("║                               ║\n")
+                    escreva("║  1. ▸  AVENTURA               ║\n")
+                    escreva("║                              .║\n")
+                    escreva("║                               ║\n")
+                    escreva("║                               ║\n")
+                    escreva("║  2. ▸  CAVALEIRO DAS ALMAS    ║\n")
+                    escreva("║                               ║\n")
+                    escreva("║                               ║\n")
+                    escreva("║                               ║\n")
+                    escreva("║                               ║\n")
+                    escreva("╚═══════════════════════════════╝\n")
+
+                    leia(escolherDificuldade)
+                    limpa()
+
+                    aventura = falso
+                    cavaleiroDasAlmas = falso
+                    se(escolherDificuldade == 1){
+                      aventura = verdadeiro
+                      escreva("Escoheu a Historia inves do desafio Nobre Guerreiro.")
+                    } senao {
+                      cavaleiroDasAlmas = verdadeiro
+                      escreva("Um Guerreiro Que Anseia por desafios entendo.")
+                    }
+                    limpa()
+
                     iniciarNovaHistoria()
+
+                    
+
+
+                escreva("")
                     pare
                 caso "II":
                 caso "ii":
@@ -102,7 +246,28 @@ programa {
     }
 
     funcao mostrarIntroducao() {
-        escreva("\n||Há muito tempo, no Reino de Eldoria...||\n")
+       
+escreva("Há muito tempo, no Reino de Eldoria, a paz era mantida pela mística Pedra da Luz,\n")
+escreva("protegida pelos Anciãos do Castelo Dourado.\n\n")
+u.aguarde(2000)
+
+escreva("Um dia, uma força sombria conhecida como O Devastador invadiu o reino,\n")
+escreva("roubando a relíquia sagrada e mergulhando as terras em trevas e caos.\n")
+escreva("Vilas foram saqueadas, florestas corrompidas, e criaturas sombrias começaram\n")
+escreva("a vagar pelas regiões.\n\n")
+u.aguarde(2000)
+
+escreva("Diante da crise, uma antiga profecia se cumpriu: um herói escolhido surgirá\n")
+escreva("das sombras para restaurar a luz. Você é esse herói.\n\n")
+u.aguarde(2000)
+
+escreva("Sua missão é atravessar cinco regiões dominadas pelo mal,\n")
+escreva("enfrentando inimigos, evoluindo suas habilidades e se preparando\n")
+escreva("para confrontar O Devastador no Castelo Dourado.\n")
+escreva("A jornada será repleta de perigos, escolhas e batalhas.\n")
+escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
+
+
         u.aguarde(1000)
         // Restante da introdução...
     }
@@ -135,6 +300,7 @@ programa {
                 caso 1:
                     classePersonagem = "Guerreiro"
                     hpMaximo = 150
+                    defesa = 10
                     ataqueBase = 15
                     manaMaxima = 0
                     valido = verdadeiro
@@ -142,6 +308,7 @@ programa {
                 caso 2:
                     classePersonagem = "Arqueiro"
                     hpMaximo = 100
+                    defesa = 8
                     ataqueBase = 12
                     manaMaxima = 0
                     valido = verdadeiro
@@ -149,6 +316,7 @@ programa {
                 caso 3:
                     classePersonagem = "Mago"
                     hpMaximo = 80
+                    defesa = 5
                     ataqueBase = 8
                     manaMaxima = 100
                     valido = verdadeiro
@@ -221,7 +389,7 @@ programa {
     }
 
     // SISTEMA DE COMBATE (versão melhorada)
-    funcao logico batalhar(cadeia nomeInimigo, inteiro hpInimigo, inteiro ataqueInimigo, logico ehBoss) {
+    funcao logico batalhar() {
         inteiro hpInimigoAtual = hpInimigo
         fugiuDeCombate = falso
         
@@ -232,7 +400,7 @@ programa {
             se (classePersonagem == "Mago") {
                 escreva(" | ", manaAtual, "/", manaMaxima, " Mana")
             }
-            escreva("\n", nomeInimigo, ": ", hpInimigoAtual, "/", hpInimigo, " HP\n")
+            escreva("\n", nomeInimigo, ": ", hpInimigoAtual, "/", vidaInimigoMaxima, " HP\n")
             
             // Turno do jogador
             cadeia acao
@@ -241,13 +409,16 @@ programa {
             
             escolha (acao) {
                 caso "1":
+                se(ataqueBase < defesaInimigo){
+
+                }
                     inteiro dano = calcularDano(ataqueBase, verdadeiro)
                     hpInimigoAtual -= dano
                     escreva("\nVocê causa ", dano, " de dano!\n")
                     u.aguarde(1500)
                     pare
                 caso "2":
-                    se (usarHabilidadeEspecial(ehBoss, nomeInimigo, hpInimigoAtual)) {
+                    se (usarHabilidadeEspecial(stageBoss, nomeInimigo, hpInimigoAtual)) {
                         u.aguarde(1500)
                     } senao {
                         continue() // Volta ao início do loop
