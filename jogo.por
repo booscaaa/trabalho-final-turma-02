@@ -34,7 +34,7 @@ programa {
   inteiro aUXVIDADOSINIMIGOS[15] = {30,100,60,20}
   inteiro aTaqueDosInimigos[15] = {12,15,30,20}
   inteiro dEfesaDosInimigos[15] = {15,8,20,20}
-  inteiro xPDosInimigos[15] = {25,75,125,30}
+  inteiro xPDosInimigos[15] = {25,75,125,20}
 
 
   inteiro passouPelaIntroducaoDaVilaAbandonada = 0
@@ -660,6 +660,7 @@ programa {
           inteiro opcao
           sorteio = 0
           sorteio = u.sorteia(sorteDoPersonagem,20)
+          
           escreva("\nVocê resolveu explorar o local, mas para conseguir algo bom, precisa ter sorte no dado d20, e você tirou...",u.aguarde(1000),sorteio," no dado")
           se(sorteio > 15){
             facao()
@@ -681,7 +682,7 @@ programa {
             }
             
           } senao se(sorteio > 0 e sorteio < 10){
-            limpa()
+            
             escreva("\nVocê resolve explorar, procura atrás de um arbusto...e nada, procura atrás de uma árvore...e nada.\n")
             escreva("Sobe em cima de uma árvore pra procurar...e nada, procura dentro da sua cueca...E NADA, deu azar amigo!\n")
           }
@@ -745,7 +746,7 @@ programa {
         
       }
 
-      se(contador == 5){
+      se(contador == 4){
         escreva("\nO ",inimigosDaCampanhaNormal[1]," se irritou, pegou e arrancou uma árvore da floresta, agora ele vai usar ela pra te atacar\n\n")
         se(defesaDoPersonagem < 30){
         aTaqueDosInimigos[1] = aTaqueDosInimigos[1] + 5
@@ -1238,11 +1239,15 @@ programa {
 
       se(passouPelaBatalhaDoChavesChiquinhaQuico == 0){
         passouPelaBatalhaDoChavesChiquinhaQuico = 1
+        status()
         batalhaContraChaves()
+      
         batalhaContraChiquinha()
+        
         batalhaContraQuico()
+        descansar()
 
-      }
+      } 
 
 
 
@@ -1311,7 +1316,25 @@ programa {
                 }
               
               } senao se(sorteio > 0 e sorteio < 8){
+                cadeia opcaoDeXpOuVida
                 escreva("\nVocê decide explorar a vila, procura dentro de um barril que tinha ali, procura em umas plantas, mas não acha nada!\n")
+                escreva("\n...Sinceramente, fiquei com dó, vou te ajudar!\nQuer 20 de XP ou recuperar 5 de vida?\n1-20 de XP\n2-Recuperar 5 de vida\n")
+                leia(opcaoDeXpOuVida)
+                escolheESSAouESSA(opcaoDeXpOuVida)
+                se(opcaoDeXpOuVida == "1"){
+                  escreva("\nSeu desejo é uma ordem! o Pix de 20 XP caiu na sua conta!\n")
+                  xpDoPersonagem = xpDoPersonagem + 20
+
+                } senao se(opcaoDeXpOuVida == "2"){
+                  escrev("\nSeu desejo é uma ordem! o Pix de 5 de HP caiu na sua conta!\n")
+                  se((vidaDoPersonagem + 5) > auxVidaDoPersonagem){
+                    vidaDoPersonagem = auxVidaDoPersonagem
+                  } senao{
+                    vidaDoPersonagem = vidaDoPersonagem + 5
+                  }
+                }
+                
+                
             } 
 
           pare
@@ -1344,6 +1367,7 @@ programa {
   }
 
   funcao batalhaContraChaves(){
+    
     
     cadeia opcaoDePreparado
 
@@ -1467,7 +1491,7 @@ programa {
     
     cadeia opcaoDePreparado
 
-    escreva("Sem dar tempo pra você descansar, Chiquinha parte pra cima de você!\n")
+    escreva("\nSem dar tempo pra você descansar, Chiquinha parte pra cima de você!\n")
     inimigosDaCampanhaNormal[3] = "Chiquinha"
     vIdaDosInimigos[3] = aUXVIDADOSINIMIGOS[3]
 
@@ -1583,7 +1607,7 @@ programa {
     
     cadeia opcaoDePreparado
     
-    escreva("Agora o último, aí vem o Quico!\n")
+    escreva("\nAgora o último, aí vem o Quico!\n")
     inimigosDaCampanhaNormal[3] = "Quico"
     vIdaDosInimigos[3] = aUXVIDADOSINIMIGOS[3]
    
@@ -1688,11 +1712,13 @@ programa {
       seguir()
       limpa()
       status()
-      descansar()
+      
       
       } 
 
   }
+
+  
 
   funcao statusDuranteBatalhaContraChavesChiquinhaQuico(){
     
@@ -1722,6 +1748,103 @@ programa {
         }
       }
      
+  }
+
+  funcao liberdadeNaVilaAbandonadaPARTE2(){
+    cadeia opcao
+    inteiro sorteio = 0
+
+    enquanto(opcao != "1" e opcao != "2" e opcao != "3"){
+      status()
+      escreva("\nA liberdade desta vez será diferente, você terá a opção de vasculhar o corpo do Chaves, do Quico ou da Chiquinha em vez de explorar o local.\nO que deseja fazer ",nomeDoPersonagem," ?\n\n1-Seguir em frente\n2-Vasculhar corpos\n3-Voltar região\n")
+      
+      leia(opcao)
+      escolha(opcao){
+
+        caso "1":
+
+        escreva("Ok então, bora seguir.")
+        u.aguarde(1000)
+        limpa()
+
+        
+          
+        pare
+
+        caso "2":
+          cadeia opcaoVasculhar
+          sorteio = 0
+          sorteio = u.sorteia(sorteDoPersonagem,20)
+          escreva("\nShow de bola, qual corpo você quer vasculhar? (você ATÉ poderia vasculhar todo os corpos, mas eu não quero que você faça isso =D)")
+          escreva("\n1-Vasculhar corpo do Chaves\n2-Vasculhar corpo da Chiquinha\n3-Vasculhar corpo do Quico\n")
+          leia(opcaoVasculhar)
+
+          enquanto(opcaoVasculhar != "1" e opcaoVasculhar != "2" e opcaoVasculhar != "3"){
+
+            escreva(";———; digita certo!")
+            leia(opcaoVasculhar)
+
+          }
+          
+          se(opcaoVasculhar == "1"){
+
+            se(sorteio > 9){
+              escreva("\nEu ")
+            }  senao se(sorteio > 0 e sorteio < 10){
+
+            } 
+
+          }
+
+          se(opcaoVasculhar == "2"){
+
+            se(sorteio > 9){
+            
+            }  senao se(sorteio > 0 e sorteio < 10){
+
+            } 
+
+          }
+
+          se(opcaoVasculhar == "3"){
+
+            se(sorteio > 9){
+            
+            }  senao se(sorteio > 0 e sorteio < 10){
+
+            } 
+
+          }
+
+          
+
+        pare
+
+        caso "3":
+          
+        se(mEUlOCALaTUAL == 1){
+          limpa()
+          status()
+          escreva("\nVocê já está na região 1, não tem pra onde voltar\n")
+          liberdade()
+          
+          
+        } senao{
+          mEUlOCALaTUAL--
+          se(mEUlOCALaTUAL == 1){
+            desenhoDaFloresta()
+            
+            //Vou colocar um "se" para os números de cada região.
+            //e depois vou criar uma função específica pra cada região, se ele voltar,
+            //ele irá poder explorar e tals, mas sempre encontrará um inimigo
+          }
+        }
+
+        pare
+
+      }
+    }
+    seguir()
   }
 
   
@@ -1790,13 +1913,18 @@ programa {
   
 
   funcao seguir(){
-    cadeia opcao
-    escreva("\nSeguir?\n1-Sim\n2-Não")
-    enquanto(opcao != "1"){
-      escreva("...\n")
-      leia(opcao)
+    se(vidaDoPersonagem > 0){
+      cadeia opcao
+      escreva("\nSeguir?\n1-Sim\n2-Não")
+      enquanto(opcao != "1"){
+        escreva("...\n")
+        leia(opcao)
+      }
+      limpa()
+    } 
+    senao{
+      inicio()
     }
-    limpa()
   }
 
   
@@ -1831,21 +1959,27 @@ programa {
   teste = (vidaDoPersonagem > 0)
 
   escreva(teste)
+  se(teste == falso){
+    inicio()
+  }
   
   
   }
 
   funcao descansar(){
-    escreva("\nVocê se sente cansado depois da última batalha e decide tirar um cochilo, você avistou uma arvoré proxima que você pode se escorar e descansar")
-    escreva("\nSua vida foi restaurada em 5 pontos!(isso se você tiver tomado 5 de dano na última batalha).\n")
-    se((vidaDoPersonagem + 5) > auxVidaDoPersonagem){
-      vidaDoPersonagem = auxVidaDoPersonagem
+    se(vidaDoPersonagem > 0){ 
+      escreva("\nVocê se sente cansado depois da última batalha e decide tirar um cochilo, você avistou uma arvoré proxima que você pode se escorar e descansar")
+      escreva("\nSua vida foi restaurada em 5 pontos!(isso se você tiver tomado 5 de dano na última batalha).\n")
+      se((vidaDoPersonagem + 5) > auxVidaDoPersonagem){
+        vidaDoPersonagem = auxVidaDoPersonagem
+      } senao{
+        vidaDoPersonagem = vidaDoPersonagem + 5
+      }
+      seguir()
+      
     } senao{
-      vidaDoPersonagem = vidaDoPersonagem + 5
+      inicio()
     }
-    seguir()
-    
-
   }
 
   funcao escolheESSAouESSA(cadeia opcao){
@@ -1913,6 +2047,8 @@ programa {
   funcao batalha(){
     
     cadeia opcaoDePreparado
+
+
 
     escreva("Está preparado? Sim? Não?\n")
     leia(opcaoDePreparado)
@@ -2069,7 +2205,7 @@ programa {
           mEUlOCALaTUAL--
           se(mEUlOCALaTUAL == 1){
             desenhoDaFloresta()
-            
+            casoVoltePraFloresta()
             //Vou colocar um "se" para os números de cada região.
             //e depois vou criar uma função específica pra cada região, se ele voltar,
             //ele irá poder explorar e tals, mas sempre encontrará um inimigo
