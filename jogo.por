@@ -904,6 +904,7 @@ programa {
                                       escreva("1-ENTRAR NO PORTAL")
                                       leia(portal_mundo_normal)
                                       se(portal_mundo_normal==1){
+                                        inteiro escolher_historia_celeiro
                                         escreva("Você retorna ao mundo de eldoria...\n")
                                         escreva("- Você olha para trás e resolve continuar , porém sente que comeca a perder as forcas...\n")
                                         escreva("-Se sente tonto...porém alguns quilometros antes da sua próxima aventura vocÊ encontra um celeiro...\n")
@@ -913,7 +914,8 @@ programa {
                                         escreva("2-PARTE DE CIMA DO CELEIRO\n")
                                         escreva("3-ESTOQUE DE FENO\n")
                                         escreva("4-SAIR DO CELEIRO\n")
-                                        escolha(portal_mundo_normal){
+                                        leia(escolher_historia_celeiro)
+                                        escolha(escolher_historia_celeiro){
                                           caso 1:
                                           escreva("Voce anda lentamente onde ficam os cavalos...\n")
                                           escreva("Porém não encontra nada , apenas o chão úmido e solido de concreto que ali estavam os animais\n")
@@ -926,7 +928,7 @@ programa {
                                           escreva("A única coisa que você encontra é alguns remédios para os cavalos\n")
                                           escreva("Voce desce a escada e acaba pisando em um degrau infalso\n")
                                           escreva("Após isso , você escorrega e cai sobre aquele chão úmido...\n")
-                                          encreva("Enquanto seus olhos se fechavam você avista um semblante de um agricultor vindo na sua direcao vagarosamente...\n")
+                                          escreva("Enquanto seus olhos se fechavam você avista um semblante de um agricultor vindo na sua direcao vagarosamente...\n")
                                           pare
 
                                           caso 3:
@@ -1331,9 +1333,239 @@ programa {
                                               limpa()
                                               se(entrar_covil_ragnaros==1){
                                               cadeia nome_chefe_ragnaros = "RAGNAROS , O SENHOR DO FOGO"
+                                              escreva("--------------------------------------------------------------\n")
+                                              escreva("VOCE ENCONTROU RAGNAROS, O SENHOR DO FOGO!!\n")
+                                              escreva("--------------------------------------------------------------\n")
+                                              escreva("\n\n\n")
                                               escreva(nome_chefe_ragnaros," :ᗰOᖇTᗩᒪ...ᑕOᗰO OᑌSᗩ ᐯIᖇ ᗩTᕮ́ O ᗰᕮᑌ ᒪᗩᖇ???\n")
                                               escreva(nome_chefe_ragnaros," :O ᖴOＧO ᑕOᘉSᑌᗰIᖇᗩ́ ᕮSTᕮ ᗰᑌᘉᗞO ᑭᗩTᕮ́TIᑕO...\n")
+                                              inteiro vida_chefe_ragnaros = 50 //alterar vida do chefe
+                                              inteiro xp_ganho_ragnaros = 100
+                                              inteiro dano_de_ataque_chefe_ragnaros = 5 //alterar o dano do chefe
+                                              logico defenderse_chefe_ragnaros = falso
+                                              enquanto(vidadaespecializacao > 0 e vida_chefe_ragnaros > 0) {
+                                              escreva("\nSUA VIDA:", vidadaespecializacao, "\nVIDA DO ", nome_chefe_ragnaros, ":", vida_chefe_ragnaros, "\n")
+                                              escreva("1-ATACAR\n")
+                                              escreva("2-DEFENDER-SE\n")
+                                              inteiro acao_combate_chefe_ragnaros
+                                              leia(acao_combate_chefe_ragnaros)
+                                              defenderse_chefe_ragnaros = falso
 
+                                              se(acao_combate_chefe_ragnaros==1){
+                                                danodaespecializacao=Util.sorteia(danodaespecializacao-2,danodaespecializacao + 2)
+                                                agilidadedaespecializacao = Util.sorteia(1,100)
+                                                se(agilidadedaespecializacao<=15){
+                                                  danodaespecializacao = danodaespecializacao * 2
+                                                  escreva("VOCÊ CAUSOU UM ATAQUE CRÍTICO CAMPEÃO!!\n")
+                                                }
+                                              vida_chefe_ragnaros = vida_chefe_ragnaros - danodaespecializacao
+                                              escreva("\nVocê causou",danodaespecializacao,"de dano em",nome_chefe_ragnaros,"\n")
+                                              }
+                                              senao se(acao_combate_chefe_ragnaros==2){
+                                              inteiro dano_reduzido_chefe_ragnaros = (Util.sorteia(dano_de_ataque_chefe_ragnaros-2,dano_de_ataque_chefe_ragnaros)) / 2
+                                              defenderse_chefe_ragnaros = verdadeiro
+                                              se(dano_reduzido_chefe_ragnaros < 0){
+                                                dano_reduzido_chefe_ragnaros = 0
+                                              }
+                                              vidadaespecializacao = vidadaespecializacao - dano_reduzido_chefe_ragnaros
+                                              escreva("Voce se defendeu de ",nome_chefe_ragnaros,"o inimigo causou apenas",dano_reduzido_chefe_ragnaros,"\n")
+                                              }senao{escreva(nome_chefe_ragnaros,"Aproveitou a sua brecha",nomedocampeao,"  lhe atacou!!\n")}
+                                              se(vida_chefe_ragnaros > 0 e defenderse_chefe_ragnaros==falso){
+                                                dano_de_ataque_chefe_ragnaros = Util.sorteia(dano_de_ataque_chefe_ragnaros-5,dano_de_ataque_chefe_ragnaros+5)
+                                                se(dano_de_ataque_chefe_ragnaros<0){
+                                                  dano_de_ataque_chefe_ragnaros = 0
+                                                }inteiro chance_de_esquiva_ragnaros=Util.sorteia(1,100)
+                                                se(chance_de_esquiva_ragnaros<=15){
+                                                  escreva("\nVocê se esquivou de",nome_chefe_ragnaros,"\n")
+                                                }
+                                                senao{
+                                                  vidadaespecializacao = vidadaespecializacao - dano_de_ataque_chefe_ragnaros
+                                                  escreva("\nVoce recebeu",dano_de_ataque_chefe_ragnaros,"de",nome_chefe_ragnaros,"\n")
+                                                }
+                                              }
+                                            
+
+                                  
+
+                                              }
+                                              se(vidadaespecializacao <=0){
+                                                escreva("Voce foi derrotado por",nome_chefe_ragnaros,"\n")
+                                                escreva("Que os deuses guardem sua alma",nomedocampeao,"\n")
+                                                }
+                                              senao se(vida_chefe_ragnaros<=0){
+                                                escreva("Parabéns",nomedocampeao,"voce derrotou",nome_chefe_ragnaros,"\n")
+                                                xp = xp + xp_ganho_ragnaros
+                                                escreva(nomedocampeao," você derrotou ",nome_chefe_ragnaros,"parabéns",nomedocampeao,"\n")
+                                                nivelupado(xp, xpparasubirdenivel, niveldocampeao)
+                                                escreva("Muito obrigado campeão, você libertou a floresta da névoa de",nome_chefe_ragnaros,"\n")
+                                                escreva("\n\n\n\n")
+                                                escreva("Voce resolve descansar após uma árdua batalha e se regenera em uma fogueira que havia lá por perto...\n")
+                                                inteiro sorteio_do_descanso_apos_concluir_cavernassombrias
+                                                sorteio_do_descanso_apos_concluir_cavernassombrias = Util.sorteia(10,50)
+                                                escreva("\nApós seu descanso você aumentou",sorteio_do_descanso_apos_concluir_cavernassombrias,"de vida máxima\n")
+                                                vidadaespecializacao = vidadaespecializacao + sorteio_do_descanso_apos_concluir_cavernassombrias
+                                                escreva("\nApós um bom descanso",nomedocampeao,"acorda e revigora suas energias antes de ir para a sua próxima aventura...\n")
+                                                escreva("SUA VIDA:",vidadaespecializacao,"\n")
+                                                Util.aguarde(4000)
+                                                escreva("\n\n\n\n")
+
+                                                inteiro quarta_regiao_eldoria
+                                                escreva("Parabéns campeão escolha a região na qual você deseja ir...\n")
+                                                escreva("REINO DE ELDORIA\n")
+                                                escreva("1-FLORESTA DA NÉVOA\n")
+                                                escreva("2-VILA ABANDONADA\n")
+                                                escreva("3-CAVERNA SOMBRIA\n")
+                                                escreva("4-PANTANO DOS LAMENTOS\n")
+                                                escreva("5-CASTELO DOURADO\n")
+
+                                                escolha(quarta_regiao_eldoria){
+
+                                                caso 1:
+                                                escreva("VOCE JA PASSOU POR ESTA REGIÃO", nomedocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                escreva("VOCE CHEGOU ATÉ O NÍVEL",niveldocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                escreva("VOCE DERROTOU",nome_chefe_xavius,"\n")
+                                                Util.aguarde(1000)
+                                                escreva(nomedocampeao,"NAO HÁ MAIS NADA A SER FEITO NESTA REGIÃO CAMPEÃO...\n")
+                                                Util.aguarde(1000)
+                                                escreva("LHE DESEJAMOS MUITA SORTE NOS PRÓXMIOS DESAFIOS",nomedocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                pare
+
+                                                caso 2:
+                                                escreva("VOCE JA PASSOU POR ESTA REGIÃO", nomedocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                escreva("VOCE CHEGOU ATÉ O NÍVEL",niveldocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                escreva("VOCE DERROTOU",nome_chefe_guldhan,"\n")
+                                                Util.aguarde(1000)
+                                                escreva(nomedocampeao,"NAO HÁ MAIS NADA A SER FEITO NESTA REGIÃO CAMPEÃO...\n")
+                                                Util.aguarde(1000)
+                                                escreva("LHE DESEJAMOS MUITA SORTE NOS PRÓXMIOS DESAFIOS",nomedocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                pare
+
+                                                caso 3:
+                                                escreva("VOCE JA PASSOU POR ESTA REGIÃO", nomedocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                escreva("VOCE CHEGOU ATÉ O NÍVEL",niveldocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                escreva("VOCE DERROTOU",nome_chefe_ragnaros,"\n")
+                                                Util.aguarde(1000)
+                                                escreva(nomedocampeao,"NAO HÁ MAIS NADA A SER FEITO NESTA REGIÃO CAMPEÃO...\n")
+                                                Util.aguarde(1000)
+                                                escreva("LHE DESEJAMOS MUITA SORTE NOS PRÓXMIOS DESAFIOS",nomedocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                pare
+
+                                                caso 4:
+                                                escreva("Mapa escolhido com sucesso!!\n")
+                                                Util.aguarde(3000)
+                                                escreva("Lhe desejamos muita sorte na sua próxima aventura campeão!\n")
+                                                Util.aguarde(3000)
+                                                pare
+
+                                                caso 5:
+                                                escreva("IMPOSSÍVEL ESCOLHER A REGIÃO DE CASTELO DOURADO SEM TER CONCLUÍDO A FASE ANTERIOR CAMPEÃO!\n")
+                                                Util.aguarde(3000)
+                                                escreva("POR FAVOR, CONCLUA A REGIÃO PANTANO DOS LAMENTOS PARA SEGUIR COM A SUA JORNADA! \n")
+                                                Util.aguarde(3000)
+                                                pare
+                                                }
+                                                limpa()
+                                                escreva("SEUS STATUS: \n")
+                                                escreva("VIDA: ",vidadaespecializacao,"\n")
+                                                escreva("DANO: ",danodaespecializacao,"\n")
+                                                escreva("DEFESA: ",defesadaespecializacao,"\n")
+                                                escreva("AGILIDADE: ",agilidadedaespecializacao,"\n")
+                                                escreva("\n\n\n")
+                                                escreva("Após uma longa jornada, voce encontra uma fogueira...\n")
+                                                escreva("Resolve se aproximar dela para se esquentar...\n")
+                                                vidadaespecializacao = Util.sorteia(vidadaespecializacao+15,vidadaespecializacao+20)
+                                                danodaespecializacao = Util.sorteia(danodaespecializacao+15,danodaespecializacao+20)
+                                                agilidadedaespecializacao = Util.sorteia(agilidadedaespecializacao+15,agilidadedaespecializacao+20)
+                                                defesadaespecializacao = Util.sorteia(defesadaespecializacao+15,defesadaespecializacao+20)
+                                                escreva("Após um cochilo próximo a fogueira , você acorda",nomedocampeao,"\n")
+                                                escreva("Depois de algum tempo você resolve seguir seu caminho ")
+                                                escreva("\n\n\n")
+                                                escreva("SEUS STATUS APÓS O DESCANSO:\n")
+                                                escreva("VIDA: ",vidadaespecializacao,"\n")
+                                                escreva("DANO: ",danodaespecializacao,"\n")
+                                                escreva("DEFESA: ",defesadaespecializacao,"\n")
+                                                escreva("AGILIDADE: ",agilidadedaespecializacao,"\n")
+                                                Util.aguarde(4000)
+                                                escreva("\n\n\n")
+                                                escreva("Ao andar por três longas jornadas, você prossegue sem rumo sem ter uma idéia de onde deve ir...\n")
+                                                escreva("Enquanto caminahva por aquela longínqua estrada , se depara com uma carroca de um vendedor ambulante...\n")
+                                                escreva("Aproximadamente há 100 metros dali,mas você já viu aquela carroca em algum lugar...\n")
+                                                escreva("Parecia ser Joofrey,o homem na qual havia salvado você...\n")
+                                                escreva(nome_camponesamigo," :Olá",nomedocampeao," sabia que você se sairia vitorioso sobre eles...\n")
+                                                inteiro escolha_joofrey_vendedor_perguntar
+                                                escreva("**PERGUNTE A JOOFREY COMO ELE CHEGOU ATÉ ALI**\n")
+                                                escreva("1--JOOFREY,COMO CONSEGUIU SAIR DA SUA CASA E PASSAR A MINHA FRENTE?\n")
+                                                escreva("2--UAU,VEJO QUE ESTÁ VENDENDO COISAS LEGAIS AAÍ EIN?\n")
+                                                escreva("3--JOOFREY A SUA CARA ESTÁ COM ALGUNS FERIMENTOS!!\n")
+                                                escreva("4--VOCÊ TERIA ALGO PARA COMER?")
+                                                leia(escolha_joofrey_vendedor_perguntar)
+                                                limpa()
+                                                escolha(escolha_joofrey_vendedor_perguntar){
+                                                
+                                                caso 1:
+                                                escreva("1--JOOFREY,COMO CONSEGUIU SAIR DA SUA CASA E PASSAR A MINHA FRENTE?\n")
+                                                escreva("Joofrey :hahahah,pode parecer brincadeira as eu sabia alguns atalhozinhos para chegar até aqui\n")
+                                                escreva("Joofrey :Sabe como é",nomedocampeao,"quem é veterano desta região conhece alguns atalhos...\n")
+                                                escreva("**Você nota uma leve mudanca na voz de Joofrey**\n")
+                                                pare
+
+                                                caso 2:
+                                                escreva("2--UAU,VEJO QUE ESTÁ VENDENDO COISAS LEGAIS AAÍ EIN?\n")
+                                                escreva("Joofrey :Sim, campeão estou com alguns produtos especiais aqui\n")
+                                                escreva("Joofrey :Gostaria de ver um pouco mais a fundo?\n")
+                                                escreva("Claro! estou precisando de uma melhoria para o meu",armadaespecializacao,"\n")
+                                                escreva("Joofrey :HAHAHAH você tem uma moeda chamada alma campeão?\n")
+                                                escreva("**Jofreey fala com uma voz demoniaca**\n")
+                                                escreva("Você repara na mudanca de voz de joofrey e mesmo assim continua a conversa tranquilamente!\n")
+                                                pare
+
+                                                caso 3:
+                                                escreva("3--JOOFREY A SUA CARA ESTÁ COM ALGUNS FERIMENTOS!!\n")
+                                                escreva("Joofrey :Não se preocupe com isso campeão..\n")
+                                                escreva("Joofrey :Isso nada mais é do que alguns arranhãozinhos pegos durante o atalho...\n")
+                                                escreva("Joofrey :Sabe como é campeão, depois que o devastador veio até o nosso mundo as coisas ficaram tensas...\n")
+                                                escreva("VocÊ não acredita muito na história de Joofrey\n")
+                                                escreva("Mesmo assim,continua a conversa tranquilamente...\n")
+                                                pare
+
+                                                caso 4:
+                                                escreva("4--VOCÊ TERIA ALGO PARA COMER?\n")
+                                                escreva("Joofrey :Claro campeão,gostaria de um pedaco de pão?\n")
+                                                escreva(nomedocampeao,": Claro!! adoraria.\n")
+                                                escreva("**VOCE COME O PÃO DE JOOFREY**\n")
+                                                escreva(nomedocampeao,": Estava uma delícia , obrigado Joofrey!\n")
+                                                escreva("Ao comer o pão você se depara com feridas na cara de joofrey , e algumas mudancas em seu rosto...\n")
+                                                pare
+                                                }
+                                                //biblioteca util de tempo (aproximadamente 5 segundo para ler o diálogo!)
+                                                escreva("Mesmo notando aquela diferenca em Joofrey você continua olhando sem parar para suas feridas...\n")
+                                                escreva("Joofrey :VEJO QUE ESTÁ GOSTANDO DE OLHAR PARA MEUS FERIMENTOS...\n")
+                                                escreva("Falou Joofrey com uma voz demoníaca...\n")
+                                                escreva("Joofrey :COF COF, perdão herói , esta mudanca de temperatura está acabando comigo...\n")
+                                                escreva(nomedocampeao,"Certo e você tem idéia de por onde posso seguir para o pântano vadeoso?\n")
+                                                escreva("Joofrey :é claro campeão,siga pela estrada até encontrar uma clareira ao norte!!\n")
+                                                escreva(nomedocampeao,"Muito obrigado Joofrey,espero que os deuses lhe iluminem!\n")
+                                                escreva("Joofrey :HAHAHA voCE NaO sABe o QUantTO\n")
+                                                escreva("**Joofrey alternava entre aquela voz esquisita e a sua voz normal**\n")
+                                                escreva("\n\n")
+                                                inteiro seguir_para_clareira_pantano
+                                                escreva("1--SEGUIR PELO CAMINHO QUE JOOFREY RECOMENDOU\n")
+                                                leia(seguir_para_clareira_pantano)
+                                                se(seguir_para_clareira_pantano==1){
+                                                  limpa()
+                                                  escreva("Após uma caminhada intensa, você resolve se sentar...\n")
+                                                }senao{escreva("Da próxima escolha a opcao correta...")}
+
+                                                }
                                               }senao{escreva("O fogo lhe consomiu herói...")}
 
                                             }senao{escreva("Voce precisa entrar nas cavernas sombrias campeão!!")}
