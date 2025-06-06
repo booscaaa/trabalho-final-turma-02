@@ -4,8 +4,12 @@ programa {
   inteiro vidaJogador
   inteiro ataqueJogador
   cadeia nomedoHeroi
+  cadeia classescolhidaMostrar = ""
   inteiro classeEscolhida
   inteiro contadordeMapas = 0
+  inteiro nivelJogador = 1
+  inteiro experienciaAtual = 0
+  inteiro experienciaParaProximoNivel = 10
   inteiro quantidadeItens[3] = {1, 1, 0}
   cadeia itensNaMochila[3] ={
     "Poção de vida \n",
@@ -20,6 +24,25 @@ programa {
     "Castelo",
     "Campo aberto com tempestade nada suspeito"
   } 
+
+  funcao mostraAtributos(){
+    escreva("Nome: ", nomedoHeroi, "\n" )
+    escreva("Classe: ", classescolhidaMostrar, "\n")
+    escreva("Vida: ", vidaJogador, "\n")
+    escreva("XP: ", experienciaAtual, " / ", experienciaParaProximoNivel)
+    escreva()
+  }
+
+  funcao upadeNivelXP(){
+
+  }
+
+  funcao continuarPrimeiroWin(){
+    escreva("Voce conquistou o respeito das Arvores acabando com a ditadura da Arvore amaldicoada derrotando ela")
+    escreva("as arvores abrem caminho e o bosque que antes era tomado pela escuridao profunda agora reflete a luz do sol")
+    escreva("Voce se sentiu um herói ao libertar as arvores")
+    escreva("Ao inves de voltar para sua casa, voce resolve seguir seu caminho a frente como um herói")
+  }
 
   funcao usarPocaoEstranha() {
   inteiro sorte = u.sorteia(0, 1)
@@ -85,19 +108,24 @@ programa {
     escreva("\nEnquanto você caminha pela floresta...\n")
     escreva("\nAs árvores se fecham em formato de arena, no meio da escuridão você vê 2 olhos vermelhos como sangue.\n")
     escreva("\nVocê encontra Árvore do Lamento, não há para onde correr sua única escolha é batalhar!\n")
-
+  enquanto(vidaJogador>0 e vidaDaArvore>0){
     escreva("O que você você deseja fazer agora ?\n")
     escreva("1- Atacar\n")
     escreva("2- Usar um item\n")
+    escreva("3- Ver seus atributos\n")
     escreva("Escolha: ")
     leia(opcaoEsolhidaNaBatalha1)
+  
 
     se(opcaoEsolhidaNaBatalha1 == 1) {
       batalhaContraArvore() 
+
     } senao se(opcaoEsolhidaNaBatalha1 == 2) {
       itensnoinventario()
       escreva("Qual item você deseja usar ?")
       leia(leiaItemUsado)
+    } senao se(opcaoEsolhidaNaBatalha1 ==3){
+      mostraAtributos()
     } senao {
       escreva("Você não fez absolutamente nada e morreu.")
       u.aguarde(5000)
@@ -109,7 +137,7 @@ programa {
     } senao se(leiaItemUsado==2){
       usarPocaoEstranha()
     }
-
+  }
 
   se(leiaItemUsado >= 1 e leiaItemUsado <= 3) {
   se(quantidadeItens[leiaItemUsado - 1] > 0) {
@@ -132,6 +160,7 @@ programa {
   inteiro rodada = 1
 
   enquanto(vidaJogador > 0 e vidaDaArvore > 0) {
+    escreva(vidaDaArvore)
     escreva("\n-- Rodada ", rodada, " --\n")
     escreva("Sua Vida: ", vidaJogador, " | Vida da Árvore: ", vidaDaArvore, "\n")
     escreva("1 - Atacar\n")
@@ -171,7 +200,8 @@ programa {
     se(vidaDaArvore <= 0) {
       escreva("\nVocê derrotou a Árvore do Lamento!\n")
       escreva("Sua jornada continua...\n")
-      retorne
+      continuarPrimeiroWin()
+      pare
     }
 
     escreva("A Árvore do Lamento ataca causando ", ataqueDaArvore, " de dano!\n")
@@ -181,7 +211,6 @@ programa {
       escreva("Você foi derrotado...\n")
       u.aguarde(3000)
       creditos()
-      retorne
     }
 
     rodada = rodada + 1
@@ -247,7 +276,6 @@ programa {
     limpa()
 
     escreva("\n 3. Arqueiro\n")
-    //imagem
     escreva("\nespecialista em combate à distância, ágil e preciso, domina arcos e táticas de emboscada.\n")
     u.aguarde(1000)
     limpa()
@@ -255,7 +283,7 @@ programa {
     escreva("\n 4 Aldeão\n")
     mostrardesenhoaldeao()
     limpa()
-    //imagem
+    
 
     escreva("\nQual classe você ira escolher para ", nomedoHeroi, "? (OBS) 1 a 4\n")
     leia(classeEscolhida)
@@ -263,14 +291,17 @@ programa {
     faca {
       se(classeEscolhida == 1) {
         escreva("\nBem vindo Guerreiro ", nomedoHeroi, "\n")
+        classescolhidaMostrar = "Guerreiro"
         vidaJogador = 10
         ataqueJogador = 3
       } senao se(classeEscolhida == 2) {
         escreva("\nBem vindo Mago " , nomedoHeroi, "\n")
+        classescolhidaMostrar = "Mago"
         vidaJogador = 8
         ataqueJogador = 5
       } senao se(classeEscolhida == 3) {
         escreva("\nBem vindo Arqueiro ", nomedoHeroi, "\n")
+        classescolhidaMostrar = "Arqueiro"
         vidaJogador = 7
         ataqueJogador = 6 
       } senao se(classeEscolhida == 4) {
@@ -412,7 +443,7 @@ u.aguarde(1000)
     escreva("            ..  ..=%@@@@@@@@@@@@@@@@@#-..                  \n")
     escreva("                          ......           \n")              
 }
-  }
+  
 
 
   funcao itensnoinventario(){
@@ -433,6 +464,7 @@ u.aguarde(1000)
   } senao {
     escreva("Sua vida já está cheia!\n")
   }
+}
 }
 
 
