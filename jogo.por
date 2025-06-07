@@ -1,13 +1,18 @@
 programa {inclua biblioteca Util --> u 
-  inteiro vidaMaxima  
-  inteiro vida
-  inteiro dano
-  inteiro defesa
-  inteiro mana
+  inteiro vidaMaximaHeroi  
+  inteiro vidaHeroi
+  inteiro danoHeroi
+  inteiro defesaHeroi
+  inteiro manaHeroi
   inteiro chefe = 1
   inteiro ondeEstou = 1
   cadeia feitico
   cadeia nomePlayer
+
+  inteiro vidaInimigo
+  inteiro danoInimigo
+  inteiro defesaInimigo
+  cadeia nomeInimigo
   funcao inicio() {
     inteiro comecar
     inteiro gameStart
@@ -130,26 +135,26 @@ programa {inclua biblioteca Util --> u
     se(classeEscolha == 1){
       escreva("---Guerreiro---")
       escreva("\n---",nomePlayer,"---")
-      escreva("\nHP: ", vida)
-      escreva("\nAtaque: ", dano)
-      escreva("\nDefesa: ", defesa)
-      escreva("\nMana: ", mana)
+      escreva("\nHP: ", vidaHeroi)
+      escreva("\nAtaque: ", danoHeroi)
+      escreva("\nDefesa: ", defesaHeroi)
+      escreva("\nMana: ", manaHeroi)
       escreva("\nFeitiço: ", feitico)
       }senao se (classeEscolha == 2){
       escreva("-----Mago-----")
       escreva("\n---",nomePlayer,"---")
-      escreva("\nHP: ", vida)
-      escreva("\nAtaque: ", dano)
-      escreva("\nDefesa: ", defesa)
-      escreva("\nMana: ", mana)
+      escreva("\nHP: ", vidaHeroi)
+      escreva("\nAtaque: ", danoHeroi)
+      escreva("\nDefesa: ", defesaHeroi)
+      escreva("\nMana: ", manaHeroi)
       escreva("\nFeitiço:", feitico)
       }senao se (classeEscolha == 3){
       escreva("---Arqueiro---")
       escreva("\n---",nomePlayer,"---")
-      escreva("\nHP: ", vida)
-      escreva("\nAtaque: ", dano)
-      escreva("\nDefesa: ", defesa)
-      escreva("\nMana: ", mana)
+      escreva("\nHP: ", vidaHeroi)
+      escreva("\nAtaque: ", danoHeroi)
+      escreva("\nDefesa: ", defesaHeroi)
+      escreva("\nMana: ", manaHeroi)
       escreva("\nFeitiço: ", feitico)
       
       
@@ -163,27 +168,28 @@ programa {inclua biblioteca Util --> u
   }
   funcao  classe (inteiro classeEscolhida){
       se(classeEscolhida == 1){
-        vida = 400  
-        dano = 50
-        defesa = 70 
-        mana = 50 
+        vidaHeroi = 400  
+        danoHeroi = 50
+        defesaHeroi = 70 
+        manaHeroi = 50 
         feitico = "Barreira"
       }senao se(classeEscolhida == 2){
-        vida = 250 
-        dano = 100 
-        defesa = 20 
-        mana = 200 
+        vidaHeroi = 250 
+        danoHeroi = 100 
+        defesaHeroi = 20 
+        manaHeroi = 200 
         feitico = "Bola de fogo"
       }senao se(classeEscolhida == 3 ){
-        vida = 300 
-        dano = 75 
-        defesa = 50
-        mana = 100 
+        vidaHeroi = 300 
+        danoHeroi = 75 
+        defesaHeroi = 50
+        manaHeroi = 100 
         feitico = "Herbalista"
       }senao{
         classe()
       }
     limpa()
+    vidaMaximaHeroi = vidaHeroi
   }
   funcao exploration(){
    inteiro floresta = 1
@@ -225,7 +231,7 @@ programa {inclua biblioteca Util --> u
    }senao se (ondeEstou == 2){
      escreva("Você está na vila abandonada\n")//texto temporario
      escreva("1: Avançar pra proxíma area\n")
-     escreva("2: Explorar a are\n")
+     escreva("2: Explorar a area\n")
      escreva("3: Voltar pra area anterior\n")
      leia(decisao)
      
@@ -330,21 +336,80 @@ programa {inclua biblioteca Util --> u
     se(mundoCombate == 1){
       tipoEncontro = u.sorteia(1, 3)
       
+      batalha(tipoEncontro)
+
       exploration()
     }senao se(mundoCombate == 2){
       tipoEncontro = u.sorteia(3, 5)
+      
+      batalha(tipoEncontro)
+
       exploration()
     }senao se(mundoCombate == 3){
       tipoEncontro = u.sorteia(5, 7)
+      
+      batalha(tipoEncontro)
+
       exploration()
     }senao se(mundoCombate == 4){
       tipoEncontro = u.sorteia(6, 9)
+      
+      batalha(tipoEncontro)
+
       exploration()
     }senao se(mundoCombate == 5){
       tipoEncontro = u.sorteia(8, 10)
+      
+      batalha(tipoEncontro)
+
       exploration()
     }
 
+
+  }
+  funcao batalha(inteiro tipoDeBatalha){
+    
+    se (tipoDeBatalha == 1){
+     vidaInimigo = 250
+    danoInimigo = 40
+    defesaInimigo = 20
+    nomeInimigo = "Slime"
+     escreva("Você encontra um slime")
+     atualCombate()
+
+    }senao se (tipoDeBatalha == 2){
+      
+    }senao se (tipoDeBatalha == 3){
+      
+    }senao se (tipoDeBatalha == 4){
+      
+    }senao se (tipoDeBatalha == 5){
+      
+    }senao se (tipoDeBatalha == 6){
+      
+    }senao se (tipoDeBatalha == 7){
+      
+    }senao se (tipoDeBatalha == 8){
+      
+    }senao se (tipoDeBatalha == 9){
+      
+    }senao se (tipoDeBatalha == 10){
+      
+    }
+
+  }
+  funcao atualCombate(){
+   escreva("\n │▔▔▔▔▔▔▔▔│  ",nomePlayer)
+   escreva("\n│ 1: Ataque       │ ", "Vida: ",vidaHeroi,"/",vidaMaximaHeroi,"\n")
+   escreva("│ 2: Poção        │ ", "Ataque: ", danoHeroi,"\n")
+   escreva("│ 3: Magia        │ ", "Magia: ", feitico,"\n")
+   escreva("│                 │ ","Defesa: ", defesaHeroi)
+   escreva("\n│                 │  ")
+   escreva("\n│▁▁▁▁▁▁▁▁▁▁▁▁│  \n")
+   escreva("\n┠━━━━━━━━━━━━━━━━━━┨ ",nomeInimigo)
+   escreva("\n┠━━━━━━━━━━━━━━━━━━┨ ","Vida: ",vidaInimigo)
+   escreva("\n┠━━━━━━━━━━━━━━━━━━┨ ","Ataque: ",danoInimigo)
+   escreva("\n┠━━━━━━━━━━━━━━━━━━┨ ","Defesa: ", defesaInimigo,"\n")
 
   }
   funcao combateChefe(){
