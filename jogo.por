@@ -14,10 +14,11 @@ programa {
   inteiro quantidadePocao = 0
   inteiro regiao[5] = {"Floresta da Névoa 🌫️🌲","Vila Abandonada 🏚️👻","Caverna Sombria 🕳️🦇","Pântano dos Lamentos 🐸🧪","Castelo Dourado 🏰✨"}
   inteiro contarRegiao = 0
+  inteiro regiaoDesbloqueada = 0
 
   funcao inicio() {
     cadeia escolhaMenu
-
+  
     escolhaMenu = menu_inicio()
 
     se(escolhaMenu == 1){
@@ -50,7 +51,7 @@ programa {
 
   funcao menu_acoes_jogo(){
     cadeia escolhaAcao
-    enquanto(escolhaAcao != 1 e escolhaAcao != 2 e escolhaAcao != 3){
+    enquanto(escolhaAcao != 1 e escolhaAcao != 2 e escolhaAcao != 3 e escolhaAcao != 4){
       limpa()
       escreva("---------------------------")
       escreva("\n",regiao[contarRegiao],"\n")
@@ -58,81 +59,98 @@ programa {
       escreva("\n══════「AÇÕES」══════\n")
       escreva("1 - Explorar Região\n")
       escreva("2 - Status do Herói\n")
-      escreva("3 - Sair do jogo\n")
+      escreva("3 - Mudar de Fase\n")
+      escreva("4 - Sair do jogo\n")
       leia(escolhaAcao)
 
     se(escolhaAcao == 1){
-        // se(contarRegiao == 0){
-        //   batalha(60, 15, 6,"🐺LOBO TERRÍVEL",2, 60)
-        //   se(vidaAtual <= 0){
-        //     pare
-        //   }
-        //   se(vidaAtual <= 45 e vidaAtual > 0){
-        //     descansar()
-        //     u.aguarde(1000)
-        //   }
-        //   batalha(70, 22, 8, "💀 ESQUELETO SOMBRIO", 3, 90)
-        //   se(vidaAtual <= 0){
-        //     pare
-        //   }
-        //   intro_vila_abandonada()
-        //   contarRegiao++
-        //   menu_acoes_jogo()
-        // }
-        // se(contarRegiao == 1){
-        //   batalha(80, 25, 10, "🗡️ LADRÃO MASCARADO", 4, 120)
-        //   se(vidaAtual <= 0){
-        //     pare
-        //   }
-        //   se(vidaAtual <= 45 e vidaAtual > 0){
-        //     descansar()
-        //     u.aguarde(1000)
-        //   }
-        //   batalha(90, 28, 12, "👻 ALMA PERDIDA", 5, 160)
-        //   se(vidaAtual <= 0){
-        //     pare
-        //   }
-        //   contarRegiao++
-        //   menu_acoes_jogo()
-        // }
-        // se(contarRegiao == 2){
-        //   batalha(100, 30, 14, "🦂 ESCORPIÃO DE PEDRA", 6, 120)
-        //   se(vidaAtual <= 0){
-        //     pare
-        //   }
-        //   se(vidaAtual <= 45 e vidaAtual > 0){
-        //     descansar()
-        //     u.aguarde(1000)
-        //   }
-        //   batalha(110, 34, 16, "👹 OGRO GIGANTE ", 7, 150)
-        //   se(vidaAtual <= 0){
-        //     pare
-        //   }
-        //   contarRegiao++
-        //   menu_acoes_jogo()
-        // }
-        // se(contarRegiao == 3){
-        //   batalha(120, 38, 18, "🦎 SALAMANDRA TÓXICA", 8, 160)
-        //   se(vidaAtual <= 0){
-        //     pare
-        //   }
-        //   se(vidaAtual <= 45 e vidaAtual > 0){
-        //     descansar()
-        //     u.aguarde(1000)
-        //   }
-        //   batalha(130, 42, 20, "🐲 DRAGÃO VENENOSO", 9, 200)
-        //   se(vidaAtual <= 0){
-        //     pare
-        //   }
-        //   contarRegiao++
-        //   menu_acoes_jogo()
-        // }
         se(contarRegiao == 0){
+          batalha(60, 15, 6,"🐺LOBO TERRÍVEL",2, 60)
+          se(vidaAtual <= 0){
+            pare
+          }
+          se(vidaAtual <= 45 e vidaAtual > 0){
+            descansar()
+            u.aguarde(1000)
+          }
+          batalha(70, 22, 8, "💀 ESQUELETO SOMBRIO", 3, 90)
+          se(vidaAtual <= 0){
+            pare
+          }
+          se(contarRegiao == regiaoDesbloqueada){
+            regiaoDesbloqueada++
+          }
+          intro_vila_abandonada()
+          contarRegiao++
+          menu_acoes_jogo()
+        }
+        se(contarRegiao == 1){
+          batalha(80, 25, 10, "🗡️ LADRÃO MASCARADO", 4, 120)
+          se(vidaAtual <= 0){
+            pare
+          }
+          se(vidaAtual <= 45 e vidaAtual > 0){
+            descansar()
+            u.aguarde(1000)
+          }
+          batalha(90, 28, 12, "👻 ALMA PERDIDA", 5, 160)
+          se(vidaAtual <= 0){
+            pare
+          }
+          se(contarRegiao == regiaoDesbloqueada){
+            regiaoDesbloqueada++
+          }
+          contarRegiao++
+          menu_acoes_jogo()
+        }
+        se(contarRegiao == 2){
+          batalha(100, 30, 14, "🦂 ESCORPIÃO DE PEDRA", 6, 120)
+          se(vidaAtual <= 0){
+            pare
+          }
+          se(vidaAtual <= 45 e vidaAtual > 0){
+            descansar()
+            u.aguarde(1000)
+          }
+          batalha(110, 34, 16, "👹 OGRO GIGANTE ", 7, 150)
+          se(vidaAtual <= 0){
+            pare
+          }
+          se(contarRegiao == regiaoDesbloqueada){
+            regiaoDesbloqueada++
+          }
+          contarRegiao++
+          menu_acoes_jogo()
+        }
+        se(contarRegiao == 3){
+          batalha(120, 38, 18, "🦎 SALAMANDRA TÓXICA", 8, 160)
+          se(vidaAtual <= 0){
+            pare
+          }
+          se(vidaAtual <= 45 e vidaAtual > 0){
+            descansar()
+            u.aguarde(1000)
+          }
+          batalha(130, 42, 20, "🐲 DRAGÃO VENENOSO", 9, 200)
+          se(vidaAtual <= 0){
+            pare
+          }
+          se(contarRegiao == regiaoDesbloqueada){
+            regiaoDesbloqueada++
+          }
+          contarRegiao++
+          menu_acoes_jogo()
+        }
+        se(contarRegiao == 4){
           batalha_cavaleiro(150, 48, 25, "⚔️ CAVALEIRO CORROMPIDO", 10, 200)
           se(vidaAtual <= 0){
             pare
           }
-          batalha_final(180, 55, 30, "👑 O DEVASTADOR", 12, 300)
+          batalha_devastador(180, 55, 30, "👑 O DEVASTADOR (Forma Corpórea)", 12)
+          se(vidaAtual <= 0){
+            pare
+          }
+          devastador_ascendido(240, 70, 38, "🔥 O DEVASTADOR ASCENDIDO (Forma Etérea)", 14)
           se(vidaAtual <= 0){
             pare
           }
@@ -140,7 +158,11 @@ programa {
     }
     se(escolhaAcao == 2){
       status_heroi()
-    }senao se(escolhaAcao == 3){
+    }
+    se(escolhaAcao == 3){
+      mudar_fase()
+    }
+    senao se(escolhaAcao == 4){
       sair()
     }
     }
@@ -187,7 +209,7 @@ programa {
     }
       se(numeroDaClasse == 1){
         classe = "⚔️ Guerreiro"
-        vidaMax = 1200
+        vidaMax = 12000
         vidaAtual = vidaMax
         ataque = 2000
         defesa = 15
@@ -279,7 +301,7 @@ programa {
       limpa()
       }
       se(escolher == 1){
-        inteiro dano = u.sorteia(10,ataque)
+        inteiro dano = u.sorteia(ataque * 0.7, ataque)
         se(dano < 0){
           dano = 0
         }
@@ -308,11 +330,11 @@ programa {
       u.aguarde(1000)
 
       se(acaoValida e vidaAtualInimigo > 0){
-        danoInimigo = u.sorteia(5,ataqueInimigo)
+        danoInimigo = u.sorteia(ataqueInimigo * 0.6, ataqueInimigo)
         se(defendendo){
           danoInimigo = ataqueInimigo - u.sorteia(3,defesa)
         }
-      
+
       se(danoInimigo < 0){
         danoInimigo = 0
       }
@@ -381,7 +403,7 @@ programa {
       limpa()
       }
       se(escolher == 1){
-        inteiro dano = u.sorteia(10,ataque)
+        inteiro dano = u.sorteia(ataque * 0.7, ataque)
         se(dano < 0){
           dano = 0
         }
@@ -411,30 +433,30 @@ programa {
 
       se(acaoValida e vidaAtualInimigo > 0){
 
-        inteiro acao = u.sorteia(1,3)
+        inteiro acao = u.sorteia(1,5)
 
-        se(acao == 1){
-        danoInimigo = u.sorteia(5,ataqueInimigo)
+        se(acao <= 2){
+        danoInimigo = u.sorteia(ataqueInimigo * 0.6, ataqueInimigo)
         se(defendendo){
           danoInimigo = ataqueInimigo - u.sorteia(3,defesa)
         }
-      
+
         se(danoInimigo < 0){
           danoInimigo = 0
         }
-        escreva("⚠️ O inimigo ataca e causa ",danoInimigo," de dano!\n")
+        escreva("⚠️ O CAVALEIRO da um golpe direto com sua espada ",danoInimigo," de dano!\n")
         vidaAtual = vidaAtual - danoInimigo
         atordoado = falso
         u.aguarde(1500)
         }
-        se(acao == 2){
+        se(acao == 3){
           inteiro danoAtordoante = danoInimigo * 0.3
-      
+
         se(danoInimigo < 0){
           danoInimigo = 0
         }
-        escreva("⚠️ O inimigo ataca usando o escudo e causa ",danoAtordoante," de dano!\n")
-        escreva("⚠️ Você fica atordoado e não pode atacar...\n")
+        escreva("⚠️ O CAVALEIRO ataca usando o escudo e causa ",danoAtordoante," de dano!\n")
+        escreva("🌀 Você fica atordoado e não pode atacar...\n")
         vidaAtual = vidaAtual - danoAtordoante
         atordoado = verdadeiro
         u.aguarde(2000)
@@ -443,31 +465,32 @@ programa {
         se(defendendo){
           danoInimigo = ataqueInimigo - u.sorteia(3,defesa)
         }
-      
+
         se(danoInimigo < 0){
           danoInimigo = 0
         }
-        escreva("⚠️ O inimigo ataca novamente e causa ",danoInimigo," de dano!\n")
+        escreva("⚠️ O inimigo CAVALEIRO novamente e causa ",danoInimigo," de dano!\n")
         vidaAtual = vidaAtual - danoInimigo
         atordoado = falso
         u.aguarde(1500)
         }
-        se(acao == 3){
-          inteiro danoCombo = (u.sorteia(7,danoInimigo * 0.4))
+        se(acao > 3){
+          inteiro danoCombo = (u.sorteia(8,danoInimigo * 0.4))
 
-          escreva("O CAVALEIRO da uma investida em sua direção e desfere um combo\n")
+          escreva("⚠️ O CAVALEIRO da uma investida em sua direção e desfere um combo\n")
           u.aguarde(1000)
-          escreva("⚠️ 1º Corte ",danoCombo," de dano!\n")
+          escreva("🗡️ 1º Corte ",danoCombo," de dano!\n")
           vidaAtual = vidaAtual - danoCombo
           u.aguarde(1000)
-          danoCombo = u.sorteia(7,danoInimigo * 0.4)
-          escreva("⚠️ 2º Corte ",danoCombo," de dano!\n")
+          danoCombo = u.sorteia(8,danoInimigo * 0.4)
+          escreva("🗡️ 2º Corte ",danoCombo," de dano!\n")
           vidaAtual = vidaAtual - danoCombo
           u.aguarde(1000)
-          danoCombo = u.sorteia(7,danoInimigo * 0.4)
-          escreva("⚠️ 3º Corte ",danoCombo," de dano!\n")
+          danoCombo = u.sorteia(8,danoInimigo * 0.4)
+          escreva("🗡️ 3º Corte ",danoCombo," de dano!\n")
           vidaAtual = vidaAtual - danoCombo
           u.aguarde(1000)
+          atordoado = falso
         }
       }
       escolher = ""
@@ -498,6 +521,310 @@ programa {
     }
   }
 
+  funcao batalha_devastador(inteiro vidaMaxInimigo, inteiro ataqueInimigo, inteiro defesaInimigo, cadeia nomeInimigo, inteiro nivelInimigo){
+    limpa()
+    inteiro vidaAtualInimigo = vidaMaxInimigo
+    inteiro danoInimigo = ataqueInimigo - defesa
+    cadeia escolher
+    logico defendendo = falso
+    logico sangrando = falso
+    inteiro danoSangramento = danoInimigo * 0.2
+    logico gritoTirano = falso
+    enquanto (vidaAtualInimigo > 0 e vidaAtual > 0){
+      logico acaoValida = verdadeiro
+      enquanto(escolher != 1 e escolher != 2 e escolher != 3){
+        
+      limpa()
+      escreva(nomeInimigo," Nv.",nivelInimigo,"\n")
+      escreva("❤️ Vida: ",vidaAtualInimigo,"/",vidaMaxInimigo,"\n")
+      escreva("🛡️ Defesa: ",defesaInimigo,"\n")
+      barra_de_vida_inimigo(vidaAtualInimigo, vidaMaxInimigo)
+      escreva("\n----------------------------------\n")
+
+      escreva(nomeJogador," (",classe,") Nv. ",nivel,"\n")
+      escreva("❤️ Vida: ",vidaAtual,"/",vidaMax,"\n")
+      escreva("🛡️ Defesa: ",defesa,"\n")
+      barra_de_vida_heroi(vidaAtual, vidaMax)
+      escreva("\n----------------------------------\n")
+
+      escreva("Escolha sua ação:\n")
+      escreva("1 - Atacar   |   2 - Defender\n")
+      se(quantidadePocao > 0 e contarRegiao > 0){
+        escreva("3 - Curar\n")
+      }
+      leia(escolher)
+      limpa()
+      }
+      se(escolher == 1){
+        inteiro dano = u.sorteia(ataque * 0.7, ataque)
+        se(dano < 0){
+          dano = 0
+        }
+        se(gritoTirano){
+          escreva("💥 Você ataca o inimigo e causa ",dano/2," de dano!\n")
+          vidaAtualInimigo = vidaAtualInimigo - dano/2
+          gritoTirano = falso
+          defendendo = falso
+          se(vidaAtualInimigo <= 0){
+          pare
+        }
+        }senao{
+          escreva("💥 Você ataca o inimigo e causa ",dano," de dano!\n")
+          vidaAtualInimigo = vidaAtualInimigo - dano
+          defendendo = falso
+          se(vidaAtualInimigo <= 0){
+            pare
+          }
+        }
+      }
+      se(escolher == 2){
+        escreva("🛡️ Você se prepara para defender o próximo ataque.\n")
+        defendendo = verdadeiro
+      }
+      se(escolher == 3){
+        se(quantidadePocao > 0){
+          vidaAtual = vidaMax
+          escreva("🧪 Você toma uma poção de cura e recupera toda a sua vida.\n")
+          quantidadePocao = quantidadePocao - 1
+        }senao{
+          escreva("⚠️ Você não tem mais poções!\n")
+          acaoValida = falso
+        }
+      }
+
+      u.aguarde(1000)
+
+      se(acaoValida e vidaAtualInimigo > 0){
+
+        inteiro acao = u.sorteia(1,5)
+
+        se(acao <= 2){
+        danoInimigo = u.sorteia(ataqueInimigo * 0.6, ataqueInimigo)
+        se(defendendo){
+          danoInimigo = ataqueInimigo - u.sorteia(3,defesa)
+        }
+
+        se(danoInimigo < 0){
+          danoInimigo = 0
+        }
+        escreva("⚠️ O DEVASTADOR da um golpe direto com sua espada ",danoInimigo," de dano!\n")
+        vidaAtual = vidaAtual - danoInimigo
+        u.aguarde(1000)
+        se(sangrando){
+          escreva("🩸 Você está sangrando e perdeu ", danoSangramento, " de vida!\n")
+          vidaAtual = vidaAtual - danoSangramento
+          sangrando = falso
+        }
+        u.aguarde(1500)
+        }
+
+        se(acao == 3){
+
+          se(danoInimigo < 0){
+            danoInimigo = 0
+          }
+          escreva("⚠️ O DEVASTADOR lhe da um golpe especial chamado CORTE PROFANO ",danoInimigo," de dano!\n")
+          vidaAtual = vidaAtual - danoInimigo
+          escreva("🩸 Você fica com efeito de sangramento por um turno...\n")
+          vidaAtual = vidaAtual - danoSangramento
+          sangrando = verdadeiro
+          u.aguarde(2000)
+
+          danoInimigo = u.sorteia(5,ataqueInimigo)
+          se(defendendo){
+            danoInimigo = ataqueInimigo - u.sorteia(3,defesa)
+          }
+
+          se(danoInimigo < 0){
+            danoInimigo = 0
+          }
+        }
+        se(acao > 3){
+
+          escreva("⚠️ O DEVASTADOR utiliza a habilidade GRITO TIRANO 🌪️\n")
+          u.aguarde(1000)
+          escreva("💬 Não lhe causa dano, mas o seu próximo ataque causa menos dano...\n")
+          gritoTirano = verdadeiro
+          u.aguarde(1000)
+          se(sangrando){
+          escreva("🩸 Você está sangrando e perdeu ", danoSangramento, " de vida!\n")
+          vidaAtual = vidaAtual - danoSangramento
+          sangrando = falso
+        }
+          u.aguarde(1000)
+        }
+      }
+      escolher = ""
+    }
+    se(vidaAtual <= 0){
+      limpa()
+      escreva("💀 Você foi derrotado pelo ",nomeInimigo,"...\n")
+      escreva("Fim de jogo.\n")
+    }
+    se(vidaAtual > 0){
+    botao_enter()
+    }
+  }
+
+  funcao devastador_ascendido(inteiro vidaMaxInimigo, inteiro ataqueInimigo, inteiro defesaInimigo, cadeia nomeInimigo, inteiro nivelInimigo){
+    limpa()
+    inteiro vidaAtualInimigo = vidaMaxInimigo
+    inteiro danoInimigo = ataqueInimigo - defesa
+    cadeia escolher
+    logico defendendo = falso
+    logico queimando = falso
+    inteiro contadorFogo = 0
+    inteiro danoFogo = danoInimigo * 0.2
+    logico gritoTirano = falso
+    enquanto (vidaAtualInimigo > 0 e vidaAtual > 0){
+      logico acaoValida = verdadeiro
+      enquanto(escolher != 1 e escolher != 2 e escolher != 3){
+          
+        limpa()
+        escreva(nomeInimigo," Nv.",nivelInimigo,"\n")
+        escreva("❤️ Vida: ",vidaAtualInimigo,"/",vidaMaxInimigo,"\n")
+        escreva("🛡️ Defesa: ",defesaInimigo,"\n")
+        barra_de_vida_inimigo(vidaAtualInimigo, vidaMaxInimigo)
+        escreva("\n----------------------------------\n")
+
+        escreva(nomeJogador," (",classe,") Nv. ",nivel,"\n")
+        escreva("❤️ Vida: ",vidaAtual,"/",vidaMax,"\n")
+        escreva("🛡️ Defesa: ",defesa,"\n")
+        barra_de_vida_heroi(vidaAtual, vidaMax)
+        escreva("\n----------------------------------\n")
+
+        escreva("Escolha sua ação:\n")
+        escreva("1 - Atacar   |   2 - Defender\n")
+        se(quantidadePocao > 0 e contarRegiao > 0){
+          escreva("3 - Curar\n")
+        }
+        leia(escolher)
+        limpa()
+      }
+      se(escolher == 1){
+        inteiro dano = u.sorteia(ataque * 0.7, ataque)
+        se(dano < 0){
+          dano = 0
+        }
+        se(gritoTirano == verdadeiro){
+          escreva("💥 Você ataca o inimigo e causa ",dano/2," de dano!\n")
+          vidaAtualInimigo = vidaAtualInimigo - dano/2
+          gritoTirano = falso
+          defendendo = falso
+          se(vidaAtualInimigo <= 0){
+          pare
+        }
+        }senao{
+          escreva("💥 Você ataca o inimigo e causa ",dano," de dano!\n")
+          vidaAtualInimigo = vidaAtualInimigo - dano
+          defendendo = falso
+          se(vidaAtualInimigo <= 0){
+            pare
+          }
+        }
+      }
+      se(escolher == 2){
+        escreva("🛡️ Você se prepara para defender o próximo ataque.\n")
+        defendendo = verdadeiro
+      }
+      se(escolher == 3){
+        se(quantidadePocao > 0){
+          vidaAtual = vidaMax
+          escreva("🧪 Você toma uma poção de cura e recupera toda a sua vida.\n")
+          quantidadePocao = quantidadePocao - 1
+        }senao{
+          escreva("⚠️ Você não tem mais poções!\n")
+          acaoValida = falso
+        }
+      }
+
+      u.aguarde(1000)
+
+      se(acaoValida e vidaAtualInimigo > 0){
+
+        inteiro acao = u.sorteia(1,5)
+
+        se(acao <= 3){
+          danoInimigo = u.sorteia(ataqueInimigo * 0.6, ataqueInimigo)
+          se(defendendo){
+            danoInimigo = ataqueInimigo - u.sorteia(3,defesa)
+          }
+
+          se(danoInimigo < 0){
+            danoInimigo = 0
+          }
+          escreva("⚠️ O DEVASTADOR da um golpe direto com sua espada ",danoInimigo," de dano!\n")
+          vidaAtual = vidaAtual - danoInimigo
+          u.aguarde(1000)
+          se(contadorFogo > 0){
+            escreva("🔥 Você está pegrando fogo, perdeu ", danoFogo, " de vida!\n")
+            vidaAtual = vidaAtual - danoFogo
+            u.aguarde(1000)
+            contadorFogo--
+          }senao{
+            
+          }
+          u.aguarde(1500)
+        }
+
+        se(acao == 4){
+          inteiro danoPedra = danoInimigo * 0.5
+          se(danoInimigo < 0){
+            danoInimigo = 0
+          }
+          escreva("⚠️ O DEVASTADOR faz um gesto e provoca um APOCALIPSE CARMESIM, esferas carmesins caem do céu...\n")
+          escreva("🔥🪨 Você é atingido por uma pedra em chamas, ",danoPedra,"\n")
+          vidaAtual = vidaAtual - danoPedra
+          u.aguarde(1500)
+          danoPedra = u.sorteia(25,danoPedra)
+          escreva("🔥🪨 Você é atingido por outra pedra, ",danoPedra,"\n")
+          vidaAtual = vidaAtual - danoPedra
+          u.aguarde(1500)
+          escreva("⚠️ Você fica em chamas por 2 turnos\n")
+          u.aguarde(1500)
+          contadorFogo = 2
+          se(defendendo){
+            danoInimigo = ataqueInimigo - u.sorteia(3,defesa)
+          }
+
+          se(danoInimigo < 0){
+            danoInimigo = 0
+          }
+        }
+        se(acao == 5){
+
+          escreva("⚠️ O DEVASTADOR utiliza a habilidade GRITO TIRANO 🌪️\n")
+          u.aguarde(1000)
+          escreva("💬 Não lhe causa dano, mas o seu próximo ataque causa menos dano...\n")
+          gritoTirano = verdadeiro
+          u.aguarde(1000)
+          se(contadorFogo > 0){
+            escreva("🔥 Você está pegrando fogo, perdeu ", danoFogo, " de vida!\n")
+            vidaAtual = vidaAtual - danoFogo
+            u.aguarde(1000)
+            contadorFogo--
+          }senao{
+
+          }
+          u.aguarde(1000)
+        }
+      }
+      escolher = ""
+    }
+    se(vidaAtual <= 0){
+      limpa()
+      escreva("💀 Você foi derrotado pelo ",nomeInimigo,"...\n")
+      escreva("Fim de jogo.\n")
+    }
+    se(vidaAtualInimigo <= 0){
+      limpa()
+      escreva("Matou geral parabéns")
+    }
+    se(vidaAtual > 0){
+    botao_enter()
+    }
+  }
+
   funcao intro_vila_abandonada(){
     limpa()
     escreva("| Após atravessar a misteriosa Floresta da Névoa...\n")
@@ -515,7 +842,7 @@ programa {
     u.aguarde(1000)
     escreva("| Ao vasculhar as ruínas da vila, você encontra um velho baú coberto de poeira...\n")
     escreva("| Com algum esforço, você o abre e encontra uma poção de cura em seu interior!\n")
-    quantidadePocao = quantidadePocao + 1
+    quantidadePocao++
     escreva("-------------\n")
     escreva("+1 POÇÃO 🧪\n")
     escreva("-------------\n")
@@ -556,6 +883,45 @@ programa {
     }
   }
 
+  funcao mudar_fase(){
+    cadeia opcao
+    enquanto(opcao != 1 e opcao != 2){
+      limpa()
+      escreva("════════════════ MENU REGIÃO ════════════════\n")
+      escreva("Região Atual: ", regiao[contarRegiao], "\n")
+      escreva("1 - Voltar ⬅️     |     2 - Avançar ➡️\n")
+      escreva("═════════════════════════════════════════════\n")
+      leia(opcao)
+      se(opcao == 1){
+        se(contarRegiao > 0){
+          contarRegiao--
+          limpa()
+          escreva("⬅️ Voltando para ",regiao[contarRegiao])
+          u.aguarde(1000)
+          menu_acoes_jogo()
+        }senao{
+          limpa()
+          escreva("⚠️ Você já está na primeira região!\n")
+          u.aguarde(1000)
+          menu_acoes_jogo()
+        }
+      }senao se(opcao == 2){
+        se(contarRegiao < regiaoDesbloqueada){
+          contarRegiao++
+          limpa()
+          escreva("➡️ Avançando para ",regiao[contarRegiao])
+          u.aguarde(1000)
+          menu_acoes_jogo()
+        }senao{
+          limpa()
+          escreva("⚠️ Você ainda não derrotou os inimigos da região atual...\n")
+          u.aguarde(1000)
+          menu_acoes_jogo()
+        }
+      }
+    }
+  }
+  
   funcao descansar(){
     limpa()
     cadeia descanso
