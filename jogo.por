@@ -35,6 +35,9 @@ programa {
   inteiro inimigoAGI
   inteiro ganhoDeExperiencia
 
+  inteiro nivelDoBoss = 0
+  inteiro fragmentoDaPedraDaLuz = 0
+
   // A??es de combate
 
   inteiro custoAcao = 0
@@ -1142,9 +1145,10 @@ funcao turnoDoJogador(){
 funcao turnoDoInimigo(){
   escreva("\n------------------------\n")
   escreva("Turno do inimigo\n")
+
+  
   enquanto(vidaDoInimigo > 0 e pontosDeAcaoInimigo > 0){
     inteiro acaoDoInimigo = u.sorteia(1,3)
-
     se(acaoDoInimigo == 1){
       custoAcao = custoAtacar
       executarAcaoInimigo(custoAcao, "atacar")
@@ -1202,7 +1206,7 @@ funcao executarAcaoInimigo(inteiro custo, cadeia tipoAcao){
   se(pontosDeAcaoInimigo < custo){
     excedente = custo - pontosDeAcaoInimigo
     pontosDeAcaoInimigo = 0
-    pontosDeAcao += excedente
+    pontosDeAcaoInimigo += excedente
     escreva("O inimigo realizou uma acao sem ter pontos o suficientes o excedente de: ", excedente, "sera seu bonus para o proximo turno.\n")
   }senao{
     pontosDeAcaoInimigo -= custo
@@ -1262,20 +1266,18 @@ funcao gerarInimigo() {
 }
 funcao gerarBossDaRegiao(){
   se(regiaoAtual == 0){
-    nomeDeBoss[0]
-    nivelDoInimigo = nivel + 2
-    vidaDoInimigo = 20 + nivelDoInimigo * 5
-    inimigoATK = 5
-    inimigoDEF = 5
-    inimigoAGI = 5
+    batalhaGrandeGabonga()
 
-    se(vidaDoInimigo < 10 e nomeDeBoss[0]=="Goblin Motoqueiro, Grande Gabonga"){
-      nomeDeBoss[0] = "Besta Enloquecida dos Goblins"
-      vidaDoInimigo += 10
-      inimigoATK += nivelDoInimigo
-      inimigoDEF += nivelDoInimigo
-      inimigoAGI += nivelDoInimigo
-    }
+    nomeDoInimigoAtual = nomeDeBoss[0]
+    nivelDoBoss = nivel + 2
+    vidaDoInimigo = 20 + nivelDoBoss * 5
+    inimigoATK = 5 + nivel
+    inimigoDEF = 5 + nivel
+    inimigoAGI = 5 + nivel
+    ganhoDeExperiencia = nivelDoBoss + 1
+
+    turnoDeBatalha()
+
 
     //um contador ou flag para controlar se o player ja derrotou esse boss, fragmentoDaPedraDaLuz talvez.
     //logica do 1? boss aqui Goblin Motoqueiro, Grande Gabonga
@@ -1294,6 +1296,38 @@ funcao gerarBossDaRegiao(){
   }senao se(regiaoAtual == 7){
     //Boss final
     //Pensando melhor n?o aqui.
+  }
+}
+funcao batalhaGrandeGabonga(){
+  turnoDeBatalha()
+  enquanto(nomeDoInimigoAtual == "Goblin Motoqueiro, Grande Gabonga" ou nomeDoInimigoAtual == "Besta Enloquecida dos Goblins"){
+    turnoDeBatalha()
+    se(vidaDoInimigo <= 10){
+      escreva("Grande Gabonga está desesperado soltou as amarras da besta que usa como montoria.\n")
+      u.aguarde(4000)
+      limpa()
+      escreva("Agora voce enfrentara  a Besta Enlouquecida dos Goblins.\n")
+      u.aguarde(4000)
+      limpa()
+      nomeDoInimigoAtual = "Besta Enlouquecida dos Goblins"
+      vidaDoInimigo += 10
+      inimigoATK += nivelDoBoss
+      inimigoDEF += nivelDoBoss
+      inimigoAGI += nivelDoBoss
+      se(vidaDoInimigo <= 5 e nomeDoInimigoAtual == "Besta Enloquecida dos Goblins"){
+        escreva("Voce feriu gravamente a besta enloquecida.\n")
+        escreva("Preocupado coma sua montaria Grande Gabonga voltou a batalha.\n")
+
+        nomeDoInimigoAtual = "Goblin Motoqueiro, Grande Gabonga"
+        vidaDoInimigo = 5
+        inimigoATK = 5
+        inimigoDEF = 5
+        inimigoAGI = 5
+      }senao se(vidaDoInimigo <= 0){
+        escreva("Voce recuperou o fragmento da pedra da luz que estava na posse dos Goblins Motoqueiros.\n")
+        fragmentoDaPedraDaLuz + 1
+      }
+    }
   }
 }
 funcao proximaRegiao(){
@@ -1382,6 +1416,8 @@ funcao mostrarRegiaoAtual(){
   
 
 funcao campanha(){
+  regiaoAtual = 0
+
   escreva("Ha muito tempo, no Reino de Eldoria, a paz era mantida pela m?stica Pedra da Luz, protegida pelos Anciaos do Castelo Dourado.\n")
   u.aguarde(3000)
 
@@ -1451,10 +1487,8 @@ funcao campanha(){
   escreva("Tanto voce quanto seu inimigo tem 10 pontos de acao(PA) cada.\n")
   u.aguarde(3500)
   escreva("Cada acao: atacar, defender ou usar uma habilidade tem um custo, quando seus PA chegarem a 0 seu turno acaba.\n")
-  u.aguarde(3.500)
+  u.aguarde(3500)
   limpa()
-
-  gerarInimigo()
-  
+  gerarBossDaRegiao()
   }
 }
