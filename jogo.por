@@ -125,16 +125,23 @@ programa {
       inteiro chefeAtaque
       inteiro defesaChefe
 
-      para(inteiro i = 0; i < nomeBoss[i]; i++){
-        se(inimigosDificuldadeNormal[10] == 0){
+      para(inteiro i = 0; i < 5; i++){
+        se(opcao == 2){
           escreva("Ninguem Mais surgiu em seu caminho porem você Sente uma energia forte")
           u.aguarde(1200)
           escreva("...")
           u.aguarde(1200)
           escreva("Ele Esta Aqui", nomeBoss[i])
+          batalhar()
         }
       }
     }
+    funcao avancarParaProximaArea(){
+      se(bossDerrotadoPorCenario == verdadeiro){
+        escreva("Você Chega Na Vila Abandonada")
+      }
+    }
+    
      
   
 
@@ -367,7 +374,7 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
         cenarioAtual = 0
         logico emAventura = verdadeiro
         
-        enquanto (emAventura) {
+        enquanto (emAventura == verdadeiro) {
             limpa()
             inicializarJogo()
             
@@ -388,25 +395,36 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
             escolha (acao) {
                 caso "1":
                     explorarArea()
-                     u.sorteia(1,4)
+                    u.sorteia(1,4)
 
-      se(u.sorteia == 4){
-        escreva("Você Encontra uma casa abandonada entra nela?")
-        opcao(1 == "Sim", 2 == "Não")
-        leia(opcao)
+                     se(u.sorteia == 4){
+                     escreva("Você Encontra uma casa abandonada entra nela?")
+                     opcao(1 == "Sim", 2 == "Não")
+                     leia(opcao)
+                     se(opcao == 1){
+                       u.sorteia(1,4)
+                       } se(u.sorteia < 3){
+                        escreva("Você Encontra um enforcado")
+                        leia(inimigosFlorestaDaNevoa[8])
+                        batalhar()
+                         }
+                        }
+                    
 
-        se(opcao == 1){
-          u.sorteia(1,4)
-        } se(u.sorteia < 3){
-          escreva("Você Encontra um enforcado")
-          leia(inimigosFlorestaDaNevoa[8])
-          batalhar()
-        }
-
-      }
+              
 
                 caso "2":
                     enfrentarChefe()
+                    para(inteiro i = 0; i < 5; i++){
+                   se(opcao == 2){
+                    escreva("Ninguem Mais surgiu em seu caminho porem você Sente uma energia forte")
+                    u.aguarde(1200)
+                    escreva("...")
+                    u.aguarde(1200)
+                    escreva("Ele Esta Aqui", nomeBoss[i])
+                    batalhar()
+                    }
+                   }
                     
                     
                 caso "3":
@@ -433,6 +451,21 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
 
     
     funcao explorarArea(){
+       u.sorteia(1,4)
+
+      se(u.sorteia == 4){
+        escreva("Você Encontra uma casa abandonada entra nela?")
+        opcao(1 == "Sim", 2 == "Não")
+        leia(opcao)
+
+        se(opcao == 1){
+          u.sorteia(1,4)
+        } se(u.sorteia < 3){
+          escreva("Você Encontra um enforcado")
+          leia(inimigosFlorestaDaNevoa[8])
+          batalhar()
+        }
+      }
      
   }
   
