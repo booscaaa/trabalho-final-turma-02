@@ -7,6 +7,9 @@ programa {
     const inteiro CUSTO_HABILIDADE_MAGO = 20
 
 
+    inteiro controladorDeSenario = 0
+
+    
     
 
     // VARIÁVEIS GLOBAIS
@@ -55,54 +58,39 @@ programa {
 
     cadeia inimigosDificuldadeNormal[10] 
 
-    inteiro inimigosFlorestaDaNevoa[10]
-    cadeia nomeInimigos[10] = {"Esqueleto Espada Longa", "Esqueleto Armadurado", "Esqueleto Arqueiro", "Esqueleto Barbaro", "Esqueleto Brutamontes", "Esqueleto Demoniaco", "Esqueleto Corrompido", "Esqueleto Enforcado", "Esqueleto Real", "Esqueleto Plebeu"}
-    inteiro vidaInimigoMaxima[10]
-    inteiro defesaInimigo[10]
-    inteiro manainimigoMaxima[10]
-    inteiro xpInimigoFacil[10]
+    //inteiro inimigosFlorestaDaNevoa[10]
+    //cadeia nomeInimigos[10] = {"Esqueleto Espada Longa", "Esqueleto Armadurado", "Esqueleto Arqueiro", "Esqueleto Barbaro", "Esqueleto Brutamontes", "Esqueleto Demoniaco", "Esqueleto Corrompido", "Esqueleto Enforcado", "Esqueleto Real", "Esqueleto Plebeu"}
+    //inteiro vidaInimigoMaxima[10]
+    //inteiro defesaInimigo[10]
+    //inteiro manainimigoMaxima[10]
+    //inteiro xpInimigoFacil[10]
 
 
 
 
-    inteiro inimigosVilaAbandonada[10]
-    inteiro nomeInimigos[10] =  {"Bandido Comun", "Bandido Novato", "Bandido Experiente", "Bandido Berseker", "Pirata", "Capitão Esmaga Cranios", "Demonio Espreitador", "Soldado Corrupto", "Mago Corrompido", "Druida Da Chama Eterna"}
-    inteiro vidaInimigoMaxima[10]
-    inteiro defesaInimigo[10]
-    inteiro manainimigoMaxima[10]
-    inteiro xpInimigoFacil[10]
+    //inteiro inimigosVilaAbandonada[10]
+    //inteiro nomeInimigos[10] =  {"Bandido Comun", "Bandido Novato", "Bandido Experiente", "Bandido Berseker", "Pirata", "Capitão Esmaga Cranios", "Demonio Espreitador", "Soldado Corrupto", "Mago Corrompido", "Druida Da Chama Eterna"}
+    //inteiro vidaInimigoMaxima[10]
+    //inteiro defesaInimigo[10]
+   // inteiro manainimigoMaxima[10]
+    //inteiro xpInimigoFacil[10]
 
 
 
-    inteiro inimigosCavernaSombria[10]
-    inteiro nomeInimigos[10] = {"Lobo", "Lobo Cinzento", "Lobo Negro", "Alfa", "Humano Amaldiçoado", "Licantropo", "Licantropo Armadurado", "Licantropo Feiticeiro", "lobisomen Enfraquecido", "Licantropo Das Neves"}
-    inteiro vidaInimigoMaxima[10]
-    inteiro defesaInimigo[10]
-    inteiro manainimigoMaxima[10]
-    inteiro xpInimigoFacil[10]
+    //inteiro inimigosCavernaSombria[10]
+    //inteiro nomeInimigos[10] = {"Lobo", "Lobo Cinzento", "Lobo Negro", "Alfa", "Humano Amaldiçoado", "Licantropo", "Licantropo Armadurado", "Licantropo Feiticeiro", "lobisomen Enfraquecido", "Licantropo Das Neves"}
+    //inteiro vidaInimigoMaxima[10]
+    //inteiro defesaInimigo[10]
+    //inteiro manainimigoMaxima[10]
+    //inteiro xpInimigoFacil[10]
 
 
 
-    inteiro inimigosPantanoDosLamentos[10]
     inteiro nomeInimigos[10] = {"Crocovile", "Crocovile Armadurado", "Crocovile Arqueiro", "Crocodilo Primal", "Crocodilo Lendario", "Crocovile Berseker", "Crocovile Brutamontes", "Crocovile Draconico", "Crocovile Tita", "Crocovile Enforcado"}
-    inteiro vidaInimigoMaxima[10]
+    inteiro vidaInimigoMaxima[10] = {"1", "5"}
     inteiro defesaInimigo[10]
     inteiro manainimigoMaxima[10]
     inteiro xpInimigoFacil[10]
-
-
-
-    inteiro inimigosCasteloDourado[10]
-    inteiro nomeInimigos[10]
-    inteiro vidaInimigoMaxima[10]
-    inteiro defesaInimigo[10]
-    inteiro manainimigoMaxima[10]
-    inteiro xpInimigoFacil[10]
-
-
-
-
-
 
 
 
@@ -128,9 +116,9 @@ programa {
       para(inteiro i = 0; i < 5; i++){
         se(opcao == 2){
           escreva("Ninguem Mais surgiu em seu caminho porem você Sente uma energia forte")
-          u.aguarde(1200)
+          u.aguarde(0)
           escreva("...")
-          u.aguarde(1200)
+          u.aguarde(0)
           escreva("Ele Esta Aqui", nomeBoss[i])
           batalhar()
         }
@@ -254,7 +242,7 @@ programa {
      funcao encerrarJogo() {
         limpa()
         escreva("Encerrando o jogo...\n")
-        u.aguarde(2000)
+        u.aguarde(0)
         limpa()
     }
     
@@ -273,17 +261,17 @@ programa {
        
 escreva("Há muito tempo, no Reino de Eldoria, a paz era mantida pela mística Pedra da Luz,\n")
 escreva("protegida pelos Anciãos do Castelo Dourado.\n\n")
-u.aguarde(2000)
+u.aguarde(0)
 
 escreva("Um dia, uma força sombria conhecida como O Devastador invadiu o reino,\n")
 escreva("roubando a relíquia sagrada e mergulhando as terras em trevas e caos.\n")
 escreva("Vilas foram saqueadas, florestas corrompidas, e criaturas sombrias começaram\n")
 escreva("a vagar pelas regiões.\n\n")
-u.aguarde(2000)
+u.aguarde(0)
 
 escreva("Diante da crise, uma antiga profecia se cumpriu: um herói escolhido surgirá\n")
 escreva("das sombras para restaurar a luz. Você é esse herói.\n\n")
-u.aguarde(2000)
+u.aguarde(0)
 
 escreva("Sua missão é atravessar cinco regiões dominadas pelo mal,\n")
 escreva("enfrentando inimigos, evoluindo suas habilidades e se preparando\n")
@@ -292,7 +280,7 @@ escreva("A jornada será repleta de perigos, escolhas e batalhas.\n")
 escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
 
 
-        u.aguarde(1000)
+        u.aguarde(0)
         // Restante da introdução...
     }
 
@@ -354,7 +342,7 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
                     pare
                 caso contrario:
                     escreva("Opção inválida! Tente novamente.\n")
-                    u.aguarde(1500)
+                    u.aguarde(0)
                     limpa()
                     
             }
@@ -362,7 +350,7 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
             hpAtual = hpMaximo
             manaAtual = manaMaxima
             escreva("\nVocê escolheu ", classePersonagem, "!\n")
-            u.aguarde(2000)
+            u.aguarde(0)
             retorne verdadeiro
             mostrarStatusPersonagem()
         }
@@ -373,7 +361,25 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
     funcao iniciarAventura() {
         cenarioAtual = 0
         logico emAventura = verdadeiro
-        
+
+        cadeia testeSenario[5] = {"Floresta", "Deserto"}
+
+        inteiro matriz[2][5]
+        matriz [0][0] = 0
+        matriz [1][0] = 4
+
+        matriz [0][1] = 5
+        matriz [1][1] = 9
+
+        matriz [0][2] = 10
+        matriz [1][2] = 14
+
+        matriz [0][3] = 15
+        matriz [1][3] = 19
+
+        matriz [0][4] = 20
+        matriz [1][4] = 24
+
         enquanto (emAventura == verdadeiro) {
             limpa()
             inicializarJogo()
@@ -383,6 +389,7 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
             }
             
             cadeia acao
+            escreva(testeSenario[controladorDeSenario])
             escreva("\nAções disponíveis:\n")
             escreva("1. Explorar (encontrar inimigos)\n")
             escreva("2. Enfrentar o Chefe\n")
@@ -391,27 +398,11 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
             escreva("5. Voltar ao menu\n")
             escreva("Escolha: ")
             leia(acao)
-            
             escolha (acao) {
                 caso "1":
-                    explorarArea()
-                    u.sorteia(1,4)
-
-                     se(u.sorteia == 4){
-                     escreva("Você Encontra uma casa abandonada entra nela?")
-                     opcao(1 == "Sim", 2 == "Não")
-                     leia(opcao)
-                     se(opcao == 1){
-                       u.sorteia(1,4)
-                       } se(u.sorteia < 3){
-                        escreva("Você Encontra um enforcado")
-                        leia(inimigosFlorestaDaNevoa[8])
-                        batalhar()
-                         }
-                        }
-                    
-
-              
+            
+                    explorarArea(matriz[0][controladorDeSenario],matriz[1][controladorDeSenario])
+                    pare
 
                 caso "2":
                     enfrentarChefe()
@@ -450,20 +441,22 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
      }
 
     
-    funcao explorarArea(){
-       u.sorteia(1,4)
+    funcao explorarArea(inteiro b, inteiro c){
+      inteiro a = u.sorteia(1,4)
 
-      se(u.sorteia == 4){
+      se(a == 4){
         escreva("Você Encontra uma casa abandonada entra nela?")
-        opcao(1 == "Sim", 2 == "Não")
+        escreva(" 1 - Sim 2- Não")
         leia(opcao)
 
         se(opcao == 1){
-          u.sorteia(1,4)
-        } se(u.sorteia < 3){
-          escreva("Você Encontra um enforcado")
-          leia(inimigosFlorestaDaNevoa[8])
-          batalhar()
+          a = u.sorteia(1,4)
+        } se(a < 3){
+          escreva("VocÊ achou o bixo: ")
+          a = u.sorteia(b,c)
+          escreva(nomeInimigos[a])
+          u.aguarde(5000)
+          batalhar(a)
         }
       }
      
@@ -475,18 +468,19 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
         descricoesCenarios[0] = "Criaturas ocultas espreitam na névoa..."
         // Adicionar outros cenários...
     }
-    funcao logico batalhar() {
-        inteiro hpInimigoAtual = hpInimigo
+    funcao logico batalhar(inteiro a) {
+        inteiro hpInimigoAtual = 10
         fugiuDeCombate = falso
-        
         enquanto (hpAtual > 0 e hpInimigoAtual > 0) {
             limpa()
             escreva("=== BATALHA ===\n")
-            escreva(nomeAventureiro, ": ", hpAtual, "/", hpMaximo, " HP")
+            escreva(nomeAventureiro, ": "," HP:", hpAtual, "/", hpMaximo)
             se (classePersonagem == "Mago") {
                 escreva(" | ", manaAtual, "/", manaMaxima, " Mana")
-            }
-            escreva("\n", nomeInimigos, ": ", hpInimigoAtual, "/", vidaInimigoMaxima, " HP\n")
+            }senao se(classePersonagem == "Guerreiro" ou "Arqueiro") {
+            } escreva("\nDefesa:", defesa)
+            escreva("Xp:", xpAtual, "/", xpMaximo)
+            escreva("\n", nomeInimigos[a], ": ", hpInimigoAtual[a], "/", vidaInimigoMaxima[a], " HP\n")
             
             // Turno do jogador
             cadeia acao
@@ -548,6 +542,7 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
         escreva("Classe: ", classePersonagem, "\n")
         escreva("HP: ", hpAtual, "/", hpMaximo, "\n")
         escreva("Ataque: ", ataqueBase, "\n")
+        escreva("Nivel De Xp:\n", xpAtual, "/", xpMaximo, "\n")
         
         se (classePersonagem == "Mago") {
             escreva("Mana: ", manaAtual, "/", manaMaxima, "\n")
