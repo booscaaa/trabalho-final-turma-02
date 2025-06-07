@@ -6,6 +6,9 @@ programa {
     const inteiro CHANCE_FUGA = 7 // 40% de chance (7-10 em 1d10)
     const inteiro CUSTO_HABILIDADE_MAGO = 20
 
+
+    
+
     // VARIÁVEIS GLOBAIS
     cadeia nomeAventureiro
     cadeia classePersonagem
@@ -17,6 +20,7 @@ programa {
     inteiro manaMaxima
     inteiro xpAtual = 0
     inteiro xpMaximo = 100
+    inteiro nivelAtual
     
     // ITENS ESPECIAIS
     logico possuiCajadoDoReiEsqueleto
@@ -30,10 +34,23 @@ programa {
     inteiro escolherDificuldade
     logico aventura
     logico cavaleiroDasAlmas
+    inteiro opcao
     
     // CENÁRIOS
     cadeia nomesCenarios[TOTAL_CENARIOS]
     cadeia descricoesCenarios[TOTAL_CENARIOS]
+
+    inteiro chefeFinalRodada[5]
+    cadeia nomeChefeFinal[5] = {"Rei Esqueleto", "Agenlo Brontie", "Lobisomen Da Lua Negra", "Rei Crocovile", "Senhor Das Moscas"}
+    inteiro hpMaximoChefe[5]
+    inteiro hpAtualChefe[5]
+    inteiro nivelChefe[5]
+    inteiro xpPorChefe[5]
+    inteiro chefeAtaque
+    inteiro defesaChefe
+    
+
+
 
 
     cadeia inimigosDificuldadeNormal[10] 
@@ -92,51 +109,34 @@ programa {
 
     cadeia inimigosDificuldadeDificil[20]
 
-    inteiro inimigosFlorestaDaNevoa[20]
-    cadeia nomeInimigo[20] = {"Esqueleto Espada Longa", "Esqueleto Armadurado", "Esqueleto Arqueiro", "Esqueleto Barbaro", "Esqueleto Brutamontes", "Esqueleto Demoniaco", "Esqueleto Corrompido", "Esqueleto Enforcado", "Esqueleto Real", "Esqueleto Plebeu"}
-    inteiro vidaInimigoMaxima[20]
-    inteiro defesaInimigo[20]
-    inteiro manainimigoMaxima[20]
-    inteiro xpInimigoDificil[20]
-
-    inteiro inimigosVilaAbandonada[20] = {"Bandido Comun", "Bandido Novato", "Bandido Experiente", "Bandido Berseker", "Pirata", "Capitão Esmaga Cranios", ""}
-    inteiro nomeInimigos[20]
-    inteiro vidaInimigoMaxima[20]
-    inteiro defesaInimigo[20]
-    inteiro manainimigoMaxima[20]
-    inteiro xpInimigoFacil[20]
-
-
-
-    inteiro inimigosCavernaSombria[20]
-    inteiro nomeInimigos[20]
-    inteiro vidaInimigoMaxima[20]
-    inteiro defesaInimigo[20]
-    inteiro manainimigoMaxima[20]
-    inteiro xpInimigoFacil[20]
-
-
-
-    inteiro inimigosPantanoDosLamentos[20]
-    inteiro nomeInimigos[20]
-    inteiro vidaInimigoMaxima[20]
-    inteiro defesaInimigo[20]
-    inteiro manainimigoMaxima[20]
-    inteiro xpInimigoFacil[20]
-
-
-
-    inteiro inimigosCasteloDourado[20]
-    inteiro nomeInimigos[20]
-    inteiro vidaInimigoMaxima[20]
-    inteiro defesaInimigo[20]
-    inteiro manainimigoMaxima[20]
-    inteiro xpInimigoFacil[20]
-
+    
 
 
     cadeia nomeBoss
     inteiro stageBoss
+
+     funcao enfrentarChefe(){
+      inteiro chefeFinalRodada[5]
+      cadeia nomeChefeFinal[5] = {"Rei Esqueleto", "Agenlo Brontie", "Lobisomen Da Lua Negra", "Rei Crocovile", "Senhor Das Moscas"}
+      inteiro hpMaximoChefe[5]
+      inteiro hpAtualChefe[5]
+      inteiro nivelChefe[5]
+      inteiro xpPorChefe[5]
+      inteiro chefeAtaque
+      inteiro defesaChefe
+
+      para(inteiro i = 0; i < nomeBoss[i]; i++){
+        se(inimigosDificuldadeNormal[10] == 0){
+          escreva("Ninguem Mais surgiu em seu caminho porem você Sente uma energia forte")
+          u.aguarde(1200)
+          escreva("...")
+          u.aguarde(1200)
+          escreva("Ele Esta Aqui", nomeBoss[i])
+        }
+      }
+    }
+     
+  
 
     // FUNÇÃO PRINCIPAL
     funcao inicio() {
@@ -235,6 +235,23 @@ programa {
             }
         } enquanto (opcaoMenu != "III" e opcaoMenu != "iii")
     }
+    funcao mostrarCreditos() {
+        limpa()
+        escreva("=== CRÉDITOS ===\n")
+        escreva("Desenvolvido por: Mestre Fanfas\n")
+        escreva("Versão: 1.1.0\n")
+        escreva("\nPressione ENTER para voltar...")
+        cadeia temp
+        leia(temp)
+    }
+     funcao encerrarJogo() {
+        limpa()
+        escreva("Encerrando o jogo...\n")
+        u.aguarde(2000)
+        limpa()
+    }
+    
+
 
     // HISTÓRIA E CRIAÇÃO DE PERSONAGEM
     funcao iniciarNovaHistoria() {
@@ -282,6 +299,7 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
             limpa()
         } enquanto (confirmacao != "s" e confirmacao != "S")
     }
+    
 
     // SISTEMA DE CLASSES
     funcao logico escolherClasse() {
@@ -301,8 +319,10 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
                     classePersonagem = "Guerreiro"
                     hpMaximo = 150
                     defesa = 10
-                    ataqueBase = 15
+                    ataqueBase = 13
                     manaMaxima = 0
+                    xpMaximo = 100
+                    nivelAtual = 1
                     valido = verdadeiro
                     pare
                 caso 2:
@@ -311,20 +331,25 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
                     defesa = 8
                     ataqueBase = 12
                     manaMaxima = 0
+                    xpMaximo = 100
+                    nivelAtual = 1
                     valido = verdadeiro
                     pare
                 caso 3:
                     classePersonagem = "Mago"
                     hpMaximo = 80
                     defesa = 5
-                    ataqueBase = 8
+                    ataqueBase = 17
                     manaMaxima = 100
+                    xpMaximo = 100
+                    nivelAtual = 1
                     valido = verdadeiro
                     pare
                 caso contrario:
                     escreva("Opção inválida! Tente novamente.\n")
                     u.aguarde(1500)
                     limpa()
+                    
             }
 
             hpAtual = hpMaximo
@@ -332,6 +357,7 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
             escreva("\nVocê escolheu ", classePersonagem, "!\n")
             u.aguarde(2000)
             retorne verdadeiro
+            mostrarStatusPersonagem()
         }
        
     }
@@ -362,10 +388,27 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
             escolha (acao) {
                 caso "1":
                     explorarArea()
-                    pare
+                     u.sorteia(1,4)
+
+      se(u.sorteia == 4){
+        escreva("Você Encontra uma casa abandonada entra nela?")
+        opcao(1 == "Sim", 2 == "Não")
+        leia(opcao)
+
+        se(opcao == 1){
+          u.sorteia(1,4)
+        } se(u.sorteia < 3){
+          escreva("Você Encontra um enforcado")
+          leia(inimigosFlorestaDaNevoa[8])
+          batalhar()
+        }
+
+      }
+
                 caso "2":
                     enfrentarChefe()
-                    pare
+                    
+                    
                 caso "3":
                     avancarParaProximaArea()
                     pare
@@ -386,9 +429,19 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
                 u.aguarde(3000)
             }
         }
-    }
+     }
 
-    // SISTEMA DE COMBATE (versão melhorada)
+    
+    funcao explorarArea(){
+     
+  }
+  
+        // FUNÇÕES AUXILIARES (implementações completas)
+    funcao inicializarCenarios() {
+        nomesCenarios[0] = "Floresta da Névoa"
+        descricoesCenarios[0] = "Criaturas ocultas espreitam na névoa..."
+        // Adicionar outros cenários...
+    }
     funcao logico batalhar() {
         inteiro hpInimigoAtual = hpInimigo
         fugiuDeCombate = falso
@@ -400,7 +453,7 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
             se (classePersonagem == "Mago") {
                 escreva(" | ", manaAtual, "/", manaMaxima, " Mana")
             }
-            escreva("\n", nomeInimigo, ": ", hpInimigoAtual, "/", vidaInimigoMaxima, " HP\n")
+            escreva("\n", nomeInimigos, ": ", hpInimigoAtual, "/", vidaInimigoMaxima, " HP\n")
             
             // Turno do jogador
             cadeia acao
@@ -418,7 +471,7 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
                     u.aguarde(1500)
                     pare
                 caso "2":
-                    se (usarHabilidadeEspecial(stageBoss, nomeInimigo, hpInimigoAtual)) {
+                    se (usarHabilidadeEspecial(stageBoss, nomeInimigos, hpInimigoAtual)) {
                         u.aguarde(1500)
                     } senao {
                         continue() // Volta ao início do loop
@@ -437,7 +490,7 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
             
             // Verifica se inimigo foi derrotado
             se (hpInimigoAtual <= 0) {
-                escreva("\nVocê derrotou ", nomeInimigo, "!\n")
+                escreva("\nVocê derrotou ", nomeInimigos, "!\n")
                 u.aguarde(2000)
                 retorne verdadeiro
             }
@@ -445,27 +498,18 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
             // Turno do inimigo
             inteiro danoInimigo = calcularDano(ataqueInimigo, falso)
             hpAtual -= danoInimigo
-            escreva("\n", nomeInimigo, " causa ", danoInimigo, " de dano!\n")
+            escreva("\n", nomeInimigos, " causa ", danoInimigo, " de dano!\n")
             u.aguarde(1500)
             
             // Verifica se jogador foi derrotado
             se (hpAtual <= 0) {
-                escreva("\nVocê foi derrotado por ", nomeInimigo, "!\n")
+                escreva("\nVocê foi derrotado por ", nomeInimigos, "!\n")
                 u.aguarde(2000)
                 retorne falso
             }
         }
-        retorne falso
-    }
-
-    // FUNÇÕES AUXILIARES (implementações completas)
-    funcao inicializarCenarios() {
-        nomesCenarios[0] = "Floresta da Névoa"
-        descricoesCenarios[0] = "Criaturas ocultas espreitam na névoa..."
-        // Adicionar outros cenários...
-    }
-
-    funcao mostrarStatusPersonagem() {
+  }
+  funcao mostrarStatusPersonagem() {
         escreva("\n=== STATUS ===\n")
         escreva("Nome: ", nomeAventureiro, "\n")
         escreva("Classe: ", classePersonagem, "\n")
@@ -476,35 +520,12 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
             escreva("Mana: ", manaAtual, "/", manaMaxima, "\n")
             se (possuiCajadoDoReiEsqueleto) {
                 escreva("Habilidade: Dono de Pedaço (Custo: 20 mana)\n")
+                
+        
             }
         }
-        // Outras classes...
-        
         escreva("Pressione ENTER para continuar...")
         cadeia temp
         leia(temp)
-    }
-    
-  
-    }
-
-    // ... (implementar outras funções necessárias)
-
-    funcao mostrarCreditos() {
-        limpa()
-        escreva("=== CRÉDITOS ===\n")
-        escreva("Desenvolvido por: Mestre Fanfas\n")
-        escreva("Versão: 1.1.0\n")
-        escreva("\nPressione ENTER para voltar...")
-        cadeia temp
-        leia(temp)
-    }
-
-    funcao encerrarJogo() {
-        limpa()
-        escreva("Encerrando o jogo...\n")
-        u.aguarde(2000)
-        limpa()
-    }
-    funcao esqueletos()
+  }
 }
