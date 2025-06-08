@@ -15,6 +15,15 @@ programa {
   inteiro regiao[5] = {"Floresta da Névoa 🌫️🌲","Vila Abandonada 🏚️👻","Caverna Sombria 🕳️🦇","Pântano dos Lamentos 🐸🧪","Castelo Dourado 🏰✨"}
   inteiro contarRegiao = 0
   inteiro regiaoDesbloqueada = 0
+  inteiro moedasTotais = 1000
+  inteiro moedasGanhas = 0
+  cadeia classeEscolhida = ""
+
+  //Itens loja
+  inteiro lojaPocao = 5
+  inteiro lojaArma = 1
+  inteiro lojaArmadura = 1
+
 
   funcao inicio() {
     cadeia escolhaMenu
@@ -23,7 +32,7 @@ programa {
 
     se(escolhaMenu == 1){
       limpa()
-      classe()
+      classeEscolhida = classe()
       menu_acoes_jogo()
     }
     senao se(escolhaMenu == 2){
@@ -51,7 +60,7 @@ programa {
 
   funcao menu_acoes_jogo(){
     cadeia escolhaAcao
-    enquanto(escolhaAcao != 1 e escolhaAcao != 2 e escolhaAcao != 3 e escolhaAcao != 4){
+    enquanto(escolhaAcao != 1 e escolhaAcao != 2 e escolhaAcao != 3 e escolhaAcao != 4 e escolhaAcao != 5){
       limpa()
       escreva("---------------------------")
       escreva("\n",regiao[contarRegiao],"\n")
@@ -59,8 +68,9 @@ programa {
       escreva("\n══════「AÇÕES」══════\n")
       escreva("1 - Explorar Região\n")
       escreva("2 - Status do Herói\n")
-      escreva("3 - Mudar de Fase\n")
-      escreva("4 - Sair do jogo\n")
+      escreva("3 - Loja\n")
+      escreva("4 - Mudar de Fase\n")
+      escreva("5 - Sair do jogo\n")
       leia(escolhaAcao)
 
     se(escolhaAcao == 1){
@@ -80,7 +90,7 @@ programa {
           se(contarRegiao == regiaoDesbloqueada){
             regiaoDesbloqueada++
           }
-          intro_vila_abandonada()
+          //intro_vila_abandonada()
           contarRegiao++
           menu_acoes_jogo()
         }
@@ -160,9 +170,12 @@ programa {
       status_heroi()
     }
     se(escolhaAcao == 3){
+      loja()
+    }
+    se(escolhaAcao == 4){
       mudar_fase()
     }
-    senao se(escolhaAcao == 4){
+    senao se(escolhaAcao == 5){
       sair()
     }
     }
@@ -193,7 +206,7 @@ programa {
     botao_enter()
   }
 
-  funcao classe(){
+  funcao cadeia classe(){
     cadeia numeroDaClasse
     cadeia confirmaClasse
     logico voltar = falso
@@ -217,8 +230,8 @@ programa {
         classe = "🏹 Arqueiro"
         vidaMax = 90
         vidaAtual = vidaMax
-        ataque = 15
-        defesa = 10
+        ataque = 18
+        defesa = 12
       }senao se(numeroDaClasse == 3){
         classe = "🔮 Mago"
         vidaMax = 70
@@ -239,6 +252,7 @@ programa {
       se(confirmaClasse == 1){
         limpa()
         escreva("✅ Classe escolhida com sucesso!\n")
+        retorne numeroDaClasse
         voltar = verdadeiro
       }senao se(confirmaClasse == 2){
         limpa()
@@ -260,6 +274,7 @@ programa {
       escreva("❤️ Vida: ",vidaAtual,"/",vidaMax,"\n")
       escreva("🗡️ Ataque: ",ataque,"\n")
       escreva("🛡️ Defesa: ",defesa,"\n")
+      escreva("💰 Moedas: ",moedasTotais,"\n")
       escreva("\n\nPressione \"Enter\" para voltar\n")
       leia(voltar)
     }
@@ -318,8 +333,11 @@ programa {
       }
       se(escolher == 3){
         se(quantidadePocao > 0){
-          vidaAtual = vidaMax
-          escreva("🧪 Você toma uma poção de cura e recupera toda a sua vida.\n")
+          vidaAtual += 40
+          se(vidaAtual > vidaMax){
+            vidaAtual = vidaMax
+          }
+          escreva("🧪 Você toma uma poção de cura e recupera 40 pontos de vida.\n")
           quantidadePocao = quantidadePocao - 1
         }senao{
           escreva("⚠️ Você não tem mais poções!\n")
@@ -354,14 +372,25 @@ programa {
       escreva("🎉 Você derrotou o ",nomeInimigo,"!\n")
       escreva("🏆 + ",xpinimigo," XP\n")
       xp = xp + xpinimigo
+      se(contarRegiao == 0){
+        moedasGanhas = u.sorteia(10,15)
+      }senao se(contarRegiao == 1){
+        moedasGanhas = u.sorteia(18,22)
+      }senao se(contarRegiao == 2){
+        moedasGanhas = u.sorteia(26,30)
+      }senao se(contarRegiao == 3){
+        moedasGanhas = u.sorteia(34,38)
+      }
+      escreva("💰 + ",moedasGanhas," moedas!\n")
+      moedasTotais = moedasTotais + moedasGanhas
       se(xp >= xpParaUpar){
         nivel = nivel + 1
         xp = xp - xpParaUpar
         vidaMax = vidaMax + (vidaMax * 0.1)
         vidaAtual = vidaMax
-        ataque = ataque + (ataque * 0.15)
+        ataque = ataque + (ataque * 0.1)
         defesa = defesa + 2
-        xpParaUpar += 10
+        xpParaUpar = xpParaUpar + (xpParaUpar * 0.1)
         escreva("⬆️ Você subiu para o nível ",nivel,"!\n")
       }
     }
@@ -420,8 +449,11 @@ programa {
       }
       se(escolher == 3){
         se(quantidadePocao > 0){
-          vidaAtual = vidaMax
-          escreva("🧪 Você toma uma poção de cura e recupera toda a sua vida.\n")
+          vidaAtual += 40
+          se(vidaAtual > vidaMax){
+            vidaAtual = vidaMax
+          }
+          escreva("🧪 Você toma uma poção de cura e recupera 40 pontos de vida.\n")
           quantidadePocao = quantidadePocao - 1
         }senao{
           escreva("⚠️ Você não tem mais poções!\n")
@@ -475,7 +507,7 @@ programa {
         u.aguarde(1500)
         }
         se(acao > 3){
-          inteiro danoCombo = (u.sorteia(8,danoInimigo * 0.4))
+          inteiro danoCombo = (u.sorteia(8,ataqueInimigo * 0.4))
 
           escreva("⚠️ O CAVALEIRO da uma investida em sua direção e desfere um combo\n")
           u.aguarde(1000)
@@ -505,6 +537,9 @@ programa {
       escreva("🎉 Você derrotou o ",nomeInimigo,"!\n")
       escreva("🏆 + ",xpinimigo," XP\n")
       xp = xp + xpinimigo
+      moedasGanhas = 50
+      escreva("💰 +",moedasGanhas," moedas!\n")
+      moedasTotais = moedasTotais + moedasGanhas
       se(xp >= xpParaUpar){
         nivel = nivel + 1
         xp = xp - xpParaUpar
@@ -583,8 +618,11 @@ programa {
       }
       se(escolher == 3){
         se(quantidadePocao > 0){
-          vidaAtual = vidaMax
-          escreva("🧪 Você toma uma poção de cura e recupera toda a sua vida.\n")
+          vidaAtual += 40
+          se(vidaAtual > vidaMax){
+            vidaAtual = vidaMax
+          }
+          escreva("🧪 Você toma uma poção de cura e recupera 40 pontos de vida.\n")
           quantidadePocao = quantidadePocao - 1
         }senao{
           escreva("⚠️ Você não tem mais poções!\n")
@@ -729,8 +767,11 @@ programa {
       }
       se(escolher == 3){
         se(quantidadePocao > 0){
-          vidaAtual = vidaMax
-          escreva("🧪 Você toma uma poção de cura e recupera toda a sua vida.\n")
+          vidaAtual += 40
+          se(vidaAtual > vidaMax){
+            vidaAtual = vidaMax
+          }
+          escreva("🧪 Você toma uma poção de cura e recupera 40 pontos de vida.\n")
           quantidadePocao = quantidadePocao - 1
         }senao{
           escreva("⚠️ Você não tem mais poções!\n")
@@ -757,7 +798,7 @@ programa {
           vidaAtual = vidaAtual - danoInimigo
           u.aguarde(1000)
           se(contadorFogo > 0){
-            escreva("🔥 Você está pegrando fogo, perdeu ", danoFogo, " de vida!\n")
+            escreva("🔥 Você está pegando fogo, perdeu ", danoFogo, " de vida!\n")
             vidaAtual = vidaAtual - danoFogo
             u.aguarde(1000)
             contadorFogo--
@@ -768,7 +809,7 @@ programa {
         }
 
         se(acao == 4){
-          inteiro danoPedra = danoInimigo * 0.5
+          inteiro danoPedra = ataqueInimigo * 0.5
           se(danoInimigo < 0){
             danoInimigo = 0
           }
@@ -799,7 +840,7 @@ programa {
           gritoTirano = verdadeiro
           u.aguarde(1000)
           se(contadorFogo > 0){
-            escreva("🔥 Você está pegrando fogo, perdeu ", danoFogo, " de vida!\n")
+            escreva("🔥 Você está pegando fogo, perdeu ", danoFogo, " de vida!\n")
             vidaAtual = vidaAtual - danoFogo
             u.aguarde(1000)
             contadorFogo--
@@ -922,6 +963,86 @@ programa {
     }
   }
   
+  funcao loja(){
+    cadeia item
+    cadeia sair
+    inteiro itemClasse[3] = {"⚔️ Espada Rúnica","🏹 Arco Longo","🔮 Cajado Elemental"}
+    enquanto(item != 4){
+      limpa()
+      escreva("\n══════════「LOJA」══════════\n")
+      escreva("Você possui ", moedasTotais, " moedas 💰\n")
+      escreva("------------------------------\n")
+      escreva("1 - ( ",lojaPocao," ) 🧪 Poção de Cura (+40 Vida) - 20 💰\n")
+      escreva("2 - ( ",lojaArma," ) ",itemClasse[classeEscolhida - 1]," (+5 Ataque) - 100 💰\n")
+      escreva("3 - ( ",lojaArmadura," ) 🛡️ Armadura de Ferro (+3 Defesa) - 80 💰\n")
+      escreva("4 - ❌ Sair da loja\n")
+      escreva("------------------------------\n")
+      escreva("Escolha uma opção: ")
+      leia(item)
+
+      escolha (item){
+
+        caso "1":
+        se(moedasTotais >= 20){
+          moedasTotais -= 20
+          lojaPocao -= 1
+          escreva("Você comprou uma 🧪 Poção de Cura!\n")
+          quantidadePocao += 1
+          u.aguarde(1000)
+        }senao{
+          escreva("💰 Você não tem moedas suficientes!\n")
+          u.aguarde(1000)
+        }
+        pare
+
+        caso "2":
+        se(lojaArma > 0){
+          se(moedasTotais >= 100){
+            moedasTotais -= 100
+            lojaArma -= 1
+            escreva("Você comprou ",itemClasse[classeEscolhida - 1]," (+5 Ataque)\n")
+            ataque =+ 5
+            u.aguarde(1000)
+          }senao{
+            escreva("💰 Você não tem moedas suficientes!\n")
+            u.aguarde(1000)
+          }
+        }senao{
+          escreva("❗ Sem estoque!")
+          u.aguarde(1000)
+        }
+        pare
+
+        caso "3":
+        se(lojaArmadura > 0){
+          se(moedasTotais >= 80){
+            moedasTotais -= 80
+            lojaArmadura -= 1
+            escreva("Você comprou a 🛡️ Armadura de Ferro! (+3 Defesa)\n")
+            defesa += 3
+            u.aguarde(1000)
+          }senao{
+            escreva("💰 Você não tem moedas suficientes!\n")
+            u.aguarde(1000)
+          }
+        }senao{
+          escreva("❗ Sem estoque!")
+          u.aguarde(1000)
+        }
+        pare
+
+        caso "4":
+        menu_acoes_jogo()
+
+        caso contrario:
+        escreva("❗ Opção inválida. Tente novamente.\n")
+        u.aguarde(1000)
+        pare
+      }
+    }
+    
+  }
+
   funcao descansar(){
     limpa()
     cadeia descanso
