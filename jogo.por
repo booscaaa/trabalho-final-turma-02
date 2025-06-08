@@ -15,15 +15,18 @@ programa {
   inteiro regiao[5] = {"Floresta da Névoa 🌫️🌲","Vila Abandonada 🏚️👻","Caverna Sombria 🕳️🦇","Pântano dos Lamentos 🐸🧪","Castelo Dourado 🏰✨"}
   inteiro contarRegiao = 0
   inteiro regiaoDesbloqueada = 0
-  inteiro moedasTotais = 1000
+  inteiro moedasTotais = 0
   inteiro moedasGanhas = 0
   cadeia classeEscolhida = ""
 
   //Itens loja
-  inteiro lojaPocao = 5
+  inteiro lojaPocao = 6
   inteiro lojaArma = 1
   inteiro lojaArmadura = 1
 
+  //Chefes Regiões
+  logico miniChefes[4] = {verdadeiro, verdadeiro, verdadeiro, verdadeiro}
+  cadeia nomesMiniChefes[4] = {"🐾 ALFA SOMBRIO","🧨 LADRÃO SANGUINÁRIO","⛰️ GOLEM PARTIDO","🐍 SERPENTE ESMERALDA"}
 
   funcao inicio() {
     cadeia escolhaMenu
@@ -75,18 +78,21 @@ programa {
 
     se(escolhaAcao == 1){
         se(contarRegiao == 0){
-          batalha(60, 15, 6,"🐺LOBO TERRÍVEL",2, 60)
+          batalha(60, 15, 6,"🐺LOBO TERRÍVEL", 2, 60)
           se(vidaAtual <= 0){
             pare
           }
-          se(vidaAtual <= 45 e vidaAtual > 0){
-            descansar()
-            u.aguarde(1000)
-          }
-          batalha(70, 22, 8, "💀 ESQUELETO SOMBRIO", 3, 90)
+
+          batalha(70, 20, 8, "💀 ESQUELETO SOMBRIO", 3, 90)
           se(vidaAtual <= 0){
             pare
           }
+
+          verificar_mini_chefe()
+          se(vidaAtual <= 0){
+            pare
+          }
+
           se(contarRegiao == regiaoDesbloqueada){
             regiaoDesbloqueada++
           }
@@ -98,10 +104,6 @@ programa {
           batalha(80, 25, 10, "🗡️ LADRÃO MASCARADO", 4, 120)
           se(vidaAtual <= 0){
             pare
-          }
-          se(vidaAtual <= 45 e vidaAtual > 0){
-            descansar()
-            u.aguarde(1000)
           }
           batalha(90, 28, 12, "👻 ALMA PERDIDA", 5, 160)
           se(vidaAtual <= 0){
@@ -118,10 +120,6 @@ programa {
           se(vidaAtual <= 0){
             pare
           }
-          se(vidaAtual <= 45 e vidaAtual > 0){
-            descansar()
-            u.aguarde(1000)
-          }
           batalha(110, 34, 16, "👹 OGRO GIGANTE ", 7, 150)
           se(vidaAtual <= 0){
             pare
@@ -137,14 +135,16 @@ programa {
           se(vidaAtual <= 0){
             pare
           }
-          se(vidaAtual <= 45 e vidaAtual > 0){
-            descansar()
-            u.aguarde(1000)
-          }
           batalha(130, 42, 20, "🐲 DRAGÃO VENENOSO", 9, 200)
           se(vidaAtual <= 0){
             pare
           }
+
+          verificar_mini_chefe()
+          se(vidaAtual <= 0){
+            pare
+          }
+
           se(contarRegiao == regiaoDesbloqueada){
             regiaoDesbloqueada++
           }
@@ -222,9 +222,9 @@ programa {
     }
       se(numeroDaClasse == 1){
         classe = "⚔️ Guerreiro"
-        vidaMax = 12000
+        vidaMax = 120
         vidaAtual = vidaMax
-        ataque = 2000
+        ataque = 20
         defesa = 15
       }senao se(numeroDaClasse == 2){
         classe = "🏹 Arqueiro"
@@ -309,7 +309,7 @@ programa {
 
       escreva("Escolha sua ação:\n")
       escreva("1 - Atacar   |   2 - Defender\n")
-      se(quantidadePocao > 0 e contarRegiao > 0){
+      se(quantidadePocao > 0){
         escreva("3 - Curar\n")
       }
       leia(escolher)
@@ -333,11 +333,11 @@ programa {
       }
       se(escolher == 3){
         se(quantidadePocao > 0){
-          vidaAtual += 40
+          vidaAtual += 100
           se(vidaAtual > vidaMax){
             vidaAtual = vidaMax
           }
-          escreva("🧪 Você toma uma poção de cura e recupera 40 pontos de vida.\n")
+          escreva("🧪 Você toma uma poção de cura e recupera 100 pontos de vida.\n")
           quantidadePocao = quantidadePocao - 1
         }senao{
           escreva("⚠️ Você não tem mais poções!\n")
@@ -399,6 +399,296 @@ programa {
     }
   }
 
+  funcao verificar_mini_chefe(){
+    cadeia opcao
+    cadeia segundaOpcao
+    logico voltar = falso
+    se(miniChefes[0]){
+      enquanto(opcao !=2 e vidaAtual > 0 ou voltar == verdadeiro){
+        limpa()
+        opcao = ""
+        escreva("⚔️ Você sente uma presença dominante na floresta... O ALFA SOMBRIO surge!\n")
+        escreva("Deseja enfrentar o Mini Chefe da região?\n")
+        escreva("1 - Sim    |    2 - Não\n")
+        leia(opcao)
+
+        se(opcao == 1){
+          se(nivel >= 3){
+          limpa()
+          mini_chefe(80, 20, 8, "🐾 ALFA SOMBRIO", 3, 100)
+          se(vidaAtual <= 0){
+            pare
+          }
+          miniChefes[0] = falso
+          pare
+          }senao{
+            limpa()
+            escreva("🚫 Você ainda não está preparado para enfrentar o ",nomesMiniChefes[0],". (Nível 3 necessário)\n")
+            escreva("⚔️ Batalhe, suba de nível e tente novamente.\n")
+            botao_enter()
+            menu_acoes_jogo()
+          }
+        }senao se(opcao == 2){
+          limpa()
+          segundaOpcao = ""
+          enquanto(segundaOpcao != 1){
+            escreva("⚠️ Você está disposto a perder as recompensas que esse chefe irá lhe fornecer?\n")
+            escreva("⚠️ Você não poderá mais encontrar com ele, mesmo que volte depois...\n")
+            escreva("1 - Seguir    |    2 - Voltar\n")
+            leia(segundaOpcao)
+            se(segundaOpcao == 2){
+              voltar = verdadeiro
+              pare
+            }senao se(segundaOpcao == 1){
+              voltar = falso
+              pare
+            }
+          }
+        }
+      }
+    }senao{
+
+    }
+    se(miniChefes[3] e regiaoDesbloqueada == 3){
+      enquanto(opcao !=2 e vidaAtual > 0 ou voltar == verdadeiro){
+        limpa()
+        escreva("🌿 As águas do pântano começam a borbulhar... Uma enorme serpente surge! A SERPENTE ESMERALDA!\n")
+        escreva("Deseja enfrentar o Mini Chefe da região?\n")
+        escreva("1 - Sim    |    2 - Não\n")
+        leia(opcao)
+
+        se(opcao == 1){
+          se(nivel >= 10){
+          limpa()
+          mini_chefe(135, 40, 21, "🐍 SERPENTE ESMERALDA", 9, 220)
+          se(vidaAtual <= 0){
+            pare
+          }
+          miniChefes[3] = falso
+          pare
+          }senao{
+            limpa()
+            escreva("🚫 Você ainda não está preparado para enfrentar o ",nomesMiniChefes[3],". (Nível 8 necessário)\n")
+            escreva("⚔️ Batalhe, suba de nível e tente novamente.\n")
+            botao_enter()
+            menu_acoes_jogo()
+          }
+        }senao se(opcao == 2){
+          limpa()
+          enquanto(segundaOpcao != 1){
+            escreva("⚠️ Você está disposto a perder as recompensas que esse chefe irá lhe fornecer?\n")
+            escreva("⚠️ Você não poderá mais encontrar com ele, mesmo que volte depois...\n")
+            escreva("1 - Seguir    |    2 - Voltar\n")
+            leia(segundaOpcao)
+            se(segundaOpcao == 2){
+              voltar = verdadeiro
+              pare
+            }
+          }
+        }
+      }
+    }
+  }
+
+  funcao mini_chefe(inteiro vidaMaxInimigo, inteiro ataqueInimigo, inteiro defesaInimigo, cadeia nomeInimigo, inteiro nivelInimigo, inteiro xpinimigo){
+    limpa()
+    inteiro vidaAtualInimigo = vidaMaxInimigo
+    inteiro danoInimigo = ataqueInimigo - defesa
+    cadeia escolher
+    logico sangrando = falso
+    inteiro danoSangramento = ataqueInimigo * 0.3
+    logico envenenado = falso
+    inteiro danoVeneno = ataqueInimigo * 0.4
+    logico defendendo = falso
+
+    enquanto (vidaAtualInimigo > 0 e vidaAtual > 0){
+      logico acaoValida = verdadeiro
+      enquanto(escolher != 1 e escolher != 2 e escolher != 3){
+
+      limpa()
+      escreva(nomeInimigo," Nv.",nivelInimigo,"\n")
+      escreva("❤️ Vida: ",vidaAtualInimigo,"/",vidaMaxInimigo,"\n")
+      escreva("🛡️ Defesa: ",defesaInimigo,"\n")
+      barra_de_vida_inimigo(vidaAtualInimigo, vidaMaxInimigo)
+      escreva("\n----------------------------------\n")
+
+      escreva(nomeJogador," (",classe,") Nv. ",nivel,"\n")
+      escreva("❤️ Vida: ",vidaAtual,"/",vidaMax,"\n")
+      escreva("🛡️ Defesa: ",defesa,"\n")
+      barra_de_vida_heroi(vidaAtual, vidaMax)
+      escreva("\n----------------------------------\n")
+
+      escreva("Escolha sua ação:\n")
+      escreva("1 - Atacar   |   2 - Defender\n")
+      se(quantidadePocao > 0){
+        escreva("3 - Curar\n")
+      }
+      leia(escolher)
+      limpa()
+      }
+      se(escolher == 1){
+        inteiro dano = u.sorteia(ataque * 0.7, ataque)
+        se(dano < 0){
+          dano = 0
+        }
+        escreva("💥 Você ataca o inimigo e causa ",dano," de dano!\n")
+        vidaAtualInimigo = vidaAtualInimigo - dano
+        defendendo = falso
+        se(vidaAtualInimigo <= 0){
+          pare
+        }
+      }
+      se(escolher == 2){
+        escreva("🛡️ Você se prepara para defender o próximo ataque.\n")
+        defendendo = verdadeiro
+      }
+      se(escolher == 3){
+        se(quantidadePocao > 0){
+          vidaAtual += 100
+          se(vidaAtual > vidaMax){
+            vidaAtual = vidaMax
+          }
+          escreva("🧪 Você toma uma poção de cura e recupera 100 pontos de vida.\n")
+          quantidadePocao = quantidadePocao - 1
+        }senao{
+          escreva("⚠️ Você não tem mais poções!\n")
+          acaoValida = falso
+        }
+      }
+
+      u.aguarde(1000)
+      se(nomeInimigo == nomesMiniChefes[0]){
+
+        inteiro acao = u.sorteia(1,2)
+
+        se(acao == 1){
+          se(acaoValida e vidaAtualInimigo > 0){
+            danoInimigo = u.sorteia(ataqueInimigo * 0.6, ataqueInimigo)
+            se(defendendo){
+              danoInimigo = ataqueInimigo - u.sorteia(3,defesa)
+            }
+
+          se(danoInimigo < 0){
+            danoInimigo = 0
+          }
+          escreva("⚠️ O inimigo ataca e causa ",danoInimigo," de dano!\n")
+          vidaAtual = vidaAtual - danoInimigo
+          se(sangrando){
+            escreva("🩸 Você está sangrando e perdeu ", danoSangramento, " de vida!\n")
+            vidaAtual = vidaAtual - danoSangramento
+            sangrando = falso
+          }
+          u.aguarde(1000)
+          }
+        }
+        se(acao == 2){
+        danoInimigo = u.sorteia(ataqueInimigo * 0.6, ataqueInimigo)
+        se(defendendo){
+          danoInimigo = ataqueInimigo - u.sorteia(3,defesa)
+        }
+
+        se(danoInimigo < 0){
+          danoInimigo = 0
+        }
+        escreva("☄️ O ALFA da um golpe direto com sua garra ",danoInimigo," de dano!\n")
+        vidaAtual = vidaAtual - danoInimigo
+        u.aguarde(1000)
+        escreva("🩸 Você fica com efeito de sangramento por um turno...\n")
+        se(sangrando){
+        escreva("🩸 Você está sangrando e perdeu ", danoSangramento, " de vida!\n")
+        vidaAtual = vidaAtual - danoSangramento
+        sangrando = falso
+        }
+        sangrando = verdadeiro
+        u.aguarde(1500)
+        }
+      }
+      se(nomeInimigo == nomesMiniChefes[3]){
+
+        inteiro acao = u.sorteia(1,2)
+
+        se(acao == 1){
+          se(acaoValida e vidaAtualInimigo > 0){
+            danoInimigo = u.sorteia(ataqueInimigo * 0.6, ataqueInimigo)
+            se(defendendo){
+              danoInimigo = ataqueInimigo - u.sorteia(3,defesa)
+            }
+
+          se(danoInimigo < 0){
+            danoInimigo = 0
+          }
+          escreva("💥 A serpente gira e lhe atinge com a cauda ",danoInimigo," de dano!\n")
+          vidaAtual = vidaAtual - danoInimigo
+          se(envenenado){
+            escreva("🧪 Você está envenenado, perdeu ", danoVeneno, " de vida!\n")
+            vidaAtual = vidaAtual - danoVeneno
+            envenenado = verdadeiro
+          }
+          u.aguarde(1000)
+          }
+        }
+        se(acao == 2){
+        danoInimigo = u.sorteia(ataqueInimigo * 0.6, ataqueInimigo)
+        se(defendendo){
+          danoInimigo = ataqueInimigo - u.sorteia(3,defesa)
+        }
+
+        se(danoInimigo < 0){
+          danoInimigo = 0
+        }
+        escreva("☠️ A SERPENTE lhe ataca com uma mordida ",danoInimigo," de dano!\n")
+        vidaAtual = vidaAtual - danoInimigo
+        u.aguarde(1000)
+        se(envenenado == falso){
+        escreva("🧪 Você está envenenado até o final da batalha!\n")
+        }
+        se(envenenado){
+        escreva("🧪 Você está envenenado, perdeu ", danoVeneno, " de vida!\n")
+        vidaAtual = vidaAtual - danoVeneno
+        }
+        envenenado = verdadeiro
+        u.aguarde(1500)
+        }
+      }
+      escolher = ""
+    }
+    se(vidaAtual <= 0){
+      limpa()
+      escreva("💀 Você foi derrotado pelo ",nomeInimigo,"...\n")
+      escreva("Fim de jogo.\n")
+    }
+    se(vidaAtualInimigo <= 0){
+      limpa()
+      escreva("🎉 Você derrotou o ",nomeInimigo,"!\n")
+      escreva("🏆 + ",xpinimigo," XP\n")
+      xp = xp + xpinimigo
+      se(contarRegiao == 0){
+        moedasGanhas = u.sorteia(30,40)
+      }senao se(contarRegiao == 1){
+        moedasGanhas = u.sorteia(50,65)
+      }senao se(contarRegiao == 2){
+        moedasGanhas = u.sorteia(70,80)
+      }senao se(contarRegiao == 3){
+        moedasGanhas = u.sorteia(80,100)
+      }
+      escreva("💰 + ",moedasGanhas," moedas!\n")
+      moedasTotais = moedasTotais + moedasGanhas
+      se(xp >= xpParaUpar){
+        nivel = nivel + 1
+        xp = xp - xpParaUpar
+        vidaMax = vidaMax + (vidaMax * 0.1)
+        vidaAtual = vidaMax
+        ataque = ataque + (ataque * 0.1)
+        defesa = defesa + 2
+        xpParaUpar = xpParaUpar + (xpParaUpar * 0.1)
+        escreva("⬆️ Você subiu para o nível ",nivel,"!\n")
+      }
+    }
+    se(vidaAtual > 0){
+    botao_enter()
+    }
+  }
+
   funcao batalha_cavaleiro(inteiro vidaMaxInimigo, inteiro ataqueInimigo, inteiro defesaInimigo, cadeia nomeInimigo, inteiro nivelInimigo, inteiro xpinimigo){
     limpa()
     inteiro vidaAtualInimigo = vidaMaxInimigo
@@ -425,7 +715,7 @@ programa {
 
       escreva("Escolha sua ação:\n")
       escreva("1 - Atacar   |   2 - Defender\n")
-      se(quantidadePocao > 0 e contarRegiao > 0){
+      se(quantidadePocao > 0){
         escreva("3 - Curar\n")
       }
       leia(escolher)
@@ -449,11 +739,11 @@ programa {
       }
       se(escolher == 3){
         se(quantidadePocao > 0){
-          vidaAtual += 40
+          vidaAtual += 100
           se(vidaAtual > vidaMax){
             vidaAtual = vidaMax
           }
-          escreva("🧪 Você toma uma poção de cura e recupera 40 pontos de vida.\n")
+          escreva("🧪 Você toma uma poção de cura e recupera 100 pontos de vida.\n")
           quantidadePocao = quantidadePocao - 1
         }senao{
           escreva("⚠️ Você não tem mais poções!\n")
@@ -507,18 +797,18 @@ programa {
         u.aguarde(1500)
         }
         se(acao > 3){
-          inteiro danoCombo = (u.sorteia(8,ataqueInimigo * 0.4))
+          inteiro danoCombo = (u.sorteia(10,ataqueInimigo * 0.5))
 
           escreva("⚠️ O CAVALEIRO da uma investida em sua direção e desfere um combo\n")
           u.aguarde(1000)
           escreva("🗡️ 1º Corte ",danoCombo," de dano!\n")
           vidaAtual = vidaAtual - danoCombo
           u.aguarde(1000)
-          danoCombo = u.sorteia(8,danoInimigo * 0.4)
+          danoCombo = u.sorteia(10,ataqueInimigo * 0.5)
           escreva("🗡️ 2º Corte ",danoCombo," de dano!\n")
           vidaAtual = vidaAtual - danoCombo
           u.aguarde(1000)
-          danoCombo = u.sorteia(8,danoInimigo * 0.4)
+          danoCombo = u.sorteia(10,ataqueInimigo * 0.5)
           escreva("🗡️ 3º Corte ",danoCombo," de dano!\n")
           vidaAtual = vidaAtual - danoCombo
           u.aguarde(1000)
@@ -545,7 +835,7 @@ programa {
         xp = xp - xpParaUpar
         vidaMax = vidaMax + (vidaMax * 0.1)
         vidaAtual = vidaMax
-        ataque = ataque + (ataque * 0.15)
+        ataque = ataque + (ataque * 0.1)
         defesa = defesa + 2
         xpParaUpar += 10
         escreva("⬆️ Você subiu para o nível ",nivel,"!\n")
@@ -584,7 +874,7 @@ programa {
 
       escreva("Escolha sua ação:\n")
       escreva("1 - Atacar   |   2 - Defender\n")
-      se(quantidadePocao > 0 e contarRegiao > 0){
+      se(quantidadePocao > 0){
         escreva("3 - Curar\n")
       }
       leia(escolher)
@@ -618,11 +908,11 @@ programa {
       }
       se(escolher == 3){
         se(quantidadePocao > 0){
-          vidaAtual += 40
+          vidaAtual += 100
           se(vidaAtual > vidaMax){
             vidaAtual = vidaMax
           }
-          escreva("🧪 Você toma uma poção de cura e recupera 40 pontos de vida.\n")
+          escreva("🧪 Você toma uma poção de cura e recupera 100 pontos de vida.\n")
           quantidadePocao = quantidadePocao - 1
         }senao{
           escreva("⚠️ Você não tem mais poções!\n")
@@ -664,7 +954,11 @@ programa {
           escreva("⚠️ O DEVASTADOR lhe da um golpe especial chamado CORTE PROFANO ",danoInimigo," de dano!\n")
           vidaAtual = vidaAtual - danoInimigo
           escreva("🩸 Você fica com efeito de sangramento por um turno...\n")
+          se(sangrando){
+          escreva("🩸 Você está sangrando e perdeu ", danoSangramento, " de vida!\n")
           vidaAtual = vidaAtual - danoSangramento
+          sangrando = falso
+          }
           sangrando = verdadeiro
           u.aguarde(2000)
 
@@ -733,7 +1027,7 @@ programa {
 
         escreva("Escolha sua ação:\n")
         escreva("1 - Atacar   |   2 - Defender\n")
-        se(quantidadePocao > 0 e contarRegiao > 0){
+        se(quantidadePocao > 0){
           escreva("3 - Curar\n")
         }
         leia(escolher)
@@ -767,11 +1061,11 @@ programa {
       }
       se(escolher == 3){
         se(quantidadePocao > 0){
-          vidaAtual += 40
+          vidaAtual += 100
           se(vidaAtual > vidaMax){
             vidaAtual = vidaMax
           }
-          escreva("🧪 Você toma uma poção de cura e recupera 40 pontos de vida.\n")
+          escreva("🧪 Você toma uma poção de cura e recupera 100 pontos de vida.\n")
           quantidadePocao = quantidadePocao - 1
         }senao{
           escreva("⚠️ Você não tem mais poções!\n")
@@ -972,7 +1266,7 @@ programa {
       escreva("\n══════════「LOJA」══════════\n")
       escreva("Você possui ", moedasTotais, " moedas 💰\n")
       escreva("------------------------------\n")
-      escreva("1 - ( ",lojaPocao," ) 🧪 Poção de Cura (+40 Vida) - 20 💰\n")
+      escreva("1 - ( ",lojaPocao," ) 🧪 Poção de Cura (+100 Vida) - 20 💰\n")
       escreva("2 - ( ",lojaArma," ) ",itemClasse[classeEscolhida - 1]," (+5 Ataque) - 100 💰\n")
       escreva("3 - ( ",lojaArmadura," ) 🛡️ Armadura de Ferro (+3 Defesa) - 80 💰\n")
       escreva("4 - ❌ Sair da loja\n")
@@ -983,14 +1277,19 @@ programa {
       escolha (item){
 
         caso "1":
-        se(moedasTotais >= 20){
-          moedasTotais -= 20
-          lojaPocao -= 1
-          escreva("Você comprou uma 🧪 Poção de Cura!\n")
-          quantidadePocao += 1
-          u.aguarde(1000)
+        se(lojaPocao > 0){
+          se(moedasTotais >= 20){
+            moedasTotais -= 20
+            lojaPocao -= 1
+            escreva("Você comprou uma 🧪 Poção de Cura!\n")
+            quantidadePocao += 1
+            u.aguarde(1000)
+          }senao{
+            escreva("💰 Você não tem moedas suficientes!\n")
+            u.aguarde(1000)
+          }
         }senao{
-          escreva("💰 Você não tem moedas suficientes!\n")
+          escreva("❗ Sem estoque!")
           u.aguarde(1000)
         }
         pare
@@ -1001,7 +1300,7 @@ programa {
             moedasTotais -= 100
             lojaArma -= 1
             escreva("Você comprou ",itemClasse[classeEscolhida - 1]," (+5 Ataque)\n")
-            ataque =+ 5
+            ataque += 5
             u.aguarde(1000)
           }senao{
             escreva("💰 Você não tem moedas suficientes!\n")
@@ -1033,6 +1332,7 @@ programa {
 
         caso "4":
         menu_acoes_jogo()
+        pare
 
         caso contrario:
         escreva("❗ Opção inválida. Tente novamente.\n")
@@ -1092,6 +1392,7 @@ programa {
     u.aguarde(600)
     escreva("📅 Iniciado no dia 17-05-2025\n")
   }
+
   funcao botao_enter(){
     cadeia continuar
     enquanto(continuar != ""){
@@ -1099,6 +1400,7 @@ programa {
       leia(continuar)
     }
   }
+
   funcao sair(){
       limpa()
       escreva("🔚 Saindo.")
