@@ -43,7 +43,7 @@ programa {
     cadeia nomesCenarios[TOTAL_CENARIOS]
     cadeia descricoesCenarios[TOTAL_CENARIOS]
 
-    inteiro chefeFinalRodada[5]
+    
     cadeia nomeChefeFinal[5] = {"Rei Esqueleto", "Agenlo Brontie", "Lobisomen Da Lua Negra", "Rei Crocovile", "Senhor Das Moscas"}
     inteiro hpMaximoChefe[5]
     inteiro hpAtualChefe[5]
@@ -86,11 +86,11 @@ programa {
 
 
 
-    inteiro nomeInimigos[10] = {"Crocovile", "Crocovile Armadurado", "Crocovile Arqueiro", "Crocodilo Primal", "Crocodilo Lendario", "Crocovile Berseker", "Crocovile Brutamontes", "Crocovile Draconico", "Crocovile Tita", "Crocovile Enforcado"}
-    inteiro vidaInimigoMaxima[10] = {"1", "5"}
-    inteiro defesaInimigo[10]
-    inteiro manainimigoMaxima[10]
-    inteiro xpInimigoFacil[10]
+    inteiro nomeInimigos[24] = {"Esqueleto Espada Longa", "Esqueleto Armadurado", "Esqueleto Arqueiro", "Esqueleto Barbaro", "Esqueleto Brutamontes", "Esqueleto Demoniaco", "Esqueleto Corrompido", "Esqueleto Enforcado", "Esqueleto Real", "Esqueleto Plebeu","Bandido Comun", "Bandido Novato", "Bandido Experiente", "Bandido Berseker", "Pirata", "Capitão Esmaga Cranios", "Demonio Espreitador", "Soldado Corrupto", "Mago Corrompido", "Druida Da Chama Eterna","Lobo", "Lobo Cinzento", "Lobo Negro", "Alfa", "Humano Amaldiçoado", "Licantropo", "Licantropo Armadurado", "Licantropo Feiticeiro", "lobisomen Enfraquecido", "Licantropo Das Neves", "Crocovile", "Crocovile Armadurado", "Crocovile Arqueiro", "Crocodilo Primal", "Crocodilo Lendario", "Crocovile Berseker", "Crocovile Brutamontes", "Crocovile Draconico", "Crocovile Tita", "Crocovile Enforcado", "Demonio Vermelho", "Demonio Palido", "Rebelion", "Moscas", "Cerberus"}
+    inteiro vidaInimigoMaxima[24] = {"0", "1", "2", "3", "4"}
+    inteiro defesaInimigo[24]
+    inteiro manainimigoMaxima[24]
+    inteiro xpInimigoFacil[24]
 
 
 
