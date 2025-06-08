@@ -1563,6 +1563,139 @@ programa {
                                                 se(seguir_para_clareira_pantano==1){
                                                   limpa()
                                                   escreva("Após uma caminhada intensa, você resolve se sentar...\n")
+                                                  escreva("Depois de muito caminhar você encontra uma velha cabana ali por perto...\n")
+                                                  escreva("Após se aproximar da cabana , nota um senhor saindo dela...\n")
+                                                  escreva("Velho desconhecido: Ahhhh olá meu jovem")
+                                                  escreva(nomedocampeao, ":Olá senhor , vejo que está se preparando para este inverno neste pântano..\n")
+                                                  escreva("Velho desconhecido: Hahahahaha , com certeza jovem!")
+                                                  escreva("**FALE COM O VELHO DESCONHECIDO**\n")
+                                                  inteiro falar_com_o_velhodesconhecido
+                                                  escreva("1--Conversar sobre a armadura do velho(humor)\n")
+                                                  escreva("2--Perguntar sobre oque foi aquilo que houve no céu ontem a noite...(campanha)\n")
+                                                  escreva("3--Saiba mais sobre o Pantano vadeoso(medo)\n")
+                                                  escreva("4--Questionar sobre o passado do velho...(história)\n")
+                                                  leia(falar_com_o_velhodesconhecido)
+                                                  limpa()
+                                                  escolha(falar_com_o_velhodesconhecido){
+
+                                                    caso 1:
+                                                    escreva("Velho desconhecido: Ah, jovem viajante! Sabia que eu sonhei com um pato de armadura ontem à noite?\n")
+                                                    escreva("Velho desconhecido: Ele marchava como um general, gritando 'quac-quac' em código de guerra! Hahaha!\n")
+                                                    escreva(nomedocampeao," :É… interessante. E o que isso tem a ver com alguma coisa?\n")
+                                                    escreva("Velho desconhecido: Tudo! Desde esse sonho, minhas galinhas começaram a botar ovos com cheiro de enxofre, e eu encontrei este diário enterrado no galinheiro\n")
+                                                    escreva("Velho desconhecido: Tem uns símbolos estranhos... parece coisa de magia antiga ou de um pato feiticeiro, sei lá.\n")
+                                                    escreva(nomedocampeao, ":Posso dar uma olhada?\n")
+                                                    escreva("Velho desconhecido: Claro , por favor leve essa coisa para bem longe de mim...\n")
+                                                    pare
+
+                                                    caso 2:
+                                                    escreva("Velho desconhecido: Você ouviu os céus trovejarem esta manhã? \n")
+                                                    escreva("Velho desconhecido: Aquilo não foi tempestade… foi o rugido do Devastador. A criatura rompeu o véu entre mundos. Eldoria não está mais segura.\n")
+                                                    escreva(nomedocampeao," :Ouvi dizer sim , ele é tão assustador assim?\n")
+                                                    escreva("Velho desconhecido: Era. Até que ele pisou em Eldoria e reduziu três cidades a cinzas\n")
+                                                    escreva("Velho desconhecido: Dizem que há um antigo saber, perdido nos tempos dos magos primordiais, que pode selar a criatura novamente.\n")
+                                                    escreva("Velho desconhecido: Este diário… encontrei entre os escombros de uma torre destruída. Está coberto de símbolos rúnicos.\n")
+                                                    escreva("Velho desconhecido: Ninguém por aqui consegue entender, mas talvez você consiga\n")
+                                                    escreva(nomedocampeao," :Obrigado , sinto que ele será muito útil...\n")
+                                                    pare
+
+                                                    caso 3:
+                                                    escreva("Velho desconhecido: Bem-vindo ao Pântano Vadeoso. Aqui, a terra afunda sob seus pés e as sombras sussurram mentiras aos seus ouvidos.\n")
+                                                    escreva("Velho desconhecido: Dizem que quem passa tempo demais aqui… esquece o próprio nome\n")
+                                                    escreva(nomedocampeao," :Por que alguém viveria num lugar assim?\n")
+                                                    escreva("Velho desconhecido: Porque o pântano guarda segredos que o mundo esqueceu. \n")
+                                                    escreva("Velho desconhecido: Eu… sou um dos poucos que ainda escutam.\n")
+                                                    escreva("Velho desconhecido: Encontrei isto entre as raízes de um cipreste morto. Um diário, coberto de símbolos rúnicos.\n")
+                                                    escreva("Velho desconhecido:  Ele pulsa com uma energia estranha. O pântano parece… vivo quando estou perto dele.\n")
+                                                    escreva(nomedocampeao, ":Posso ver?\n")
+                                                    escreva("Velho desconhecido: Claro. Mas cuidado — o pântano observa. E ele nunca esquece quem o perturba \n")
+                                                    pare
+
+                                                    caso 4:
+                                                    escreva("Velho desconhecido: Antes de viver aqui, eu vestia as cores do Conselho Real de Eldoria.\n")
+                                                    escreva("Velho desconhecido: Era escriba, tradutor de antigas escrituras. Já segurei penas mais valiosas que espadas.\n")
+                                                    escreva(nomedocampeao," :Então… o que aconteceu?\n")
+                                                    escreva("Velho desconhecido: Fui traído. Enviado numa missão para decifrar uma profecia perdida e deixado para morrer neste pântano amaldiçoado.\n")
+                                                    escreva("Velho desconhecido: Tudo que me restou foi este diário. As runas que ele contém… não pertencem a este mundo.\n")
+                                                    escreva(nomedocampeao," :E por que não tentou retornar?\n")
+                                                    escreva("Velho desconhecido: Há coisas que não se pode desfazer. Sombras do passado que aguardam minha volta…\n")
+                                                    escreva("Velho desconhecido: Mas talvez, se alguém como você levar esse diário, possa terminar o que comecei\n")
+                                                    escreva("Velho desconhecido: Leve-o. Decifre-o. E se puder… liberte-me da culpa que carrego.\n")
+                                                    pare
+                                                  }
+                                                  escreva("\n\n\n")
+                                                  escreva("Após pegar aquele diário do velho,você decide abrir o diário\n")
+                                                  escreva("Ao abrí-lo , uma áura negra mágica sai e você sente uma leve tontura...\n")
+                                                  escreva("Quando você olha fixamente para o diário,é possível reparar em símbolos como...\n")
+                                                  escreva("\n\n\n")
+                                                  escreva("      **DIÁRIO DE MEFISTÓFELES**      \n")
+                                                  escreva("ᚠ = Fogo, destruição, renascimento\n")
+                                                  escreva("ᚨ = Sabedoria, visão além do tempo\n")
+                                                  escreva("ᚢ = Água, cura, emoções profundas\n")
+                                                  escreva("ᚾ = Escuridão, medo, o desconhecido\n")
+                                                  escreva("ᛉ = Proteção, barreira mágica\n")
+                                                  escreva("ᛒ = Força, coragem, herança\n")
+                                                  escreva("ᛏ = Equilíbrio, justiça, sacrifício\n")
+                                                  escreva("\n\n\n")
+                                                  escreva("1-Seguir pela estrada de terra do pântano vadeoso\n")
+                                                  inteiro seguir_para_pantanovadeoso
+                                                  leia(seguir_para_pantanovadeoso)
+                                                  limpa()
+                                                  se(seguir_para_pantanovadeoso==1){
+                                                    escreva("Ao seguir pelo pântano, você encontra um barco na qual é necessário para cruzar o rio\n")
+                                                    escreva("Você resolve deixar de lado , de forma que o diário apenas lhe observara\n")
+                                                    Util.aguarde(5000)
+                                                    escreva("Pouco antes de entrar no barco , um monstro , vindo da gosma daquele pântano , surge de meio ao rio...\n")
+                                                    escreva("Carnical viscoso: COOOOO-MOOO OUSSA VIR ATÉ NOSSO LAR....RAAHAIAAAA....\n")
+                                                    escreva("\n\n\n")
+                                                    escreva("-------------------------------------\n")
+                                                    escreva("VOCÊ ENCONTROU UM CARNICAL VISCOSO!!\n")
+                                                    escreva("-------------------------------------\n")
+                                                  inteiro vida_carnical_viscoso = 40
+                                                  inteiro dano_carnical_viscoso = 6
+                                                  inteiro xp_ganho_carnicalviscoso = 100
+                                                  inteiro acao_combate_carnical_viscoso
+                                                  logico defenderse_carnical_viscoso = falso
+
+                                                  enquanto(vidadaespecializacao > 0 e vida_carnical_viscoso > 0) {
+                                                      escreva("\nSUA VIDA:", vidadaespecializacao, "\nVIDA DO INIMIGO:", vida_carnical_viscoso, "\n")
+                                                      escreva("1-ATACAR\n")
+                                                      escreva("2-DEFENDER-SE\n")
+                                                      leia(acao_combate_carnical_viscoso)
+                                                      defenderse_carnical_viscoso = falso
+                                                      
+                                                      se(acao_combate_carnical_viscoso == 1) {
+                                                          vida_carnical_viscoso = vida_carnical_viscoso - danodaespecializacao
+                                                          escreva("Muito bem herói, você causou:", danodaespecializacao, "de dano no inimigo")
+                                                      }
+                                                      senao se(acao_combate_carnical_viscoso == 2) {
+                                                          defenderse_carnical_viscoso = verdadeiro 
+                                                          inteiro dano_reduzido_carnical_viscoso = dano_carnical_viscoso / 2
+                                                          vidadaespecializacao = vidadaespecializacao - dano_reduzido_carnical_viscoso
+                                                          escreva("Voce acabou se defendendo campeao, e o inimigo causou apenas", dano_reduzido_carnical_viscoso, "de dano\n")
+                                                      }
+                                                      senao {
+                                                          escreva("O inimigo aproveitou a sua indecisão!!")
+                                                      }
+
+                                                      se(vida_carnical_viscoso > 0 e defenderse_carnical_viscoso == falso) {
+                                                          vidadaespecializacao = vidadaespecializacao - dano_carnical_viscoso
+                                                          escreva("O carnical atacou você causando", dano_carnical_viscoso, "de dano\n")
+                                                      }
+                                                      senao se(vida_carnical_viscoso <= 0) {
+                                                          escreva("Parabéns ",nomedocampeao, ", Voce derrotou o inimigo!!\n")
+                                                          xp = xp + xp_ganho_carnicalviscoso
+                                                          escreva("Parabéns ",nomedocampeao, ", Voce recebeu", xp_ganho_carnicalviscoso, "de XP\n")
+                                                          nivelupado(xp, xpparasubirdenivel, niveldocampeao)
+                                                          escreva("Meus parabéns ",nomedocampeao, " você derrotou seu primeiro inimigo! Sabiamos que você consegueria!!\n")
+                                                      }
+                                                  }
+                                                  Util.aguarde(5000)
+                                                  limpa()
+                                                  escreva("Após uma batalha contra aquele ser pútrido , você resolve continuar para o seu barco\n")
+
+                                                  }senao{escreva("Por favor colabore campeã!")}
+
                                                 }senao{escreva("Da próxima escolha a opcao correta...")}
 
                                                 }
