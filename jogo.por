@@ -1,7 +1,7 @@
 programa {
   inclua biblioteca Util --> u
                       //0                   1                    2                  3                  4                      5           6                      7
-  cadeia regioes[8] = {"VILA DOS COMECOS", "FLORESTA DA NEVOA", "VILA ABANDONADA", "CAVERNA SOMBRIA", "LABIRINTO ESCONDIDO", "COLISEU", "PANTANO DOS LAMENTOS", "CASTELO DOURADO"}
+  cadeia regioes[8] = {"VILA DOS COMECOS", "FLORESTA DA NEVOA", "VILA ABANDONADA", "CAVERNA SOMBRIA", "LABIRINTO ESCONDIDO", "COLISEU DE SUCATA", "PANTANO DOS LAMENTOS", "CASTELO DOURADO"}
   inteiro regiaoAtual = 0
 
   cadeia nomeDoPersonagem, classe
@@ -22,10 +22,15 @@ programa {
   
   // Bagulho pro combate
   inteiro pontosDeAcao = 10
+  inteiro excedenteJogador = 0
   inteiro pontosDeAcaoInimigo = 10
+  inteiro excedenteInimigo = 0
+
+  logico venceuInimigo = falso
+  inteiro continuar
 
   cadeia nomeDeBoss[8] ={"Goblin Motoqueiro, Grande Gabonga", "Boss 1", "Boss 2", "Boss 3", "Boss 4", "Boss 5", "Boss 6", "Eldlich, O Devastador"}
-  cadeia nomeDoInimigo[3] = {"Goblin Motoqueiro, Troika", "Goblin motoqueiro, Boom Mach", "Goblin motoqueiro, Dougg Atropelador"}
+  cadeia nomeDoInimigo[3] = {"Goblin Motoqueiro, Troika", "Goblin Motoqueiro, Boom Mach", "Goblin Motoqueiro, Dougg Atropelador"}
   cadeia nomeDoInimigoAtual
 
   inteiro nivelDoInimigo
@@ -1075,27 +1080,31 @@ funcao avancoDeClasseArqueiro() {
   }
 funcao turnoDeBatalha(){
   enquanto(vida >= 0 e vidaDoInimigo >= 0){
+    se(pontosDeAcao < 10 ou excedenteInimigo == 0){
+      pontosDeAcao = 10
+    }senao se(excedenteInimigo > 0){
+      pontosDeAcao += excedenteInimigo
+    }
     turnoDoJogador()
 
     se(vidaDoInimigo <= 0){
       escreva("Parabens, ", nomeDoPersonagem, " derrotou o inimigo.\n")
       ganharExperiencia(ganhoDeExperiencia)
-    pare
+      pare
     }
 
        //turno do inimigo
+    se(pontosDeAcaoInimigo < 10 ou excedenteJogador == 0){
+      pontosDeAcaoInimigo = 10
+    }senao se(excedenteJogador > 0){
+      pontosDeAcaoInimigo += excedenteJogador
+    }
     turnoDoInimigo()
     se(vida <= 0){
       escreva(nomeDoPersonagem, " foi derrotado.\n")
     pare
     }
 
-    se(pontosDeAcao < 10){
-      pontosDeAcao = 10
-    }
-    se(pontosDeAcaoInimigo < 10){
-      pontosDeAcaoInimigo = 10
-    }
       
   }
 
@@ -1122,6 +1131,7 @@ funcao turnoDoJogador(){
       }senao{
         escreva("Opcao invalida tente novamente.\n")
         leia(acao)
+        retorne
       }
 
       se(vidaDoInimigo <= 0){
@@ -1129,9 +1139,9 @@ funcao turnoDoJogador(){
       }
 
       //Mecanica de custos
+      continuar = 0
       se(pontosDeAcao > 0){
         escreva("Deseja continuar seu turno: 1 - Sim | 2 - Nao.\n")
-        inteiro continuar
         leia(continuar)
 
         se(continuar == 2){
@@ -1143,45 +1153,48 @@ funcao turnoDoJogador(){
   }
 }
 funcao turnoDoInimigo(){
-  escreva("\n------------------------\n")
-  escreva("Turno do inimigo\n")
-
+  escreva("\n-----------Turno do inimigo-------------\n")
   
   enquanto(vidaDoInimigo > 0 e pontosDeAcaoInimigo > 0){
-    inteiro acaoDoInimigo = u.sorteia(1,3)
+    inteiro acaoDoInimigo
+    se(pontosDeAcaoInimigo > 0){
+      acaoDoInimigo = u.sorteia(1,3)
+    }senao{
+      escreva(nomeDoInimigoAtual, " nao tem pontos para continuar com o turno.\n")
+    }
     se(acaoDoInimigo == 1){
       custoAcao = custoAtacar
       executarAcaoInimigo(custoAcao, "atacar")
     }senao se(acaoDoInimigo == 2){
       custoAcao = custoDefesa
-      executarAcaoInimigo(custoAcao, "denfender")
+      executarAcaoInimigo(custoAcao, "defender")
     }senao se(acaoDoInimigo == 3){
       custoAcao = custoHabilidade
       executarAcaoInimigo(custoAcao, "habilidade")
     }
-
-    u.aguarde(900)
-
     se(pontosDeAcaoInimigo <= 0){
-      pare
+      escreva(nomeDoInimigoAtual, "Nao tem pontos para continuar com o turno.\n")
+      
     }
+
+    u.aguarde(1000)
+
   }
 }
 funcao executarAcao(inteiro custo, cadeia tipoAcao){
-  inteiro excedente = 0
 
-  se(pontosDeAcao < 0){
-    excedente = custo - pontosDeAcao
-    pontosDeAcao = 0
-    pontosDeAcao += excedente
-    escreva(nomeDoPersonagem, " nao tem pontos de acao o suficiente para esta acao o excedente de: ", excedente, " serao pontos de acao bonus do inimigo.\n")
+  se(pontosDeAcao < custo){
+    excedenteJogador = custo - pontosDeAcao
+    pontosDeAcao += excedenteInimigo
+    escreva(nomeDoPersonagem, " nao tem pontos de acao o suficiente para esta acao o excedente de: ", excedenteJogador, " serao pontos de acao bonus do inimigo.\n")
+    excedenteInimigo = 0
   }senao{
     pontosDeAcao -= custo
   }
   se(tipoAcao == "atacar"){
     inteiro danoCausado = ataque - inimigoDEF
     se(danoCausado < 0){
-      danoCausado = 0
+      danoCausado = 1
     }
     vidaDoInimigo -= danoCausado
     escreva(nomeDoPersonagem, ", atacou causando: ", danoCausado, " de dano.\n")
@@ -1191,23 +1204,23 @@ funcao executarAcao(inteiro custo, cadeia tipoAcao){
   }senao se(tipoAcao == "habilidade"){
     inteiro danoCausado = (ataque*2) - inimigoDEF
     se(danoCausado < 0){
-      danoCausado = 0
+      danoCausado = 1
     }
     vidaDoInimigo -= danoCausado
     escreva(nomeDoPersonagem, " usou seu ataque mais forte causando: ", danoCausado, " de dano.\n" )
   }
-  se(excedente > 0){
-    escreva("O inimigo ganhou: ", excedente, " pontos extras.\n")
+  se(excedenteJogador > 0){
+    escreva("O inimigo ganhou: ", excedenteJogador, " pontos extras.\n")
+    retorne
   }
 }
 funcao executarAcaoInimigo(inteiro custo, cadeia tipoAcao){
-  inteiro excedente = 0
 
   se(pontosDeAcaoInimigo < custo){
-    excedente = custo - pontosDeAcaoInimigo
-    pontosDeAcaoInimigo = 0
-    pontosDeAcaoInimigo += excedente
-    escreva("O inimigo realizou uma acao sem ter pontos o suficientes o excedente de: ", excedente, "sera seu bonus para o proximo turno.\n")
+    excedenteInimigo = custo - pontosDeAcaoInimigo
+    pontosDeAcaoInimigo += excedenteJogador
+    escreva("O inimigo realizou uma acao sem ter pontos o suficientes o excedente de: ", excedenteInimigo, "sera seu bonus para o proximo turno.\n")
+    excedenteJogador = 0
   }senao{
     pontosDeAcaoInimigo -= custo
   }
@@ -1229,9 +1242,11 @@ funcao executarAcaoInimigo(inteiro custo, cadeia tipoAcao){
     vida -= danoAoPersonagem
     escreva(nomeDoPersonagem, " foi atingido por um ataque especial e sofreu: ", danoAoPersonagem, " de dano.\n")
   }
-  se(excedente > 0){
-    escreva("Voce ganhou: ", excedente, " pontos extras para o proximo turno.\n")
+  se(excedenteInimigo > 0){
+    escreva("Voce ganhou: ", excedenteInimigo, " pontos extras para o proximo turno.\n")
+
   }
+  
 }
 funcao statusDeBatalha(){
   escreva("\n-----situacao atual da batalha------\n")
@@ -1260,13 +1275,12 @@ funcao gerarInimigo() {
     inimigoATK = 5 + nivel
     inimigoDEF = 2 + nivel
     inimigoAGI = 1 + nivel
-    ganhoDeExperiencia = nivelDoInimigo + 1
+    ganhoDeExperiencia = nivelDoInimigo + 11
 
     turnoDeBatalha()
 }
 funcao gerarBossDaRegiao(){
-  se(regiaoAtual == 0){
-    batalhaGrandeGabonga()
+  se(regiaoAtual == 0 e fragmentoDaPedraDaLuz == 0){
 
     nomeDoInimigoAtual = nomeDeBoss[0]
     nivelDoBoss = nivel + 2
@@ -1275,12 +1289,8 @@ funcao gerarBossDaRegiao(){
     inimigoDEF = 5 + nivel
     inimigoAGI = 5 + nivel
     ganhoDeExperiencia = nivelDoBoss + 1
+    batalhaGrandeGabonga()
 
-    turnoDeBatalha()
-
-
-    //um contador ou flag para controlar se o player ja derrotou esse boss, fragmentoDaPedraDaLuz talvez.
-    //logica do 1? boss aqui Goblin Motoqueiro, Grande Gabonga
   }senao se(regiaoAtual == 1){
     //logica do 2? boss aqui sem nome ainda
   }senao se(regiaoAtual == 2){
@@ -1299,36 +1309,61 @@ funcao gerarBossDaRegiao(){
   }
 }
 funcao batalhaGrandeGabonga(){
-  turnoDeBatalha()
-  enquanto(nomeDoInimigoAtual == "Goblin Motoqueiro, Grande Gabonga" ou nomeDoInimigoAtual == "Besta Enloquecida dos Goblins"){
-    turnoDeBatalha()
-    se(vidaDoInimigo <= 10){
+  enquanto(vida >= 0 e vidaDoInimigo >= 0){
+    se(pontosDeAcao < 10 ou excedenteInimigo == 0){
+      pontosDeAcao = 10
+    }senao se(excedenteInimigo > 0){
+      pontosDeAcao += excedenteInimigo
+    }
+    turnoDoJogador()
+       //turno do inimigo
+    se(pontosDeAcaoInimigo < 10 ou excedenteJogador == 0){
+      pontosDeAcaoInimigo = 10
+    }senao se(excedenteJogador > 0){
+      pontosDeAcaoInimigo += excedenteJogador
+    }
+    turnoDoInimigo()
+    se(vidaDoInimigo <= 10 e nomeDoInimigoAtual == "Goblin Motoqueiro, Grande Gabonga"){
       escreva("Grande Gabonga está desesperado soltou as amarras da besta que usa como montoria.\n")
       u.aguarde(4000)
       limpa()
       escreva("Agora voce enfrentara  a Besta Enlouquecida dos Goblins.\n")
       u.aguarde(4000)
       limpa()
+
       nomeDoInimigoAtual = "Besta Enlouquecida dos Goblins"
       vidaDoInimigo += 10
       inimigoATK += nivelDoBoss
       inimigoDEF += nivelDoBoss
       inimigoAGI += nivelDoBoss
-      se(vidaDoInimigo <= 5 e nomeDoInimigoAtual == "Besta Enloquecida dos Goblins"){
-        escreva("Voce feriu gravamente a besta enloquecida.\n")
-        escreva("Preocupado coma sua montaria Grande Gabonga voltou a batalha.\n")
-
-        nomeDoInimigoAtual = "Goblin Motoqueiro, Grande Gabonga"
-        vidaDoInimigo = 5
-        inimigoATK = 5
-        inimigoDEF = 5
-        inimigoAGI = 5
-      }senao se(vidaDoInimigo <= 0){
-        escreva("Voce recuperou o fragmento da pedra da luz que estava na posse dos Goblins Motoqueiros.\n")
-        fragmentoDaPedraDaLuz + 1
-      }
     }
+    se(vidaDoInimigo <=5 e nomeDoInimigoAtual == "Besta Enlouquecida dos Goblins"){
+      escreva("Voce feriu gravamente a besta enloquecida.\n")
+      u.aguarde(2000)
+      escreva("Preocupado coma sua montaria Grande Gabonga voltou a batalha.\n")
+      u.aguarde(3000)
+      limpa()
+
+      nomeDoInimigoAtual = "Goblin Motoqueiro, Grande Gabonga(Exausto)"
+      vidaDoInimigo += 2
+      inimigoATK = 5
+      inimigoDEF = 5
+      inimigoAGI = 5
+
+    }  
+    se(vidaDoInimigo <= 0){
+      escreva("Parabens, ", nomeDoPersonagem, " derrotou o inimigo.\n")
+      escreva("Voce recuperou o fragmento da pedra da luz que estava na posse dos Goblins Motoqueiros.\n")
+      fragmentoDaPedraDaLuz += 1
+      ganharExperiencia(ganhoDeExperiencia)
+    }  
+    se(vida <= 0){
+      escreva(nomeDoPersonagem, " foi derrotado.\n")
+    pare
+    }
+
   }
+
 }
 funcao proximaRegiao(){
   se(regiaoAtual >= 7){
@@ -1413,15 +1448,29 @@ funcao mostrarRegiaoAtual(){
       escreva(" Proxima regiao: ", regioes[regiaoAtual + 1], "\n")
     }
 }
-  
+funcao introducaoDaRegiao(){
+  se(reagiao[0] == "VILA DOS COMECOS" e regiaoAtual == 0){
+    introducaoVilaDosComecos()
+  }
+}
+funcao introducaoVilaDosComecos(){
+  escreva("Uma vila pacata onde a esperança ainda resiste.\n")
+  u.aguarde(2500)
+  escreva("Entre colinas verdejantes e riachos cristalinos, os moradores contam historias de herois antigos e monstros selados em outras eras.\n")
+  u.aguarde(2500)
+  escreva("Um velho cavaleiro de outros tempos, agora com a alma presa em um anel, sera seu  guia.\n")
+  u.aguarde(5000)
+  limpa()
+}
 
 funcao campanha(){
   regiaoAtual = 0
+  introducaoDaRegiao()
 
   escreva("Ha muito tempo, no Reino de Eldoria, a paz era mantida pela m?stica Pedra da Luz, protegida pelos Anciaos do Castelo Dourado.\n")
   u.aguarde(3000)
 
-  escreva("\nUm dia, uma forca sombria conhecida como O Devastador invadiu o reino, roubando a rel?quia sagrada e mergulhando as terras em trevas e caos.\n")
+  escreva("\nUm dia, uma forca sombria conhecida como O Devastador invadiu o reino, roubando a reliquia sagrada e mergulhando as terras em trevas e caos.\n")
   u.aguarde(3000)
 
   escreva("\nVilas foram saqueadas, florestas corrompidas, e criaturas sombrias começaram a vagar pelas regioes.\n")
@@ -1463,7 +1512,7 @@ funcao campanha(){
   limpa()
 
   //zaruba
-  escreva("Então não ouvir o meu chamado a batalha?\n")
+  escreva("Então não vai ouvir o meu chamado a batalha?\n")
   u.aguarde(3000)
   limpa()
 
@@ -1487,6 +1536,24 @@ funcao campanha(){
   escreva("Tanto voce quanto seu inimigo tem 10 pontos de acao(PA) cada.\n")
   u.aguarde(3500)
   escreva("Cada acao: atacar, defender ou usar uma habilidade tem um custo, quando seus PA chegarem a 0 seu turno acaba.\n")
+  u.aguarde(3500)
+  limpa()
+  
+  gerarInimigo()
+  
+  escreva("Agora que voce enfrentou os goblins motoqueiros seu chefe vira atras de voce,", nomeDoPersonagem, ".\n")
+  u.aguarde(2000)
+  escreva("Quanto mais batalhas voce sair vitorioso mais poderoso voce sera.\n")
+  u.aguarde(3000)
+  escreva("Mas tenha cuidado seus inimigos tambem irao crescer com voce.\n")
+  u.aguarde(2500)
+  limpa()
+  
+  escreva("Usando uma besta corrompida com cristais saindo do corpo e prendendo sucata a de forma a tentar parecer que está numa moto.\n")
+  u.aguarde(2000)
+  escreva("Ele chega com um rugido e ruido de pessas de metal se batendo.\n")
+  u.aguarde(2000)
+  escreva(nomeDoInimigo[0])
   u.aguarde(3500)
   limpa()
   gerarBossDaRegiao()
