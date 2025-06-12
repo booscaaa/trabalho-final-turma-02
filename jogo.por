@@ -10,7 +10,8 @@ programa {
     inteiro controladorDeSenario = 0
 
     
-    
+    inteiro a = u.sorteia(1,10)
+    inteiro b = u.sorteia(1,12)
 
     // VARIÁVEIS GLOBAIS
     cadeia nomeAventureiro
@@ -87,10 +88,12 @@ programa {
 
 
     inteiro nomeInimigos[24] = {"Esqueleto Espada Longa", "Esqueleto Armadurado", "Esqueleto Arqueiro", "Esqueleto Barbaro", "Esqueleto Brutamontes", "Esqueleto Demoniaco", "Esqueleto Corrompido", "Esqueleto Enforcado", "Esqueleto Real", "Esqueleto Plebeu","Bandido Comun", "Bandido Novato", "Bandido Experiente", "Bandido Berseker", "Pirata", "Capitão Esmaga Cranios", "Demonio Espreitador", "Soldado Corrupto", "Mago Corrompido", "Druida Da Chama Eterna","Lobo", "Lobo Cinzento", "Lobo Negro", "Alfa", "Humano Amaldiçoado", "Licantropo", "Licantropo Armadurado", "Licantropo Feiticeiro", "lobisomen Enfraquecido", "Licantropo Das Neves", "Crocovile", "Crocovile Armadurado", "Crocovile Arqueiro", "Crocodilo Primal", "Crocodilo Lendario", "Crocovile Berseker", "Crocovile Brutamontes", "Crocovile Draconico", "Crocovile Tita", "Crocovile Enforcado", "Demonio Vermelho", "Demonio Palido", "Rebelion", "Moscas", "Cerberus"}
-    inteiro vidaInimigoMaxima[24] = {"0", "1", "2", "3", "4"}
-    inteiro defesaInimigo[24]
-    inteiro manainimigoMaxima[24]
-    inteiro xpInimigoFacil[24]
+    inteiro vidaInimigoMaxima[24] = {"0", "1", "2", "3", "4","5","6","7","8","9","10","11","12","13","14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}
+    inteiro vidaInimigoAtual[24] = {"0", "1", "2", "3", "4","5","6","7","8","9","10","11","12","13","14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}
+    inteiro defesaInimigo[24]  = {"0", "1", "2", "3", "4","5","6","7","8","9","10","11","12","13","14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}
+    inteiro manainimigoMaxima[24] = {"0", "1", "2", "3", "4","5","6","7","8","9","10","11","12","13","14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}
+    inteiro xpInimigoFacil[24] = {"0", "1", "2", "3", "4","5","6","7","8","9","10","11","12","13","14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}
+    inteiro ataqueInimigo
 
 
 
@@ -362,7 +365,7 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
         cenarioAtual = 0
         logico emAventura = verdadeiro
 
-        cadeia testeSenario[5] = {"Floresta", "Deserto"}
+        cadeia testeSenario[5] = {"Floresta Das Nevoas", "Vila Abandonada", "Caverna Sombria", "Pantano Dos Lamentos", "Castelo Dourado"}
 
         inteiro matriz[2][5]
         matriz [0][0] = 0
@@ -442,25 +445,14 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
 
     
     funcao explorarArea(inteiro b, inteiro c){
-      inteiro a = u.sorteia(1,4)
-
-      se(a == 4){
-        escreva("Você Encontra uma casa abandonada entra nela?")
-        escreva(" 1 - Sim 2- Não")
-        leia(opcao)
-
-        se(opcao == 1){
-          a = u.sorteia(1,4)
-        } se(a < 3){
-          escreva("VocÊ achou o bixo: ")
-          a = u.sorteia(b,c)
-          escreva(nomeInimigos[a])
-          u.aguarde(5000)
-          batalhar(a)
+      inteiro a = u.sorteia(b,c)
+      logico iniciarBatalhar
+         batalhar(a)
+          iniciarBatalhar = verdadeiro
         }
-      }
+      
      
-  }
+  
   
         // FUNÇÕES AUXILIARES (implementações completas)
     funcao inicializarCenarios() {
@@ -469,9 +461,10 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
         // Adicionar outros cenários...
     }
     funcao logico batalhar(inteiro a) {
-        inteiro hpInimigoAtual = 10
+        logico iniciarBatalhar
         fugiuDeCombate = falso
-        enquanto (hpAtual > 0 e hpInimigoAtual > 0) {
+        iniciarBatalhar = verdadeiro
+        enquanto (vidaInimigoMaxima[a] > 0 e vidaInimigoAtual[a] > 0) {
             limpa()
             escreva("=== BATALHA ===\n")
             escreva(nomeAventureiro, ": "," HP:", hpAtual, "/", hpMaximo)
@@ -480,7 +473,7 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
             }senao se(classePersonagem == "Guerreiro" ou "Arqueiro") {
             } escreva("\nDefesa:", defesa)
             escreva("Xp:", xpAtual, "/", xpMaximo)
-            escreva("\n", nomeInimigos[a], ": ", hpInimigoAtual[a], "/", vidaInimigoMaxima[a], " HP\n")
+            escreva("\n", nomeInimigos[a], ": ", vidaInimigoAtual[a], "/", vidaInimigoMaxima[a], " HP\n")
             
             // Turno do jogador
             cadeia acao
@@ -492,13 +485,14 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
                 se(ataqueBase < defesaInimigo){
 
                 }
-                    inteiro dano = calcularDano(ataqueBase, verdadeiro)
-                    hpInimigoAtual -= dano
+                inteiro dano = u.sorteia
+                    u.sorteia(1,10)
+                    vidaInimigoAtual -= dano
                     escreva("\nVocê causa ", dano, " de dano!\n")
                     u.aguarde(1500)
                     pare
                 caso "2":
-                    se (usarHabilidadeEspecial(stageBoss, nomeInimigos, hpInimigoAtual)) {
+                    se (usarHabilidadeEspecial(stageBoss, nomeInimigos, vidaInimigoAtual)) {
                         u.aguarde(1500)
                     } senao {
                         continue() // Volta ao início do loop
@@ -516,7 +510,7 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
             }
             
             // Verifica se inimigo foi derrotado
-            se (hpInimigoAtual <= 0) {
+            se (vidaInimigoAtual <= 0) {
                 escreva("\nVocê derrotou ", nomeInimigos, "!\n")
                 u.aguarde(2000)
                 retorne verdadeiro
@@ -533,8 +527,15 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
                 escreva("\nVocê foi derrotado por ", nomeInimigos, "!\n")
                 u.aguarde(2000)
                 retorne falso
+                iniciarAventura()
+                calcularDano()
             }
         }
+  }funcao calcularDano(){
+    inteiro d10 = a + ataqueBase
+    inteiro d10Inimigo = a + ataqueInimigo
+    inteiro d12 = b + ataqueBase
+    inteiro d12Inimigo = b + ataqueInimigo
   }
   funcao mostrarStatusPersonagem() {
         escreva("\n=== STATUS ===\n")
