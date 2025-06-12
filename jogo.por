@@ -25,24 +25,159 @@ programa {
     "Campo aberto com tempestade nada suspeito"
   } 
 
+  funcao aumentarxpbatalhagoblin(){
+     experienciaAtual = experienciaAtual + 2
+  }
+
+  funcao aumentarXP(){
+  experienciaAtual = experienciaAtual + 5
+
+  se(experienciaAtual >= experienciaParaProximoNivel){
+    experienciaAtual = experienciaAtual - experienciaParaProximoNivel
+    nivelJogador = nivelJogador + 1
+    experienciaParaProximoNivel = experienciaParaProximoNivel + 10
+    escreva("Parabéns! Você subiu para o nível ", nivelJogador, "\n")
+
+    inteiro escolhaRecompensa
+    escreva("Escolha sua recompensa de nível:\n")
+    escreva("1 - Aumentar ataque\n")
+    escreva("2 - Receber uma Poção de Vida\n")
+    escreva("Digite sua escolha: ")
+    leia(escolhaRecompensa)
+
+    se(escolhaRecompensa == 1){
+      ataqueJogador = ataqueJogador + 1
+      escreva("Seu ataque aumentou para ", ataqueJogador, "\n")
+    } senao se(escolhaRecompensa == 2){
+      quantidadeItens[0] = quantidadeItens[0] + 1
+      escreva("Você recebeu uma Poção de Vida. Agora tem ", quantidadeItens[0], " poção(ões).\n")
+    } senao {
+      escreva("Opção inválida. Nenhuma recompensa foi recebida.\n")
+    }
+  }
+}
+
   funcao mostraAtributos(){
     escreva("Nome: ", nomedoHeroi, "\n" )
     escreva("Classe: ", classescolhidaMostrar, "\n")
     escreva("Vida: ", vidaJogador, "\n")
+    escreva("Nivel:", nivelJogador, "\n")
     escreva("XP: ", experienciaAtual, " / ", experienciaParaProximoNivel)
     escreva()
   }
 
-  funcao upadeNivelXP(){
+  funcao vilarejoAbandonado(){
+    escreva("")
+
+  }
+
+  funcao voltouNoMapa(){
+    escreva("Você resolveu retornar e encontrou um Goblin\n")
+
+    escreva("Será obrigatorio batalhar com ele para não ser saqueado!")
+
+  inteiro vidaDoGoblin = 7
+  inteiro ataqueDoGoblin = 2
+  inteiro escolhaTurno
+  inteiro escolhaItem
+  inteiro rodada = 1
+
+  enquanto(vidaJogador > 0 e vidaDoGoblin > 0) {
+    escreva(vidaDoGoblin)
+    escreva("\n-- Rodada ", rodada, " --\n")
+    escreva("Sua Vida: ", vidaJogador, " | Vida do Goblin: ", vidaDoGoblin, "\n")
+    escreva("1 - Atacar\n")
+    escreva("2 - Usar item\n")
+    escreva("Escolha sua ação: ")
+    leia(escolhaTurno)
+
+    se(escolhaTurno == 1) {
+      escreva("\nVocê ataca a Goblin causando ", ataqueJogador, " de dano!\n")
+      vidaDoGoblin = vidaDoGoblin - ataqueJogador
+    } senao se(escolhaTurno == 2) {
+      itensnoinventario()
+      escreva("Qual item deseja usar? ")
+      leia(escolhaItem)
+
+      se(escolhaItem >= 1 e escolhaItem <= 3) {
+        se(quantidadeItens[escolhaItem - 1] > 0) {
+          se(escolhaItem == 1) {
+            usarPocaoDeVida()
+            quantidadeItens[escolhaItem - 1] = quantidadeItens[escolhaItem - 1] - 1
+          } senao se(escolhaItem == 2) {
+            usarPocaoEstranha()
+            quantidadeItens[escolhaItem - 1] = quantidadeItens[escolhaItem - 1] - 1
+          } senao {
+            escreva("Esse item não faz nada...\n")
+          }
+        } senao {
+          escreva("Você não tem esse item!\n")
+        }
+      } senao {
+        escreva("Item inválido!\n")
+      }
+    } senao {
+      escreva("Você hesitou... e perdeu sua chance de agir!\n")
+    }
+
+    se(vidaDoGoblin <= 0) {
+      vidaDoGoblin = 0
+      escreva("\nVocê derrotou o Goblin!\n")
+      escreva("Sua jornada continua...\n")
+      u.aguarde(1000)
+      aumentarxpbatalhagoblin()
+      limpa()
+      continuarPrimeiroWin()
+    }
+
+    se(vidaJogador <= 0) {
+      escreva("Você foi derrotado...\n")
+      u.aguarde(3000)
+      creditos()
+    }
+
+    rodada = rodada + 1
+    u.aguarde(2000)
+
+  }
+
 
   }
 
   funcao continuarPrimeiroWin(){
-    escreva("Voce conquistou o respeito das Arvores acabando com a ditadura da Arvore amaldicoada derrotando ela")
-    escreva("as arvores abrem caminho e o bosque que antes era tomado pela escuridao profunda agora reflete a luz do sol")
-    escreva("Voce se sentiu um herói ao libertar as arvores")
-    escreva("Ao inves de voltar para sua casa, voce resolve seguir seu caminho a frente como um herói")
-  }
+    aumentarXP()
+    contadordeMapas ++
+    posicoesNoMapa[contadordeMapas]
+    inteiro opcaoEscolhidaCaminhoFloresta    
+    escreva("Voce conquistou o respeito das Arvores acabando com a ditadura da Arvore amaldicoada derrotando ela\n")
+    escreva("as arvores abrem caminho e o bosque que antes era tomado pela escuridao profunda agora reflete a luz do sol\n")
+    escreva("Voce se sentiu um herói ao libertar as arvores\n")
+    escreva("Ao inves de voltar para sua casa, voce resolve seguir seu caminho a frente como um herói\n")
+    u.aguarde(8000)
+     limpa()
+    escreva("Logo a frente você encontra a sua frente um Vilarejo Abandonado\n")
+    escreva("De longe você escuta grito de almas perdidas\n")
+    enquanto(opcaoEscolhidaCaminhoFloresta != 0){
+    escreva("\nO que você deseja fazer?\n")
+    escreva("1 - Entrar no Vilarejo\n")
+    escreva("2 - Voltar a Floresta Almadiçoada\n ")
+    escreva("3 - Ver seus status\n")
+    leia(opcaoEscolhidaCaminhoFloresta)
+
+    se(opcaoEscolhidaCaminhoFloresta == 1){
+      vilarejoAbandonado()
+    } senao se (opcaoEscolhidaCaminhoFloresta == 2){
+      voltouNoMapa()
+      continuarPrimeiroWin()
+    }senao se(opcaoEscolhidaCaminhoFloresta == 3){
+      mostraAtributos()
+      u.aguarde(3000)
+      limpa()
+    }
+     }
+    }
+
+
 
   funcao usarPocaoEstranha() {
   inteiro sorte = u.sorteia(0, 1)
@@ -108,7 +243,7 @@ programa {
     escreva("\nEnquanto você caminha pela floresta...\n")
     escreva("\nAs árvores se fecham em formato de arena, no meio da escuridão você vê 2 olhos vermelhos como sangue.\n")
     escreva("\nVocê encontra Árvore do Lamento, não há para onde correr sua única escolha é batalhar!\n")
-  enquanto(vidaJogador>0 e vidaDaArvore>0){
+   enquanto(vidaJogador > 0 e opcaoEsolhidaNaBatalha1 != 99) {
     escreva("O que você você deseja fazer agora ?\n")
     escreva("1- Atacar\n")
     escreva("2- Usar um item\n")
@@ -137,7 +272,7 @@ programa {
     } senao se(leiaItemUsado==2){
       usarPocaoEstranha()
     }
-  }
+  
 
   se(leiaItemUsado >= 1 e leiaItemUsado <= 3) {
   se(quantidadeItens[leiaItemUsado - 1] > 0) {
@@ -145,7 +280,7 @@ programa {
     quantidadeItens[leiaItemUsado - 1] = quantidadeItens[leiaItemUsado - 1] - 1
   } senao {
     escreva("Você não tem esse item!")}
-
+  }
 
     }
 
@@ -198,14 +333,15 @@ programa {
     }
 
     se(vidaDaArvore <= 0) {
+      vidaDaArvore = 0
+      aumentarXP()
       escreva("\nVocê derrotou a Árvore do Lamento!\n")
       escreva("Sua jornada continua...\n")
+      experienciaAtual + 5
+      u.aguarde(1000)
+      limpa()
       continuarPrimeiroWin()
-      pare
     }
-
-    escreva("A Árvore do Lamento ataca causando ", ataqueDaArvore, " de dano!\n")
-    vidaJogador = vidaJogador - ataqueDaArvore
 
     se(vidaJogador <= 0) {
       escreva("Você foi derrotado...\n")
@@ -318,7 +454,7 @@ programa {
         limpa()
         creditos()
       }
-    } enquanto(classeEscolhida < 1 e classeEscolhida > 4)
+    } enquanto(classeEscolhida < 1 ou classeEscolhida > 4)
 
     PrimeiroMapa()
   }
