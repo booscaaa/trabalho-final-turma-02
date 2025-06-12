@@ -10,114 +10,133 @@ programa { inclua biblioteca Util --> u
   inteiro danoSofrido
   logico jogoRodando = verdadeiro
   inteiro contadorDeMonstros = 0
-  cadeia regioes[5] = {"Floresta da Névoa", "Vila Abandonada", "Caverna Sombria", "Pântano dos Lamentos", "Castelo Dourado"}
-  inteiro indiceRegioes = 2
+  cadeia regioes[5] = {"FLORESTA DA NÉVOA", "VILA ABANDONADA", "CAVERNA SOMBRIA", "PÂNTANO DOS LAMENTOS", "CASTELO DOURADO"}
+  inteiro indiceRegioes = 0
   inteiro nivelBatalha = 0
+  cadeia menuOpcao
 
   funcao inicio() {
-    se(vidaPersonagem==0){
-      //FAZER SISTEMA DE MORTE MANEIRO(CPA TEM QUE TIRAR O DAS MORTES LA EMBAIXO DAS BATALHAS, MAS ISSO VEMOS DEPOS CARAIO)
-      jogoRodando=falso
-    }
-    escolherClasse()
-    enquanto(jogoRodando==verdadeiro){
-      se(indiceRegioes==0){
-        primeiraFaseJogo()
-      }
-      se(indiceRegioes==1){
-        segundaFaseJogo()
-      }
-      se(indiceRegioes==2){
-        terceiraFaseJogo()
-      }
-      se(indiceRegioes==3){
-        terceiraFaseJogo()
+    menu()
+    se(menuOpcao!=3){
+      escolherClasse()
+      iniciarJogo()
+      nivelDoJogador()
+      enquanto(jogoRodando == verdadeiro){
+        se(vidaPersonagem <= 0){ 
+          fimDeJogo()
+          pare 
+        }
+        se(indiceRegioes == 0){
+          primeiraFaseJogo()
+        }
+        se(indiceRegioes == 1){
+          segundaFaseJogo()
+        }
+        se(indiceRegioes == 2){
+          terceiraFaseJogo()
+        }
+        se(indiceRegioes == 3){
+          quartaFaseJogo()
+        }
       }
     } 
   }
 
+  funcao fimDeJogo(){
+    jogoRodando = falso 
+    escreva("\n--- FIM DE JOGO ---\n")
+    escreva("🥀 VOCÊ FOI DERROTADO! 🥀\n")
+    escreva("✨ SEU NÍVEL DE XP: ", xpPersonagem, " ✨\n")
+    escreva("😈 VOCÊ MATOU: ", contadorDeMonstros, " INIMIGOS 😈\n\n")
+    escreva("Obrigado por jogar...\n")
+    u.aguarde(15000)
+  }
+
 
   funcao menu(){
-    cadeia menuOpcao
     cadeia leitorMenuClasses
     cadeia teclaDigitadaClasses
-      faca{
-        escreva("╔════╡ ⚔️ MENU PRINCIPAL ⚔️ ╞════╗", "\n")
-        escreva("║ 1 - NOVO JOGO                   ║", "\n")
-        escreva("║ 2 - CRÉDITOS                    ║", "\n")
-        escreva("║ 3 - SAIR                        ║", "\n")
-        escreva("╚═════════════════════════════════╝", "\n\n")
-        escreva("╔════════════════════════════╗", "\n")
-        escreva("║ DIGITE A OPÇÃO DESEJADA:   ║", "\n")
-        escreva("╚════════════════════════════╝", "\n")
-        leia(menuOpcao)
+
+    enquanto(menuOpcao != 1 e menuOpcao != 2 e menuOpcao != 3){
+      escreva("╔════╡ ⚔️ MENU PRINCIPAL ⚔️ ╞════╗", "\n")
+      escreva("║ 1 - NOVO JOGO                   ║", "\n")
+      escreva("║ 2 - CRÉDITOS                    ║", "\n")
+      escreva("║ 3 - SAIR                        ║", "\n")
+      escreva("╚═════════════════════════════════╝", "\n\n")
+      escreva("╔════════════════════════════╗", "\n")
+      escreva("║ DIGITE A OPÇÃO DESEJADA:   ║", "\n")
+      escreva("╚════════════════════════════╝", "\n")
+      leia(menuOpcao)
+      limpa()
+      
+      se(menuOpcao==1){
+        escreva("Há muito tempo, no Reino de Eldoria, a paz era mantida pela mística Pedra da Luz, protegida pelos Anciãos do Castelo Dourado.\n")
+        u.aguarde(3000)                
+        escreva("Um dia, uma força sombria conhecida como O Devastador invadiu o reino, roubando a relíquia sagrada e mergulhando as terras em trevas e caos.\n")
+        u.aguarde(3000)
+        escreva("Vilas foram saqueadas, florestas corrompidas, e criaturas sombrias começaram a vagar pelas regiões.\n")
+        u.aguarde(3000)
+        escreva("Diante da crise, uma antiga profecia se cumpriu: um herói escolhido surgirá das sombras para restaurar a luz.\n")
+        u.aguarde(3000)
+        escreva("Esse herói...\n")
+        u.aguarde(2000)
+        escreva("É ")
+        u.aguarde(1500)
+        escreva("VOCÊ!!!!!")
+        u.aguarde(500)
+
         limpa()
 
+        escreva("════╡ ⚔️ Insira o nome de seu HERÓI ⚔️ ╞════", "\n\n")
+        leia(nomePersonagem)
+        u.aguarde(3000)
+        limpa()
+        escreva("Muito bem, nobre ", nomePersonagem, ". Em tua jornada, três caminhos se abrem diante de ti...\n\n")
+        u.aguarde(3000)
+        escreva("╔════╡  ⚔️ CLASSES ⚔️  ╞════╗\n")
+        escreva("║  1 - GUERREIRO             ║", "\n")
+        escreva("║  2 - ARQUEIRO              ║", "\n")
+        escreva("║  3 - MAGO                  ║", "\n")
+        escreva("╚════════════════════════════╝", "\n\n")
+        escreva("╔═══════════════════════════════════════════════════╗", "\n")
+        escreva("║ PRESSIONE QUALQUER TECLA PARA CONHECER AS CLASSES ║", "\n")
+        escreva("╚═══════════════════════════════════════════════════╝", "\n")
+        leia(teclaDigitadaClasses)
+        limpa()
+        escreva("╔═╡ ⚔️ GUERREIRO ⚔️ ╞═╗\n")
+        escreva("║ VIDA - 200           ║\n")
+        escreva("║ ATAQUE - 40          ║\n")
+        escreva("║ DEFESA - 30          ║\n")
+        escreva("╚══════════════════════╝\n")
+        escreva("╔═╡ ⚔️ ARQUEIRO ⚔️  ╞═╗\n")
+        escreva("║ VIDA - 250           ║\n")
+        escreva("║ ATAQUE - 30          ║\n")
+        escreva("║ DEFESA - 20          ║\n")
+        escreva("╚══════════════════════╝\n")
+        escreva("╔═╡   ⚔️ MAGO ⚔️    ╞═╗\n")
+        escreva("║ VIDA - 230           ║\n")
+        escreva("║ ATAQUE - 35          ║\n")
+        escreva("║ DEFESA - 20          ║\n")
+        escreva("╚══════════════════════╝\n")
+      }
+      senao se(menuOpcao == "2") {
+        escreva("Desenvolvido por Luis Maso...! 👏\n")
+        u.aguarde(5000)
+        limpa()
 
-        se(menuOpcao==1){
-          escreva("Há muito tempo, no Reino de Eldoria, a paz era mantida pela mística Pedra da Luz, protegida pelos Anciãos do Castelo Dourado.\n")
-          u.aguarde(3000)                
-          escreva("Um dia, uma força sombria conhecida como O Devastador invadiu o reino, roubando a relíquia sagrada e mergulhando as terras em trevas e caos.\n")
-          u.aguarde(3000)
-          escreva("Vilas foram saqueadas, florestas corrompidas, e criaturas sombrias começaram a vagar pelas regiões.\n")
-          u.aguarde(3000)
-          escreva("Diante da crise, uma antiga profecia se cumpriu: um herói escolhido surgirá das sombras para restaurar a luz.\n")
-          u.aguarde(3000)
-          escreva("Esse herói...\n")
-          u.aguarde(2000)
-          escreva("É ")
-          u.aguarde(1500)
-          escreva("VOCÊ!!!!!")
-          u.aguarde(500)
-        
-          limpa()
-
-          escreva("════╡ ⚔️ Insira o nome de seu HERÓI ⚔️ ╞════", "\n\n")
-          leia(nomePersonagem)
-          escreva("Muito bem, nobre ", nomePersonagem, ". Em tua jornada, três caminhos se abrem diante de ti...\n")
-          escreva("╔════╡  ⚔️ CLASSES ⚔️  ╞════╗\n")
-          escreva("║  1 - GUERREIRO             ║", "\n")
-          escreva("║  2 - ARQUEIRO              ║", "\n")
-          escreva("║  3 - MAGO                  ║", "\n")
-          escreva("╚════════════════════════════╝", "\n\n")
-          escreva("╔═══════════════════════════════════════════════════╗", "\n")
-          escreva("║ PRESSIONE QUALQUER TECLA PARA CONHECER AS CLASSES ║", "\n")
-          escreva("╚═══════════════════════════════════════════════════╝", "\n")
-          leia(teclaDigitadaClasses)
-          limpa()
-          
-            escreva("╔═╡ ⚔️ GUERREIRO ⚔️ ╞═╗\n")
-            escreva("║ VIDA - 200           ║\n")
-            escreva("║ ATAQUE - 40          ║\n")
-            escreva("║ DEFESA - 30          ║\n")
-            escreva("╚══════════════════════╝\n")
-            escreva("╔═╡ ⚔️ ARQUEIRO ⚔️  ╞═╗\n")
-            escreva("║ VIDA - 250           ║\n")
-            escreva("║ ATAQUE - 30          ║\n")
-            escreva("║ DEFESA - 20          ║\n")
-            escreva("╚══════════════════════╝\n")
-            escreva("╔═╡   ⚔️ MAGO ⚔️    ╞═╗\n")
-            escreva("║ VIDA - 230           ║\n")
-            escreva("║ ATAQUE - 35          ║\n")
-            escreva("║ DEFESA - 20          ║\n")
-            escreva("╚══════════════════════╝\n")
-        }
-        senao se(menuOpcao == "2") {
-          escreva("Feito por mim mesmo! 👏\n")
-          u.aguarde(2000)
-        }
-        senao se(menuOpcao == "3") {
-          escreva("Saindo...\n")
-          u.aguarde(1000)
-    
-        }
-      }enquanto(menuOpcao<"1" ou menuOpcao>"3")
+      }
+      se(menuOpcao== "3"){
+        escreva("Saindo...\n")
+        u.aguarde(3000)
+        pare
+      }
+    }
   } 
 
 
   funcao escolherClasse(){
     
-      faca{
+      enquanto(classePersonagem!= "1" e classePersonagem!= "2" e classePersonagem!= "3"){
         escreva("╔══════════════════════════════════════════════════════╗", "\n")
         escreva("║        QUAL A CLASSE QUE VOCÊ DESEJA ESCOLHER?       ║", "\n")
         escreva("╠══════════════════════════════════════════════════════╣", "\n")
@@ -126,7 +145,8 @@ programa { inclua biblioteca Util --> u
         escreva("║        MAGO         →     DIGITE A TECLA 3           ║", "\n")
         escreva("╚══════════════════════════════════════════════════════╝", "\n")
         leia(classePersonagem)
-        }enquanto(classePersonagem>"3" ou classePersonagem<"1")
+        limpa()
+        }
     se(classePersonagem==1){
     
       vidaPersonagem = 200
@@ -165,45 +185,30 @@ programa { inclua biblioteca Util --> u
     
   }
   funcao nivelDoJogador(){
-        se(xpPersonagem==10){
+      se(xpPersonagem>=15 e xpPersonagem<30){
       escreva("\n ✨ VOCÊ ATINGIU O NÍVEL 1 DE BATALHA! ✨ \n")
       nivelBatalha = 1
+      u.aguarde(3000)
     }
-    se(xpPersonagem==30){
+    se(xpPersonagem>=30 e xpPersonagem<50){
       escreva("\n ✨ VOCÊ ATINGIU O NÍVEL 2 DE BATALHA! ✨ \n")
       nivelBatalha = 2
+      u.aguarde(3000)
     }
-    se(xpPersonagem==50){
+    se(xpPersonagem>=50 e xpPersonagem<100){
       escreva("\n ✨ VOCÊ ATINGIU O NÍVEL 3 DE BATALHA! ✨ \n")
       nivelBatalha = 3
+      u.aguarde(3000)
     }
-    se(xpPersonagem==100){
+    se(xpPersonagem>=100 e xpPersonagem<200){
       escreva("\n✨ VOCÊ ATINGIU O NÍVEL 4 DE BATALHA! ✨ \n")
       nivelBatalha = 4
+      u.aguarde(3000)
     }
-    se(xpPersonagem==200){
+    se(xpPersonagem>=200){
       escreva("\n ✨ VOCÊ ATINGIU O NÍVEL 5 DE BATALHA! ✨ \n")
       nivelBatalha = 5
-    }
-    se(xpPersonagem==300){
-      escreva("\n ✨ VOCÊ ATINGIU O NÍVEL 6 DE BATALHA! ✨ \n")
-      nivelBatalha = 6
-    }
-    se(xpPersonagem==400){
-      escreva("\n ✨ VOCÊ ATINGIU O NÍVEL 7 DE BATALHA! ✨ \n")
-      nivelBatalha = 7
-    }
-    se(xpPersonagem==500){
-      escreva("\n ✨ VOCÊ ATINGIU O NÍVEL 8 DE BATALHA! ✨ \n")
-      nivelBatalha = 8
-    }
-    se(xpPersonagem==600){
-      escreva("\n ✨ VOCÊ ATINGIU O NÍVEL 9 DE BATALHA! ✨ \n")
-      nivelBatalha = 9
-    }
-    se(xpPersonagem==1200){
-      escreva("\n ✨ VOCÊ ATINGIU O NÍVEL 10 DE BATALHA! ✨ \n")
-      nivelBatalha = 10
+      u.aguarde(3000)
     }
   }
 
@@ -313,7 +318,7 @@ programa { inclua biblioteca Util --> u
     escreva("OOOOH NÃO, ELE ESTÁ AI...\n")
     u.aguarde(2000)
 
-    cadeia nomeInimigo = "Paulinho Navalha Tropeira"
+    cadeia nomeInimigo = "PAULINHO NAVALHA TROPEIRA"
     inteiro vidaInimigo = 80
     inteiro ataqueInimigo = 30
     inteiro defesaInimigo = 5
@@ -390,15 +395,8 @@ programa { inclua biblioteca Util --> u
       limpa()
       }
       se(vidaPersonagem<=0){ //morte personagem caraio 
-        escreva("🥀 VOCÊ FOI DERROTADO POR ", nomeInimigo, " 🥀\n")
-        escreva("✨ SEU XP TOTAL FOI: ", xpPersonagem, " ✨\n")
-        escreva("😈 VOCÊ MATOU", contadorDeMonstros, "INIMIGOS 😈\n\n")
-        escreva("Obrigado por jogar...\n")
-        u.aguarde(15000)
         jogoRodando=falso
-        pare  
-        pare
-
+        retorne
       }
     limpa()
     }
@@ -454,33 +452,14 @@ programa { inclua biblioteca Util --> u
           }
           se(opcaoLojaComerciante==2){ //
             escreva("PARABÉNS, VOCÊ ADQUIRIU +3 DE DEFESA! 🛡️\n")
-            se(classePersonagem==1){ 
-              defesaPersonagem = defesaPersonagem + 3
-              escreva("SUA DEFESA SE TORNOU ", defesaPersonagem, "! 🛡️\n")
-            }
-            se(classePersonagem==2){
-              defesaPersonagem = defesaPersonagem + 3
+            defesaPersonagem = defesaPersonagem + 3
             escreva("SUA DEFESA SE TORNOU ", defesaPersonagem, "! 🛡️\n")
-            }
-            se(classePersonagem==3){
-              defesaPersonagem = defesaPersonagem + 3
-              escreva("SUA DEFESA SE TORNOU ", defesaPersonagem, "! 🛡️\n")
-            }             
+                      
           }
           se(opcaoLojaComerciante==3){  
             escreva("PARABÉNS, VOCÊ ADQUIRIU +5 DE ATAQUE! ⚔️\n")
-            se(classePersonagem==1){ 
-              ataquePersonagem = ataquePersonagem + 5
-              escreva("SEU ATAQUE SE TORNOU ", ataquePersonagem, "! ⚔️\n")
-            }
-            se(classePersonagem==2){
-              ataquePersonagem = ataquePersonagem + 5
-              escreva("SUA ATAQUE SE TORNOU ", ataquePersonagem, "! ⚔️\n")
-            }
-            se(classePersonagem==3){
-              ataquePersonagem = ataquePersonagem + 5
-              escreva("SUA ATAQUE SE TORNOU ", ataquePersonagem, "! ⚔️\n")
-            }  
+            ataquePersonagem = ataquePersonagem + 5
+            escreva("SEU ATAQUE SE TORNOU ", ataquePersonagem, "! ⚔️\n") 
           }
           u.aguarde(5000)
         }
@@ -493,11 +472,13 @@ programa { inclua biblioteca Util --> u
       limpa()
     } 
     cadeia teclaTerminarFase1
-    escreva(" ╔═══════════════════════════════════════════════════╗", "\n")
-    escreva(" ║     PARABÉNS, VOCÊ TERMINOU A PRIMEIRA FASE!      ║", "\n")
-    escreva(" ╚═══════════════════════════════════════════════════╝", "\n\n")
+    escreva("   ╔═══════════════════════════════════════════════════╗", "\n")
+    escreva("   ║     PARABÉNS, VOCÊ TERMINOU A PRIMEIRA FASE!      ║", "\n")
+    escreva("   ╚═══════════════════════════════════════════════════╝", "\n\n")
     u.aguarde(2000)
-    escreva("PRESSIONE QUALQUER TECLA PARA PROSSEGUIR PARA A FASE 2!")  
+    escreva("╔═════════════════════════════════════════════════════════╗", "\n")
+    escreva("║  PRESSIONE QUALQUER TECLA PRA PROSSEGUIR PRA FASE DOIS  ║", "\n")
+    escreva("╚═════════════════════════════════════════════════════════╝", "\n\n")
     leia(teclaTerminarFase1)
     indiceRegioes = 1
     limpa()
@@ -672,6 +653,7 @@ programa { inclua biblioteca Util --> u
       u.aguarde(1700)
       para(inteiro i=0; i<5; i++){
       escreva("...")
+      limpa()
       u.aguarde(300)
       limpa()
       }
@@ -684,7 +666,7 @@ programa { inclua biblioteca Util --> u
       escreva("❤️ HP - ", vidaPersonagem, "\n")
       u.aguarde(3000)
     }
-    cadeia nomeInimigo = "Ladrão Cai-Cai"
+    cadeia nomeInimigo = "LADRÃO CAI-CAI"
     inteiro vidaInimigo = 100
     inteiro ataqueInimigo = 35
     inteiro defesaInimigo = 8
@@ -751,15 +733,10 @@ programa { inclua biblioteca Util --> u
         u.aguarde(2500)
         limpa()
       }
-      se(vidaPersonagem<=0){ //morte personagem caraio 
-        escreva("🥀 VOCÊ FOI DERROTADO POR ", nomeInimigo, " 🥀\n")
-        escreva("✨ SEU XP TOTAL FOI: ", xpPersonagem, " ✨\n")
-        escreva("😈 VOCÊ MATOU", contadorDeMonstros, "INIMIGOS 😈\n\n")
-        escreva("Obrigado por jogar...\n")
-        u.aguarde(15000)
+      se(vidaPersonagem<=0){ 
         jogoRodando=falso
-        pare  
-        pare
+        retorne
+        
       }
       limpa()
     }
@@ -1029,7 +1006,7 @@ programa { inclua biblioteca Util --> u
     u.aguarde(5000)
     limpa()
 
-    cadeia nomeInimigo = "ESTALADOR SOMBRIO"
+    cadeia nomeInimigo = "ESTALADOR DE OSSOS"
     inteiro vidaInimigo = 140
     inteiro ataqueInimigo = 40
     inteiro defesaInimigo = 15
@@ -1097,14 +1074,9 @@ programa { inclua biblioteca Util --> u
         limpa()
       }
       se(vidaPersonagem<=0){ //morte personagem caraio 
-        escreva("🥀 VOCÊ FOI DERROTADO POR ", nomeInimigo, " 🥀\n")
-        escreva("✨ SEU XP TOTAL FOI: ", xpPersonagem, " ✨\n")
-        escreva("😈 VOCÊ MATOU", contadorDeMonstros, "INIMIGOS 😈\n\n")
-        escreva("Obrigado por jogar...\n")
-        u.aguarde(15000)
+        retorne
         jogoRodando=falso
-        pare  
-        pare
+      
       }
       limpa()
     }
@@ -1177,7 +1149,7 @@ programa { inclua biblioteca Util --> u
     u.aguarde(4000)
     limpa()
 
-    cadeia nomeInimigo = "ARANHA DA CAVERNA SOMBRIA"
+    cadeia nomeInimigo = "DONA TEIA DA SILVA"
     inteiro vidaInimigo = 1
     inteiro ataqueInimigo = 1
     inteiro defesaInimigo = 1
@@ -1244,15 +1216,9 @@ programa { inclua biblioteca Util --> u
         u.aguarde(2500)
         limpa()
       }
-      se(vidaPersonagem<=0){ //morte personagem caraio 
-        escreva("🥀 VOCÊ FOI DERROTADO POR ", nomeInimigo, " 🥀\n")
-        escreva("✨ SEU XP TOTAL FOI: ", xpPersonagem, " ✨\n")
-        escreva("😈 VOCÊ MATOU", contadorDeMonstros, "INIMIGOS 😈\n\n")
-        escreva("Obrigado por jogar...\n")
-        u.aguarde(15000)
+      se(vidaPersonagem<=0){ 
         jogoRodando=falso
-        pare  
-        pare
+        retorne
       }
       limpa()
     }
@@ -1324,8 +1290,289 @@ programa { inclua biblioteca Util --> u
     }
   }
   funcao quartaFaseJogo(){
-    escreva("teste")
+    escreva("Você chegou a região: ", regioes[3], " 🌲🌫️🐸💧🕸️")
+    u.aguarde(3000)
+    limpa()
+    escreva("A névoa cobre cadáveres que ainda sussurram.\n")
+    u.aguarde(1800)
+    escreva("Criaturas rastejam entre os galhos, famintas por carne viva.\n")
+    u.aguarde(1800)
+    escreva("No Pântano dos Lamentos, até a esperança se afoga.\n")
+    u.aguarde(2500)
+    escreva("A escuridão aqui tem olhos...")
+    u.aguarde(2000)
+    escreva(" e eles estão famintos.\n")
+    u.aguarde(1800)
+    escreva("Passos errados não ecoam, eles somem.\n")
+    u.aguarde(1800)
+    limpa()
+    escreva("Você está diante do Pântano dos Lamentos.\n")
+    u.aguarde(2500)
+    escreva("À sua frente, um riacho negro e lamacento corta a paisagem.\n")
+    u.aguarde(2000)
+    escreva("A névoa espessa abraça tudo, e um silêncio opressor pesa no ar.\n")
+    u.aguarde(2500)
+    escreva("Você precisa atravessar, mas o caminho não é claro...\n")
+    u.aguarde(2300)
+    escreva("Pode tentar, a margem esquerda ou a da direita.\n")
+    u.aguarde(2000)
+      
+    cadeia opcaoEscolhidaPantano
+    enquanto(opcaoEscolhidaPantano!=1 e opcaoEscolhidaPantano!=2){
+      escreva("╔════════════════════════════════════╗", "\n")
+      escreva("║     O QUE VOCÊ DESEJA FAZER?       ║", "\n")
+      escreva("╚════════════════════════════════════╝", "\n\n")
+      escreva("DIGITE 1 - SEGUIR O CAMINHO DA ESQUERDA ◀️\n")
+      escreva("DIGITE 2 - SEGUIR O CAMINHO DA DIREITA ▶️\n")
+      leia(opcaoEscolhidaPantano)
+    }
+    se(opcaoEscolhidaPantano==1){
+      escreva("Você escolhe a trilha pela margem esquerda... 🌿◀️\n")
+      u.aguarde(2000)
+      escreva("A névoa fica mais densa. Seus pés afundam na lama espessa... 🟫💧\n")
+      u.aguarde(2500)
+      escreva("Algo se move sob a água. Você sente uma mordida! 🐍🩸\n")
+      u.aguarde(2500)
+      escreva("Espinhos ocultos rasgam sua pele enquanto você força passagem... 🌑🕸️\n")
+      u.aguarde(2500)
+      limpa()
+      escreva("⚠️ VOCÊ SOFREU 15 DE DANO! ⚠️\n\n")
+      escreva("SUA VIDA ANTES - ", vidaPersonagem, " ❤️\n")
+      vidaPersonagem = vidaPersonagem - 15
+      escreva("SUA VIDA ATUAL - ", vidaPersonagem, " 💔\n")
+      u.aguarde(4000)
+    }
+    se(opcaoEscolhidaPantano==2){
+      escreva("Você segue pela margem direita... 🌿▶️\n")
+      u.aguarde(2000)
+      escreva("O nevoeiro parece observar cada passo seu... 🌫️👁️\n")
+      u.aguarde(2000)
+      escreva("A lama aqui é mais firme. Nenhuma criatura se aproxima.\n")
+      u.aguarde(2000)
+      escreva("Mesmo assim, o silêncio pesa como mil vozes caladas. 🤫⚰️\n")
+      u.aguarde(2500)
+      escreva("Você atravessa o trecho... sem ferimentos. 🕯️\n")
+      u.aguarde(2000)
+    }
+    limpa()
+
+    escreva("A névoa fica mais densa... você mal vê os próprios pés. 🌫️🦶\n")
+    u.aguarde(1800)
+    escreva("Uma voz doce e distante ecoa pelo pântano:\n")
+    u.aguarde(1800)
+    escreva("\"Volte... antes que ele acorde...\"\n")
+    u.aguarde(2000)
+    escreva("Mas não há ninguém.\n")
+    u.aguarde(1500)
+    escreva("A névoa engole tudo ao redor... seu corpo fica frio. ❄️\n")
+    u.aguarde(2000)
+    escreva("A voz retorna, mais próxima:\n\n")
+    u.aguarde(1800)
+    escreva("\'Você já esteve aqui antes... lembra de mim?\'\n\n")
+    u.aguarde(2500)
+    u.aguarde(2000)
+    escreva("Você ouve algo respirando bem atrás de você...\n")
+    u.aguarde(2500)
+    cadeia opcaoAssombracao
+    enquanto(opcaoAssombracao!=1 e opcaoAssombracao!=2){
+      escreva("╔════════════════════════════════════════════════════════╗", "\n")
+      escreva("║    VOCÊ DESEJA VIRAR PRA TRÁS OU CONTINUAR ANDANDO?    ║", "\n")
+      escreva("╚════════════════════════════════════════════════════════╝", "\n\n")
+      escreva("DIGITE 1 - VIRAR 🔁\n")
+      escreva("DIGITE 2 - CONTINUAR ⏩\n")
+      leia(opcaoAssombracao)
+      limpa()
+    }
+    se(opcaoAssombracao==1){
+      escreva("Você se vira lentamente...\n")
+      u.aguarde(2000)
+      escreva("Nada. Só névoa. E silêncio.\n")
+      u.aguarde(2000)
+      escreva("Mas no chão, onde antes havia lama, está uma máscara antiga, sorrindo. 🎭\n")
+      u.aguarde(2500)
+      escreva("Você a recolhe, sentindo-se mais... resistente.\n\n")
+      u.aguarde(2000)
+      escreva("🛡️ PARABÉNS, VOCÊ ADQUIRIU +3 DE DEFESA! 🛡️\n\n")
+      u.aguarde(2000)
+      escreva("SUA DEFESA ANTES - ", defesaPersonagem, "! 🛡️\n")
+      defesaPersonagem = defesaPersonagem + 3
+      escreva("SUA DEFESA SE TORNOU ", defesaPersonagem, "! 🛡️\n")
+      u.aguarde(4000)              
+    }
+    se(opcaoAssombracao==2){
+      escreva("Você ignora a presença e segue firme.\n")
+      u.aguarde(2000)
+      escreva("Algo sussurra um elogio em sua mente...\n")
+      u.aguarde(2000)
+      escreva("Você sente uma centelha de poder crescendo em suas veias. \n\n")
+      u.aguarde(2000)
+      escreva("⚔️ PARABÉNS, VOCÊ ADQUIRIU +3 DE ATAQUE! ⚔️\n\n")
+      u.aguarde(2000)
+      escreva("SUA ATAQUE ANTES - ", ataquePersonagem, "! ⚔️\n")
+      ataquePersonagem = ataquePersonagem + 3
+      escreva("SEU ATAQUE SE TORNOU ", ataquePersonagem, "! ⚔️\n")
+      u.aguarde(4000)
+    }
+    limpa()
+    escreva("Enquanto avança, sussurros ecoam pela névoa... 🕸️🌫️")
+    u.aguarde(2500)
+    
+    escreva("\"O caminho seguro é pela esquerda.\"")
+    u.aguarde(1500)
+    escreva("\"A direita leva a destruição.\"")
+    u.aguarde(1500)
+    escreva("\"Mas cuidado, a verdade está na margem oposta.\"")
+    u.aguarde(2000)
+    
+    limpa()
+    escreva("Um sussurro final corta o silêncio:\n")
+    escreva("\"Ignore o que você ouviu e escolha o caminho certo para sobreviver.\"\n")
+    u.aguarde(3000)
+    cadeia opcaoEscolhidaDirecao
+    enquanto(opcaoEscolhidaDirecao!= 1 e opcaoEscolhidaDirecao!=2){
+      escreva("╔══════════════════════════════════════════╗", "\n")
+      escreva("║    QUAL CAMINHO VOCÊ DESEJA ESCOLHER?    ║", "\n")
+      escreva("╚══════════════════════════════════════════╝", "\n\n")
+      escreva("DIGITE 1 - SEGUIR O CAMINHO DA ESQUERDA\n")
+      escreva("DIGITE 2 - SEGUIR O CAMINHO DA DIREITA\n")
+      leia(opcaoEscolhidaDirecao)
+    }
+    se(opcaoEscolhidaDirecao==1){
+      escreva("Você avança pela margem esquerda, ignorando o frio na espinha... ❌🌫️")
+      u.aguarde(2000)
+      escreva("A lama sobe até a cintura, algo agarra sua perna por baixo... 💀")
+      u.aguarde(2000)
+      escreva("Você se solta, mas perde energia tentando escapar do atoleiro.")
+      u.aguarde(2000)
+      escreva("🩸  VOCÊ PERDEU -15 DE VIDA! 🩸 \n\n")
+      u.aguarde(2000)
+      escreva("SUA VIDA ANTES - ", vidaPersonagem, "! 🩸 \n")
+      vidaPersonagem = vidaPersonagem - 15
+      escreva("SUA VIDA SE TORNOU ", vidaPersonagem, "! 🩸 \n")
+      u.aguarde(4000)
+
+    }
+    se(opcaoEscolhidaDirecao==2){
+      escreva("Você segue pela margem direita, mesmo sem confiar nos sussurros... ✅🌫️")
+      u.aguarde(2000)
+      escreva("A trilha é instável, mas você evita as armadilhas ocultas no brejo.")
+      u.aguarde(2000)
+      escreva("Uma energia estranha envolve seu corpo, como se o pântano reconhecesse sua decisão...")
+      u.aguarde(2000)
+      escreva("⚔️ PARABÉNS, VOCÊ ADQUIRIU +5 DE VIDA! ⚔️\n\n")
+      u.aguarde(2000)
+      escreva("SUA VIDA ANTES - ", vidaPersonagem, "! ⚔️\n")
+      vidaPersonagem = vidaPersonagem + 3
+      escreva("SEU VIDA SE TORNOU ", vidaPersonagem, "! ⚔️\n")
+      u.aguarde(4000)
+    }
+    limpa()
+    escreva("As vozes que antes sussurravam agora gritam dentro da sua mente. 🧠🩸\n")
+    u.aguarde(2000)
+    escreva("Da água turva, algo se ergue. Não tem olhos. Apenas... bocas.\n")
+    u.aguarde(2000)
+    escreva("Bocas que repetem as suas escolhas... os seus erros.\n")
+    u.aguarde(2500)
+
+    cadeia nomeInimigo = "NEVOEIRO SOMBRIO"
+    inteiro vidaInimigo = 130
+    inteiro ataqueInimigo = 20
+    inteiro defesaInimigo = 15
+    inteiro xpInimigo = 20
+    cadeia opcaoBatalha 
+    escreva("╔════════════════════════════════════════════╗\n")
+    escreva("           SEU ADVERSÁRIO SERÁ:         ", "\n")
+    escreva("          ", nomeInimigo, "                 ", "\n")
+    escreva("╚════════════════════════════════════════════╝", "\n")
+    u.aguarde(2500)
+    limpa()
+    escreva("╔═══════════════════════════════════╗", "\n")
+    escreva("      ", nomeInimigo, "        ",       "\n")
+    escreva("╠═══════════════════════════════════╣", "\n")
+    escreva("        VIDA   → ", vidaInimigo," ❤️                ", "\n") 
+    escreva("        ATAQUE → ", ataqueInimigo," ⚔️                 ", "\n")
+    escreva("        DEFESA → ", defesaInimigo," 🛡️                   ", "\n")
+    escreva("╚═══════════════════════════════════╝", "\n")
+    u.aguarde(5000)
+    limpa()
+    enquanto(vidaInimigo > 0){
+      escreva("╔════════════════════════════════════════╗\n")
+      escreva("   SEU TURNO, ", nomePersonagem, "!        \n")
+      escreva("╚════════════════════════════════════════╝\n\n")
+      escreva(" ",nomePersonagem, " - ❤️ HP - ", vidaPersonagem, "\n")
+      escreva("═════════════════════════════════════════\n")
+      escreva(" ",nomeInimigo, " - ❤️ HP  - ", vidaInimigo, "\n\n")
+      escreva("O QUE VOCÊ DESEJA FAZER?\n")
+      escreva("═════════════════════════\n ")
+      escreva("     1 → ATACAR ⚔️      \n")  
+      escreva("═════════════════════════\n")
+      escreva("ESCOLHA SUA AÇÃO: \n")
+      leia(opcaoBatalha)
+      limpa()
+      se(opcaoBatalha == 1) {
+        inteiro danoCausado = ataquePersonagem - defesaInimigo
+        vidaInimigo = vidaInimigo - danoCausado
+        escreva("💥 VOCÊ ATACA ", nomeInimigo, " CAUSANDO ", danoCausado, " DE DANO! 💥\n")
+        u.aguarde(2000)
+      }
+      senao {
+        escreva("❌ - OPÇÃO INVÁLIDA! Você hesita e perde o turno...\n")
+        u.aguarde(2000)
+      }
+      limpa()
+      se (vidaInimigo <= 0) {
+        escreva(nomeInimigo, " FOI DERROTADO COM SUCESSO 🏆!\n")
+        xpPersonagem = xpPersonagem + xpInimigo
+        escreva("✨ VOCÊ GANHOU ", xpInimigo, " DE XP ! ✨\n\n✨ XP Total: ", xpPersonagem, " ✨\n")
+        u.aguarde(3000)
+        nivelDoJogador()
+        u.aguarde(4000)
+        limpa()
+        contadorDeMonstros++
+      }
+      senao {
+      escreva("╔════════════════════════════════════════╗\n")
+      escreva("    TURNO DE ", nomeInimigo, "!        \n")
+      escreva("╚════════════════════════════════════════╝\n\n")
+        u.aguarde(1000)
+        inteiro danoSofrido = ataqueInimigo - defesaPersonagem
+        escreva("💥 ",nomeInimigo, " ATACA VOCÊ, CAUSANDO ", danoSofrido, " DE DANO! 💥\n")
+        vidaPersonagem = vidaPersonagem - danoSofrido
+        u.aguarde(2500)
+        limpa()
+      }
+      se(vidaPersonagem<=0){ 
+        jogoRodando=falso
+        retorne
+      }
+    }
+    escreva("🌫️ Você caminha entre os destroços da batalha, o sangue ainda quente no chão encharcado.\n")
+    u.aguarde(2000)
+    escreva("À frente, a névoa se abre lentamente, revelando um pequeno espelho d’água.\n")
+    u.aguarde(2200)
+    escreva("Mas essa água não reflete o agora...\n")
+    u.aguarde(1800)
+    escreva("Ela mostra você... como era, antes de entrar no pântano.\n")
+    u.aguarde(2500)
+    escreva("🌑 Uma voz sussurra atrás de você:\n")
+    escreva("“Beba… e esqueça…”\n")
+    u.aguarde(2000)
+    cadeia opcaoEscolhidaAgua
+    enquanto(opcaoEscolhidaAgua!=1 e opcaoEscolhidaAgua!=2){
+      escreva("╔════════════════════════════════╗", "\n")
+      escreva("║    O QUE VOCÊ DESEJA FAZER?    ║", "\n")
+      escreva("╚════════════════════════════════╝", "\n\n")
+      escreva("DIGITE 1 - BEBER A ÁGUA MORTA 💧")
+      escreva("DIGITE 2 - PARA NÃO BEBER A ÁGUA MORTA ❌💧")
+    }
+    se(opcaoEscolhidaAgua==1){
+
+    }
+    se(opcaoEscolhidaAgua==2){
+  
+    }
+  
+
+
   }
-
-
 }
