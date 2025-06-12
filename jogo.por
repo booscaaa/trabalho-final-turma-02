@@ -14,26 +14,32 @@ programa {
     inteiro xpParaProximoNivel
 
     // Classes Base
-    cadeia NOME_CLASSE[3] = {"Guerreiro", "Mago", "Arqueiro"}
-    inteiro VIDA_BASE[3] = {120, 80, 100}
-    inteiro ATAQUE_BASE[3] = {99, 25, 20}
-    inteiro DEFESA_BASE[3] = {10, 5, 8}
+    cadeia NOME_CLASSE[3] = {"Técnico de Suspensão", "Eletricista Automotivo", "Mecânico Geral"}
+    inteiro VIDA_BASE[3] = {135, 100, 115}
+    inteiro ATAQUE_BASE[3] = {25, 45, 30}
+    inteiro DEFESA_BASE[3] = {15, 5, 10}
 
     // Inimigos
-    cadeia NOME_INIMIGO[6] // 5 normais + 1 chefe
-    inteiro VIDA_INIMIGO[6]
-    inteiro ATAQUE_INIMIGO[6]
-    inteiro DEFESA_INIMIGO[6]
-    inteiro XP_INIMIGO[6]
+    cadeia NOME_INIMIGO[15] // 14 normais + 1 chefe
+    inteiro VIDA_INIMIGO[15]
+    inteiro ATAQUE_INIMIGO[15]
+    inteiro DEFESA_INIMIGO[15]
+    inteiro XP_INIMIGO[15]
 
     // Regiões
-    cadeia NOME_REGIAO[5] = {"Floresta da Névoa", "Vila Abandonada", "Caverna Sombria", "Pântano dos Lamentos", "Castelo Dourado"}
-    cadeia DESCRICAO_REGIAO[5] = {
-        "Você adentra a Floresta da Névoa, onde árvores retorcidas e uma névoa densa dificultam a visão. Criaturas espreitam nas sombras.",
-        "A Vila Abandonada parece um eco fantasma de tempos melhores. Agora, apenas ruínas e o som do vento servem de lar para ladrões e desesperados.",
-        "A escuridão da Caverna Sombria engole a luz. Ecos distantes sugerem que monstros antigos ainda residem aqui, guardando segredos perdidos.",
-        "O Pântano dos Lamentos é um terreno traiçoeiro, com águas paradas e um ar pesado. Dizem que espectros venenosos assombram este lugar.",
-        "Finalmente, o Castelo Dourado se ergue à distância, uma fortaleza imponente e corrompida. O Devastador aguarda em seu interior."
+cadeia NOME_REGIAO[5] = {
+    "Depósito Enferrujado",
+    "Bairro dos Quebrados",
+    "Túnel das Correias",
+    "Sucatão do Caos",
+    "Oficina Federal"
+}
+cadeia DESCRICAO_REGIAO[5] = {
+    "Você entra no Depósito Enferrujado, um labirinto de peças velhas, óleo no chão e barulhos estranhos vindos dos cantos escuros. Algo parece te observar entre os chassis abandonados.",
+    "O Bairro dos Quebrados é onde carros vêm para morrer — ou para serem revividos nas coxas. É território de gambiarreiros e clientes desesperados. O risco de calote é alto por aqui.",
+    "O Túnel das Correias ecoa com barulhos de rolamentos soltos e motores falhando. Umidade, fumaça e peças rolando criam um ambiente tenso. Muitos mecânicos se perdem nesse labirinto sonoro.",
+    "Sucatão do Caos: um campo minado de carcaças e motores partidos. Aqui, tudo é reaproveitado — até os monstros. O cheiro de solda e a energia elétrica no ar fazem os cabelos do braço arrepiarem.",
+    "A Oficina Federal se ergue como uma fortaleza de burocracia, taxas e terror fiscal. Dentro, o **Devastador** — avatar supremo da Receita Federal — te espera com seus autos de infração e scanner de alma."
     }
     inteiro regiaoAtual
     logico jogoEmAndamento
@@ -46,42 +52,97 @@ programa {
 
     // FUNÇÕES DE CONFIGURAÇÃO INICIAL 
     funcao configurarInimigos() {
-        NOME_INIMIGO[0] = "Goblin Sorrateiro"
-        VIDA_INIMIGO[0] = 30
-        ATAQUE_INIMIGO[0] = 8
-        DEFESA_INIMIGO[0] = 2
-        XP_INIMIGO[0] = 25
 
-        NOME_INIMIGO[1] = "Lobo Faminto"
-        VIDA_INIMIGO[1] = 45
-        ATAQUE_INIMIGO[1] = 12
-        DEFESA_INIMIGO[1] = 4
-        XP_INIMIGO[1] = 35
+    NOME_INIMIGO[0] = "Poça de Óleo Viva"
+    VIDA_INIMIGO[0] = 20
+    ATAQUE_INIMIGO[0] = 5
+    DEFESA_INIMIGO[0] = 0
+    XP_INIMIGO[0] = 10
 
-        NOME_INIMIGO[2] = "Bandido da Estrada"
-        VIDA_INIMIGO[2] = 60
-        ATAQUE_INIMIGO[2] = 10
-        DEFESA_INIMIGO[2] = 6
-        XP_INIMIGO[2] = 45
+    NOME_INIMIGO[1] = "Pneu Vingativo"
+    VIDA_INIMIGO[1] = 40
+    ATAQUE_INIMIGO[1] = 12
+    DEFESA_INIMIGO[1] = 2
+    XP_INIMIGO[1] = 15
 
-        NOME_INIMIGO[3] = "Aranha Gigante Venenosa"
-        VIDA_INIMIGO[3] = 70
-        ATAQUE_INIMIGO[3] = 18
-        DEFESA_INIMIGO[3] = 5
-        XP_INIMIGO[3] = 55
+    NOME_INIMIGO[2] = "Vela de Ignição Infernal"
+    VIDA_INIMIGO[2] = 30
+    ATAQUE_INIMIGO[2] = 18
+    DEFESA_INIMIGO[2] = 1
+    XP_INIMIGO[2] = 20
 
-        NOME_INIMIGO[4] = "Espectro Lamentador"
-        VIDA_INIMIGO[4] = 50
-        ATAQUE_INIMIGO[4] = 22
-        DEFESA_INIMIGO[4] = 3
-        XP_INIMIGO[4] = 65
+    NOME_INIMIGO[3] = "Mecânico de YouTube"
+    VIDA_INIMIGO[3] = 60
+    ATAQUE_INIMIGO[3] = 15
+    DEFESA_INIMIGO[3] = 5
+    XP_INIMIGO[3] = 40
 
-        NOME_INIMIGO[5] = "O Devastador"
-        VIDA_INIMIGO[5] = 350
-        ATAQUE_INIMIGO[5] = 35
-        DEFESA_INIMIGO[5] = 15
-        XP_INIMIGO[5] = 0
-    }
+    NOME_INIMIGO[4] = "Motor Raivoso"
+    VIDA_INIMIGO[4] = 100
+    ATAQUE_INIMIGO[4] = 20
+    DEFESA_INIMIGO[4] = 10
+    XP_INIMIGO[4] = 60
+
+    NOME_INIMIGO[5] = "Monstro da Ferrugem"
+    VIDA_INIMIGO[5] = 90
+    ATAQUE_INIMIGO[5] = 10 
+    DEFESA_INIMIGO[5] = 15
+    XP_INIMIGO[5] = 50
+
+    NOME_INIMIGO[6] = "Lombada Assassina"
+    VIDA_INIMIGO[6] = 50
+    ATAQUE_INIMIGO[6] = 45
+    DEFESA_INIMIGO[6] = 20
+    XP_INIMIGO[6] = 55
+
+    NOME_INIMIGO[7] = "Uno com Escada"
+    VIDA_INIMIGO[7] = 85
+    ATAQUE_INIMIGO[7] = 30
+    DEFESA_INIMIGO[7] = 20
+    XP_INIMIGO[7] = 60
+
+    NOME_INIMIGO[8] = "Carro Possuído"
+    VIDA_INIMIGO[8] = 200
+    ATAQUE_INIMIGO[8] = 30
+    DEFESA_INIMIGO[8] = 10
+    XP_INIMIGO[8] = 90
+
+    NOME_INIMIGO[9] = "Golem de Sucata"
+    VIDA_INIMIGO[9] = 250
+    ATAQUE_INIMIGO[9] = 30
+    DEFESA_INIMIGO[9] = 30
+    XP_INIMIGO[9] = 100
+
+    NOME_INIMIGO[10] = "Guincho Abutre"
+    VIDA_INIMIGO[10] = 110
+    ATAQUE_INIMIGO[10] = 20
+    DEFESA_INIMIGO[10] = 10
+    XP_INIMIGO[10] = 90
+
+    NOME_INIMIGO[11] = "Fiscal do DETRAN Sinistro"
+    VIDA_INIMIGO[11] = 150
+    ATAQUE_INIMIGO[11] = 25
+    DEFESA_INIMIGO[11] = 10
+    XP_INIMIGO[11] = 100
+
+    NOME_INIMIGO[12] = "Rei da Gambiarra"
+    VIDA_INIMIGO[12] = 200
+    ATAQUE_INIMIGO[12] = 30
+    DEFESA_INIMIGO[12] = 15
+    XP_INIMIGO[12] = 120
+
+    NOME_INIMIGO[13] = "Carnê do IPVA Maldito"
+    VIDA_INIMIGO[13] = 100
+    ATAQUE_INIMIGO[13] = 30
+    DEFESA_INIMIGO[13] = 5
+    XP_INIMIGO[13] = 50
+
+    NOME_INIMIGO[14] = "Receita Federal"
+    VIDA_INIMIGO[14] = 500
+    ATAQUE_INIMIGO[14] = 40
+    DEFESA_INIMIGO[14] = 25
+    XP_INIMIGO[14] = 0
+}
 
     funcao contarHistoria(){
         cadeia opcao
@@ -101,28 +162,31 @@ programa {
         }
         senao se (opcao == 2) {
             limpa()
-            u.aguarde(500)
-            escreva("\nHá eras incontáveis, o Reino de Eldoria florescia sob a proteção da lendária Pedra da Luz...\n")
-            u.aguarde(3000)
+            u.aguarde(1000)
+            escreva("\nHá tempos, a Oficina Central era o coração pulsante da cidade, onde carros ganhavam vida e motores cantavam...\n")
+            u.aguarde(11000)
             limpa()
-            escreva("\nMas a escuridão tem paciência...\n")
-            u.aguarde(1500)
+            escreva("\nMas a burocracia tem sua própria engrenagem, lenta e implacável...\n")
+            u.aguarde(6500)
             limpa()
-            escreva("\nDas profundezas esquecidas surgiu O Devastador...\n")
-            u.aguarde(3000)
-            escreva("\nAs florestas, antes vivas, apodreceram...\n")
+            escreva("\nDas sombras dos impostos e multas surgiu a temida Receita Federal...\n")
+            u.aguarde(6500)
+            limpa()
+            escreva("\nOs carros pararam, as ferramentas enferrujaram, e a esperança quase se perdeu...\n")
+            u.aguarde(6500)
+            limpa()
+            escreva("\nMas nem todo motor cessa sua ignição...\n")
+            u.aguarde(4000)
+            limpa()
+            escreva("\nNo meio desse caos, uma lenda desperta... um mecânico... esse mecânico... é você.\n")
+            u.aguarde(6500)
+            escreva("\nVocê deve encarar as cinco zonas de desafios, desde sucateiros até caloteiros. O destino da Oficina Central depende da sua habilidade.\n")
+            u.aguarde(11000)
+            limpa()
+            escreva("\nPrepare suas ferramentas...\n")
             u.aguarde(2500)
-            limpa()
-            escreva("\nMas nem todas as lendas morrem...\n")
-            u.aguarde(1500)
-            limpa()
-            escreva("\nEm meio ao caos, a antiga profecia ressurge... Esse herói... é você.\n")
+            escreva("\nSua jornada começa agora!\n")
             u.aguarde(2500)
-            escreva("\nVocê deve cruzar as cinco regiões corrompidas... O futuro de Eldoria está em suas mãos.\n")
-            u.aguarde(3000)
-            limpa()
-            escreva("\nPrepare-se.\nA lenda começa agora!\n")
-            u.aguarde(1500)
             limpa()
             menu()
         }
@@ -142,7 +206,7 @@ programa {
             limpa()
             escreva("\n")
             escreva("┌────────────────────────────┐\n")
-            escreva("│     A JORNADA DO HERÓI     │\n")
+            escreva("│   A JORNADA DO MECÂNICO    │\n")
             escreva("└────────────────────────────┘\n")
             escreva("┌────────────────────────────┐\n")
             escreva("│   1. Novo Jogo             │\n")
@@ -222,24 +286,24 @@ programa {
 
         limpa()
         escreva("\n")
-        escreva("┌────────────────────────────┐\n")
-        escreva("│      CRIAÇÃO DO HERÓI      │\n")
-        escreva("├────────────────────────────┤\n")
-        escreva("│ Digite o nome do seu herói:│\n")
-        escreva("└────────────────────────────┘\n")
+        escreva("┌───────────────────────────────┐\n")
+        escreva("│      CRIAÇÃO DO MECÂNICO      │\n")
+        escreva("├───────────────────────────────┤\n")
+        escreva("│ Digite o nome do seu mecânico:│\n")
+        escreva("└───────────────────────────────┘\n")
         escreva("\nNome: ")
         leia(nomeHeroi)
         limpa()
 
         faca {
             escreva("\n")
-            escreva("┌───────────────────────────────────┐\n")
-            escreva("│        ESCOLHA SUA CLASSE         │\n")
-            escreva("├───────────────────────────────────┤\n")
-            escreva("│ 1. Guerreiro HP:", VIDA_BASE[0], " ATK:", ATAQUE_BASE[0], " DEF:", DEFESA_BASE[0]," │\n")
-            escreva("│ 2. Mago      HP:", VIDA_BASE[1], "  ATK:", ATAQUE_BASE[1], " DEF:", DEFESA_BASE[1],"  │\n")
-            escreva("│ 3. Arqueiro  HP:", VIDA_BASE[2], " ATK:", ATAQUE_BASE[2], " DEF:", DEFESA_BASE[2],"  │\n")
-            escreva("└───────────────────────────────────┘\n")
+            escreva("┌──────────────────────────────────────────────────┐\n")
+            escreva("│                ESCOLHA SUA CLASSE                │\n")
+            escreva("├──────────────────────────────────────────────────┤\n")
+            escreva("│ 1. Técnico de Suspensão     HP:", VIDA_BASE[0], " ATK:", ATAQUE_BASE[0], " DEF:", DEFESA_BASE[0]," │\n")
+            escreva("│ 2. Eletricista Automotivo   HP:", VIDA_BASE[1], "  ATK:", ATAQUE_BASE[1], " DEF:", DEFESA_BASE[1]," │\n")
+            escreva("│ 3. Mecânico Geral           HP:", VIDA_BASE[2], " ATK:", ATAQUE_BASE[2], " DEF:", DEFESA_BASE[2]," │\n")
+            escreva("└──────────────────────────────────────────────────┘\n")
             escreva("\nEscolha uma opção (1-3): ")
             leia(escolhaTexto)
 
@@ -266,7 +330,7 @@ programa {
                 xpParaProximoNivel = 75 * nivelHeroiAtual
 
                 heroiCriadoComSucesso()
-                u.aguarde(3000)
+                u.aguarde(5000)
             } senao {
                 escreva("Opção inválida. Digite um número entre 1 e 3.\n")
                 u.aguarde(1000)
@@ -278,7 +342,7 @@ programa {
     funcao heroiCriadoComSucesso(){
         limpa()
         escreva("\n")
-        escreva("Seu herói foi criado!\n\n")
+        escreva("Seu mecânico foi criado!\n\n")
         escreva("Nome: ", nomeHeroi, "\n")
         escreva("Classe: ", NOME_CLASSE[indiceClasseHeroi], "\n")
         escreva("Vida: ", vidaHeroiAtual, "/", vidaHeroiMaxima, "\n")
@@ -290,8 +354,9 @@ programa {
     
     funcao iniciarJornada() {
         limpa()
+        escreva("\n")
         escreva("A jornada de ", nomeHeroi, " começa agora!\n")
-        u.aguarde(2000)
+        u.aguarde(3000)
 
         enquanto (jogoEmAndamento e regiaoAtual < 5) {
             explorarRegiao()
@@ -314,18 +379,19 @@ programa {
 
     funcao explorarRegiao() {
         limpa()
+        escreva("\n")
         escreva("--- ", NOME_REGIAO[regiaoAtual], " ---\n")
         escreva(DESCRICAO_REGIAO[regiaoAtual], "\n\n")
-        u.aguarde(3500)
+        u.aguarde(10000)
 
-        se (regiaoAtual == 4) { // Castelo Dourado - Batalha contra o Chefe
+        se (regiaoAtual == 4) { // Oficina Federal - Batalha contra o Chefe
             escreva("Você sente uma presença maligna avassaladora...\n")
-            u.aguarde(2000)
-            escreva("O Devastador está à sua frente!\n")
-            u.aguarde(2000)
-            batalha(5) // Índice 5 é O Devastador
+            u.aguarde(4000)
+            escreva("A Receita Federal está à sua frente!\n")
+            u.aguarde(4000)
+            batalha(14) // Índice 14 é O "Devastador"
         } senao {
-            inteiro numBatalhas = u.sorteia(1, 3)
+            inteiro numBatalhas = u.sorteia(1, 5)
             escreva("Você encontrará ", numBatalhas, " ameaça(s) nesta região.\n")
             u.aguarde(2000)
 
@@ -337,7 +403,7 @@ programa {
                 escreva("--- Batalha ", i, " de ", numBatalhas, " em ", NOME_REGIAO[regiaoAtual], " ---\n")
                 u.aguarde(1500)
 
-                inteiro indiceInimigoSorteado = u.sorteia(0, 4)
+                inteiro indiceInimigoSorteado = u.sorteia(0, 13)
                 batalha(indiceInimigoSorteado)
 
                 se (nao jogoEmAndamento){
@@ -361,19 +427,21 @@ programa {
         logico heroiVenceu = falso
 
         limpa()
+        escreva("\n")
         escreva("⚔️ BATALHA INICIADA! ⚔️\n")
         escreva(nomeHeroi, " (HP: ", vidaHeroiAtual, "/", vidaHeroiMaxima, ") vs ", nomeInimigoBatalha, " (HP: ", vidaInimigoAtual, "/", VIDA_INIMIGO[idInimigo], ")\n\n")
-        u.aguarde(2000)
-
+        u.aguarde(5000)
+        limpa()
 
         enquanto (vidaHeroiAtual > 0 e vidaInimigoAtual > 0) {
-            escreva("--- Turno ", turno, " ---\n")
-            escreva("\nSua vez, ", nomeHeroi, "!\n")
-            escreva("Vida: ", vidaHeroiAtual, "/", vidaHeroiMaxima, "  |  ", nomeInimigoBatalha, " Vida: ", vidaInimigoAtual, "/", VIDA_INIMIGO[idInimigo], "\n")
+            escreva("\n")
+            escreva("--- Turno ", turno, " ---")
+            escreva("\n", nomeHeroi, " (HP: ", vidaHeroiAtual, "/", vidaHeroiMaxima, ")  |  ", nomeInimigoBatalha, " (HP: ", vidaInimigoAtual, "/", VIDA_INIMIGO[idInimigo],")\n")
+            escreva("\n")
             escreva("1. Atacar\n")
 
             faca{
-                escreva("Escolha sua ação (1): ")
+                escreva("Escolha sua ação: ")
                 leia(acaoHeroiTexto) // Lê como texto
                 se(acaoHeroiTexto != "1"){ // Compara com o texto "1"
                     escreva("Opção inválida! Pressione 1 para atacar.\n")
@@ -386,6 +454,7 @@ programa {
                     danoCausado = u.sorteia(1, 3)
                 }
                 vidaInimigoAtual -= danoCausado
+                escreva("\n")
                 escreva(nomeHeroi, " ataca ", nomeInimigoBatalha, " causando ", danoCausado, " de dano!\n")
                 u.aguarde(1500)
 
@@ -394,7 +463,7 @@ programa {
                     escreva(nomeInimigoBatalha, " foi derrotado!\n")
                     heroiVenceu = verdadeiro
                     u.aguarde(1500)
-                    se (idInimigo != 5) { 
+                    se (idInimigo != 14) { 
                         ganharXP(XP_INIMIGO[idInimigo])
                     }
                 }
@@ -404,13 +473,13 @@ programa {
                 escreva("\nVez de ", nomeInimigoBatalha, "!\n")
                 u.aguarde(1000)
 
-                se (idInimigo == 5 e turno % 2 == 0) { 
+                se (idInimigo == 14 e turno % 2 == 0) { 
                     inteiro curaChefe = u.sorteia(20, 40) 
                     vidaInimigoAtual += curaChefe
                     se (vidaInimigoAtual > VIDA_INIMIGO[idInimigo]) {
                         vidaInimigoAtual = VIDA_INIMIGO[idInimigo]
                     }
-                    escreva(nomeInimigoBatalha, " usa sua energia sombria e se cura em ", curaChefe, " HP!\n")
+                    escreva(nomeInimigoBatalha, " arrecada os tributos devidos e recupera ", curaChefe, " de HP!\n")
                     escreva(nomeInimigoBatalha, " Vida: ", vidaInimigoAtual, "/", VIDA_INIMIGO[idInimigo], "\n")
                     u.aguarde(2000)
                 }
@@ -431,13 +500,14 @@ programa {
                     retorne falso 
                 }
             }
+            limpa()
             turno++
             escreva("\n")
             u.aguarde(1000)
         } // Fim do while da batalha
 
         se (heroiVenceu) {
-            se (idInimigo == 5) { 
+            se (idInimigo == 14) { 
                 jogoVencido() 
                 retorne verdadeiro
             }
@@ -589,7 +659,7 @@ programa {
         limpa()
         escreva("💀 GAME OVER 💀\n\n")
         escreva("Sua jornada termina aqui, ", nomeHeroi, ".\n")
-        escreva("O Reino de Eldoria permanece nas sombras...\n\n")
+        escreva("A Oficina Central permanece nas sombras...\n\n")
         escreva("Pressione Enter para voltar ao menu...")
         cadeia temp 
         leia(temp)
@@ -600,8 +670,8 @@ programa {
         limpa()
         escreva("🏆 VITÓRIA! 🏆\n\n")
         escreva("Parabéns, ", nomeHeroi, "!\n")
-        escreva("Você derrotou O Devastador e a Pedra da Luz foi recuperada!\n")
-        escreva("O Reino de Eldoria está a salvo graças à sua bravura!\n")
+        escreva("Você derrotou a Receita Federal e a Pedra da Luz foi recuperada!\n")
+        escreva("A Oficina Central está a salvo graças à sua bravura!\n")
         escreva("Sua lenda será contada por eras!\n\n")
         u.aguarde(5000)
         creditos()
