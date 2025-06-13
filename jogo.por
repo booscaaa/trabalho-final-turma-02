@@ -59,41 +59,13 @@ programa {
 
     cadeia inimigosDificuldadeNormal[10] 
 
-    //inteiro inimigosFlorestaDaNevoa[10]
-    //cadeia nomeInimigos[10] = {"Esqueleto Espada Longa", "Esqueleto Armadurado", "Esqueleto Arqueiro", "Esqueleto Barbaro", "Esqueleto Brutamontes", "Esqueleto Demoniaco", "Esqueleto Corrompido", "Esqueleto Enforcado", "Esqueleto Real", "Esqueleto Plebeu"}
-    //inteiro vidaInimigoMaxima[10]
-    //inteiro defesaInimigo[10]
-    //inteiro manainimigoMaxima[10]
-    //inteiro xpInimigoFacil[10]
-
-
-
-
-    //inteiro inimigosVilaAbandonada[10]
-    //inteiro nomeInimigos[10] =  {"Bandido Comun", "Bandido Novato", "Bandido Experiente", "Bandido Berseker", "Pirata", "Capitão Esmaga Cranios", "Demonio Espreitador", "Soldado Corrupto", "Mago Corrompido", "Druida Da Chama Eterna"}
-    //inteiro vidaInimigoMaxima[10]
-    //inteiro defesaInimigo[10]
-   // inteiro manainimigoMaxima[10]
-    //inteiro xpInimigoFacil[10]
-
-
-
-    //inteiro inimigosCavernaSombria[10]
-    //inteiro nomeInimigos[10] = {"Lobo", "Lobo Cinzento", "Lobo Negro", "Alfa", "Humano Amaldiçoado", "Licantropo", "Licantropo Armadurado", "Licantropo Feiticeiro", "lobisomen Enfraquecido", "Licantropo Das Neves"}
-    //inteiro vidaInimigoMaxima[10]
-    //inteiro defesaInimigo[10]
-    //inteiro manainimigoMaxima[10]
-    //inteiro xpInimigoFacil[10]
-
-
-
     inteiro nomeInimigos[24] = {"Esqueleto Espada Longa", "Esqueleto Armadurado", "Esqueleto Arqueiro", "Esqueleto Barbaro", "Esqueleto Brutamontes", "Esqueleto Demoniaco", "Esqueleto Corrompido", "Esqueleto Enforcado", "Esqueleto Real", "Esqueleto Plebeu","Bandido Comun", "Bandido Novato", "Bandido Experiente", "Bandido Berseker", "Pirata", "Capitão Esmaga Cranios", "Demonio Espreitador", "Soldado Corrupto", "Mago Corrompido", "Druida Da Chama Eterna","Lobo", "Lobo Cinzento", "Lobo Negro", "Alfa", "Humano Amaldiçoado", "Licantropo", "Licantropo Armadurado", "Licantropo Feiticeiro", "lobisomen Enfraquecido", "Licantropo Das Neves", "Crocovile", "Crocovile Armadurado", "Crocovile Arqueiro", "Crocodilo Primal", "Crocodilo Lendario", "Crocovile Berseker", "Crocovile Brutamontes", "Crocovile Draconico", "Crocovile Tita", "Crocovile Enforcado", "Demonio Vermelho", "Demonio Palido", "Rebelion", "Moscas", "Cerberus"}
-    inteiro vidaInimigoMaxima[24] = {"0", "1", "2", "3", "4","5","6","7","8","9","10","11","12","13","14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}
-    inteiro vidaInimigoAtual[24] = {"0", "1", "2", "3", "4","5","6","7","8","9","10","11","12","13","14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}
-    inteiro defesaInimigo[24]  = {"0", "1", "2", "3", "4","5","6","7","8","9","10","11","12","13","14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}
-    inteiro manainimigoMaxima[24] = {"0", "1", "2", "3", "4","5","6","7","8","9","10","11","12","13","14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}
-    inteiro xpInimigoFacil[24] = {"0", "1", "2", "3", "4","5","6","7","8","9","10","11","12","13","14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}
-    inteiro ataqueInimigo
+    inteiro vidaInimigoMaxima[24] = {150,150,150,150,150,200,200,200,200,200,250,250,250,250,250,300,300,300,300,300,350,350,350,350,350}
+    inteiro vidaInimigoAtual[24] = {150,150,150,150,150,200,200,200,200,200,250,250,250,250,250,300,300,300,300,300,350,350,350,350,350}
+    inteiro defesaInimigo[24]  = {10,9,13,12,10,9,8,9,10,7,10,9,7,10,13,9,3,10,8,10,14,10,9,8}
+    inteiro manainimigoMaxima[24] = {100,130,140,150,155,123,0,330,250,190,178,180,198,177,290,300,340,230,430,500,322,540,650,430}
+    inteiro xpInimigoFacil[24] = {30,20,10,30,50,20,27,11,76,34,32,90,11,15,54,65,32,43,21,19,98,76,32,90}
+    inteiro ataqueinimigo[24] = {13, 14, 15,16,17,18,18,18,17,18,19,20,19,18,20,19,18,19,18,18,19,19,17,20}
 
 
 
@@ -464,7 +436,7 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
         logico iniciarBatalhar
         fugiuDeCombate = falso
         iniciarBatalhar = verdadeiro
-        enquanto (vidaInimigoMaxima[a] > 0 e vidaInimigoAtual[a] > 0) {
+        enquanto (vidaInimigoMaxima[a] >= 0 e vidaInimigoAtual[a] >= 0) {
             limpa()
             escreva("=== BATALHA ===\n")
             escreva(nomeAventureiro, ": "," HP:", hpAtual, "/", hpMaximo)
@@ -485,9 +457,9 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
                 se(ataqueBase < defesaInimigo){
 
                 }
-                inteiro dano = u.sorteia
-                    u.sorteia(1,10)
-                    vidaInimigoAtual -= dano
+              
+                    inteiro dano = calcularDano(12, ataqueBase)
+                    vidaInimigoAtual[a] -= dano
                     escreva("\nVocê causa ", dano, " de dano!\n")
                     u.aguarde(1500)
                     pare
@@ -510,33 +482,36 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
             }
             
             // Verifica se inimigo foi derrotado
-            se (vidaInimigoAtual <= 0) {
-                escreva("\nVocê derrotou ", nomeInimigos, "!\n")
+            se (vidaInimigoAtual[a] <= 0) {
+                escreva("\nVocê derrotou ", nomeInimigos[a], "!\n")
                 u.aguarde(2000)
                 retorne verdadeiro
             }
             
             // Turno do inimigo
-            inteiro danoInimigo = calcularDano(ataqueInimigo, falso)
+            inteiro danoInimigo = calcularDano(10, ataqueinimigo[a])
             hpAtual -= danoInimigo
-            escreva("\n", nomeInimigos, " causa ", danoInimigo, " de dano!\n")
+            escreva("\n", nomeInimigos[a], " causa ", danoInimigo, " de dano!\n")
             u.aguarde(1500)
             
             // Verifica se jogador foi derrotado
             se (hpAtual <= 0) {
-                escreva("\nVocê foi derrotado por ", nomeInimigos, "!\n")
+                escreva("\nVocê foi derrotado por ", nomeInimigos[a], "!\n")
                 u.aguarde(2000)
                 retorne falso
-                iniciarAventura()
-                calcularDano()
+                encerrarJogo()
+                calcular()
+                
             }
+          
         }
-  }funcao calcularDano(){
-    inteiro d10 = a + ataqueBase
-    inteiro d10Inimigo = a + ataqueInimigo
-    inteiro d12 = b + ataqueBase
-    inteiro d12Inimigo = b + ataqueInimigo
   }
+  funcao inteiro calcularDano(inteiro numeroFinal, inteiro danoDoAtaque){
+
+    inteiro resultado = u.sorteia(1,numeroFinal) + danoDoAtaque
+    retorne resultado
+  }
+
   funcao mostrarStatusPersonagem() {
         escreva("\n=== STATUS ===\n")
         escreva("Nome: ", nomeAventureiro, "\n")
