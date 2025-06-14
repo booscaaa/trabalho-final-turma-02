@@ -8,6 +8,7 @@ programa {
   inteiro defesaDoPersonagem = 0
   inteiro xpDoPersonagem = 0 
   inteiro nivel = 1
+  inteiro limitadorDeNivel = 100
   inteiro auxVidaDoPersonagem = 0
   inteiro sorteDoPersonagem = 0
 
@@ -29,12 +30,12 @@ programa {
   inteiro mEUlOCALaTUAL = 0
   inteiro localizacao = 0
 
-  cadeia inimigosDaCampanhaNormal[15] = {"Lobo das Névoas","El Gigante","Dr.Salvador","Chaves","Seu Madruga","Chapolin Colorado","Yanagisawa","Helga"}
-  inteiro vIdaDosInimigos[15] = {30,100,60,30,60,80,1,70}
-  inteiro aUXVIDADOSINIMIGOS[15] = {30,100,60,30,60,80,1,70}
-  inteiro aTaqueDosInimigos[15] = {12,15,30,30,35,45,1,40}
-  inteiro dEfesaDosInimigos[15] = {15,8,20,30,30,30,1,30}
-  inteiro xPDosInimigos[15] = {25,75,125,30,90,150,100,120}
+  cadeia inimigosDaCampanhaNormal[15] = {"Lobo das Névoas","El Gigante","Dr.Salvador","Chaves","Seu Madruga","Chapolin Colorado","Yanagisawa","Helga","Verdugo"}
+  inteiro vIdaDosInimigos[15] = {30,100,60,30,60,80,1,70,200}
+  inteiro aUXVIDADOSINIMIGOS[15] = {30,100,60,30,60,80,1,70,200}
+  inteiro aTaqueDosInimigos[15] = {12,15,30,30,35,45,1,40,30}
+  inteiro dEfesaDosInimigos[15] = {15,8,20,30,30,30,1,30,40}
+  inteiro xPDosInimigos[15] = {25,75,125,40,100,150,120,125,225}
 
 
   inteiro passouPelaIntroducaoDaVilaAbandonada = 0
@@ -47,46 +48,53 @@ programa {
   inteiro passouPelaQualCaminhoSeguir = 0
   inteiro passouPelaLiberdadeNaCavernaSombria = 0
   inteiro passouPelaQualCaminhoSeguirPARTE2 = 0
+  inteiro passouPelaBatalhaContraVerdugo = 0
+  inteiro passouPelaRecompensaFinalCaverna = 0
+
+  inteiro passouPelaIntroducaoDoPantano = 0
+  inteiro passouPelasArmadilhasDoPantano
 
  
 
   funcao inicio() {
     enquanto(vidaDoPersonagem > 0){
-     se(vidaDoPersonagem > 0){
+      se(vidaDoPersonagem > 0){
 
-      menu()
+        menu()
 
-     }senao{
+      } senao{
 
       pare
 
-     }
+      }
      
     }
 
-    
-  
   }
+
   funcao menu(){ 
-    
-    cadeia opcao
+    se(vidaDoPersonagem > 0){
 
-    u.aguarde(1000)
-    escreva("________________________\n")
-    u.aguarde(100)
-    escreva("│                      │\n")
-    u.aguarde(100)
-    escreva("│    i.Novo Jogo       │\n")
-    u.aguarde(100)
-    escreva("│   ii.Créditos        │\n")
-    u.aguarde(100)
-    escreva("│  iii.Sair do jogo    │\n")
-    u.aguarde(100)
-    escreva("│                      │\n")
-    u.aguarde(100)
-    escreva("‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\n")
+      cadeia opcao
 
-    dasOpcoes(opcao)
+      u.aguarde(1000)
+      escreva("________________________\n")
+      u.aguarde(100)
+      escreva("│                      │\n")
+      u.aguarde(100)
+      escreva("│    i.Novo Jogo       │\n")
+      u.aguarde(100)
+      escreva("│   ii.Créditos        │\n")
+      u.aguarde(100)
+      escreva("│  iii.Sair do jogo    │\n")
+      u.aguarde(100)
+      escreva("│                      │\n")
+      u.aguarde(100)
+      escreva("‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\n")
+
+      dasOpcoes(opcao)
+
+    }
 
   }
 
@@ -100,7 +108,6 @@ programa {
           novoJogo()
           registrarPersonagem()
           introducaoPosCriacao()
-          cavernaSombria()
           florestaDaNevoa()
           
           se(vidaDoPersonagem > 0){
@@ -108,6 +115,9 @@ programa {
           }
           se(vidaDoPersonagem > 0){
             cavernaSombria()
+          }
+          se(vidaDoPersonagem > 0){
+            pantanoDosLamentos()
           }
           
           
@@ -122,36 +132,31 @@ programa {
 
         
       }
+
     }
     
   }
+
   funcao novoJogo(){
     
-
     inteiro contador = 3
 
     //u.aguarde(1000)
     limpa()
     escreva("BORA COMEÇAR ENTÃO...não sei se foi uma boa ideia.\n")
     escreva("\n")
-    
     escreva("Há muito tempo, no Reino de Eldoria, a paz era mantida pela mística Pedra da Luz, protegida pelos Anciãos do Castelo Dourado.\n")
     escreva("\n")
-    
     escreva("Um dia, uma força sombria conhecida como O Devastador invadiu o reino, roubando a relíquia sagrada e mergulhando as terras em trevas e caos.\n")
-    
     escreva("Vilas foram saqueadas, florestas corrompidas, e criaturas sombrias começaram a vagar pelas regiões.\n")
     escreva("\n")
-    
     escreva("Diante da crise, uma antiga profecia se cumpriu: um herói escolhido surgirá das sombras para restaurar a luz. Você é esse herói.\n")
     escreva("\n")
-    
     escreva("Sua missão é atravessar cinco regiões dominadas pelo mal, enfrentando inimigos, evoluindo suas habilidades e se preparando para\n")
     escreva("confrontar O Devastador no Castelo Dourado.\n")
-    
     escreva("A jornada será repleta de perigos, escolhas e batalhas. Seu destino e o de Eldoria estão entrelaçados.\n")
     
-   seguir()
+    seguir()
 
   }
 
@@ -164,10 +169,8 @@ programa {
     limpa()
 
     escreva(nomeDoPersonagem,"? Ok...cada um com suas ideias.\n")
+    escreva("Enfim, vamos continuar, escolha sua classe.\nUm ponto importante...o ataque será sorteado, então a cada vez que você atacar, o seu dano será rolado usando um\ndado d20, e você pode dar 1 de dano ou até 20, e cada classe adicionará mais uma quantidade de dano garantida.\nVamos exemplificar, o guerreiro irá adicionar 6 ao número que você tirar no dado, então se você tirar 10, o seu dano será de 15.\nOutro ponto importante, será possível pegar armas para aumentar seu ataque durante a campanha.\nDITO ISSO, temos 3 opções:\n")
     
-    escreva("Enfim, vamos continuar, escolha sua classe.\nUm ponto importante...o ataque será sorteado, então a cada vez que você atacar, o seu dano será rolado usando um\ndado d20, e você pode dar 1 de dano ou até 20, e cada classe adicionará mais uma quantidade de dano garantida.\nVamos exemplificar, o guerreiro irá adicionar 5 ao número que você tirar no dado, então se você tirar 10, o seu dano será de 15.\nDITO ISSO, temos 3 opções:\n")
-    
-      
     classesDoPersonagem()
 
   }
@@ -176,71 +179,64 @@ programa {
 
 
   funcao classesDoPersonagem(){
-      inteiro contador = 3
+    inteiro contador = 3
 
-      escreva("\nGuerreiro: Se você quer um personagem TANKUDÃO, pega ele, os status dele são:\nVida: 40\nDefesa: 33\nAtaque: +6\n")
-      //u.aguarde(1000)
-      escreva("\nMago: Se você quer um canhão de vidro, pega ele, os status dele são:\nVida: 15\nDefesa: 20\nAtaque: +20\n")
-      //u.aguarde(1000)
-      escreva("\nArqueiro: Se você quer um cara mais equilibrado, pega ele, os status dele são:\nVida: 30\nDefesa: 25\nAtaque: +10\n")
-      //u.aguarde(1000)
+    escreva("\nGuerreiro: Se você quer um personagem TANKUDÃO, pega ele, os status dele são:\nVida: 40\nDefesa: 33\nAtaque: +6\n")
+    //u.aguarde(1000)
+    escreva("\nMago: Se você quer um canhão de vidro, pega ele, os status dele são:\nVida: 15\nDefesa: 20\nAtaque: +20\n")
+    //u.aguarde(1000)
+    escreva("\nArqueiro: Se você quer um cara mais equilibrado, pega ele, os status dele são:\nVida: 30\nDefesa: 25\nAtaque: +10\n")
+    //u.aguarde(1000)
       
-      enquanto(classe != "Guerreiro" e classe != "Mago" e classe != "Arqueiro" e classe != "Lorde Faisão das Trevas"){
+    enquanto(classe != "Guerreiro" e classe != "Mago" e classe != "Arqueiro" e classe != "Lorde Faisão das Trevas"){
 
-        escreva("\nEntão ", nomeDoPersonagem,", qual classe você deseja escolher?(escreva o nome certo por favor)\n")
-        leia(classe)
+      escreva("\nEntão ", nomeDoPersonagem,", qual classe você deseja escolher?(escreva o nome certo por favor)\n")
+      leia(classe)
 
-      }
+    }
     
-      limpa()
-      escreva("Perfeito, agora vou mostrar seus status iniciais:\nNome: ", nomeDoPersonagem,"\n")
+    limpa()
+    escreva("Perfeito, agora vou mostrar seus status iniciais:\nNome: ", nomeDoPersonagem,"\n")
       
-      se(classe == "Guerreiro"){
-        vidaDoPersonagem = 40
-        defesaDoPersonagem = 33
-        ataqueDoPersonagem = 6
-        sorteDoPersonagem = 1
-        escreva("Vida: ", vidaDoPersonagem,"\nDefesa: ", defesaDoPersonagem,"\nAtaque: ", ataqueDoPersonagem,"\n")
+    se(classe == "Guerreiro"){
+      vidaDoPersonagem = 40
+      defesaDoPersonagem = 33
+      ataqueDoPersonagem = 6
+      sorteDoPersonagem = 1
+      escreva("Vida: ", vidaDoPersonagem,"\nDefesa: ", defesaDoPersonagem,"\nAtaque: ", ataqueDoPersonagem,"\n")
 
-      } senao se(classe == "Mago"){
-        vidaDoPersonagem = 15
-        defesaDoPersonagem = 20
-        ataqueDoPersonagem = 20
-        sorteDoPersonagem = 3
-        escreva("Vida: ", vidaDoPersonagem,"\nDefesa: ", defesaDoPersonagem,"\nAtaque: ", ataqueDoPersonagem,"\n")
+    } senao se(classe == "Mago"){
+      vidaDoPersonagem = 15
+      defesaDoPersonagem = 20
+      ataqueDoPersonagem = 20
+      sorteDoPersonagem = 3
+      escreva("Vida: ", vidaDoPersonagem,"\nDefesa: ", defesaDoPersonagem,"\nAtaque: ", ataqueDoPersonagem,"\n")
 
-      } senao se(classe == "Arqueiro"){
-        vidaDoPersonagem = 30
-        defesaDoPersonagem = 25
-        ataqueDoPersonagem = 10
-        sorteDoPersonagem = 2
-        escreva("\nVida: ", vidaDoPersonagem,"\nDefesa: ", defesaDoPersonagem,"\nAtaque: ", ataqueDoPersonagem,"\n")
+    } senao se(classe == "Arqueiro"){
+      vidaDoPersonagem = 30
+      defesaDoPersonagem = 25
+      ataqueDoPersonagem = 10
+      sorteDoPersonagem = 2
+      escreva("\nVida: ", vidaDoPersonagem,"\nDefesa: ", defesaDoPersonagem,"\nAtaque: ", ataqueDoPersonagem,"\n")
 
-      } senao se(classe == "Lorde Faisão das Trevas"){
-        vidaDoPersonagem = 80
-        defesaDoPersonagem = 40
-        ataqueDoPersonagem = 60
-        sorteDoPersonagem = 16
-      }
+    } senao se(classe == "Lorde Faisão das Trevas"){
+      vidaDoPersonagem = 80
+      defesaDoPersonagem = 40
+      ataqueDoPersonagem = 60
+      sorteDoPersonagem = 16
+    }
 
-      escreva("XP: ", xpDoPersonagem,"\nNível: ", nivel,"\n")
-      auxVidaDoPersonagem = vidaDoPersonagem
+    escreva("XP: ", xpDoPersonagem,"\nNível: ", nivel,"\n")
+    auxVidaDoPersonagem = vidaDoPersonagem
       
-      seguir()
+    seguir()
 
   }
-
-
-
-
-
 
   funcao introducaoPosCriacao(){
     limpa()
     
-    
     escreva("PERFEITO, bora começar de fato com a sua jornada, que provavelmente será bem sangrenta e sofrida...\n")
-    
 
   }
 
@@ -258,14 +254,9 @@ programa {
     status()
 
     escreva("\n",nomeDoPersonagem," começou sua jornada maluca na ", regioes[0],", um lugar que era frequentemente usado para realizar acampamentos\n")
-    
     escreva("e piqueniques entre amigos e família, mas depois que aquele VAGABUNDO do \"Devastador\"(ninguém sabe o real nome dele) invadiu Eldoria,\n")
-    
     escreva("ninguém mais tem liberdade pra nada, não é seguro ir ali, ainda mais sabendo que criaturas estranhas e poderosas vivem naquela\n")
-    
     escreva("floresta, e nosso coitado ",nomeDoPersonagem," se deparará com situações nada agradáveis...\n")
-    
-
     
     seguir()
     
@@ -274,9 +265,9 @@ programa {
       salvarOcachorroDoResidentEvil4()
       
       liberdadeNaFloresta()
-     
 
       batalhaContraLobo()
+
       se(vidaDoPersonagem> 0){
       
         descansarNaFloresta()
@@ -286,6 +277,7 @@ programa {
         liberdadeNaFlorestaPARTE2()
 
         batalhaContraElGigante()
+
         se(vidaDoPersonagem > 0){
 
           descansarNaFloresta()
@@ -302,9 +294,6 @@ programa {
 
       }
 
-      
-
-
     } senao{
 
     }
@@ -314,15 +303,20 @@ programa {
     se(vidaDoPersonagem > 0){ 
       escreva("\nVocê se sente cansado depois da última batalha e decide tirar um cochilo, você avistou uma arvoré proxima que você pode se escorar e descansar")
       escreva("\nSua vida foi restaurada em 5 pontos!(isso se você tiver tomado 5 de dano na última batalha).\n")
+      
       se((vidaDoPersonagem + 5) > auxVidaDoPersonagem){
         vidaDoPersonagem = auxVidaDoPersonagem
+
       } senao{
         vidaDoPersonagem = vidaDoPersonagem + 5
+
       }
+
       seguir()
       
     } senao{
       taMorto()
+
     }
   }
  
@@ -330,13 +324,10 @@ programa {
     limpa()
     status()
     
-    escreva("\nSeguimos!\nVocê caminha vagarosamente pela Floresta, vendo como aquele lugar é sombrio, e com tanta Névoa que nem dá pra ver um palmo a sua frente\nQuando ouve sons de passos próximos.\n")
-    
+    escreva("\nSeguimos!\nVocê caminha vagarosamente pela Floresta, vendo como aquele lugar é sombrio, e com tanta Névoa que nem dá pra ver um palmo a sua frente\nquando ouve sons de passos próximos.\n")
     escreva("Calmamente, você se aproxima e acaba sendo surpreendido por um Lobo, que te ataca e te derruba no chão.\n")
-   
     escreva("Isso te machuchou(levou 1 de dano) mas por sorte, você consegue se livrar dele, mas ele está rosnando, a batalha irá começar!\n")
     
-
     cadeia opcaoDePreparado
 
     escreva("Está preparado? Sim? Não?\n")
@@ -345,22 +336,24 @@ programa {
     enquanto(opcaoDePreparado != "Sim"){
       escreva("\nÉ Sim ou Sim, não escreva outra coisa e muito menos tente fugir:\n")
       leia(opcaoDePreparado)
+
     }
+
     escreva("Isso mesmo, boa sorte(você vai precisar)\n")
     vidaDoPersonagem = vidaDoPersonagem - 1
     
     se(classe == "Guerreiro"){
       dEfesaDosInimigos[0] = dEfesaDosInimigos[0] - 2
+
     }
     inteiro contador = 0
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[0] > 0){
       
-
       limpa()
 
-      
       contador++
       escreva("Rodada ",contador)
+
       statusDuranteBatalhaCOntraLoboDasNevoas()
 
       opcaoNaBatalha()
@@ -372,30 +365,34 @@ programa {
       u.aguarde(1200)
 
       sorteio = u.sorteia(1,20) + ataqueDoPersonagem
+
       se(sorteio - dEfesaDosInimigos[0] > 0){
         vIdaDosInimigos[0] = vIdaDosInimigos[0] - (sorteio - dEfesaDosInimigos[0])
 
         escreva("Seu ataque + o dado deu: ", sorteio,"\n")
         escreva("Dano dado: ", sorteio  - dEfesaDosInimigos[0],"\n")
+
       } senao{
         escreva("Seu ataque + o dado deu: ", sorteio,"\n")
         escreva("Seu dano não superou a defesa do ",inimigosDaCampanhaNormal[0] ,"\n")
+
       }
       se(vIdaDosInimigos[0] <= 0){
         vIdaDosInimigos[0] = 0
+
         pare
       } 
 
-
       u.aguarde(2000)
+
       se(defesaDoPersonagem > 27 e contador == 2){
         escreva("\nO ",inimigosDaCampanhaNormal[0]," começou a ficar estranho, e de repente...AS COSTAS DELE EXPLODEM, liberando uns tentáculos\n")
         escreva("Esses tentáculos vão ajudo-lo a trucidar você!\n")
         aTaqueDosInimigos[0] = aTaqueDosInimigos[0] + 10
         u.aguarde(5000)
+
       }
       
-
       sorteio = 0
       escreva("\nVez de ", inimigosDaCampanhaNormal[0])
 
@@ -408,8 +405,10 @@ programa {
 
         escreva("\nO ataque + o dado do ",inimigosDaCampanhaNormal[0],": ", sorteio,"\n")
         escreva("Dano dado: ", sorteio  - defesaDoPersonagem,"\n")
+
         se(vidaDoPersonagem < 0){
           vidaDoPersonagem = 0
+
         }
         
       } senao{
@@ -423,31 +422,26 @@ programa {
         escreva(nomeDoPersonagem," MORREU...\n")
         taMorto()
         u.aguarde(3000)
-      
         limpa()
-        
-
-        
+            
       }  
       
       u.aguarde(1000)
       
-
      }
     
       se(vidaDoPersonagem > 0){
-      u.aguarde(1000)
-      limpa()
-      status()
-      escreva("\nPARABÉNS, você conseguiu derrotar o ", inimigosDaCampanhaNormal[0],"\n")
-      escreva("\nXP obtido:",xPDosInimigos[0],"\n")
+        u.aguarde(1000)
+        limpa()
+        status()
+        escreva("\nPARABÉNS, você conseguiu derrotar o ", inimigosDaCampanhaNormal[0],"\n")
+        escreva("\nXP obtido:",xPDosInimigos[0],"\n")
 
-      subirDeNivelContraLoboDasNevoas()
-      
-    
-      seguir()
-      limpa()
-      status()
+        subirDeNivelContraLoboDasNevoas()
+        
+        seguir()
+        limpa()
+        status()
       
       } 
 
@@ -455,34 +449,30 @@ programa {
 
   funcao subirDeNivelContraLoboDasNevoas() {
       
-      xpDoPersonagem = xpDoPersonagem + xPDosInimigos[0]
-      enquanto(xpDoPersonagem > 99){
-        escreva("\nPARABÉNS, subiu do nível ",nivel," para o nível ",nivel + 1)
-        escreva("\nAtributos ganhos:\nVida + 5\tDefesa + 5 e Ataque + 5\n")
-        auxVidaDoPersonagem = auxVidaDoPersonagem + 5
-        vidaDoPersonagem = vidaDoPersonagem + 5
-        defesaDoPersonagem = defesaDoPersonagem + 5
-        ataqueDoPersonagem = ataqueDoPersonagem + 5
-        nivel = nivel + 1
-        xpDoPersonagem = xpDoPersonagem - 100
+    xpDoPersonagem = xpDoPersonagem + xPDosInimigos[0]
+    enquanto(xpDoPersonagem > 99){
+      escreva("\nPARABÉNS, subiu do nível ",nivel," para o nível ",nivel + 1)
+      escreva("\nAtributos ganhos:\nVida + 5\tDefesa + 5 e Ataque + 5\n")
+      auxVidaDoPersonagem = auxVidaDoPersonagem + 5
+      vidaDoPersonagem = vidaDoPersonagem + 5
+      defesaDoPersonagem = defesaDoPersonagem + 5
+      ataqueDoPersonagem = ataqueDoPersonagem + 5
+      nivel = nivel + 1
+      xpDoPersonagem = xpDoPersonagem - 100
         
-        se(xpDoPersonagem > 99){
-          escreva("\nVocê vai subir mais um nível, pois ta com o XP acima de 100\n")
-          seguir()
-        }
+      se(xpDoPersonagem > 99){
+        escreva("\nVocê vai subir mais um nível, pois ta com o XP acima de 100\n")
+        seguir()
       }
+    }
   }
 
 
   funcao statusDuranteBatalhaCOntraLoboDasNevoas(){
-    
     escreva("\nUsuário:",nomeDoPersonagem,"\t│\t",vidaDoPersonagem,"/",auxVidaDoPersonagem,"\n")
     escreva("Inimigo:",inimigosDaCampanhaNormal[0],"\t│\t",vIdaDosInimigos[0],"/",aUXVIDADOSINIMIGOS[0],"\n\n")
+
   }
-
-
-
-
 
   funcao liberdadeNaFloresta(){
     cadeia opcaoDaLiberdade
@@ -493,17 +483,15 @@ programa {
       status()
       escreva("\nO que deseja fazer agora ",nomeDoPersonagem," ?\n\n1-Seguir em frente\n2-Explorar o local\n3-Voltar região\n")
       leia(opcaoDaLiberdade)
+
       escolha(opcaoDaLiberdade){
         
-
         caso "1":
 
         escreva("Ok então, bora seguir.")
         u.aguarde(1000)
         limpa()
 
-        
-          
         pare
 
         caso "2":
@@ -514,107 +502,105 @@ programa {
           limpa()
           status()
           escreva("\nVocê resolveu explorar o local, mas para conseguir algo bom, precisa ter sorte no dado d20, e você tirou...",u.aguarde(1000),sorteio," no dado\n")
+          
           se(sorteio > 15){
-            u.aguarde(2000)
+            //u.aguarde(2000)
             escreva("\n.")
-            u.aguarde(500)
+            //u.aguarde(500)
             escreva(".")
-            u.aguarde(500)
+            //u.aguarde(500)
             escreva(".")
-            u.aguarde(500)
+            //u.aguarde(500)
             escreva("Você sendo um completo curioso, decidiu dar uma olhada ao seu redor, e avistou uma macieira, e por estar com muita fome, decide\n")
-            u.aguarde(2500)
+            //u.aguarde(2500)
             escreva("sacudir a árvore pra maça cair...e você vê algo caindo na sua cabeça e")
-            u.aguarde(2000)
+            //u.aguarde(2000)
             escreva(".")
-            u.aguarde(500)
+            //u.aguarde(500)
             escreva(".")
-            u.aguarde(500)
+            //u.aguarde(500)
             escreva(".")
-            u.aguarde(500)
+            //u.aguarde(500)
             escreva("\nPOW, você sente uma dor na cabeça, e quando você olha, é um frasco com um líquido vermelho dentro(tomara que não seja sangue).\n")
-            u.aguarde(2500)
+            //u.aguarde(2500)
             escreva("PARABÉNS, DEU SORTE, você conseguiu uma poção de recuperação de vida(recupera 15 do seu HP).\n")
-            u.aguarde(1000)
-            
+            //u.aguarde(1000)
             
             escreva("\nVocê quer utilizar ela agora ou guarda-la pra usar futuramente?\n\n1-Usar\n2-Guardar\n")
             leia(opcao)
+
             enquanto(opcao != 2 e opcao != 1){
               escreva("escreva direito por favor: ")
               leia(opcao)
+
             }
+
             limpa()
+
             escolha(opcao){
               caso 1:
                 pOSSUIpOCAO = 1
 
                 se(vidaDoPersonagem == auxVidaDoPersonagem){
-                escreva("\nPRA QUE TU VAI USAR SENDO QUE TU TA COM A VIDA CHEIA? vou te poupar dessa, vou deixar tua poção guardada\n")
-                pOSSUIpOCAO = 1
-                
+                  escreva("\nPRA QUE TU VAI USAR SENDO QUE TU TA COM A VIDA CHEIA? vou te poupar dessa, vou deixar tua poção guardada\n")
+                  pOSSUIpOCAO = 1
+                  seguir()
+                  
                 } senao{
-                pocao()
+                  pocao()
                 
                 }
 
-                
-          
               pare
 
               caso 2:
               status()
               casoEncontrePocao()
               seguir()
-              
 
             }
-
 
           } senao se(sorteio > 10 e sorteio < 16){
             encontrouOcadaverComAsBotas = 1
             cadeia opcao
             escreva("\nEstava você explorando a floresta, vendo se achava algo de útil,\n")
-
             escreva("e para sua surpresa, viu uma CACETADA de moscas zumbindo e rodeando algo atrás de um arbusto.\n")
-
             escreva("Você, sendo um completo curioso, decide ir ali pra ver o motivo das moscas estarem tão agitadas e rodeando o arbusto,\n")
-
             escreva("e quando tu chega ali...você vê um corpo estirado no chão, com marcas afiadas no corpo todo,\ne dentre várias características estranhas, tem algo que chama sua atenção!\n")
-
             escreva("O cádaver estava usando um saco de pão na cabeça, mas o que realmente te intrigou foram as botas dele, e logo você pensa:\n",nomeDoPersonagem,": E se eu pegar pra mim?\n")
-
             escreva("\nAgora a escolha é sua, você quer:\n1-Pegar as botas\n2-Deixar elas para trás\n")
             leia(opcao)
+
             enquanto(opcao != "1" e opcao != "2"){
               escreva("Opção 1 ou opção 2?\n")
               leia(opcao)
+
             }
             se(opcao == "1"){
-              
-                escreva("\nVocê decidiu pegar as botas, não são tão fortes(afinal, essa é a primeira região né), mas ajuda na sua defesa.\n")
-                escreva("Defesa obtida das botas: +2")
-                botas[0] = 1
-                botas[1] = 2
-                defesaDoPersonagem = defesaDoPersonagem + botas[1]
-              } senao se(opcao == "2"){
+              escreva("\nVocê decidiu pegar as botas, não são tão fortes(afinal, essa é a primeira região né), mas ajuda na sua defesa.\n")
+              escreva("Defesa obtida das botas: +2")
+              botas[0] = 1
+              botas[1] = 2
+              defesaDoPersonagem = defesaDoPersonagem + botas[1]
+
+            } senao se(opcao == "2"){
+              escreva("\nOk então né, as botas concediam 2 de defesa pra você, (tu é muito fresco pra pegar botas de um cadáver né?)\n")
                 
-                escreva("\nOk então né, as botas concediam 2 de defesa pra você, (tu é muito fresco pra pegar botas de um cadáver né?)\n")
-                
-              } 
-              seguir()
-            
+            } 
+            seguir()
             
           } senao se(sorteio > 1 e sorteio < 11){
             escreva("\nVocê decide explorar o local tranquilamente pra ver se encontra alguma coisa, mas você procura...procura...\n")
             escreva("procura...e nada, você só perdeu tempo, não foi dessa vez que você achou algo bom kkkkk(peço perdão pela risada).\n")
             seguir()
+
           } senao se(sorteio == 1){
             escreva("\nVocê vai tentar explorar a floresta, todo corajoso e confiante de que você sai dali com umas 3 poções de cura e uma espada que dá 100 de dano,\n")
             escreva("porém, hoje não é seu dia, imediatamente depois de começar a explorar, uma criatura que você não sabe se é uma águia esquisita ou o que,\n")
             escreva("voa em sua direção pra te atacar, você tenta correr, mas é inútil, ela te alcança e te acerta um razante lindo(tomou 3 de dano).\n")
             seguir()
             vidaDoPersonagem = vidaDoPersonagem - 3
+
           }
 
         pare
@@ -626,12 +612,12 @@ programa {
           escreva("\nVocê já está na região 1, não tem pra onde voltar\n")
           liberdadeNaFloresta()
           
-          
         } 
 
         pare
 
       }
+
     }
     
   }
@@ -647,7 +633,9 @@ programa {
     enquanto(opcao != "1" e opcao != "2"){
       escreva("\nOpção 1 ou Opção 2?\n")
       leia(opcao)
+
     }
+
     limpa()
     status()
     se(opcao == "1"){
@@ -656,9 +644,11 @@ programa {
       escreva("ele começa a correr e some no meio das árvores e da névoa.\n")
 
       salvaCachorro = 1
+
     } senao{
       escreva("\nVocê decide ser uma pessoa completamente sem alma e sem caráter e decide ignorar o pobre cachorro!")
       escreva("\nEle continua ali chorando de dor, e você simplesmente vai ignora-lo(tomara que você caia em uma armadilha de urso!).\n")
+
     }
     seguir()
 
@@ -672,15 +662,16 @@ programa {
       escreva("\nCaminhando depois do descanso, você se depara com uma armadilha de urso, mas você desvia tranquilamente.\n")
       escreva("(Um herói que salva o cachorro da armadilha não merece sofrer).\n")
 
-    
     } senao{
       escreva("\nDepois desse descanso, você volta a caminhar pela floresta quando SENTE UMA DOR NA PERNA...você olha pra ela e\n")
       escreva("percebe que pisou em uma armadilha de urso, com dificuldades, você se livra da armadilha, mas sua perna ficou machucada\n")
       escreva("(talvez tenha sido o Karma, afinal você não salvou o cachorro antes NÉ?).")
       escreva("\nDano recebido: 3\n")
       vidaDoPersonagem = vidaDoPersonagem - 3
+
     }
     seguir()
+
   }
 
   funcao liberdadeNaFlorestaPARTE2(){
@@ -707,9 +698,10 @@ programa {
           sorteio = u.sorteia(sorteDoPersonagem,20)
           
           escreva("\nVocê resolveu explorar o local, mas para conseguir algo bom, precisa ter sorte no dado d20, e você tirou...",u.aguarde(1000),sorteio," no dado")
+
           se(sorteio > 15){
             facao()
-            seguir()
+          
           } senao se(sorteio > 9 e sorteio < 16){
             cadeia opcao
             escreva("\nVocê resolveu fuçar pra ver se achava alguma coisa boa, e achou!\n")
@@ -718,21 +710,25 @@ programa {
             escreva("Você quer pegar esse trapo...digo, esse peitoral?\n1-Sim\n2-Não, não quero esse trapo\n")
             leia(opcao)
             escolheESSAouESSA(opcao)
+
             se(opcao == "1"){
               escreva("\nAí sim, é um peitoral podre, mas já é uma ajudinha(concede 2 de defesa)\n")
               peitoral[0] = 1
               peitoral[1] = 2
               defesaDoPersonagem = defesaDoPersonagem + peitoral[1]
+
             } senao se(opcao == "2"){
               escreva("\nVAI SE FERRAR SEU PRECONCEITUOSO! VOCÊ NÃO QUER POIS AQUELE PEITORAL PARECE MINHA CUECA VELHA?...sem comentários.\n")
+
             }
+            
             seguir()
             
           } senao se(sorteio > 0 e sorteio < 10){
-            
             escreva("\nVocê resolve explorar, procura atrás de um arbusto...e nada, procura atrás de uma árvore...e nada.\n")
             escreva("Sobe em cima de uma árvore pra procurar...e nada, procura dentro da sua cueca...E NADA, deu azar amigo!\n")
             seguir()
+
           }
 
         pare
@@ -745,11 +741,12 @@ programa {
           escreva("\nVocê já está na região 1, não tem pra onde voltar\n")
           liberdadeNaFlorestaPARTE2()
           
-          
         } 
+
         pare
 
       }
+
     }
     
   }
@@ -766,18 +763,19 @@ programa {
 
     seguir()
 
-
     inteiro contador = 0
+
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[1] > 0){
       se(defesaDoPersonagem > 30){
         aTaqueDosInimigos[1] = aTaqueDosInimigos[1] + 1
+
       } senao se(defesaDoPersonagem < 23 e aTaqueDosInimigos[1] == 15){
         aTaqueDosInimigos[1] = aTaqueDosInimigos[1] - 5
+
       }
 
       limpa()
 
-      
       contador++
       escreva("Rodada ",contador)
       statusDuranteBatalhaContraGigante()
@@ -800,9 +798,11 @@ programa {
       se(contador == 4){
         escreva("\nO ",inimigosDaCampanhaNormal[1]," se irritou, pegou e arrancou uma árvore da floresta, agora ele vai usar ela pra te atacar\n\n")
         se(defesaDoPersonagem < 30){
-        aTaqueDosInimigos[1] = aTaqueDosInimigos[1] + 5
+          aTaqueDosInimigos[1] = aTaqueDosInimigos[1] + 5
+
         } senao se(defesaDoPersonagem > 30){
           aTaqueDosInimigos[1] = aTaqueDosInimigos[1] + 10
+
         }
       }
 
@@ -816,24 +816,25 @@ programa {
       u.aguarde(1200)
 
       sorteio = u.sorteia(1,20) + ataqueDoPersonagem
+
       se(sorteio - dEfesaDosInimigos[1] > 0){
         vIdaDosInimigos[1] = vIdaDosInimigos[1] - (sorteio - dEfesaDosInimigos[1])
 
         escreva("Seu ataque + o dado deu: ", sorteio,"\n")
         escreva("Dano dado: ", sorteio  - dEfesaDosInimigos[1],"\n")
+
       } senao{
         escreva("Seu ataque + o dado deu: ", sorteio,"\n")
         escreva("Seu dano não superou a defesa do ",inimigosDaCampanhaNormal[1] ,"\n")
+
       }
       se(vIdaDosInimigos[1] <= 0){
         vIdaDosInimigos[1] = 0
         pare
+
       } 
 
-
       u.aguarde(2000)
-
-      
 
       sorteio = 0
       escreva("\nVez de ", inimigosDaCampanhaNormal[1])
@@ -856,6 +857,7 @@ programa {
         escreva("Seu dano não superou a defesa do ", nomeDoPersonagem,"\n")
         
       }
+      
       u.aguarde(2000)
        
       se(vidaDoPersonagem == 0){
@@ -865,16 +867,13 @@ programa {
       
         limpa()
         
-
-        
       }  
       
       u.aguarde(1000)
       
-
-     }
+    }
     
-      se(vidaDoPersonagem > 0){
+    se(vidaDoPersonagem > 0){
       u.aguarde(1000)
       limpa()
       status()
@@ -888,7 +887,7 @@ programa {
       limpa()
       status()
       
-      } 
+    } 
 
   }
 
@@ -1529,7 +1528,10 @@ programa {
     seguir()
     
       
-
+    se(classe == "Mago"){
+      aTaqueDosInimigos[3] = aTaqueDosInimigos[3] - 5
+      dEfesaDosInimigos[3] = dEfesaDosInimigos[3] - 5
+    }
     inteiro contador = 0
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[3] > 0){
       
@@ -2387,7 +2389,57 @@ programa {
       passouPelaQualCaminhoSeguirPARTE2 = 1
       qualCaminhoSeguirPARTE2()
     }
-
+    se(vidaDoPersonagem > 0 e passouPelaBatalhaContraVerdugo == 0){
+      
+      desviaDoVerdugo()
+      batalhaContraVerdugo()
+      
+    }
+    se(vidaDoPersonagem > 0 e passouPelaBatalhaContraVerdugo == 0){
+      passouPelaBatalhaContraVerdugo = 1
+      escreva("\nApós passar pela dura batalha contra o Verdugo, você está no elevador, aproveita pra relaxar um pouco, pelo menos o chão dali é melhor que o da caverna\n")
+      escreva("(recuperou 6 de HP)\n")
+      
+      se((vidaDoPersonagem + 5) > auxVidaDoPersonagem){
+        vidaDoPersonagem = auxVidaDoPersonagem
+      } senao{
+        vidaDoPersonagem = vidaDoPersonagem + 5
+      }
+      seguir()
+    }
+    se(passouPelaRecompensaFinalCaverna == 1){
+      cadeia opcaoDaVolta 
+      limpa()
+      status()
+      escreva("\nVocê resolve voltar na caverna, mas...o Elevador não está mais ali, é como se alguém tivesse usado ele para descer, portanto, você não tem nada pra fazer aqui.\n")
+      escreva("\nSó que aqui ninguém é trouxa, se você quiser, pode simplesmente ir pelo lado da caverna, aí assim você vai voltar pra Vila Abandonada.\n")
+      escreva("\nDeseja voltar pra Vila Abandonada?\n1-Sim, vou voltar pra Vila Abandonada\n2-Deixa quieto, melhor seguir pro Pantano dos Lamentos.\n")
+      leia(opcaoDaVolta)
+      escolheESSAouESSA(opcaoDaVolta)
+      se(opcaoDaVolta == "2"){
+        pantanoDosLamentos()
+      }
+        mEUlOCALaTUAL--
+        se(mEUlOCALaTUAL == 1){
+          desenhoDaFloresta()
+          casoVoltePraFloresta()
+            
+        } senao se(mEUlOCALaTUAL == 2){
+            vilaAbandonada()
+            cavernaSombria()
+        } senao se(mEUlOCALaTUAL == 3){
+            cavernaSombria()
+        }
+    }
+    se(vidaDoPersonagem > 0 e passouPelaRecompensaFinalCaverna == 0){
+      passouPelaRecompensaFinalCaverna == 1
+      recompensaFinalDaCavernaSombria()
+      limpa()
+      status()
+      escreva("\nApós essa escolha, partiremos para o Pântano dos Lamentos\n")
+      seguir()
+    }
+      
   }
 
   funcao descansarNaCavernaSombria(){
@@ -2527,6 +2579,13 @@ programa {
       statusDuranteBatalhaContraYanagisawa()//criar um novo pra cada batalha
 
       opcaoNaBatalha()
+
+      se(contador == 5){
+        escreva("\nVocê percebe que Yanagisawa está ficando cansado")
+      }
+      se(contador > 4){
+        dEfesaDosInimigos[6] = dEfesaDosInimigos[6] - 2
+      }
 
       u.aguarde(1000)
       sorteio = 0
@@ -2672,7 +2731,7 @@ programa {
       
       contador++
       escreva("Rodada ",contador)
-      statusDuranteBatalhaContraHelga()//criar um novo pra cada batalha
+      statusDuranteBatalhaContraHelga()
 
       opcaoNaBatalha()
 
@@ -2764,7 +2823,7 @@ programa {
       limpa()
       status()
       escreva("\nLogo após dar o último golpe, Helga desaba no chão, e você sente que seu corpo voltou ao normal, o efeito do território dela parece ter acabado.\n")
-      escreav("Você caminha para em direção aos 3 caminhos da caverna, quando você ouve a voz de Helga\n\n")
+      escreva("Você caminha para em direção aos 3 caminhos da caverna, quando você ouve a voz de Helga\n\n")
       escreva("Helga:\n-E-Espere Aventureiro...eu t-tenho algo pra você...\nVocê vira-se pra olhar, e ela está com uma espécie de colar nas mãos\n")
       escreva("\nHelga:\n-I-Isto é...um amuleto...um amuleto da sorte, se você usa-lo no pescoço, terá mais sorte na sua jornada...Por favor...Pegue...\n")
       escreva("Nesse momento, Helga para de falar e apaga, você não sabe se ela morreu ou só desmaiou, mas de qualquer forma, o amuleto está na mão dela, você pega?\n\n1-Pego\n2-Eu não vou cair nessa\n")
@@ -2803,7 +2862,8 @@ programa {
   funcao subirDeNivelContraHelga() {
       
       xpDoPersonagem = xpDoPersonagem + xPDosInimigos[7]
-      enquanto(xpDoPersonagem > 99){
+      enquanto(xpDoPersonagem > limitadorDeNivel){
+        limitadorDeNivel = limitadorDeNivel + 40
         escreva("\nPARABÉNS, subiu do nível ",nivel," para o nível ",nivel + 1)
         escreva("\nAtributos ganhos:\nVida + 5\tDefesa + 5 e Ataque + 5\n")
         auxVidaDoPersonagem = auxVidaDoPersonagem + 5
@@ -2813,7 +2873,7 @@ programa {
         nivel = nivel + 1
         xpDoPersonagem = xpDoPersonagem - 100
         
-        se(xpDoPersonagem > 99){
+        se(xpDoPersonagem > limitadorDeNivel){
           escreva("\nVocê vai subir mais um nível, pois ta com o XP acima de 100\n")
           seguir()
         }
@@ -2873,7 +2933,7 @@ programa {
           batalhaContraHelga()
           descansar()
         } senao{
-          escreva("Você decide explorar o local pra ver se acha alguma coisa, só que ao mesmo tempo você começa a sentir um cheiro estranho, um cheiro...doce, isso causa sensações estranhas no seu corpo.\n")
+          escreva("Você decide explorar o local pra ver se acha alguma coisa, só que ao mesmo tempo você começa a sentir um cheiro estranho,\num cheiro...doce, isso causa sensações estranhas no seu corpo.\n")
           escreva("Você começa a escutar passos, e quando tu olha pra trás para ver o que é, ali está uma moça EXTREMAMENTE GATA, você fica hipnotizado.\n")
           batalhaContraHelga()
           descansar()
@@ -3145,11 +3205,322 @@ programa {
       
     }
 
+  }
+
+  funcao batalhaContraVerdugo(){
     
+    cadeia opcaoDePreparado
+
+    escreva("\nApós esses evento, você vê saltando do teto da caverna e pousando no chão, uma criatura que parece uma mistura de insento com ser humano.\n")
+    escreva("A criatura tem cerca de 2,50 metros de altura, possui garras afiadas, dentes afiados, olhos vermelhos e uma cauda afiada(a mesma que ele usou pra te atacar antes).\n")
+    escreva("Você fica pensando que não precisa mata-lá, só precisa segurar ela até o elevador descer(afinal, ela parece ser bem forte).\nSerá que você aguenta isso?\n")
+    aTaqueDosInimigos[8] = aTaqueDosInimigos[8] + 2
+    seguir()
+      
+
+    inteiro contador = 0
+    enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[8] > 0){
+      
+
+      limpa()
+
+      
+      contador++
+      escreva("Rodada ",contador)
+      statusDuranteBatalhaContraVerdugo()//criar um novo pra cada batalha
+
+      se(contador > 5){
+        cadeia opcaoDaBatalhaDoVerdugaoDaRapaziada
+        enquanto(opcaoDaBatalhaDoVerdugaoDaRapaziada != "1" e opcaoDaBatalhaDoVerdugaoDaRapaziada != "2" e opcaoDaBatalhaDoVerdugaoDaRapaziada != "3"){
+      
+          escreva("Sua vez!\nO que você quer fazer?\n1-Atacar\n2-Usar Poção\n3-Fugir pelo elevador\n")
+          leia(opcaoDaBatalhaDoVerdugaoDaRapaziada)
+        }
+        opcaoNaBatalhaContraVerdugo(opcaoDaBatalhaDoVerdugaoDaRapaziada)
+        se(opcaoDaBatalhaDoVerdugaoDaRapaziada == 3){
+          pare
+        }
+      } senao{
+        opcaoNaBatalha()
+      }
+        
+
+      u.aguarde(1000)
+      sorteio = 0
+      escreva("\nVez de ",nomeDoPersonagem, "\n")
+      
+      u.aguarde(1200)
+
+      sorteio = u.sorteia(1,20) + ataqueDoPersonagem
+      se(sorteio - dEfesaDosInimigos[8] > 0){
+
+        vIdaDosInimigos[8] = vIdaDosInimigos[8] - (sorteio - dEfesaDosInimigos[8])
+
+        escreva("Seu ataque + o dado deu: ", sorteio,"\n")
+        escreva("Dano dado: ", sorteio  - dEfesaDosInimigos[8],"\n")
+      } senao{
+        escreva("Seu ataque + o dado deu: ", sorteio,"\n")
+        escreva("A pele blindada de ",inimigosDaCampanhaNormal[8] ,"resistiu ao seu ataque\n")
+      }
+      se(vIdaDosInimigos[8] <= 0){
+        vIdaDosInimigos[8] = 0
+        pare
+      } 
+
+
+      u.aguarde(2000)
+
+      sorteio = 0
+      escreva("\nVez de ", inimigosDaCampanhaNormal[8])
+
+      u.aguarde(1200)
+
+      sorteio = u.sorteia(1,20) + aTaqueDosInimigos[8]
+      
+      se(sorteio - defesaDoPersonagem > 0){
+        vidaDoPersonagem = vidaDoPersonagem - (sorteio - defesaDoPersonagem)
+
+        escreva("\nO ",inimigosDaCampanhaNormal[8]," te acerta, o ataque deu: ", sorteio,"\n")
+        escreva("Dano dado: ", sorteio  - defesaDoPersonagem,"\n")
+        se(vidaDoPersonagem < 0){
+          vidaDoPersonagem = 0
+        }
+        
+      } senao{
+        escreva("\nO ataque + o dado do ",inimigosDaCampanhaNormal[8],": ", sorteio,"\n")
+        escreva("Seu dano não superou a defesa do ", nomeDoPersonagem,"\n")
+        
+      }
+      u.aguarde(2000)
+       
+      se(vidaDoPersonagem == 0){
+        limpa()
+        escreva("\nVerdugo te acerta com as garras no seu peito, furando seus órgãos internos, você até tenta resistir, mas não consegue\n")
+        escreva("Após isso, Verdugo agarra sua cabeça com as duas garras, e com uma só mordida, come sua cabeça.\n",nomeDoPersonagem," morreu\n")
+        taMorto()
+        u.aguarde(3000)
+      
+        limpa()
+        
+
+        
+      }  
+      
+      u.aguarde(1000)
+      
+
+     }
     
+      se(vidaDoPersonagem > 0){
+      u.aguarde(1000)
+      limpa()
+      status()
+      escreva("\nVocê acerta o ", inimigosDaCampanhaNormal[8]," e ele caí no chão, espirrando uma gosma amarela, gritando de dor, se contorcendo todo e...finalmente morre.\n")
+      escreva("\nXP obtido:",xPDosInimigos[8],"\n")
+
+      subirDeNivel() //aqui tem que criar função pra subir o nível e pegar o XP do inimigo certo
+      
+      escreva("\nO Elevador chega bem na hora, e você vai até ele pra subir.\n")
+      seguir()
+      limpa()
+      status()
+      
+      } 
+
   }
 
   
+
+  funcao statusDuranteBatalhaContraVerdugo(){
+    
+    escreva("\nUsuário:",nomeDoPersonagem,"\t│\t",vidaDoPersonagem,"/",auxVidaDoPersonagem,"\n")
+    escreva("Inimigo:",inimigosDaCampanhaNormal[8],"\t│\t",vIdaDosInimigos[8],"/",aUXVIDADOSINIMIGOS[8],"\n\n")
+  }
+  
+  funcao opcaoNaBatalhaContraVerdugo(cadeia opcao){
+    
+    se(opcao == "3"){
+      escreva("\nEu não vou nem testar sua sorte aqui, só de ter aguentado tudo isso, você merece sair vivo!\n")
+      escreva("\nO Verdugo tenta te acertar, mas você desvia e corre pro Elevador, abre ele, entra e imediatamente clica desesperadamente no botão pra subir.\n")
+      escreva("\nO Verdugo tenta a todo custo abrir a porta, arranhando, chutando, mas o elevador finalmente sobe.\n")
+      escreva("Você fica aliviado um pouco, mas a última coisa que você são aqueles olhos vermelhos do Verdugo.\n")
+    }
+    
+    se(opcao == 2){ 
+      pocao()
+      escreva("\nAinda é ")
+      opcaoNaBatalha()
+      
+    } senao se(opcao == 1){
+        
+    }      
+  }
+  
+
+  funcao subirDeNivelContraVerdugo() {
+      
+      xpDoPersonagem = xpDoPersonagem + xPDosInimigos[8]
+      enquanto(xpDoPersonagem > 99){
+        escreva("\nPARABÉNS, subiu do nível ",nivel," para o nível ",nivel + 1)
+        escreva("\nAtributos ganhos:\nVida + 5\tDefesa + 5 e Ataque + 5\n")
+        auxVidaDoPersonagem = auxVidaDoPersonagem + 5
+        vidaDoPersonagem = vidaDoPersonagem + 5
+        defesaDoPersonagem = defesaDoPersonagem + 5
+        ataqueDoPersonagem = ataqueDoPersonagem + 5
+        nivel = nivel + 1
+        xpDoPersonagem = xpDoPersonagem - 100
+        
+        se(xpDoPersonagem > 99){
+          escreva("\nVocê vai subir mais um nível, pois ta com o XP acima de 100\n")
+          seguir()
+        }
+      }
+     
+  }
+
+  funcao recompensaFinalDaCavernaSombria(){
+    cadeia opcaoRecompensaFinalCavernaSombria
+    limpa()
+    status()
+    escreva("\nParabéns mais uma vez, conseguiu chegar no fim de mais uma região.\n")
+    escreva("Você chega no final da caverna e há 4 itens em cima de uma mesa, mas só poderá escolher 1 item.\n")
+    escreva("\nE as escolhas são:\n")
+    escreva("1-Cristal Mágico Vermelho: Essa porcaria recupera a vida inteira.\n")
+    escreva("2-Cristal Mágico Verde: Essa outra porcaria concede 110 de XP.\n")
+    escreva("3-Martelo da força espiritual: Esse martelo comum com nome diferenciado aumenta seu ataque em 20(talvez a melhor recompensa).\n")
+    escreva("4-Pingente da Helga: Não sei como isso veio parar aqui, mas aumenta sua vida máxima em 15 pontos.\n")
+    escreva("\nDigite o número da sua escolha: ")
+    leia(opcaoRecompensaFinalCavernaSombria)
+
+    enquanto(opcaoRecompensaFinalCavernaSombria != "1" e opcaoRecompensaFinalCavernaSombria != "2" e opcaoRecompensaFinalCavernaSombria != "3" e opcaoRecompensaFinalCavernaSombria != "4"){
+      escreva("\nAh...escreva direito!\n")
+      leia(opcaoRecompensaFinalCavernaSombria)
+    }
+
+    se(opcaoRecompensaFinalCavernaSombria == "1"){
+      escreva("\nVocê toca no Cristal Mágico Vermelho e sente uma revigoração imensa(vida inteira recuperada)\n.")
+      vidaDoPersonagem = auxVidaDoPersonagem
+      
+    } senao se(opcaoRecompensaFinalCavernaSombria == "2"){
+      escreva("\nVocê toca no Cristal Mágico Verde e sente uma energia imensa(110 de XP obtido)\n")
+      enquanto(xpDoPersonagem > limitadorDeNivel){
+        escreva("\nPARABÉNS, subiu do nível ",nivel," para o nível ",nivel + 1)
+        escreva("\nAtributos ganhos:\nVida + 5\tDefesa + 5 e Ataque + 5\n")
+        auxVidaDoPersonagem = auxVidaDoPersonagem + 5
+        vidaDoPersonagem = vidaDoPersonagem + 5
+        defesaDoPersonagem = defesaDoPersonagem + 5
+        ataqueDoPersonagem = ataqueDoPersonagem + 5
+        nivel = nivel + 1
+        xpDoPersonagem = xpDoPersonagem - limitadorDeNivel
+        
+        se(xpDoPersonagem > limitadorDeNivel){
+          escreva("\nVocê vai subir mais um nível, pois ta com o XP acima do máximo\n")
+          seguir()
+        }
+      }
+    } senao se(opcaoRecompensaFinalCavernaSombria == "3"){
+      inteiro danoDoMartelao = 20
+      danoDaArma(danoDoMartelao)
+
+    } senao se(opcaoRecompensaFinalCavernaSombria == "4"){
+      escreva("\nVocê resolve pegar o pingente e colocar no pescoço, imediatamente se sente mais poderoso, mais vivo e com mais saúde(mais 15 de HP)\n")
+      auxVidaDoPersonagem = auxVidaDoPersonagem + 15
+      vidaDoPersonagem = vidaDoPersonagem + 15
+
+    }
+
+    seguir()
+  }
+  
+  
+  funcao pantanoDosLamentos(){
+    mEUlOCALaTUAL = 4
+    localizacao = 3
+    cadeia opcaoDaLiberdade
+    //desenho do pantano
+    
+    limpa()
+    escreva("\nPÂNTANO DOS LAMENTOS\n")
+    se(vidaDoPersonagem > 0 e passouPelaIntroducaoDoPantano == 0){
+      passouPelaIntroducaoDaCavernaSombria = 1
+
+      escreva("\n\nVocê finalmente chegou na penultima região, o pântano dos lamentos, e aqui você já vai lamentar bastante, pois tenho um recado.\n")
+      escreva("\nEssa é a última vez que você poderá voltar região, então se quiser voltar pra Caverna, ou depois pra Vila e depois pra floresta, a hora é agora!\n")
+      
+      enquanto(opcaoDaLiberdade != "1" e opcaoDaLiberdade != "2"){
+        status()
+        escreva("\nO que quer fazer meu consagrado ",nomeDoPersonagem," ?\n\n1-Não to nem aí pro passado, vou seguir em frente\n2-Voltar região, sou curioso\n")
+        leia(opcaoDaLiberdade)
+        escolha(opcaoDaLiberdade){
+
+          caso "1":
+
+          escreva("Ok então, bora seguir.")
+          u.aguarde(1000)
+          limpa()
+
+          pare
+
+      
+          caso "2":
+            
+         
+            mEUlOCALaTUAL--
+            se(mEUlOCALaTUAL == 1){
+              desenhoDaFloresta()
+              casoVoltePraFloresta()
+              
+            } senao se(mEUlOCALaTUAL == 2){
+              vilaAbandonada()
+              cavernaSombria()
+            } senao se(mEUlOCALaTUAL == 3){
+              cavernaSombria()
+            }
+          
+
+          pare
+
+        }
+      }
+      seguir()
+    }
+    limpa()
+    status()
+    escreva("\nVocê caminha um pouco, analisando aquele pântano, e ao longe, avista o Castelo Dourado, mas tu sabe que vai se ferrar muito até chegar lá.\n")
+    escreva("Logo após avistar o Castelo Dourado, você sente alguém te observando.\n")
+    escreva("E ali, em cima de uma árvore, há uma imagem de um homem com cabelos negros e longos, uma máscara cobrindo a boca e um sobretudo preto, o homem desaparece em segundos.\n")
+
+    seguir()
+
+    se(vidaDoPersonagem > 0 e passouPelasArmadilhasDoPantano == 0){
+      passouPelasArmadilhasDoPantano = 1
+
+    }
+    
+  }
+
+  funcao armadilhasDoPantanoPARTE1(){
+    cadeia opcaoSaposOuCobras
+
+    limpa()
+    status()
+    escreva("\nApós o homem desaparecer, você vê dois caminhos(que novidade)\nUm caminho parece ter várias cobras e o outro parece ter apenas sapos.\n\n")
+    escreva("Qual caminho você quer seguir?\n1-O das cobras\n2-O dos Sapos\n")
+    leia(opcaoSaposOuCobras)
+
+    se(opcaoSaposOuCobras == "1"){
+      escreva("\nVocê é um completo suicida e resolve seguir o caminho das cobras, e elas...parecem bem mansas?QUE?\n")
+      escreva("As cobras te ignoram completamente, poxa amigo, nem as cobras notaram sua presença, aí é F#@$.\n")
+      
+      seguir()
+    
+    }se(opcaoSaposOuCobras == "2"){
+      escreva("\nVocê resolve seguir pelo caminho mais óbvio, e os sapos começam a te olhar torto(???).\n")
+      escreva("Tu continua caminhando de boa, até os sapos começarem a PULAR em cima de você, e começam a surgir mais, uns 10, uns 20, UNS 50, 100, MIL, NÃO SEI.\n")
+      escreva("TEM TANTO SAPO QUE EU PERDI AS CONTAS, eles te esmagam, você consegue se livrar deles e correr, mas saiu levemente ferido(tomou 3 de dano).\n")
+    }
+    
+  }
 
 
 
@@ -3355,6 +3726,8 @@ programa {
 
   funcao casoEncontreARMA(inteiro danoDaArma){
     cadeia opcaoSeQuerARMA
+    limpa()
+    status()
     se(arma[0] == 1){
     escreva("Você já possui uma arma, quer trocar por essa que já tem agora?\nDano da Arma atual: ",arma[1],"\tDano da nova Arma: ",danoDaArma,"\n1-Trocar\n2-Não trocar\n")
     leia(opcaoSeQuerARMA)
@@ -3375,6 +3748,7 @@ programa {
       ataqueDoPersonagem = ataqueDoPersonagem + arma[1]
 
     }
+    seguir()
   }
 
 
@@ -3444,17 +3818,8 @@ programa {
         opcaoNaBatalha()
       } senao se(opcao == 1){
         
-        
-        
       }      
   }
-
-
-  funcao taMorto(){
-  
-  //você é inutil função, só sera útil quando eu botar desenhinho
-  }
-  
 
   
 
@@ -3476,8 +3841,10 @@ programa {
       escreva("Opção 1 ou Opção 2?")
       leia(opcao)
     }
+    limpa()
+    status()
     se(opcao == "1"){
-      escreva("\nShow, ela tem um BOM aumento de dano(mais especificamente 5 de acréscimo no seu ataque)\n")
+      escreva("\nShow, ele tem um BOM aumento de dano(mais especificamente 5 de acréscimo no seu ataque)\n")
       escreva("\n\n ___________________________________ ______________________  \n")
       escreva(" \\                                  | (_)     (_)    (_)   \\ \n")
       escreva("  `.                                |                       / \n")
@@ -3488,11 +3855,13 @@ programa {
     } senao se(opcao == "2"){
       escreva("\n;———;\n")
     }
+    seguir()
   }
 
   funcao pistola(){
     inteiro danoDaArma = 15
     escreva("\nVocê encontra um baú e abre ele, dentro havia uma pistola(muito conveniente)\n\n\n")
+    u.aguarde(2000)
     escreva(" +-'~`---------------------------------/\\--         \n")
     escreva("||\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\" \\\\\\\\\\/(~)     \n")
     escreva("||                                  \\\\\\\\  \\/_     \n")
@@ -3509,6 +3878,8 @@ programa {
     escreva("                                       \\ \\  ()    \\|\n")
     escreva("                                       _\\_\\__====~~~\n")
     escreva("\n\n")
+
+    seguir()
 
     casoEncontreARMA(danoDaArma)
   }
@@ -3666,7 +4037,8 @@ programa {
   funcao subirDeNivel() {
       
       xpDoPersonagem = xpDoPersonagem + xPDosInimigos[0]
-      enquanto(xpDoPersonagem > 99){
+      enquanto(xpDoPersonagem > limitadorDeNivel){
+        limitadorDeNivel = limitadorDeNivel + 40
         escreva("\nPARABÉNS, subiu do nível ",nivel," para o nível ",nivel + 1)
         escreva("\nAtributos ganhos:\nVida + 5\tDefesa + 5 e Ataque + 5\n")
         auxVidaDoPersonagem = auxVidaDoPersonagem + 5
@@ -3676,7 +4048,7 @@ programa {
         nivel = nivel + 1
         xpDoPersonagem = xpDoPersonagem - 100
         
-        se(xpDoPersonagem > 99){
+        se(xpDoPersonagem > limitadorDeNivel){
           escreva("\nVocê vai subir mais um nível, pois ta com o XP acima de 100\n")
           seguir()
         }
@@ -3819,6 +4191,15 @@ programa {
 
   u.aguarde(2000)
 
+  }
+
+
+  funcao taMorto(){
+    seguir()
+    limpa()
+    menu()
+  
+  //você é inutil função, só sera útil quando eu botar desenhinho
   }
 }
 
