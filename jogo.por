@@ -2060,6 +2060,753 @@ programa {
                                                     escreva("Você nota que aqueles monstros eram muito grandes e provavelmente não venceria eles...\n")
                                                     escreva("Você continua a aventura remando em frente \n")
                                                     escreva("As árvores comecam a apodrecer, de forma que a vegetacao fique cada vez mais morta enquanto avanca\n")
+                                                    escreva("Você se depara com outros possíveis caminhos \n")
+                                                    escreva("\n\n\n")
+                                                    escreva("      **DIÁRIO DE MEFISTÓFELES**      \n")
+                                                    escreva("ᚠ = Fogo, destruição, renascimento\n")
+                                                    escreva("ᚨ = Sabedoria, visão além do tempo\n")
+                                                    escreva("ᚢ = Água, cura, emoções profundas\n")
+                                                    escreva("ᚾ = Escuridão, medo, o desconhecido\n")
+                                                    escreva("ᛉ = Proteção, barreira mágica\n")
+                                                    escreva("ᛒ = Força, coragem, herança\n")
+                                                    escreva("ᛏ = Equilíbrio, justiça, sacrifício\n")
+                                                    escreva("\n\n\n")
+                                                    inteiro caminho_para_seguir_pantano3
+                                                    escreva("**PASSE PELO PANTANO VADEOSO UTILIZANDO O DIÁRIO DE MEFISTÓFELES**\n")
+                                                    escreva("~~~~No fim de tudo o seu sacrifício não foi em vão,a justica e o equilibrio reinarão~~~~~\n")
+                                                    escreva("POR QUAL CAMINHO DESEJA SEGUIR?\n")
+                                                    escreva("ᛏ==1\n")
+                                                    escreva("ᚾ==2\n")
+                                                    escreva("ᛉ==3\n")
+                                                    escreva("ᚢ==4\n")
+                                                    leia(caminho_para_seguir_pantano3)
+                                                    limpa()
+                                                    escolha(caminho_para_seguir_pantano3){
+                                                      caso 1:
+                                                      escreva("CAMINHO CERTO!!\n")
+                                                      escreva("Você avanca pelo caminho , sem maiores complicacoes!\n")
+                                                      escreva("A mata já está morta o suficiente ao ponto de tudo estar entristecidamente morto...\n")
+                                                      escreva("você avista de longe um corpo enforcado sobre uma árvore...\n")
+                                                      escreva("\n\n\n")
+                                                      pare
+
+                                                      caso 2:
+                                                      escreva("?????CAMINHO CERTO?????\n")
+                                                      escreva("Você seguiu por um caminho alternativo...\n")
+                                                      escreva("------------------------------------------------\n")
+                                                      escreva("VOCÊ ENCONTROU UM GOLEM DO PÂNTANO (MELHORADO)!!\n")
+                                                      escreva("------------------------------------------------\n")
+                                                      inteiro vida_golemdopantano = 999
+                                                      inteiro dano_golemdopantano  = 50
+                                                      inteiro xp_ganho_golemdopantano  = 100
+                                                      inteiro acao_combate_golemdopantano 
+                                                      logico defenderse_golemdopantano  = falso
+
+                                                      enquanto(vidadaespecializacao > 0 e vida_golemdopantano > 0) {
+                                                          escreva("\nSUA VIDA:", vidadaespecializacao, "\nVIDA DO INIMIGO:", vida_golemdopantano, "\n")
+                                                          escreva("1-ATACAR\n")
+                                                          escreva("2-DEFENDER-SE\n")
+                                                          leia(acao_combate_golemdopantano)
+                                                          defenderse_golemdopantano = falso
+
+                                                              se(acao_combate_golemdopantano == 1) {
+                                                                vida_golemdopantano = vida_golemdopantano - danodaespecializacao
+                                                                escreva("Muito bem herói, você causou:", danodaespecializacao, "de dano no inimigo")
+                                                            }
+                                                            senao se(acao_combate_golemdopantano == 2) {
+                                                                defenderse_golemdopantano = verdadeiro 
+                                                                inteiro dano_reduzido_golemdopantano  = dano_golemdopantano / 2
+                                                                vidadaespecializacao = vidadaespecializacao - dano_reduzido_golemdopantano
+                                                                escreva("Voce acabou se defendendo campeao, e o inimigo causou apenas", dano_reduzido_golemdopantano, "de dano\n")
+                                                            }
+                                                            senao {
+                                                                escreva("O inimigo aproveitou a sua indecisão!!")
+                                                            }
+
+                                                            se(vida_golemdopantano > 0 e defenderse_golemdopantano == falso) {
+                                                                vidadaespecializacao = vidadaespecializacao - dano_golemdopantano
+                                                                escreva("O golem atacou você causando", dano_golemdopantano, "de dano\n")
+                                                            }
+                                                            senao se(vida_golemdopantano <= 0) {
+                                                                escreva("Parabéns ",nomedocampeao, ", Voce derrotou o inimigo!!\n")
+                                                                xp = xp + xp_ganho_golemdopantano
+                                                                escreva("Parabéns ",nomedocampeao, ", Voce recebeu", xp_ganho_golemdopantano, "de XP\n")
+                                                                nivelupado(xp, xpparasubirdenivel, niveldocampeao)
+                                                                escreva("Meus parabéns ",nomedocampeao, " você derrotou seu primeiro inimigo! Sabiamos que você consegueria!!\n")
+                                                          }
+                                                            se(vidadaespecializacao <=0){
+                                                              escreva("Voce foi derrotado por Golem do pantano\n")
+                                                              escreva("Que os deuses guardem sua alma",nomedocampeao,"\n")
+                                                        }
+                                                      }
+                                                      pare
+                                                     
+                                                      caso 3:
+                                                      escreva("?????CAMINHO CERTO?????\n")
+                                                      escreva("Você seguiu por um caminho alternativo...\n")
+                                                      escreva("------------------------------------------------\n")
+                                                      escreva("VOCÊ ENCONTROU UM GOLEM DO PÂNTANO (MELHORADO)!!\n")
+                                                      escreva("------------------------------------------------\n")
+                                                      inteiro vida_golemdopantano = 999
+                                                      inteiro dano_golemdopantano  = 50
+                                                      inteiro xp_ganho_golemdopantano  = 100
+                                                      inteiro acao_combate_golemdopantano 
+                                                      logico defenderse_golemdopantano  = falso
+
+                                                      enquanto(vidadaespecializacao > 0 e vida_golemdopantano > 0) {
+                                                          escreva("\nSUA VIDA:", vidadaespecializacao, "\nVIDA DO INIMIGO:", vida_golemdopantano, "\n")
+                                                          escreva("1-ATACAR\n")
+                                                          escreva("2-DEFENDER-SE\n")
+                                                          leia(acao_combate_golemdopantano)
+                                                          defenderse_golemdopantano = falso
+
+                                                              se(acao_combate_golemdopantano == 1) {
+                                                                vida_golemdopantano = vida_golemdopantano - danodaespecializacao
+                                                                escreva("Muito bem herói, você causou:", danodaespecializacao, "de dano no inimigo")
+                                                            }
+                                                            senao se(acao_combate_golemdopantano == 2) {
+                                                                defenderse_golemdopantano = verdadeiro 
+                                                                inteiro dano_reduzido_golemdopantano  = dano_golemdopantano / 2
+                                                                vidadaespecializacao = vidadaespecializacao - dano_reduzido_golemdopantano
+                                                                escreva("Voce acabou se defendendo campeao, e o inimigo causou apenas", dano_reduzido_golemdopantano, "de dano\n")
+                                                            }
+                                                            senao {
+                                                                escreva("O inimigo aproveitou a sua indecisão!!")
+                                                            }
+
+                                                            se(vida_golemdopantano > 0 e defenderse_golemdopantano == falso) {
+                                                                vidadaespecializacao = vidadaespecializacao - dano_golemdopantano
+                                                                escreva("O golem atacou você causando", dano_golemdopantano, "de dano\n")
+                                                            }
+                                                            senao se(vida_golemdopantano <= 0) {
+                                                                escreva("Parabéns ",nomedocampeao, ", Voce derrotou o inimigo!!\n")
+                                                                xp = xp + xp_ganho_golemdopantano
+                                                                escreva("Parabéns ",nomedocampeao, ", Voce recebeu", xp_ganho_golemdopantano, "de XP\n")
+                                                                nivelupado(xp, xpparasubirdenivel, niveldocampeao)
+                                                                escreva("Meus parabéns ",nomedocampeao, " você derrotou seu primeiro inimigo! Sabiamos que você consegueria!!\n")
+                                                          }
+                                                            se(vidadaespecializacao <=0){
+                                                              escreva("Voce foi derrotado por Golem do pantano\n")
+                                                              escreva("Que os deuses guardem sua alma",nomedocampeao,"\n")
+                                                        }
+                                                      }
+                                                      pare
+
+                                                    caso 4:
+                                                     escreva("?????CAMINHO CERTO?????\n")
+                                                      escreva("Você seguiu por um caminho alternativo...\n")
+                                                      escreva("------------------------------------------------\n")
+                                                      escreva("VOCÊ ENCONTROU UM GOLEM DO PÂNTANO (MELHORADO)!!\n")
+                                                      escreva("------------------------------------------------\n")
+                                                      inteiro vida_golemdopantano = 999
+                                                      inteiro dano_golemdopantano  = 50
+                                                      inteiro xp_ganho_golemdopantano  = 100
+                                                      inteiro acao_combate_golemdopantano 
+                                                      logico defenderse_golemdopantano  = falso
+
+                                                      enquanto(vidadaespecializacao > 0 e vida_golemdopantano > 0) {
+                                                          escreva("\nSUA VIDA:", vidadaespecializacao, "\nVIDA DO INIMIGO:", vida_golemdopantano, "\n")
+                                                          escreva("1-ATACAR\n")
+                                                          escreva("2-DEFENDER-SE\n")
+                                                          leia(acao_combate_golemdopantano)
+                                                          defenderse_golemdopantano = falso
+
+                                                              se(acao_combate_golemdopantano == 1) {
+                                                                vida_golemdopantano = vida_golemdopantano - danodaespecializacao
+                                                                escreva("Muito bem herói, você causou:", danodaespecializacao, "de dano no inimigo")
+                                                            }
+                                                            senao se(acao_combate_golemdopantano == 2) {
+                                                                defenderse_golemdopantano = verdadeiro 
+                                                                inteiro dano_reduzido_golemdopantano  = dano_golemdopantano / 2
+                                                                vidadaespecializacao = vidadaespecializacao - dano_reduzido_golemdopantano
+                                                                escreva("Voce acabou se defendendo campeao, e o inimigo causou apenas", dano_reduzido_golemdopantano, "de dano\n")
+                                                            }
+                                                            senao {
+                                                                escreva("O inimigo aproveitou a sua indecisão!!")
+                                                            }
+
+                                                            se(vida_golemdopantano > 0 e defenderse_golemdopantano == falso) {
+                                                                vidadaespecializacao = vidadaespecializacao - dano_golemdopantano
+                                                                escreva("O golem atacou você causando", dano_golemdopantano, "de dano\n")
+                                                            }
+                                                            senao se(vida_golemdopantano <= 0) {
+                                                                escreva("Parabéns ",nomedocampeao, ", Voce derrotou o inimigo!!\n")
+                                                                xp = xp + xp_ganho_golemdopantano
+                                                                escreva("Parabéns ",nomedocampeao, ", Voce recebeu", xp_ganho_golemdopantano, "de XP\n")
+                                                                nivelupado(xp, xpparasubirdenivel, niveldocampeao)
+                                                                escreva("Meus parabéns ",nomedocampeao, " você derrotou seu primeiro inimigo! Sabiamos que você consegueria!!\n")
+                                                          }
+                                                            se(vidadaespecializacao <=0){
+                                                              escreva("Voce foi derrotado por Golem do pantano\n")
+                                                              escreva("Que os deuses guardem sua alma",nomedocampeao,"\n")
+                                                        }
+                                                      }
+                                                      pare
+                                                    
+                                                    }
+                                                    se(vidadaespecializacao>=1){
+                                                    escreva("Você se apoxima do cadáver que por ali boiava\n")
+                                                    escreva("Nele se entalhava uma escrita antiga...\n")
+                                                    escreva("entre a escrita antiga era possível ver entre os nomes...\n")
+                                                    escreva("KELTHUZAD\n")
+                                                    escreva("você prossegue para o possível último caminho?\n")
+                                                    escreva("\n\n\n")
+                                                    escreva("      **DIÁRIO DE MEFISTÓFELES**      \n")
+                                                    escreva("ᚠ = Fogo, destruição, renascimento\n")
+                                                    escreva("ᚨ = Sabedoria, visão além do tempo\n")
+                                                    escreva("ᚢ = Água, cura, emoções profundas\n")
+                                                    escreva("ᚾ = Escuridão, medo, o desconhecido\n")
+                                                    escreva("ᛉ = Proteção, barreira mágica\n")
+                                                    escreva("ᛒ = Força, coragem, herança\n")
+                                                    escreva("ᛏ = Equilíbrio, justiça, sacrifício\n")
+                                                    escreva("\n\n\n")
+                                                    inteiro caminho_para_seguir_pantano4
+                                                    escreva("**PASSE PELO PANTANO VADEOSO UTILIZANDO O DIÁRIO DE MEFISTÓFELES**\n")
+                                                    escreva("~~~~QUE A PROTECAO DOS DEUSES SEJAM A NOSSA BARREIRA MÁGICA DA ETERNIDADE~~~~~\n")
+                                                    escreva("ᚠ==1\n")
+                                                    escreva("ᛒ==2\n")
+                                                    escreva("ᛉ==3\n")
+                                                    escreva("ᛏ==4\n")
+                                                    escreva("POR QUAL CAMINHO DESEJA SEGUIR?\n")
+                                                    leia(caminho_para_seguir_pantano4)
+                                                    limpa()
+                                                    escolha(caminho_para_seguir_pantano4){
+                                                      caso 1:
+                                                      escreva("?????CAMINHO CERTO?????\n")
+                                                      escreva("Você seguiu por um caminho alternativo...\n")
+                                                      escreva("------------------------------------------------\n")
+                                                      escreva("VOCÊ ENCONTROU UM GOLEM DO PÂNTANO (MELHORADO)!!\n")
+                                                      escreva("------------------------------------------------\n")
+                                                      inteiro vida_golemdopantano = 999
+                                                      inteiro dano_golemdopantano  = 50
+                                                      inteiro xp_ganho_golemdopantano  = 100
+                                                      inteiro acao_combate_golemdopantano 
+                                                      logico defenderse_golemdopantano  = falso
+
+                                                      enquanto(vidadaespecializacao > 0 e vida_golemdopantano > 0) {
+                                                          escreva("\nSUA VIDA:", vidadaespecializacao, "\nVIDA DO INIMIGO:", vida_golemdopantano, "\n")
+                                                          escreva("1-ATACAR\n")
+                                                          escreva("2-DEFENDER-SE\n")
+                                                          leia(acao_combate_golemdopantano)
+                                                          defenderse_golemdopantano = falso
+
+                                                              se(acao_combate_golemdopantano == 1) {
+                                                                vida_golemdopantano = vida_golemdopantano - danodaespecializacao
+                                                                escreva("Muito bem herói, você causou:", danodaespecializacao, "de dano no inimigo")
+                                                            }
+                                                            senao se(acao_combate_golemdopantano == 2) {
+                                                                defenderse_golemdopantano = verdadeiro 
+                                                                inteiro dano_reduzido_golemdopantano  = dano_golemdopantano / 2
+                                                                vidadaespecializacao = vidadaespecializacao - dano_reduzido_golemdopantano
+                                                                escreva("Voce acabou se defendendo campeao, e o inimigo causou apenas", dano_reduzido_golemdopantano, "de dano\n")
+                                                            }
+                                                            senao {
+                                                                escreva("O inimigo aproveitou a sua indecisão!!")
+                                                            }
+
+                                                            se(vida_golemdopantano > 0 e defenderse_golemdopantano == falso) {
+                                                                vidadaespecializacao = vidadaespecializacao - dano_golemdopantano
+                                                                escreva("O golem atacou você causando", dano_golemdopantano, "de dano\n")
+                                                            }
+                                                            senao se(vida_golemdopantano <= 0) {
+                                                                escreva("Parabéns ",nomedocampeao, ", Voce derrotou o inimigo!!\n")
+                                                                xp = xp + xp_ganho_golemdopantano
+                                                                escreva("Parabéns ",nomedocampeao, ", Voce recebeu", xp_ganho_golemdopantano, "de XP\n")
+                                                                nivelupado(xp, xpparasubirdenivel, niveldocampeao)
+                                                                escreva("Meus parabéns ",nomedocampeao, " você derrotou seu primeiro inimigo! Sabiamos que você consegueria!!\n")
+                                                          }
+                                                            se(vidadaespecializacao <=0){
+                                                              escreva("Voce foi derrotado por Golem do pantano\n")
+                                                              escreva("Que os deuses guardem sua alma",nomedocampeao,"\n")
+                                                        }
+                                                      }
+                                                      pare
+                                                     
+                                                      caso 2:
+                                                      escreva("?????CAMINHO CERTO?????\n")
+                                                      escreva("Você seguiu por um caminho alternativo...\n")
+                                                      escreva("------------------------------------------------\n")
+                                                      escreva("VOCÊ ENCONTROU UM GOLEM DO PÂNTANO (MELHORADO)!!\n")
+                                                      escreva("------------------------------------------------\n")
+                                                      inteiro vida_golemdopantano = 999
+                                                      inteiro dano_golemdopantano  = 50
+                                                      inteiro xp_ganho_golemdopantano  = 100
+                                                      inteiro acao_combate_golemdopantano 
+                                                      logico defenderse_golemdopantano  = falso
+
+                                                      enquanto(vidadaespecializacao > 0 e vida_golemdopantano > 0) {
+                                                          escreva("\nSUA VIDA:", vidadaespecializacao, "\nVIDA DO INIMIGO:", vida_golemdopantano, "\n")
+                                                          escreva("1-ATACAR\n")
+                                                          escreva("2-DEFENDER-SE\n")
+                                                          leia(acao_combate_golemdopantano)
+                                                          defenderse_golemdopantano = falso
+
+                                                              se(acao_combate_golemdopantano == 1) {
+                                                                vida_golemdopantano = vida_golemdopantano - danodaespecializacao
+                                                                escreva("Muito bem herói, você causou:", danodaespecializacao, "de dano no inimigo")
+                                                            }
+                                                            senao se(acao_combate_golemdopantano == 2) {
+                                                                defenderse_golemdopantano = verdadeiro 
+                                                                inteiro dano_reduzido_golemdopantano  = dano_golemdopantano / 2
+                                                                vidadaespecializacao = vidadaespecializacao - dano_reduzido_golemdopantano
+                                                                escreva("Voce acabou se defendendo campeao, e o inimigo causou apenas", dano_reduzido_golemdopantano, "de dano\n")
+                                                            }
+                                                            senao {
+                                                                escreva("O inimigo aproveitou a sua indecisão!!")
+                                                            }
+
+                                                            se(vida_golemdopantano > 0 e defenderse_golemdopantano == falso) {
+                                                                vidadaespecializacao = vidadaespecializacao - dano_golemdopantano
+                                                                escreva("O golem atacou você causando", dano_golemdopantano, "de dano\n")
+                                                            }
+                                                            senao se(vida_golemdopantano <= 0) {
+                                                                escreva("Parabéns ",nomedocampeao, ", Voce derrotou o inimigo!!\n")
+                                                                xp = xp + xp_ganho_golemdopantano
+                                                                escreva("Parabéns ",nomedocampeao, ", Voce recebeu", xp_ganho_golemdopantano, "de XP\n")
+                                                                nivelupado(xp, xpparasubirdenivel, niveldocampeao)
+                                                                escreva("Meus parabéns ",nomedocampeao, " você derrotou seu primeiro inimigo! Sabiamos que você consegueria!!\n")
+                                                          }
+                                                            se(vidadaespecializacao <=0){
+                                                              escreva("Voce foi derrotado por Golem do pantano\n")
+                                                              escreva("Que os deuses guardem sua alma",nomedocampeao,"\n")
+                                                        }
+                                                      }
+                                                      pare
+
+                                                      caso 3:
+                                                      escreva("CAMINHO CERTO!!")
+                                                      escreva("Você passa mais uma vez pelo caminho calmo e tranquilamente...\n")
+                                                      escreva("Porém comeca a estranhar aquela calmaria que no fundo você sabe que não é muito normal...\n")
+                                                      escreva("\n\n\n")
+                                                      pare
+
+                                                      caso 4:
+                                                      escreva("?????CAMINHO CERTO?????\n")
+                                                      escreva("Você seguiu por um caminho alternativo...\n")
+                                                      escreva("------------------------------------------------\n")
+                                                      escreva("VOCÊ ENCONTROU UM GOLEM DO PÂNTANO (MELHORADO)!!\n")
+                                                      escreva("------------------------------------------------\n")
+                                                      inteiro vida_golemdopantano = 999
+                                                      inteiro dano_golemdopantano  = 50
+                                                      inteiro xp_ganho_golemdopantano  = 100
+                                                      inteiro acao_combate_golemdopantano 
+                                                      logico defenderse_golemdopantano  = falso
+
+                                                      enquanto(vidadaespecializacao > 0 e vida_golemdopantano > 0) {
+                                                          escreva("\nSUA VIDA:", vidadaespecializacao, "\nVIDA DO INIMIGO:", vida_golemdopantano, "\n")
+                                                          escreva("1-ATACAR\n")
+                                                          escreva("2-DEFENDER-SE\n")
+                                                          leia(acao_combate_golemdopantano)
+                                                          defenderse_golemdopantano = falso
+
+                                                              se(acao_combate_golemdopantano == 1) {
+                                                                vida_golemdopantano = vida_golemdopantano - danodaespecializacao
+                                                                escreva("Muito bem herói, você causou:", danodaespecializacao, "de dano no inimigo")
+                                                            }
+                                                            senao se(acao_combate_golemdopantano == 2) {
+                                                                defenderse_golemdopantano = verdadeiro 
+                                                                inteiro dano_reduzido_golemdopantano  = dano_golemdopantano / 2
+                                                                vidadaespecializacao = vidadaespecializacao - dano_reduzido_golemdopantano
+                                                                escreva("Voce acabou se defendendo campeao, e o inimigo causou apenas", dano_reduzido_golemdopantano, "de dano\n")
+                                                            }
+                                                            senao {
+                                                                escreva("O inimigo aproveitou a sua indecisão!!")
+                                                            }
+
+                                                            se(vida_golemdopantano > 0 e defenderse_golemdopantano == falso) {
+                                                                vidadaespecializacao = vidadaespecializacao - dano_golemdopantano
+                                                                escreva("O golem atacou você causando", dano_golemdopantano, "de dano\n")
+                                                            }
+                                                            senao se(vida_golemdopantano <= 0) {
+                                                                escreva("Parabéns ",nomedocampeao, ", Voce derrotou o inimigo!!\n")
+                                                                xp = xp + xp_ganho_golemdopantano
+                                                                escreva("Parabéns ",nomedocampeao, ", Voce recebeu", xp_ganho_golemdopantano, "de XP\n")
+                                                                nivelupado(xp, xpparasubirdenivel, niveldocampeao)
+                                                                escreva("Meus parabéns ",nomedocampeao, " você derrotou seu primeiro inimigo! Sabiamos que você consegueria!!\n")
+                                                          }
+                                                            se(vidadaespecializacao <=0){
+                                                              escreva("Voce foi derrotado por Golem do pantano\n")
+                                                              escreva("Que os deuses guardem sua alma",nomedocampeao,"\n")
+                                                        }
+                                                      }
+                                                      pare
+                                                     
+                                                    }
+                                                    se(vidadaespecializacao>=1){
+                                                     escreva("Após uma longa jornada você encontra uma clareira mais a frente ...\n")
+                                                     escreva("Comeca a acha-la estranha, pois não tinha muito movimento ou muito menos algo colossal por ali\n")
+                                                     escreva("Você caminha até lá...\n")
+                                                     inteiro entrar_clareira_pantano_vadeoso
+                                                     escreva("1==ENTRAR NA CLAREIRA DO PANTANO VADEOSO\n")
+                                                     leia(entrar_clareira_pantano_vadeoso)
+                                                     limpa()
+                                                     se(entrar_clareira_pantano_vadeoso==1){
+                                                      escreva("Ao entrar você repara em Joofrey , que por ali estava\n")
+                                                      escreva("Imediatamente você acha aquela seituacao muito estranha\n")
+                                                      escreva(nomedocampeao," :Joofrey? Oque faz aqui??\n")
+                                                      escreva("Joofrey: Hahaha , olá meu caro amigo, vejo que chegou até onde eu lhe disse...\n")
+                                                      escreva(nomedocampeao," :Porque você está aqui?Não estava bem da última vez que eu te vi...\n")
+                                                      escreva("Joofrey: Então meu caro amigo...lamento dizer isso , mas...\n")
+                                                      escreva(nomedocampeao," :Oque está acontecendo com seus olhos??\n")
+                                                      escreva("Joofrey: Seu querido amigo Joofrey, já não está mais entre nós garoto\n")
+                                                      escreva("Joofrey: Contemple a minha verdadeira forma...KELTUZAD...UUUAAARHHHHHG\n")
+                                                      escreva("****O CORPO DE JOOFREY SE QUEBRA E SE DEFORMA,SE TRANSFORMANDO EM KELTUZAD, O SENHOR DO VAZIO")
+                                                      escreva(nomedocampeao," :Pelos Deuses..oque é você?")
+                                                      escreva("KELTUZAD, O SENHOR DO VAZIO: CONTEMPLE A MINHA VERDADEIRA FORMA , MORTAL MALDITO...\n")
+                                                      escreva("KELTUZAD, O SENHOR DO VAZIO: NAO TEM IDÉIA DE COMO EU ESPEREI PARA PODER TE MATAR...\n")
+                                                      escreva(nomedocampeao," :Bem, veremos então...\n")
+                                                      escreva("\n\n\n\n\n")
+
+                                              cadeia nome_chefe_keltuzad = "KELTUZAD,O SENHOR DO VAZIO"
+                                              escreva("--------------------------------------------------------------\n")
+                                              escreva("VOCE ENCONTROU KELTUZAD,O SENHOR DO VAZIO!!\n")
+                                              escreva("--------------------------------------------------------------\n")
+                                              escreva("\n\n\n")                                            
+                                              inteiro vida_chefe_keltuzad = 50 //alterar vida do chefe
+                                              inteiro xp_ganho_keltuzad = 100
+                                              inteiro dano_de_ataque_chefe_keltuzad = 5 //alterar o dano do chefe
+                                              logico defenderse_chefe_keltuzad = falso
+                                              enquanto(vidadaespecializacao > 0 e vida_chefe_keltuzad > 0) {
+                                              escreva("\nSUA VIDA:", vidadaespecializacao, "\nVIDA DO ", vida_chefe_keltuzad, ":", vida_chefe_keltuzad, "\n")
+                                              escreva("1-ATACAR\n")
+                                              escreva("2-DEFENDER-SE\n")
+                                              inteiro acao_combate_chefe_keltuzad
+                                              leia(acao_combate_chefe_keltuzad)
+                                              defenderse_chefe_keltuzad = falso
+
+                                              se(acao_combate_chefe_keltuzad==1){
+                                                danodaespecializacao=Util.sorteia(danodaespecializacao-2,danodaespecializacao + 2)
+                                                agilidadedaespecializacao = Util.sorteia(1,100)
+                                                se(agilidadedaespecializacao<=15){
+                                                  danodaespecializacao = danodaespecializacao * 2
+                                                  escreva("VOCÊ CAUSOU UM ATAQUE CRÍTICO CAMPEÃO!!\n")
+                                                }
+                                              vida_chefe_keltuzad = vida_chefe_keltuzad - danodaespecializacao
+                                              escreva("\nVocê causou",danodaespecializacao,"de dano em",nome_chefe_keltuzad,"\n")
+                                              }
+                                              senao se(acao_combate_chefe_keltuzad==2){
+                                              inteiro dano_reduzido_chefe_keltuzad = (Util.sorteia(dano_de_ataque_chefe_keltuzad-2,dano_de_ataque_chefe_keltuzad)) / 2
+                                              defenderse_chefe_keltuzad = verdadeiro
+                                              se(dano_reduzido_chefe_keltuzad < 0){
+                                                dano_reduzido_chefe_keltuzad = 0
+                                              }
+                                              vidadaespecializacao = vidadaespecializacao - dano_reduzido_chefe_keltuzad
+                                              escreva("Voce se defendeu de ",nome_chefe_keltuzad,"o inimigo causou apenas",dano_reduzido_chefe_keltuzad,"\n")
+                                              }senao{escreva(nome_chefe_keltuzad,"Aproveitou a sua brecha",nomedocampeao,"  lhe atacou!!\n")}
+                                              se(vida_chefe_keltuzad > 0 e defenderse_chefe_keltuzad==falso){
+                                                dano_de_ataque_chefe_keltuzad = Util.sorteia(dano_de_ataque_chefe_keltuzad-5,dano_de_ataque_chefe_keltuzad+5)
+                                                se(dano_de_ataque_chefe_keltuzad<0){
+                                                  dano_de_ataque_chefe_keltuzad = 0
+                                                }inteiro chance_de_esquiva_keltuzad=Util.sorteia(1,100)
+                                                se(chance_de_esquiva_keltuzad<=15){
+                                                  escreva("\nVocê se esquivou de",nome_chefe_keltuzad,"\n")
+                                                }
+                                                senao{
+                                                  vidadaespecializacao = vidadaespecializacao - dano_de_ataque_chefe_keltuzad
+                                                  escreva("\nVoce recebeu",dano_de_ataque_chefe_keltuzad,"de",nome_chefe_keltuzad,"\n")
+                                                }
+                                              }
+                                  
+
+                                              }
+                                              se(vidadaespecializacao <=0){
+                                                escreva("Voce foi derrotado por",nome_chefe_keltuzad,"\n")
+                                                escreva("Que os deuses guardem sua alma",nomedocampeao,"\n")
+                                                }
+                                              senao se(vida_chefe_keltuzad<=0){
+                                                escreva("Parabéns",nomedocampeao,"voce derrotou",nome_chefe_keltuzad,"\n")
+                                                xp = xp + xp_ganho_keltuzad
+                                                escreva(nomedocampeao," você derrotou ",nome_chefe_keltuzad,"parabéns",nomedocampeao,"\n")
+                                                nivelupado(xp, xpparasubirdenivel, niveldocampeao)
+                                                escreva("Muito obrigado campeão, você libertou o pantano vadeoso de",nome_chefe_keltuzad,"\n")
+                                                escreva("\n\n\n\n")
+                                                }
+                                                Util.aguarde(5000)
+                                                limpa()
+                                                inteiro quinta_regiao_eldoria
+                                                escreva("Parabéns campeão escolha a região na qual você deseja ir...\n")
+                                                escreva("REINO DE ELDORIA\n")
+                                                escreva("1-FLORESTA DA NÉVOA\n")
+                                                escreva("2-VILA ABANDONADA\n")
+                                                escreva("3-CAVERNA SOMBRIA\n")
+                                                escreva("4-PANTANO DOS LAMENTOS\n")
+                                                escreva("5-CASTELO DOURADO\n")
+
+                                                escolha(quinta_regiao_eldoria){
+
+                                                caso 1:
+                                                escreva("VOCE JA PASSOU POR ESTA REGIÃO", nomedocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                escreva("VOCE CHEGOU ATÉ O NÍVEL",niveldocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                escreva("VOCE DERROTOU",nome_chefe_xavius,"\n")
+                                                Util.aguarde(1000)
+                                                escreva(nomedocampeao,"NAO HÁ MAIS NADA A SER FEITO NESTA REGIÃO CAMPEÃO...\n")
+                                                Util.aguarde(1000)
+                                                escreva("LHE DESEJAMOS MUITA SORTE NOS PRÓXMIOS DESAFIOS",nomedocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                pare
+
+                                                caso 2:
+                                                escreva("VOCE JA PASSOU POR ESTA REGIÃO", nomedocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                escreva("VOCE CHEGOU ATÉ O NÍVEL",niveldocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                escreva("VOCE DERROTOU",nome_chefe_guldhan,"\n")
+                                                Util.aguarde(1000)
+                                                escreva(nomedocampeao,"NAO HÁ MAIS NADA A SER FEITO NESTA REGIÃO CAMPEÃO...\n")
+                                                Util.aguarde(1000)
+                                                escreva("LHE DESEJAMOS MUITA SORTE NOS PRÓXMIOS DESAFIOS",nomedocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                pare
+
+                                                caso 3:
+                                                escreva("VOCE JA PASSOU POR ESTA REGIÃO", nomedocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                escreva("VOCE CHEGOU ATÉ O NÍVEL",niveldocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                escreva("VOCE DERROTOU",nome_chefe_ragnaros,"\n")
+                                                Util.aguarde(1000)
+                                                escreva(nomedocampeao,"NAO HÁ MAIS NADA A SER FEITO NESTA REGIÃO CAMPEÃO...\n")
+                                                Util.aguarde(1000)
+                                                escreva("LHE DESEJAMOS MUITA SORTE NOS PRÓXMIOS DESAFIOS",nomedocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                pare
+
+                                                caso 4:
+                                                 escreva("VOCE JA PASSOU POR ESTA REGIÃO", nomedocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                escreva("VOCE CHEGOU ATÉ O NÍVEL",niveldocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                escreva("VOCE DERROTOU",nome_chefe_keltuzad,"\n")
+                                                Util.aguarde(1000)
+                                                escreva(nomedocampeao,"NAO HÁ MAIS NADA A SER FEITO NESTA REGIÃO CAMPEÃO...\n")
+                                                Util.aguarde(1000)
+                                                escreva("LHE DESEJAMOS MUITA SORTE NOS PRÓXMIOS DESAFIOS",nomedocampeao,"\n")
+                                                Util.aguarde(1000)
+                                                pare
+
+                                                caso 5:
+                                                escreva("Mapa escolhido com sucesso!!\n")
+                                                Util.aguarde(3000)
+                                                escreva("Lhe desejamos muita sorte na sua próxima aventura campeão! \n")
+                                                Util.aguarde(3000)
+                                                pare
+                                                }
+                                                limpa()
+                                                escreva("SEUS STATUS: \n")
+                                                escreva("VIDA: ",vidadaespecializacao,"\n")
+                                                escreva("DANO: ",danodaespecializacao,"\n")
+                                                escreva("DEFESA: ",defesadaespecializacao,"\n")
+                                                escreva("AGILIDADE: ",agilidadedaespecializacao,"\n")
+                                                escreva("\n\n\n")
+                                                escreva("Após uma longa jornada, voce encontra uma fogueira...\n")
+                                                escreva("Resolve se aproximar dela para se esquentar...\n")
+                                                vidadaespecializacao = Util.sorteia(vidadaespecializacao+15,vidadaespecializacao+20)
+                                                danodaespecializacao = Util.sorteia(danodaespecializacao+15,danodaespecializacao+20)
+                                                agilidadedaespecializacao = Util.sorteia(agilidadedaespecializacao+15,agilidadedaespecializacao+20)
+                                                defesadaespecializacao = Util.sorteia(defesadaespecializacao+15,defesadaespecializacao+20)
+                                                escreva("Após um cochilo próximo a fogueira , você acorda",nomedocampeao,"\n")
+                                                escreva("Depois de algum tempo você resolve seguir seu caminho ")
+                                                escreva("\n\n\n")
+                                                escreva("SEUS STATUS APÓS O DESCANSO:\n")
+                                                escreva("VIDA: ",vidadaespecializacao,"\n")
+                                                escreva("DANO: ",danodaespecializacao,"\n")
+                                                escreva("DEFESA: ",defesadaespecializacao,"\n")
+                                                escreva("AGILIDADE: ",agilidadedaespecializacao,"\n")
+                                                Util.aguarde(5000)
+                                                limpa()
+                                                escreva("Você cavalga por entre os portões antigos do lendário CASTELO DOURADO...\n")
+                                                escreva("Os ventos sopram forte, e o céu se fecha em cinza...\n")
+                                                escreva("Você desce do cavalo e observa os detalhes dourados nas paredes.\n")
+                                                escreva("As marcas de batalhas antigas ainda permanecem nas colunas do castelo...\n")
+                                                escreva("Ao entrar, o silêncio é quebrado apenas pelo eco de seus próprios passos...\n")
+                                                escreva("Você avança pelo SALÃO DOS HERÓIS, onde estão estátuas dos campeões que falharam\n")
+                                                escreva("Uma voz ecoa pelas paredes...\n")
+                                                escreva("DEVASTADOR: Mais um tolo ousa desafiar o Devastador...\n")
+                                                escreva("Você ignora a provocação e continua...\n")
+                                                escreva("Chega ao CORREDOR DAS ARMADILHAS.\n")
+                                                inteiro corredor_de_armadilhas
+                                                escreva("**LANCAS E FLECHAS VENENOSAS VOAM PARA A SUA DIREITA**\n")
+                                                escreva("1==ESQUIVAR-SE PARA A DIREITA\n")
+                                                escreva("2==ESQUIVAR-SE PARA A ESQUERDA\n")
+                                                leia(corredor_de_armadilhas)
+                                                escolha(corredor_de_armadilhas){
+                                                  caso 1:
+                                                  inteiro vida_diminuida_corredor_armadilhas = 35
+
+                                                  vidadaespecializacao = vida_diminuida_corredor_armadilhas - vidadaespecializacao
+
+                                                  escreva("Você perdeu ",vida_diminuida_corredor_armadilhas," de vida após ser atingido pelas armadilhas!!\n")
+                                                  escreva("Você se sente meio mal mas mesmo assim continua a sua jornada!\n")
+                                                  pare
+
+                                                  caso 2: 
+
+                                                  escreva("Você se esquiva pulando para o lado certo deixando as armadilhas de lado!!\n")
+                                                  escreva("As lancas e flechas se cravam na parede do outro lado!!\n")
+
+                                                  pare
+
+                                                }
+
+                                                  escreva("\n\n\n\n")
+                                                  escreva("Você encontra um portão gigante com símbolos rúnicos brilhando em vermelho.\n")
+                                                  escreva("Você posiciona o amuleto antigo no centro do símbolo e o portão se abre...\n")
+                                                  inteiro entrar_covil_devastador
+                                                  escreva("1==ENTRAR NO COVIL DO DEVASTADOR!\n")
+                                                  leia(entrar_covil_devastador)
+                                                  limpa()
+                                                  se(entrar_covil_devastador==1){
+                                                    escreva("O chão está coberto de cinzas e as janelas estão trincadas.\n")
+                                                    escreva("Sentado em um trono feito de ossos e chamas, está o DEVASTADOR\n")
+                                                    escreva("O monstro levanta sua cabeça coberta por um elmo negro e ri cruelmente...\n")
+                                                    escreva("Então... é você o último campeão? Interessante...\n")
+                                                    escreva("Você segura firme sua arma, o coração batendo como um tambor\n")
+
+                                                    escreva("\n\n\n\n")
+                                                    escreva("\n[Você encara o Devastador, que se ergue lentamente do trono.]")
+                                                    escreva("\nDEVASTADOR: Então... o novo tolo chegou.")
+
+                                                    escreva("\nJOGADOR: Eu vim pôr um fim à sua tirania. Você destruiu reinos, famílias, esperanças...")
+                                                    escreva("\nJOGADOR: Por que fez isso? Por que devastar o mundo de Eldoria?")
+                                                    Util.aguarde(5000)
+
+                                                    escreva("\n[O Devastador caminha lentamente em sua direção, a cada passo, o chão treme.]")
+                                                    escreva("\nDEVASTADOR: Por que...?\n")
+
+                                                    escreva("\nDEVASTADOR: Porque Eldoria apodreceu. Porque seus reis se escondem atrás de muros dourados e seus heróis viraram sombras do passado.")
+                                                    escreva("\nDEVASTADOR: Porque os fracos multiplicaram-se, e os fortes foram esquecidos.")
+                                                    escreva("\nDEVASTADOR: Eu sou o equilíbrio restaurado. Eu sou a tempestade que purifica.")
+
+                                                    escreva("\nJOGADOR: Você não é equilíbrio. Você é apenas destruição e vaidade.")
+                                                    escreva("\nDEVASTADOR: Vaidade? Ha! Eu não desejo aplausos. Eu desejo silêncio. E cinzas.")
+                                                    Util.aguarde(5000)
+
+
+                                                    escreva("\n[O Devastador ergue o braço e mostra uma runa em chamas na palma da mão.]")
+                                                    escreva("\nDEVASTADOR: Cada grito, cada ruína, cada lágrima... é um lembrete de que a ordem falhou.")
+                                                    escreva("\nDEVASTADOR: Eu vim para reescrever este mundo — com sangue.")
+
+                                                    escreva("\nJOGADOR: Você não sairá vivo desta sala.")
+
+                                                    escreva("\n[O Devastador dá uma gargalhada sombria, seu elmo cintila em vermelho.]")
+                                                    escreva("\nDEVASTADOR: Hahaha... Que arrogância patética.")
+                                                    escreva("\nDEVASTADOR: Você é apenas mais um verme com uma espada... achando que é um herói.")
+
+                                                    escreva("\nDEVASTADOR: Prepare-se para ser esquecido, como todos os outros!!\n")
+                                                    Util.aguarde(5000)
+                                                    limpa()
+                                                   cadeia nome_chefe_devastador = "O DEVASTADOR DE MUNDOS"
+
+                                                  escreva("--------------------------------------------------------------\n")
+                                                  escreva("VOCÊ ENCONTROU ", nome_chefe_devastador, "!!\n")
+                                                  escreva("--------------------------------------------------------------\n\n\n")
+
+                                                  inteiro vida_chefe_devastador = 400
+                                                  inteiro vida_maxima_chefe_devastador = 400
+                                                  inteiro dano_de_ataque_chefe_devastador = 30
+                                                  logico defenderse_chefe_devastador = falso
+
+                                                  enquanto (vidadaespecializacao > 0 e vida_chefe_devastador > 0) {
+
+                                                      escreva("\nSUA VIDA: ", vidadaespecializacao, 
+                                                              "\nVIDA DO ", nome_chefe_devastador, ": ", vida_chefe_devastador, "\n")
+                                                      escreva("1 - ATACAR\n")
+                                                      escreva("2 - DEFENDER-SE\n")
+
+                                                      inteiro acao_combate_chefe_devastador
+                                                      leia(acao_combate_chefe_devastador)
+                                                      defenderse_chefe_devastador = falso
+
+                                                      se (acao_combate_chefe_devastador == 1) {
+                                                          danodaespecializacao = Util.sorteia(danodaespecializacao - 2, danodaespecializacao + 2)
+                                                          agilidadedaespecializacao = Util.sorteia(1, 100)
+
+                                                          se (agilidadedaespecializacao <= 15) {
+                                                              danodaespecializacao = danodaespecializacao * 2
+                                                              escreva("⚔️ ATAQUE CRÍTICO CAMPEÃO!!\n")
+                                                          }
+
+                                                          vida_chefe_devastador = vida_chefe_devastador - danodaespecializacao
+                                                          escreva("\nVocê causou ", danodaespecializacao, " de dano em ", nome_chefe_devastador, "\n")
+                                                      }
+
+                                                      senao se (acao_combate_chefe_devastador == 2) {
+                                                          inteiro dano_reduzido_chefe_devastador = Util.sorteia(dano_de_ataque_chefe_devastador - 2, dano_de_ataque_chefe_devastador) / 2
+                                                          se (dano_reduzido_chefe_devastador < 0) {
+                                                              dano_reduzido_chefe_devastador = 0
+                                                          }
+                                                          defenderse_chefe_devastador = verdadeiro
+                                                          vidadaespecializacao = vidadaespecializacao - dano_reduzido_chefe_devastador
+
+                                                          escreva("🛡️ Você se defendeu de ", nome_chefe_devastador, 
+                                                                  ". O inimigo causou apenas ", dano_reduzido_chefe_devastador, " de dano.\n")
+                                                      }
+
+                                                      senao {
+                                                          escreva(nome_chefe_devastador, " aproveitou a sua brecha, ", nomedocampeao, " e lhe atacou!!\n")
+                                                      }
+                                                      se (vida_chefe_devastador > 0 e defenderse_chefe_devastador == falso) {
+                                                          dano_de_ataque_chefe_devastador = Util.sorteia(dano_de_ataque_chefe_devastador - 5, dano_de_ataque_chefe_devastador + 5)
+
+                                                          se (dano_de_ataque_chefe_devastador < 0) {
+                                                              dano_de_ataque_chefe_devastador = 0
+                                                          }
+
+                                                          inteiro chance_de_esquiva_devastador = Util.sorteia(1, 100)
+
+                                                          se (chance_de_esquiva_devastador <= 15) {
+                                                              escreva("\n🌀 Você se esquivou do ataque de ", nome_chefe_devastador, "!\n")
+                                                          } senao {
+                                                              vidadaespecializacao = vidadaespecializacao - dano_de_ataque_chefe_devastador
+                                                              escreva("\n💥 Você recebeu ", dano_de_ataque_chefe_devastador, " de dano de ", nome_chefe_devastador, "\n")
+                                                          }
+                                                          inteiro cura_chefe_devastador = Util.sorteia(20, 80)
+                                                          vida_chefe_devastador = vida_chefe_devastador + cura_chefe_devastador
+
+                                                          se (vida_chefe_devastador > vida_maxima_chefe_devastador) {
+                                                              vida_chefe_devastador = vida_maxima_chefe_devastador
+                                                          }
+
+                                                          escreva("🧬 ", nome_chefe_devastador, " absorveu energia do vazio e se curou em ", cura_chefe_devastador, " pontos de vida!\n")
+                                                      }
+                                                  }
+                                                  se (vidadaespecializacao <= 0) {
+                                                      escreva("\n💀 Você foi derrotado por ", nome_chefe_devastador, "\n")
+                                                      escreva("🕯️ Que os deuses guardem sua alma, ", nomedocampeao, ".\n")
+                                                  } senao se (vida_chefe_devastador <= 0) {
+                                                      escreva("Você se aproxima do corpo caído de O DEVASTADOR DE MUNDOS...\n")
+                                                      escreva("A fumaça negra que envolvia Eldoria começa a desaparecer.\n")
+                                                      escreva("Os céus se abrem, revelando o sol pela primeira vez em séculos.\n\n")
+                                                      escreva("Você se aproxima do corpo caído de O DEVASTADOR DE MUNDOS...\n")
+                                                      escreva("A fumaça negra que envolvia Eldoria começa a desaparecer.\n")
+                                                      escreva("Os céus se abrem, revelando o sol pela primeira vez em séculos.\n\n")
+                                                      escreva("GUARDIÃO DE ELDORIA: Herói, você conseguiu! O Devastador foi derrotado.\n")
+                                                      escreva("GUARDIÃO DE ELDORIA: Diga-nos, qual é o seu nome, salvador do nosso povo?\n")
+                                                      escreva("\nGUARDIÃO DE ELDORIA: ", nomedocampeao, "... Que nome magnífico! Será lembrado por todas as gerações!\n")
+                                                      escreva("GUARDIÃO DE ELDORIA: Como se sente após derrotar uma entidade tão terrível?\n")
+                                                      escreva("\n(O povo de Eldoria se reúne ao redor do herói. Gritos de alegria ecoam pelos vales.)\n")
+                                                      escreva("\nANCIÃO DO TEMPLO: As runas profetizavam sua chegada. Você é o escolhido.\n")
+                                                      escreva("ANCIÃO DO TEMPLO: Graças a você, Eldoria pode florescer mais uma vez.\n")
+                                                      escreva("\n--- FIM DA JORNADA ---\n")
+                                                      escreva("Obrigado por salvar Eldoria!\n")
+                                                                                                    
+                                                  }
+ 
+
+
+
+                                                  }senao{escreva("Acerte o botão seu imbecil! você estava quase lá!!")}
+                                                      }
+                                                    senao{escreva("HAHAHAHA VOCÊ MORREU!")}
+
+                                                    }
+                                                    senao{(escreva("VOCÊ FOI ELIMINADO..."))}
+                                                    }
+                                                    senao{(escreva("VOCÊ FOI ELIMINADO..."))}
+
+
                                                     }
                                                       senao{(escreva("VOCÊ FOI ELIMINADO..."))}
                                                     }senao{escreva("VOCÊ FOI ELIMINADO...")}
