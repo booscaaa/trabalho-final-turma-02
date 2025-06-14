@@ -1,19 +1,31 @@
 programa {inclua biblioteca Util --> u 
   inteiro vidaMaximaHeroi  
   inteiro vidaHeroi
+  
   inteiro danoHeroi
   inteiro danoMinimoHeroi
   inteiro danoDado
+  inteiro danoReal
   inteiro defesaHeroi
+  inteiro nivelAtualHeroi
+  inteiro xpAtualHeroi = 0
+  inteiro maximoXPHeroi = 100
+  
   inteiro manaMaximaHeroi
   inteiro manaHeroi
+  cadeia feitico
+  inteiro numeroDePocoes
+  
   inteiro chefe = 0
   inteiro ondeEstou = 1
-  cadeia feitico
+  inteiro turnoAtual
+  
   cadeia nomePlayer
 
+  inteiro vidaMaximaInimigo
   inteiro vidaInimigo
   inteiro danoInimigo
+  inteiro danoTomado
   inteiro defesaInimigo
   cadeia nomeInimigo
   funcao inicio() {
@@ -175,7 +187,7 @@ programa {inclua biblioteca Util --> u
       u.aguarde(1000)
       limpa()
       exploration()
-
+          
   }
 
   funcao  classe (cadeia classeEscolhida){
@@ -198,6 +210,7 @@ programa {inclua biblioteca Util --> u
         manaHeroi = 100 
         feitico = "Herbalista"
       }
+      danoMinimoHeroi = danoHeroi / 8 + 1
       
     limpa()
     vidaMaximaHeroi = vidaHeroi
@@ -210,7 +223,9 @@ programa {inclua biblioteca Util --> u
    inteiro pantano = 4
    inteiro castelo = 5
    inteiro decisao
-   
+   se(vidaHeroi <= 0){
+    retorne
+   }
 
    se (ondeEstou == 1){
      escreva("Você está na floresta da névoa\n")//Texto temporario
@@ -223,9 +238,10 @@ programa {inclua biblioteca Util --> u
       exploration(ondeEstou)
 
     }senao se(decisao == 1 e chefe == 0){
-       escreva("Chefe bloqueia o caminho\n")
+       nomeInimigo = "Slime Hivemind"
+       escreva(nomeInimigo,": A abominação da Floresta bloqueia o caminho\n")
        u.aguarde(2000)
-       combateChefe()
+       combateChefe(1)
 
     }senao se(decisao == 2){
       combate(1)
@@ -253,9 +269,10 @@ programa {inclua biblioteca Util --> u
       exploration(ondeEstou)
 
      }senao se(decisao == 1 e chefe == 1){
-       escreva("\nChefe bloqueia o caminho\n")
+       nomeInimigo = ""
+       escreva(nomeInimigo," bloqueia o caminho\n")
        u.aguarde(2000)
-       combateChefe()
+       combateChefe(2)
 
      }senao se(decisao == 2){
       combate(2)
@@ -275,11 +292,13 @@ programa {inclua biblioteca Util --> u
      se(decisao == 1 e chefe >= 3){
       ondeEstou ++ 
       exploration(ondeEstou)
+
      
      }senao se(decisao == 1 e chefe == 2){
-       escreva("\nChefe bloqueia o caminho\n")
+      nomeInimigo = "Domeo Magmus"
+       escreva(nomeInimigo,": Incarnação de magma bloqueia o caminho\n")
        u.aguarde(2000)
-       combateChefe()
+       combateChefe(3)
 
      }senao se(decisao == 2){
       combate(3)
@@ -301,9 +320,10 @@ programa {inclua biblioteca Util --> u
       exploration()
      
      }senao se(decisao == 1 e chefe == 3){
-       escreva("\nChefe bloqueia o caminho\n")
+      nomeInimigo = ""
+       escreva(nomeInimigo," bloqueia o caminho\n")
        u.aguarde(2000)
-       combateChefe()
+       combateChefe(4)
 
      }senao se(decisao == 2){
       combate(4)
@@ -325,9 +345,10 @@ programa {inclua biblioteca Util --> u
       exploration()
      
      }senao se(decisao == 1 e chefe == 5){
-       escreva("\nChefe bloqueia o caminho\n")
+      nomeInimigo = "Regalis"
+       escreva(nomeInimigo,": Rei dos slimes bloqueia o caminho\n")
        u.aguarde(2000)
-       combateChefe()
+       combateChefe(5)
 
      }senao se(decisao == 2){
       combate(5)
@@ -382,19 +403,38 @@ programa {inclua biblioteca Util --> u
   funcao batalha(inteiro tipoDeBatalha){
     
     se (tipoDeBatalha == 1){
-     vidaInimigo = 250
-    danoInimigo = 40
-    defesaInimigo = 20
-    nomeInimigo = "Slime"
-     escreva("Você encontra um slime")
-     atualCombate()
+      vidaInimigo = 250
+      danoInimigo = 40
+      defesaInimigo = 20
+      vidaMaximaInimigo = vidaInimigo
+      nomeInimigo = "Slime"
+      escreva("Você encontra um ", nomeInimigo)
+      atualCombate()
 
     }senao se (tipoDeBatalha == 2){
-      
+      vidaInimigo = 230
+      danoInimigo = 50
+      defesaInimigo = 15
+      vidaMaximaInimigo = vidaInimigo
+      nomeInimigo = "Vrumbi"
+      escreva("Você encontra um ", nomeInimigo)
+      atualCombate()
     }senao se (tipoDeBatalha == 3){
-      
+      vidaInimigo = 400
+      danoInimigo = 30
+      defesaInimigo = 10
+      vidaMaximaInimigo = vidaInimigo
+      nomeInimigo = "Bloomy"
+      escreva("Você encontra um ", nomeInimigo)
+      atualCombate()
     }senao se (tipoDeBatalha == 4){
-      
+      vidaInimigo = 350
+      danoInimigo = 35
+      defesaInimigo = 40
+      vidaMaximaInimigo = vidaInimigo
+      nomeInimigo = "Bloomy"
+      escreva("Você encontra um ", nomeInimigo)
+      atualCombate()
     }senao se (tipoDeBatalha == 5){
       
     }senao se (tipoDeBatalha == 6){
@@ -406,61 +446,144 @@ programa {inclua biblioteca Util --> u
     }senao se (tipoDeBatalha == 9){
       
     }senao se (tipoDeBatalha == 10){
+      vidaInimigo = 500
+      danoInimigo = 75
+      defesaInimigo = 40
+      vidaMaximaInimigo = vidaInimigo
       
     }
 
   }
   funcao atualCombate(){
    cadeia acaoHeroi
-   enquanto(vidaInimigo > 0){
+   enquanto(vidaInimigo > 0 e vidaHeroi > 0 ){
    limpa()
+   turno ++
     escreva("\n ┌───────────────┐  ", nomePlayer)
     escreva("\n │ 1: Ataque     │  ", "Vida:   ", vidaHeroi, " / ", vidaMaximaHeroi)
-    escreva("\n │ 2: Poção      │  ", "Ataque: ", danoHeroi)
+    escreva("\n │ 2: Poção      │  ", "Ataque: ",danoMinimoHeroi," / ", danoHeroi)
     escreva("\n │ 3: Magia      │  ", "Mana:  ",manaHeroi,"/",manaMaximaHeroi,"│ Magia:", feitico)
-    escreva("\n └───────────────┘  ", "Defesa: ", defesaHeroi,"\n")
+    escreva("\n └───────────────┘  ", "Defesa: ", defesaHeroi, "│ Nivel ",xpAtualHeroi,"/",maximoXPHeroi,"\n")
    
     escreva("\n ┌───────────────┐  ", nomeInimigo)
-    escreva("\n │               │  ", "Vida:   ", vidaInimigo)
+    escreva("\n │               │  ", "Vida:   ", vidaInimigo," / ",vidaMaximaInimigo)
     escreva("\n │               │  ", "Ataque: ", danoInimigo)
     escreva("\n │               │  ", "Defesa: ", defesaInimigo)
     escreva("\n └───────────────┘  ", "\n")
     leia(acaoHeroi)
     limpa()
      se(acaoHeroi == "1"){
-      escreva("Você ataca:")
+      escreva("Você ataca: ")
       calculoDeDano()
-      escreva(nomePlayer," Rolou um ",danoDado ," de dano contra uma defesa de ",defesaInimigo)
-      se(danoDado > defesaInimigo){
-        escreva("\nDando ", danoDado- defesaInimigo," de dano")
-      }senao se(danoDado<= defesaInimigo){
+      escreva(nomePlayer," Rolou um ",danoReal ," de dano contra uma defesa de ",defesaInimigo)
+      se(danoReal > defesaInimigo){
+        escreva("\nDando ", danoDado ," de dano")
+      }senao se(danoReal<= defesaInimigo){
         escreva("\nDando 1 de dano")
       }
+      u.aguarde(3000)
+      escreva("\nO ",nomeInimigo," ataca dando ", danoTomado," de dano")
       
      }
-    u.aguarde(4000)
+    u.aguarde(2500)
    }
+   
   }
   funcao calculoDeDano(){
    
     inteiro sorteio = 0
+    inteiro sorteioInimigo = 0
 
-    danoMinimoHeroi = danoHeroi / 8 + 1
-    sorteio = u.sorteia(danoMinimoHeroi, danoHeroi)
-    danoDado = (sorteio - defesaInimigo)
-    se(danoDado > defesaInimigo){
-    vidaInimigo = vidaInimigo - (danoDado - defesaInimigo)
     
-    }senao se (danoDado <= defesaInimigo){
-    
-    vidaInimigo = vidaInimigo - 1
+    se(chefe != 5){sorteio = u.sorteia(danoMinimoHeroi, danoHeroi)
+      danoReal = sorteio
+      danoDado = (sorteio - defesaInimigo)
+      se(sorteio > defesaInimigo){
+      vidaInimigo = vidaInimigo - danoDado
+      
+      }senao se (sorteio <= defesaInimigo){
+      
+      vidaInimigo = vidaInimigo - 1
 
-    }
+      }
+      sorteioInimigo = u.sorteia(1,danoInimigo)
+      se(sorteioInimigo > defesaHeroi){
+        danoTomado = sorteioInimigo - defesaHeroi
+        vidaHeroi = vidaHeroi - (sorteioInimigo - defesaHeroi)
+      }senao se (sorteioInimigo < defesaHeroi){
+        danoTomado = 1
+        vidaHeroi = vidaHeroi - 1
+      }
 
+    } se(chefe == 5){sorteio = u.sorteia(danoMinimoHeroi, danoHeroi)
+      danoReal = sorteio
+      danoDado = (sorteio - defesaInimigo)
+      se(sorteio > defesaInimigo){
+      vidaInimigo = vidaInimigo - danoDado
+      
+      }senao se (sorteio <= defesaInimigo){
+      
+      vidaInimigo = vidaInimigo - 1
+
+      }
+      sorteioInimigo = u.sorteia(1,danoInimigo)
+      se(sorteioInimigo > defesaHeroi){
+        danoTomado = sorteioInimigo - defesaHeroi
+        vidaHeroi = vidaHeroi - (sorteioInimigo - defesaHeroi)
+      }senao se (sorteioInimigo < defesaHeroi){
+        danoTomado = 1
+        vidaHeroi = vidaHeroi - 1
+      }
+      se(vidaInimigo < (vidaMaximaInimigo - 100)){
+        
+      }
+    } 
   }
-  funcao combateChefe(){
-   chefe ++
-   ondeEstou ++
+  funcao combateChefe(inteiro tipoDeChefe){
+    se (tipoDeChefe == 1){
+      vidaInimigo = 500
+      danoInimigo = 75
+      defesaInimigo = 40
+      vidaMaximaInimigo = vidaInimigo
+
+      atualCombate()
+      chefe ++
+      ondeEstou ++
+    }se (tipoDeChefe == 2){
+      vidaInimigo
+      danoInimigo 
+      defesaInimigo 
+      vidaMaximaInimigo = vidaInimigo
+
+      chefe ++
+      ondeEstou ++
+    }se (tipoDeChefe == 3){
+      vidaInimigo 
+      danoInimigo 
+      defesaInimigo 
+      vidaMaximaInimigo = vidaInimigo
+      
+      chefe ++
+      ondeEstou ++
+    }se (tipoDeChefe == 4){
+      vidaInimigo 
+      danoInimigo 
+      defesaInimigo 
+      vidaMaximaInimigo = vidaInimigo
+      
+      chefe ++
+      ondeEstou ++
+    }se (tipoDeChefe == 5){
+      vidaInimigo = 2000
+      danoInimigo = 300
+      defesaInimigo = 160
+      vidaMaximaInimigo = vidaInimigo
+      
+      chefe ++
+      ondeEstou ++
+    }
+   
+   
    exploration()
   }
  
