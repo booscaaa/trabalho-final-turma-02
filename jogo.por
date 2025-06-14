@@ -2,6 +2,7 @@ programa {
 
   inclua biblioteca Util --> u
 
+  //Jogador
   cadeia nomeJogador = "Gelado amigo do Oruam"
   cadeia classe = ""
   inteiro vidaMax = 0
@@ -11,18 +12,31 @@ programa {
   inteiro xp = 0
   inteiro xpParaUpar = 100
   inteiro nivel = 0
-  inteiro quantidadePocao = 0
+  cadeia classeEscolhida = ""
+
+  //Ataques por classe
+  inteiro ataquesGuerreiro[3] = {"CORTE DIRETO","INVESTIDA DUPLA","FÚRIA DO GUERREIRO"}
+  inteiro ataquesArqueiro[3] = {"FLECHA RÁPIDA","FLECHAS DUPLAS","FLECHA PERFURANTE"}
+  inteiro ataquesMago[3] = {"RAIO ARCANO","RAJADA MISTICA","EXLPOSÃO ARCANA"}
+  inteiro contadorTurnos = 3
+
+  //Regiões
   inteiro regiao[5] = {"Floresta da Névoa 🌫️🌲","Vila Abandonada 🏚️👻","Caverna Sombria 🕳️🦇","Pântano dos Lamentos 🐸🧪","Castelo Dourado 🏰✨"}
   inteiro contarRegiao = 0
   inteiro regiaoDesbloqueada = 0
+
+  //Itens Jogador
+  inteiro quantidadePocao = 1
+
+  //Drops Inimigos
   inteiro moedasTotais = 0
   inteiro moedasGanhas = 0
-  cadeia classeEscolhida = ""
 
-  //Itens loja
+  //Loja
   inteiro lojaPocao = 6
   inteiro lojaArma = 1
   inteiro lojaArmadura = 1
+  cadeia classeEscolhida = "" //Número da Classe para os itens e ataques
 
   //Chefes Regiões
   logico miniChefes[4] = {verdadeiro, verdadeiro, verdadeiro, verdadeiro}
@@ -63,7 +77,8 @@ programa {
 
   funcao menu_acoes_jogo(){
     cadeia escolhaAcao
-    enquanto(escolhaAcao != 1 e escolhaAcao != 2 e escolhaAcao != 3 e escolhaAcao != 4 e escolhaAcao != 5){
+    logico voltar = verdadeiro
+    enquanto(escolhaAcao != 1 e escolhaAcao != 2 e escolhaAcao != 3 e escolhaAcao != 4 e escolhaAcao != 5 ou voltar == verdadeiro e vidaAtual > 0){
       limpa()
       escreva("---------------------------")
       escreva("\n",regiao[contarRegiao],"\n")
@@ -77,110 +92,114 @@ programa {
       leia(escolhaAcao)
 
     se(escolhaAcao == 1){
-        se(contarRegiao == 0){
-          batalha(60, 15, 6,"🐺LOBO TERRÍVEL", 2, 60)
-          se(vidaAtual <= 0){
-            pare
-          }
-
-          batalha(70, 20, 8, "💀 ESQUELETO SOMBRIO", 3, 90)
-          se(vidaAtual <= 0){
-            pare
-          }
-
-          verificar_mini_chefe()
-          se(vidaAtual <= 0){
-            pare
-          }
-
-          se(contarRegiao == regiaoDesbloqueada){
-            regiaoDesbloqueada++
-          }
-          //intro_vila_abandonada()
-          contarRegiao++
-          menu_acoes_jogo()
-        }
-        se(contarRegiao == 1){
-          batalha(80, 25, 10, "🗡️ LADRÃO MASCARADO", 4, 120)
-          se(vidaAtual <= 0){
-            pare
-          }
-          batalha(90, 28, 12, "👻 ALMA PERDIDA", 5, 160)
-          se(vidaAtual <= 0){
-            pare
-          }
-          se(contarRegiao == regiaoDesbloqueada){
-            regiaoDesbloqueada++
-          }
-          contarRegiao++
-          menu_acoes_jogo()
-        }
-        se(contarRegiao == 2){
-          batalha(100, 30, 14, "🦂 ESCORPIÃO DE PEDRA", 6, 120)
-          se(vidaAtual <= 0){
-            pare
-          }
-          batalha(110, 34, 16, "👹 OGRO GIGANTE ", 7, 150)
-          se(vidaAtual <= 0){
-            pare
-          }
-          se(contarRegiao == regiaoDesbloqueada){
-            regiaoDesbloqueada++
-          }
-          contarRegiao++
-          menu_acoes_jogo()
-        }
-        se(contarRegiao == 3){
-          batalha(120, 38, 18, "🦎 SALAMANDRA TÓXICA", 8, 160)
-          se(vidaAtual <= 0){
-            pare
-          }
-          batalha(130, 42, 20, "🐲 DRAGÃO VENENOSO", 9, 200)
-          se(vidaAtual <= 0){
-            pare
-          }
-
-          verificar_mini_chefe()
-          se(vidaAtual <= 0){
-            pare
-          }
-
-          se(contarRegiao == regiaoDesbloqueada){
-            regiaoDesbloqueada++
-          }
-          contarRegiao++
-          menu_acoes_jogo()
-        }
-        se(contarRegiao == 4){
-          batalha_cavaleiro(150, 48, 25, "⚔️ CAVALEIRO CORROMPIDO", 10, 200)
-          se(vidaAtual <= 0){
-            pare
-          }
-          batalha_devastador(180, 55, 30, "👑 O DEVASTADOR (Forma Corpórea)", 12)
-          se(vidaAtual <= 0){
-            pare
-          }
-          devastador_ascendido(240, 70, 38, "🔥 O DEVASTADOR ASCENDIDO (Forma Etérea)", 14)
-          se(vidaAtual <= 0){
-            pare
-          }
-        }
+      explorar()
     }
     se(escolhaAcao == 2){
       status_heroi()
+      voltar = verdadeiro
     }
     se(escolhaAcao == 3){
       loja()
+      voltar = verdadeiro
     }
     se(escolhaAcao == 4){
       mudar_fase()
     }
     senao se(escolhaAcao == 5){
       sair()
+      pare
     }
     }
   }
 
+  funcao explorar(){
+    se(contarRegiao == 0){
+          batalha(60, 15, 6,"🐺LOBO TERRÍVEL", 2, 60)
+          se(vidaAtual <=0){
+            retorne
+          }
+          batalha(70, 20, 8, "💀 ESQUELETO SOMBRIO", 3, 90)
+          se(vidaAtual <=0){
+            retorne
+          }
+          verificar_mini_chefe()
+          se(vidaAtual <=0){
+            retorne
+          }
+          se(contarRegiao == regiaoDesbloqueada){
+            regiaoDesbloqueada++
+          }
+          //intro_vila_abandonada()
+          contarRegiao++
+          retorne
+        }
+        se(contarRegiao == 1){
+          batalha(80, 25, 10, "🗡️ LADRÃO MASCARADO", 4, 120)
+          se(vidaAtual <=0){
+            retorne
+          }
+          batalha(90, 28, 12, "👻 ALMA PERDIDA", 5, 160)
+          se(vidaAtual <=0){
+            retorne
+          }
+          se(contarRegiao == regiaoDesbloqueada){
+            regiaoDesbloqueada++
+          }
+          contarRegiao++
+          retorne
+        }
+        se(contarRegiao == 2){
+          batalha(100, 30, 14, "🦂 ESCORPIÃO DE PEDRA", 6, 120)
+          se(vidaAtual <=0){
+            retorne
+          }
+          batalha(110, 34, 16, "👹 OGRO GIGANTE ", 7, 150)
+          se(vidaAtual <=0){
+            retorne
+          }
+          se(contarRegiao == regiaoDesbloqueada){
+            regiaoDesbloqueada++
+          }
+          contarRegiao++
+          retorne
+        }
+        se(contarRegiao == 3){
+          batalha(120, 38, 18, "🦎 SALAMANDRA TÓXICA", 8, 160)
+          se(vidaAtual <=0){
+            retorne
+          }
+          batalha(130, 42, 20, "🐲 DRAGÃO VENENOSO", 9, 200)
+          se(vidaAtual <=0){
+            retorne
+          }
+
+          verificar_mini_chefe()
+          se(vidaAtual <=0){
+            retorne
+          }
+
+          se(contarRegiao == regiaoDesbloqueada){
+            regiaoDesbloqueada++
+          }
+          contarRegiao++
+          retorne
+        }
+        se(contarRegiao == 4){
+          batalha_cavaleiro(150, 48, 25, "⚔️ CAVALEIRO CORROMPIDO", 10, 200)
+          se(vidaAtual <=0){
+            retorne
+          }
+          batalha_devastador(180, 55, 30, "👑 O DEVASTADOR (Forma Corpórea)", 12)
+          se(vidaAtual <=0){
+            retorne
+          }
+          devastador_ascendido(240, 70, 38, "🔥 O DEVASTADOR ASCENDIDO (Forma Etérea)", 14)
+          se(vidaAtual <=0){
+            retorne
+          }
+        }
+  }
+  
   funcao novo_jogo(){
     escreva("| Há muito tempo, o Reino de Eldoria vivia em paz.\n")
     u.aguarde(1000)
@@ -279,7 +298,6 @@ programa {
       leia(voltar)
     }
     se(voltar == ""){
-      menu_acoes_jogo()
     }
   }
 
@@ -288,11 +306,11 @@ programa {
     inteiro vidaAtualInimigo = vidaMaxInimigo
     inteiro danoInimigo = ataqueInimigo - defesa
     cadeia escolher
-    logico defendendo = falso
+    inteiro danoJogador = u.sorteia(ataque * 0.7, ataque)
 
     enquanto (vidaAtualInimigo > 0 e vidaAtual > 0){
       logico acaoValida = verdadeiro
-      enquanto(escolher != 1 e escolher != 2 e escolher != 3){
+      enquanto(escolher != 1 e escolher != 2 e escolher != 3 e escolher != 4){
 
       limpa()
       escreva(nomeInimigo," Nv.",nivelInimigo,"\n")
@@ -308,30 +326,91 @@ programa {
       escreva("\n----------------------------------\n")
 
       escreva("Escolha sua ação:\n")
-      escreva("1 - Atacar   |   2 - Defender\n")
+      se(classeEscolhida == 1){
+      escreva("1 - ",ataquesGuerreiro[0],"\n")
+      escreva("2 - ",ataquesGuerreiro[1],"\n")
+      escreva("3 - ",ataquesGuerreiro[2]," ")
+      se(contadorTurnos > 0){
+        escreva("(CARREGANDO)\n")
+      }senao se(contadorTurnos <= 0){
+        escreva("(PRONTO)\n")
+      }
+      }
+      se(classeEscolhida == 2){
+      escreva("1 - ",ataquesArqueiro[0],"\n")
+      escreva("2 - ",ataquesArqueiro[1],"\n")
+      escreva("3 - ",ataquesArqueiro[2]," ")
+      se(contadorTurnos > 0){
+        escreva("(CARREGANDO)\n")
+      }senao se(contadorTurnos <= 0){
+        escreva("(PRONTO)\n")
+      }
+      }
+      se(classeEscolhida == 3){
+      escreva("1 - ",ataquesMago[0],"\n")
+      escreva("2 - ",ataquesMago[1],"\n")
+      escreva("3 - ",ataquesMago[2]," ")
+      se(contadorTurnos > 0){
+        escreva("(CARREGANDO)\n")
+      }senao se(contadorTurnos <= 0){
+        escreva("(PRONTO)\n")
+      }
+      }
+
       se(quantidadePocao > 0){
-        escreva("3 - Curar\n")
+        escreva("4 - CURAR ( ",quantidadePocao," )\n")
       }
       leia(escolher)
       limpa()
       }
       se(escolher == 1){
-        inteiro dano = u.sorteia(ataque * 0.7, ataque)
-        se(dano < 0){
-          dano = 0
+        se(danoJogador < 0){
+          danoJogador = 0
         }
-        escreva("💥 Você ataca o inimigo e causa ",dano," de dano!\n")
-        vidaAtualInimigo = vidaAtualInimigo - dano
-        defendendo = falso
+        escreva("💥 Você ataca o inimigo e causa ",danoJogador," de dano!\n")
+        vidaAtualInimigo = vidaAtualInimigo - danoJogador
         se(vidaAtualInimigo <= 0){
           pare
         }
       }
       se(escolher == 2){
-        escreva("🛡️ Você se prepara para defender o próximo ataque.\n")
-        defendendo = verdadeiro
+        inteiro chanceDeErrar
+        danoJogador = (danoJogador * 0.7)
+        se(danoJogador < 0){
+          danoJogador = 0
+        }
+        escreva("💥 Você acerta o primeiro ataque e causa  ",danoJogador," de dano!\n")
+        vidaAtualInimigo = vidaAtualInimigo - danoJogador
+        u.aguarde(1000)
+        danoJogador = u.sorteia(ataque * 0.7, ataque)
+
+        chanceDeErrar = u.sorteia(1,3)
+        se(chanceDeErrar < 3){
+          escreva("💥 Você acerta o segundo ataque e causa ",danoJogador," de dano!\n")
+          vidaAtualInimigo = vidaAtualInimigo - danoJogador
+          se(vidaAtualInimigo <= 0){
+            pare
+          }
+        }senao{
+          escreva("🌀 Você ERRA o segundo ataque!\n")
+        }
       }
       se(escolher == 3){
+        inteiro danoBonus = (ataque * 0.2)
+        se(contadorTurnos <= 0){
+        contadorTurnos = 3
+        escreva("💥 Você acerta um ataque especial e causa ",ataque," de dano puro!\n")
+        vidaAtualInimigo = vidaAtualInimigo - ataque
+        u.aguarde(1000)
+        
+        escreva("💥 Seu ataque foi tão poderoso que o inimigo sofreu mais ",danoBonus," de dano\n!")
+        vidaAtualInimigo = vidaAtualInimigo - danoBonus
+      }senao{
+        escreva("⚠️ Você só pode usar esse ataque daqui ",contadorTurnos," turno(s)")
+        acaoValida = falso
+      }
+      }
+      se(escolher == 4){
         se(quantidadePocao > 0){
           vidaAtual += 100
           se(vidaAtual > vidaMax){
@@ -349,9 +428,6 @@ programa {
 
       se(acaoValida e vidaAtualInimigo > 0){
         danoInimigo = u.sorteia(ataqueInimigo * 0.6, ataqueInimigo)
-        se(defendendo){
-          danoInimigo = ataqueInimigo - u.sorteia(3,defesa)
-        }
 
       se(danoInimigo < 0){
         danoInimigo = 0
@@ -359,6 +435,7 @@ programa {
       escreva("⚠️ O inimigo ataca e causa ",danoInimigo," de dano!\n")
       vidaAtual = vidaAtual - danoInimigo
       u.aguarde(1000)
+      contadorTurnos -= 1
       }
       escolher = ""
     }
@@ -415,11 +492,35 @@ programa {
         se(opcao == 1){
           se(nivel >= 3){
           limpa()
-          mini_chefe(80, 20, 8, "🐾 ALFA SOMBRIO", 3, 100)
-          se(vidaAtual <= 0){
-            pare
+          cadeia opcaoMiniChefe
+          logico voltar2
+          enquanto(opcaoMiniChefe != 1 e opcaoMiniChefe != 2 e opcaoMiniChefe != 3 ou voltar2 == verdadeiro){
+            limpa()
+            escreva("💬 Deseja se preparar antes de enfrentar o mini chefe?\n")
+            escreva("1 - ⚔️ Enfrentar o Mini Chefe\n")
+            escreva("2 - 🛒 Ir para a Loja\n")
+            escreva("3 - 📊 Ver Status\n")
+            leia(opcaoMiniChefe)
+            se(opcaoMiniChefe == 1){
+              mini_chefe(80, 20, 8, "🐾 ALFA SOMBRIO", 3, 100)
+              se(vidaAtual <= 0){
+                pare
+                pare
+              }
+              miniChefes[0] = falso
+              pare
+            }senao se(opcaoMiniChefe == 2){
+              loja()
+              voltar2 = verdadeiro
+            }senao se(opcaoMiniChefe == 3){
+              status_heroi()
+              voltar2 = verdadeiro
+            }senao{
+              escreva("❗ Opção inválida. Tente novamente.\n")
+              u.aguarde(1000)
+              voltar2 = verdadeiro
+            }
           }
-          miniChefes[0] = falso
           pare
           }senao{
             limpa()
@@ -438,6 +539,7 @@ programa {
             leia(segundaOpcao)
             se(segundaOpcao == 2){
               voltar = verdadeiro
+              miniChefes[0] = falso
               pare
             }senao se(segundaOpcao == 1){
               voltar = falso
@@ -460,15 +562,39 @@ programa {
         se(opcao == 1){
           se(nivel >= 10){
           limpa()
-          mini_chefe(135, 40, 21, "🐍 SERPENTE ESMERALDA", 9, 220)
-          se(vidaAtual <= 0){
-            pare
+          cadeia opcaoMiniChefe
+          logico voltar2
+          enquanto(opcaoMiniChefe != 1 e opcaoMiniChefe != 2 e opcaoMiniChefe != 3 ou voltar2 == verdadeiro){
+            limpa()
+            escreva("💬 Deseja se preparar antes de enfrentar o mini chefe?\n")
+            escreva("1 - ⚔️ Enfrentar o Mini Chefe\n")
+            escreva("2 - 🛒 Ir para a Loja\n")
+            escreva("3 - 📊 Ver Status\n")
+            leia(opcaoMiniChefe)
+            se(opcaoMiniChefe == 1){
+              mini_chefe(135, 40, 21, "🐍 SERPENTE ESMERALDA", 9, 220)
+              se(vidaAtual <= 0){
+                pare
+                pare
+              }
+              miniChefes[4] = falso
+              pare
+            }senao se(opcaoMiniChefe == 2){
+              loja()
+              voltar2 = verdadeiro
+            }senao se(opcaoMiniChefe == 3){
+              status_heroi()
+              voltar2 = verdadeiro
+            }senao{
+              escreva("❗ Opção inválida. Tente novamente.\n")
+              u.aguarde(1000)
+              voltar2 = verdadeiro
+            }
           }
-          miniChefes[3] = falso
           pare
           }senao{
             limpa()
-            escreva("🚫 Você ainda não está preparado para enfrentar o ",nomesMiniChefes[3],". (Nível 8 necessário)\n")
+            escreva("🚫 Você ainda não está preparado para enfrentar a ",nomesMiniChefes[3],". (Nível 8 necessário)\n")
             escreva("⚔️ Batalhe, suba de nível e tente novamente.\n")
             botao_enter()
             menu_acoes_jogo()
@@ -483,6 +609,8 @@ programa {
             se(segundaOpcao == 2){
               voltar = verdadeiro
               pare
+            }senao{
+              miniChefes[4] = falso
             }
           }
         }
@@ -1256,7 +1384,7 @@ programa {
       }
     }
   }
-  
+
   funcao loja(){
     cadeia item
     cadeia sair
@@ -1331,7 +1459,6 @@ programa {
         pare
 
         caso "4":
-        menu_acoes_jogo()
         pare
 
         caso contrario:
