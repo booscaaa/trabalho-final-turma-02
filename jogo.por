@@ -29,6 +29,116 @@ programa {
      experienciaAtual = experienciaAtual + 2
   }
 
+  funcao cavernaSombria(){
+    escreva("Você respira fundo e entra na Caverna Sombria...\n")
+escreva("O ar é pesado e úmido, e cada passo ecoa como se algo o observasse das sombras.\n")
+escreva("Formações rochosas grotescas moldam o caminho, enquanto murmúrios ancestrais sussurram segredos esquecidos.\n")
+u.aguarde(3000)
+escreva("Subitamente, das profundezas da escuridão, uma criatura emerge — olhos brilhando em vermelho e corpo formado por sombras e ossos.\n")
+escreva("Um **Guardião Esquecido** se interpõe em seu caminho. Você terá que lutar para avançar.\n")
+
+  }
+
+  funcao ganhoudaAlma(){
+    inteiro opcaoEscolhidaCaminhoVilarejo
+    contadordeMapas ++
+    posicoesNoMapa[contadordeMapas]
+    escreva("Com um último golpe, a alma perdida solta um grito ecoante e se desfaz em partículas de luz...\n")
+    escreva("Por um breve instante, você sente paz — como se tivesse libertado algo aprisionado por eras.\n")
+    escreva("Sem tempo para descansar, você respira fundo, ergue sua arma e segue em frente por entre as ruínas silenciosas...\n")
+  u.aguarde(3000)
+    escreva("Após libertar a alma perdida, você avança pela trilha coberta de neblina...\n")
+    escreva("À sua frente, uma abertura na encosta da montanha revela a entrada de uma antiga caverna.\n")
+    escreva("Você chegou à **Caverna Sombria** — ecos de monstros antigos guardam os segredos do passado.\n")
+    u.aguarde(3000)
+
+    enquanto(  opcaoEscolhidaCaminhoVilarejo != 0){
+    escreva("\nO que você deseja fazer?\n")
+    escreva("1 - Entrar no Vilarejo\n")
+    escreva("2 - Voltar a Floresta Almadiçoada\n ")
+    escreva("3 - Ver seus status\n")
+    leia( opcaoEscolhidaCaminhoVilarejo)
+
+    se(  opcaoEscolhidaCaminhoVilarejo == 1){
+      cavernaSombria()
+    } senao se ( opcaoEscolhidaCaminhoVilarejo == 2){
+      voltouNoMapa()
+      continuarPrimeiroWin()
+    }senao se( opcaoEscolhidaCaminhoVilarejo == 3){
+      mostraAtributos()
+      u.aguarde(3000)
+      limpa()
+      }
+    }
+  }
+
+
+  funcao batalhacontraAlma(){
+    inteiro vidaDaAlma = 7
+  inteiro ataqueDaAlma = 2
+  inteiro escolhaTurno
+  inteiro escolhaItem
+  inteiro rodada = 0
+
+  enquanto(vidaJogador > 0 e vidaDaAlma > 0) {
+    escreva("\n-- Rodada ", rodada, " --\n")
+    escreva("Sua Vida: ", vidaJogador, " | Vida da Alma: ", vidaDaAlma, "\n")
+    escreva("1 - Atacar\n")
+    escreva("2 - Usar item\n")
+    escreva("Escolha sua ação: ")
+    leia(escolhaTurno)
+
+    se(escolhaTurno == 1) {
+      escreva("\nVocê ataca a Alma causando ", ataqueJogador, " de dano!\n")
+      vidaDaAlma = vidaDaAlma - ataqueJogador
+    } senao se(escolhaTurno == 2) {
+      itensnoinventario()
+      escreva("Qual item deseja usar? ")
+      leia(escolhaItem)
+
+      se(escolhaItem >= 1 e escolhaItem <= 3) {
+        se(quantidadeItens[escolhaItem - 1] > 0) {
+          se(escolhaItem == 1) {
+            usarPocaoDeVida()
+            quantidadeItens[escolhaItem - 1] = quantidadeItens[escolhaItem - 1] - 1
+          } senao se(escolhaItem == 2) {
+            usarPocaoEstranha()
+            quantidadeItens[escolhaItem - 1] = quantidadeItens[escolhaItem - 1] - 1
+          } senao {
+            escreva("Esse item não faz nada...\n")
+          }
+        } senao {
+          escreva("Você não tem esse item!\n")
+        }
+      } senao {
+        escreva("Item inválido!\n")
+      }
+    } senao {
+      escreva("Você hesitou... e perdeu sua chance de agir!\n")
+    }
+
+    se(vidaDaAlma <= 0) {
+      vidaDaAlma = 0
+      escreva("\nVocê derrotou a Alma!\n")
+      escreva("Sua jornada continua...\n")
+      u.aguarde(1000)
+      aumentarXP()
+      ganhoudaAlma()
+      limpa()
+    }
+
+    se(vidaJogador <= 0) {
+      escreva("Você foi derrotado...\n")
+      u.aguarde(3000)
+      creditos()
+    }
+
+    rodada = rodada + 1
+    u.aguarde(2000)
+
+  }
+  }
+
   funcao aumentarXP(){
   experienciaAtual = experienciaAtual + 5
 
@@ -67,7 +177,16 @@ programa {
   }
 
   funcao vilarejoAbandonado(){
-    escreva("")
+    escreva("Você adentra o vilarejo. O som de correntes e gemidos ecoa entre as casas em ruínas...\n")
+    escreva("O céu escurece enquanto corvos sobrevoam em círculos acima de você...\n")
+    escreva("O som do vento entre as árvores parece sussurrar palavras esquecidas há séculos.\n")
+    escreva("Você sente um arrepio percorrer sua espinha, como se algo antigo estivesse te observando.\n")
+    escreva("Das sombras da névoa, uma alma perdida se materializa diante de você...\n")
+    escreva("Ela emana dor e raiva — não há mais humanidade em seu olhar vazio.\n")
+    escreva("Prepare-se... você terá que batalhar contra a alma perdida!\n")
+    batalhacontraAlma()
+    ganhoudaAlma()
+
 
   }
 
@@ -601,6 +720,10 @@ u.aguarde(1000)
     escreva("Sua vida já está cheia!\n")
   }
 }
+
+
+
+
 }
 
 
