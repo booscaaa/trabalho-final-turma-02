@@ -12,6 +12,7 @@ programa {
     
     inteiro a = u.sorteia(1,10)
     inteiro b = u.sorteia(1,12)
+    inteiro c = u.sorteia(1,30)
 
     // VARIÁVEIS GLOBAIS
     cadeia nomeAventureiro
@@ -25,6 +26,12 @@ programa {
     inteiro xpAtual = 0
     inteiro xpMaximo = 100
     inteiro nivelAtual
+    inteiro habulidadeEspecial
+
+    
+    inteiro habilidadeGuerreiro 
+    inteiro habilidadeMago 
+    inteiro habilidadeArqueiro 
     
     // ITENS ESPECIAIS
     logico possuiCajadoDoReiEsqueleto
@@ -288,31 +295,34 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
                 caso 1:
                     classePersonagem = "Guerreiro"
                     hpMaximo = 150
-                    defesa = 10
+                    defesa = 14
                     ataqueBase = 13
                     manaMaxima = 0
                     xpMaximo = 100
                     nivelAtual = 1
+                    "Golpe Demolidor" habilidadeGuerreiro = ataqueBase + b
                     valido = verdadeiro
                     pare
                 caso 2:
                     classePersonagem = "Arqueiro"
-                    hpMaximo = 100
-                    defesa = 8
-                    ataqueBase = 12
-                    manaMaxima = 0
+                    hpMaximo = 120
+                    defesa = 12
+                    ataqueBase = 16
+                    manaMaxima = 100
                     xpMaximo = 100
                     nivelAtual = 1
+                    "Chuva De Meteoro"habilidadeArqueiro = ataqueBase + c
                     valido = verdadeiro
                     pare
                 caso 3:
                     classePersonagem = "Mago"
-                    hpMaximo = 80
-                    defesa = 5
-                    ataqueBase = 17
+                    hpMaximo = 100
+                    defesa = 10
+                    ataqueBase = 19
                     manaMaxima = 100
                     xpMaximo = 100
                     nivelAtual = 1
+                    "Bola De Fogo" habilidadeMago = ataqueBase + c
                     valido = verdadeiro
                     pare
                 caso contrario:
@@ -408,7 +418,21 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
             }
             
             se (hpAtual <= 0) {
-                escreva("\nGAME OVER - Você foi derrotado!\n")
+              limpa()
+                escreva("\n")
+                escreva("================================\n")
+                escreva("         ✦ GAME OVER ✦\n")
+                escreva("================================\n")
+                escreva("O destino de ", nomeAventureiro, " chegou ao fim nesta jornada.\n")
+                escreva("Classe     : ", classePersonagem, "\n")
+                escreva("Nível      : ", nivelAtual, "\n")
+                escreva("XP alcançado: ", xpAtual, "/", xpMaximo, "\n")
+                escreva("Defesa final: ", defesa, "\n")
+                escreva("--------------------------------\n")
+                escreva("Às vezes, a derrota é apenas um novo começo.\n")
+                escreva("Reflita. Aprimore-se. Retorne mais forte.\n")
+                escreva("================================\n")
+
                 emAventura = falso
                 u.aguarde(3000)
             }
@@ -438,18 +462,35 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
         iniciarBatalhar = verdadeiro
         enquanto (vidaInimigoMaxima[a] >= 0 e vidaInimigoAtual[a] >= 0) {
             limpa()
-            escreva("=== BATALHA ===\n")
-            escreva(nomeAventureiro, ": "," HP:", hpAtual, "/", hpMaximo)
-            se (classePersonagem == "Mago") {
-                escreva(" | ", manaAtual, "/", manaMaxima, " Mana")
-            }senao se(classePersonagem == "Guerreiro" ou "Arqueiro") {
-            } escreva("\nDefesa:", defesa)
-            escreva("Xp:", xpAtual, "/", xpMaximo)
-            escreva("\n", nomeInimigos[a], ": ", vidaInimigoAtual[a], "/", vidaInimigoMaxima[a], " HP\n")
+           escreva("================================\n")
+           escreva("           === BATALHA ===\n")
+           escreva("================================\n")
+           escreva(nomeAventureiro, "\n")
+           escreva("Classe: ", classePersonagem, "\n")
+           escreva("HP     : ", hpAtual, " / ", hpMaximo, "\n")
+
+           se (classePersonagem == "Mago") {
+           escreva("Mana   : ", manaAtual, " / ", manaMaxima, "\n")
+           }
+
+           escreva("Defesa : ", defesa, "\n")
+            escreva("\nXP     : ", xpAtual, " / ", xpMaximo, "\n")
+
+           escreva("--------------------------------\n")
+
+
+           escreva("Inimigo: ", nomeInimigos[a], "\n")
+           escreva("HP     : ", vidaInimigoAtual[a], " / ", vidaInimigoMaxima[a], "\n")
+           escreva("Defesa  :", defesaInimigo[a],"\n")
+
+          escreva("================================\n")
+
             
             // Turno do jogador
             cadeia acao
-            escreva("\n1. Atacar\n2. Habilidade\n3. Fugir\nEscolha: ")
+          
+
+            escreva("\n1. Atacar\n2. Habilidade\nEscolha: ")
             leia(acao)
             
             escolha (acao) {
@@ -464,21 +505,22 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
                     u.aguarde(1500)
                     pare
                 caso "2":
-                    se (usarHabilidadeEspecial(stageBoss, nomeInimigos, vidaInimigoAtual)) {
+                    se (habilidades(habilidadeArqueiro, habilidadeGuerreiro, habilidadeMago, stageBoss, nomeInimigos, vidaInimigoAtual)) {
                         u.aguarde(1500)
+                        "Golpe Demolidor"habilidadeGuerreiro = ataqueBase + a
+                        "Chuva De Meteoro"habilidadeArqueiro = ataqueBase + b
+                        "Bola De Fogo"habilidadeMago = ataqueBase + b
+                        inteiro dano = calcular(ataquebase == a,b,c)
+                        escreva("\nVocê Causa", dano, "De Dano!\n")
+                        se(habilidades == habilidadeMago){
+                          escreva("O Inimigo e Acertado pela bola de fogo e entra em chamas")
+
+                        }
                     } senao {
-                        continue() // Volta ao início do loop
+                        
                     }
-                    pare
-                caso "3":
-                    se (tentarFugir()) {
-                        retorne falso
-                    }
-                    pare
-                caso contrario:
-                    escreva("Ação inválida!\n")
-                    u.aguarde(1000)
-                    continue()
+                    
+                
             }
             
             // Verifica se inimigo foi derrotado
@@ -496,20 +538,53 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
             
             // Verifica se jogador foi derrotado
             se (hpAtual <= 0) {
-                escreva("\nVocê foi derrotado por ", nomeInimigos[a], "!\n")
-                u.aguarde(2000)
+              limpa()
+                escreva("\n")
+                escreva("================================\n")
+                escreva("         ✦ GAME OVER ✦\n")
+                escreva("================================\n")
+                escreva("O destino de ", nomeAventureiro, " chegou ao fim nesta jornada.\n")
+                escreva("Classe     : ", classePersonagem, "\n")
+                escreva("Nível      : ", nivelAtual, "\n")
+                escreva("XP alcançado: ", xpAtual, "/", xpMaximo, "\n")
+                escreva("Defesa final: ", defesa, "\n")
+                escreva("--------------------------------\n")
+                escreva("Às vezes, a derrota é apenas um novo começo.\n")
+                escreva("Reflita. Aprimore-se. Retorne mais forte.\n")
+                escreva("================================\n")
+
+                u.aguarde(2500)
                 retorne falso
                 encerrarJogo()
                 calcular()
+                oferecerDescanso()
+                habilidades()
                 
             }
           
         }
+  }  funcao inteiro oferecerDescanso(){
+    escreva("Você Venceu Parabens Descanse um pouco")
+   inteiro descanso = hpMaximo
+   retorne descanso
+
   }
-  funcao inteiro calcularDano(inteiro numeroFinal, inteiro danoDoAtaque){
+  funcao inteiro calcularDano(inteiro numeroFinal, inteiro danoDoAtaque, inteiro danoHabilidades){
 
     inteiro resultado = u.sorteia(1,numeroFinal) + danoDoAtaque
+    inteiro resultado = u.sorteia(1,numeroFinal) + danoHabilidades
     retorne resultado
+  } funcao inteiro habilidades(){
+    inteiro habilidades
+    inteiro habilidadeGuerreiro
+    inteiro habilidadeMago 
+    inteiro habilidadeArqueiro 
+
+    "Golpe Demolidor"habilidadeGuerreiro = ataqueBase + a
+    "Chuva De Meteoro"habilidadeArqueiro = ataqueBase + b
+    "Bola De Fogo"habilidadeMago = ataqueBase + b
+    retorne habilidades
+
   }
 
   funcao mostrarStatusPersonagem() {
