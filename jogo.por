@@ -34,14 +34,11 @@ programa {
     ataque[2] = 40
     defesa[2] = 25
 
-    classe = 2
-    nomeHeroi = "a"
-
     para (inteiro i = 0; i<3; i++) {
       vidaAtual[i] = vidaMaxima[i]
     }
     
-    pantanoDosLamentos()
+    menu()
 
   }
 
