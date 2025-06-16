@@ -3,7 +3,7 @@ programa {
   inclua biblioteca Util --> u
 
   //Jogador
-  cadeia nomeJogador = "Gelado amigo do Oruam"
+  cadeia nomeJogador = ""
   cadeia classe = ""
   inteiro vidaMax = 0
   inteiro vidaAtual = 0
@@ -44,12 +44,14 @@ programa {
 
   funcao inicio() {
     cadeia escolhaMenu
-  
+
     escolhaMenu = menu_inicio()
 
     se(escolhaMenu == 1){
       limpa()
+      novo_jogo()
       classeEscolhida = classe()
+      historia0()
       menu_acoes_jogo()
     }
     senao se(escolhaMenu == 2){
@@ -114,92 +116,125 @@ programa {
 
   funcao explorar(){
     se(contarRegiao == 0){
-          batalha(60, 15, 6,"🐺LOBO TERRÍVEL", 2, 60)
-          se(vidaAtual <=0){
-            retorne
-          }
-          batalha(70, 20, 8, "💀 ESQUELETO SOMBRIO", 3, 90)
-          se(vidaAtual <=0){
-            retorne
-          }
-          verificar_mini_chefe()
-          se(vidaAtual <=0){
-            retorne
-          }
-          se(contarRegiao == regiaoDesbloqueada){
-            regiaoDesbloqueada++
-          }
-          //intro_vila_abandonada()
-          contarRegiao++
-          retorne
-        }
-        se(contarRegiao == 1){
-          batalha(80, 25, 10, "🗡️ LADRÃO MASCARADO", 4, 120)
-          se(vidaAtual <=0){
-            retorne
-          }
-          batalha(90, 28, 12, "👻 ALMA PERDIDA", 5, 160)
-          se(vidaAtual <=0){
-            retorne
-          }
-          se(contarRegiao == regiaoDesbloqueada){
-            regiaoDesbloqueada++
-          }
-          contarRegiao++
-          retorne
-        }
-        se(contarRegiao == 2){
-          batalha(100, 30, 14, "🦂 ESCORPIÃO DE PEDRA", 6, 120)
-          se(vidaAtual <=0){
-            retorne
-          }
-          batalha(110, 34, 16, "👹 OGRO GIGANTE ", 7, 150)
-          se(vidaAtual <=0){
-            retorne
-          }
-          se(contarRegiao == regiaoDesbloqueada){
-            regiaoDesbloqueada++
-          }
-          contarRegiao++
-          retorne
-        }
-        se(contarRegiao == 3){
-          batalha(120, 38, 18, "🦎 SALAMANDRA TÓXICA", 8, 160)
-          se(vidaAtual <=0){
-            retorne
-          }
-          batalha(130, 42, 20, "🐲 DRAGÃO VENENOSO", 9, 200)
-          se(vidaAtual <=0){
-            retorne
-          }
-
-          verificar_mini_chefe()
-          se(vidaAtual <=0){
-            retorne
-          }
-
-          se(contarRegiao == regiaoDesbloqueada){
-            regiaoDesbloqueada++
-          }
-          contarRegiao++
-          retorne
-        }
-        se(contarRegiao == 4){
-          batalha_cavaleiro(150, 48, 25, "⚔️ CAVALEIRO CORROMPIDO", 10, 200)
-          se(vidaAtual <=0){
-            retorne
-          }
-          batalha_devastador(180, 55, 30, "👑 O DEVASTADOR (Forma Corpórea)", 12)
-          se(vidaAtual <=0){
-            retorne
-          }
-          devastador_ascendido(240, 70, 38, "🔥 O DEVASTADOR ASCENDIDO (Forma Etérea)", 14)
-          se(vidaAtual <=0){
-            retorne
-          }
-        }
+      limpa()
+      escreva("| Um rugido ecoa na névoa: 🐺LOBO TERRÍVEL salta das sombras!\n")
+      u.aguarde(2000)
+      batalha(60, 15, 6,"🐺LOBO TERRÍVEL", 2, 60)
+      se(vidaAtual <=0){
+        retorne
+      }
+      limpa()
+      escreva("| Mal há tempo para respirar e um novo inimigo se aproxima: 💀 ESQUELETO SOMBRIO surge empunhando uma espada enferrujada.\n")
+      u.aguarde(2000)
+      batalha(70, 20, 8, "💀 ESQUELETO SOMBRIO", 3, 90)
+      se(vidaAtual <=0){
+        retorne
+      }
+      verificar_mini_chefe()
+      se(vidaAtual <=0){
+        retorne
+      }
+      se(contarRegiao == regiaoDesbloqueada){
+        regiaoDesbloqueada++
+        historia1()
+      }
+      contarRegiao++
+      retorne
+    }
+    se(contarRegiao == 1){
+      limpa()
+      escreva("| Um vulto salta do telhado com lâminas em punho: 🗡️ LADRÃO MASCARADO ataca sem aviso!\n")
+      u.aguarde(2000)
+      batalha(80, 25, 10, "🗡️ LADRÃO MASCARADO", 4, 120)
+      se(vidaAtual <=0){
+        retorne
+      }
+      limpa()
+      escreva("| No silêncio que se segue, sussurros ecoam pelas ruas. 👻 ALMA PERDIDA emerge das sombras, amaldiçoando tudo ao redor.\n")
+      u.aguarde(2000)
+      batalha(90, 28, 12, "👻 ALMA PERDIDA", 5, 160)
+      se(vidaAtual <=0){
+        retorne
+      }
+      se(contarRegiao == regiaoDesbloqueada){
+        historia2()
+        regiaoDesbloqueada++
+      }
+      contarRegiao++
+      retorne
+    }
+    se(contarRegiao == 2){
+      limpa()
+      escreva("| Estalidos e arranhões soam pelas paredes úmidas... 🦂 ESCORPIÃO DE PEDRA surge entre as rochas!\n")
+      u.aguarde(2000)
+      batalha(100, 30, 14, "🦂 ESCORPIÃO DE PEDRA", 6, 120)
+      se(vidaAtual <=0){
+        retorne
+      }
+      limpa()
+      escreva("| O solo treme novamente quando 👹 OGRO GIGANTE atravessa um muro de pedras, rugindo e brandindo um enorme porrete.\n")
+      u.aguarde(2000)
+      batalha(110, 34, 16, "👹 OGRO GIGANTE ", 7, 150)
+      se(vidaAtual <=0){
+        retorne
+      }
+      se(contarRegiao == regiaoDesbloqueada){
+        historia3()
+        regiaoDesbloqueada++
+      }
+      contarRegiao++
+      retorne
+    }
+    se(contarRegiao == 3){
+      limpa()
+      escreva("| Entre os galhos retorcidos, uma criatura salta da água fétida: 🦎 SALAMANDRA TÓXICA cospe ácido em sua direção!\n")
+      u.aguarde(2000)
+      batalha(120, 38, 18, "🦎 SALAMANDRA TÓXICA", 8, 160)
+      se(vidaAtual <=0){
+        retorne
+      }
+      limpa()
+      escreva("| No centro do pântano, um rugido profundo ecoa. 🐲 DRAGÃO VENENOSO alça voo com suas asas pútridas e mortais.\n")
+      u.aguarde(2000)
+      batalha(130, 42, 20, "🐲 DRAGÃO VENENOSO", 9, 200)
+      se(vidaAtual <=0){
+        retorne
+      }
+      verificar_mini_chefe()
+      se(vidaAtual <=0){
+        retorne
+      }
+      se(contarRegiao == regiaoDesbloqueada){
+        historia4()
+        regiaoDesbloqueada++
+      }
+      contarRegiao++
+      retorne
+    }
+    se(contarRegiao == 4){
+      limpa()
+      escreva("| Guardando a entrada está ⚔️ CAVALEIRO CORROMPIDO, cuja armadura resplandece em trevas. Ele bloqueia o caminho com sua espada negra.\n")
+      u.aguarde(2000)
+      batalha_cavaleiro(150, 48, 25, "⚔️ CAVALEIRO CORROMPIDO", 10, 200)
+      se(vidaAtual <=0){
+        retorne
+      }
+      historia5()
+      u.aguarde(2000)
+      batalha_devastador(180, 55, 30, "👑 O DEVASTADOR (Forma Corpórea)", 12)
+      se(vidaAtual <=0){
+        retorne
+      }
+      u.aguarde(2000)
+      devastador_ascendido(240, 70, 38, "🔥 O DEVASTADOR ASCENDIDO (Forma Etérea)", 14)
+      se(vidaAtual <=0){
+        retorne
+      }
+      historia7()
+      menu_inicio()
+    }
   }
-  
+
   funcao novo_jogo(){
     escreva("| Há muito tempo, o Reino de Eldoria vivia em paz.\n")
     u.aguarde(1000)
@@ -398,12 +433,12 @@ programa {
       se(escolher == 3){
         inteiro danoBonus = (ataque * 0.2)
         se(contadorTurnos <= 0){
-        contadorTurnos = 3
+        contadorTurnos = 4
         escreva("💥 Você acerta um ataque especial e causa ",ataque," de dano puro!\n")
         vidaAtualInimigo = vidaAtualInimigo - ataque
         u.aguarde(1000)
-        
-        escreva("💥 Seu ataque foi tão poderoso que o inimigo sofreu mais ",danoBonus," de dano\n!")
+
+        escreva("💥 Seu ataque foi tão poderoso que o inimigo sofreu mais ",danoBonus," de dano!\n")
         vidaAtualInimigo = vidaAtualInimigo - danoBonus
       }senao{
         escreva("⚠️ Você só pode usar esse ataque daqui ",contadorTurnos," turno(s)")
@@ -539,9 +574,9 @@ programa {
             leia(segundaOpcao)
             se(segundaOpcao == 2){
               voltar = verdadeiro
-              miniChefes[0] = falso
               pare
             }senao se(segundaOpcao == 1){
+              miniChefes[0] = falso
               voltar = falso
               pare
             }
@@ -577,7 +612,7 @@ programa {
                 pare
                 pare
               }
-              miniChefes[4] = falso
+              miniChefes[3] = falso
               pare
             }senao se(opcaoMiniChefe == 2){
               loja()
@@ -610,7 +645,9 @@ programa {
               voltar = verdadeiro
               pare
             }senao{
-              miniChefes[4] = falso
+              miniChefes[3] = falso
+              voltar = falso
+              pare
             }
           }
         }
@@ -622,6 +659,7 @@ programa {
     limpa()
     inteiro vidaAtualInimigo = vidaMaxInimigo
     inteiro danoInimigo = ataqueInimigo - defesa
+    inteiro danoJogador = u.sorteia(ataque * 0.7, ataque)
     cadeia escolher
     logico sangrando = falso
     inteiro danoSangramento = ataqueInimigo * 0.3
@@ -631,7 +669,7 @@ programa {
 
     enquanto (vidaAtualInimigo > 0 e vidaAtual > 0){
       logico acaoValida = verdadeiro
-      enquanto(escolher != 1 e escolher != 2 e escolher != 3){
+      enquanto(escolher != 1 e escolher != 2 e escolher != 3 e escolher != 4){
 
       limpa()
       escreva(nomeInimigo," Nv.",nivelInimigo,"\n")
@@ -647,30 +685,91 @@ programa {
       escreva("\n----------------------------------\n")
 
       escreva("Escolha sua ação:\n")
-      escreva("1 - Atacar   |   2 - Defender\n")
+      se(classeEscolhida == 1){
+      escreva("1 - ",ataquesGuerreiro[0],"\n")
+      escreva("2 - ",ataquesGuerreiro[1],"\n")
+      escreva("3 - ",ataquesGuerreiro[2]," ")
+      se(contadorTurnos > 0){
+        escreva("(CARREGANDO)\n")
+      }senao se(contadorTurnos <= 0){
+        escreva("(PRONTO)\n")
+      }
+      }
+      se(classeEscolhida == 2){
+      escreva("1 - ",ataquesArqueiro[0],"\n")
+      escreva("2 - ",ataquesArqueiro[1],"\n")
+      escreva("3 - ",ataquesArqueiro[2]," ")
+      se(contadorTurnos > 0){
+        escreva("(CARREGANDO)\n")
+      }senao se(contadorTurnos <= 0){
+        escreva("(PRONTO)\n")
+      }
+      }
+      se(classeEscolhida == 3){
+      escreva("1 - ",ataquesMago[0],"\n")
+      escreva("2 - ",ataquesMago[1],"\n")
+      escreva("3 - ",ataquesMago[2]," ")
+      se(contadorTurnos > 0){
+        escreva("(CARREGANDO)\n")
+      }senao se(contadorTurnos <= 0){
+        escreva("(PRONTO)\n")
+      }
+      }
+
       se(quantidadePocao > 0){
-        escreva("3 - Curar\n")
+        escreva("4 - CURAR ( ",quantidadePocao," )\n")
       }
       leia(escolher)
       limpa()
       }
       se(escolher == 1){
-        inteiro dano = u.sorteia(ataque * 0.7, ataque)
-        se(dano < 0){
-          dano = 0
+        se(danoJogador < 0){
+          danoJogador = 0
         }
-        escreva("💥 Você ataca o inimigo e causa ",dano," de dano!\n")
-        vidaAtualInimigo = vidaAtualInimigo - dano
-        defendendo = falso
+        escreva("💥 Você ataca o inimigo e causa ",danoJogador," de dano!\n")
+        vidaAtualInimigo = vidaAtualInimigo - danoJogador
         se(vidaAtualInimigo <= 0){
           pare
         }
       }
       se(escolher == 2){
-        escreva("🛡️ Você se prepara para defender o próximo ataque.\n")
-        defendendo = verdadeiro
+        inteiro chanceDeErrar
+        danoJogador = (danoJogador * 0.7)
+        se(danoJogador < 0){
+          danoJogador = 0
+        }
+        escreva("💥 Você acerta o primeiro ataque e causa  ",danoJogador," de dano!\n")
+        vidaAtualInimigo = vidaAtualInimigo - danoJogador
+        u.aguarde(1000)
+        danoJogador = u.sorteia(ataque * 0.7, ataque)
+
+        chanceDeErrar = u.sorteia(1,3)
+        se(chanceDeErrar < 3){
+          escreva("💥 Você acerta o segundo ataque e causa ",danoJogador," de dano!\n")
+          vidaAtualInimigo = vidaAtualInimigo - danoJogador
+          se(vidaAtualInimigo <= 0){
+            pare
+          }
+        }senao{
+          escreva("🌀 Você ERRA o segundo ataque!\n")
+        }
       }
       se(escolher == 3){
+        inteiro danoBonus = (ataque * 0.2)
+        se(contadorTurnos <= 0){
+        contadorTurnos = 3
+        escreva("💥 Você acerta um ataque especial e causa ",ataque," de dano puro!\n")
+        vidaAtualInimigo = vidaAtualInimigo - ataque
+        u.aguarde(1000)
+
+        escreva("💥 Seu ataque foi tão poderoso que o inimigo sofreu mais ",danoBonus," de dano\n!")
+        vidaAtualInimigo = vidaAtualInimigo - danoBonus
+      }senao{
+        escreva("⚠️ Você só pode usar esse ataque daqui ",contadorTurnos," turno(s)")
+        acaoValida = falso
+      }
+      }
+      se(escolher == 4){
         se(quantidadePocao > 0){
           vidaAtual += 100
           se(vidaAtual > vidaMax){
@@ -685,6 +784,7 @@ programa {
       }
 
       u.aguarde(1000)
+
       se(nomeInimigo == nomesMiniChefes[0]){
 
         inteiro acao = u.sorteia(1,2)
@@ -821,12 +921,13 @@ programa {
     limpa()
     inteiro vidaAtualInimigo = vidaMaxInimigo
     inteiro danoInimigo = ataqueInimigo - defesa
+    inteiro danoJogador = u.sorteia(ataque * 0.7, ataque)
     cadeia escolher
     logico defendendo = falso
     logico atordoado = falso
     enquanto (vidaAtualInimigo > 0 e vidaAtual > 0){
       logico acaoValida = verdadeiro
-      enquanto(escolher != 1 e escolher != 2 e escolher != 3){
+      enquanto(escolher != 1 e escolher != 2 e escolher != 3 e escolher != 4){
 
       limpa()
       escreva(nomeInimigo," Nv.",nivelInimigo,"\n")
@@ -842,30 +943,91 @@ programa {
       escreva("\n----------------------------------\n")
 
       escreva("Escolha sua ação:\n")
-      escreva("1 - Atacar   |   2 - Defender\n")
+      se(classeEscolhida == 1){
+      escreva("1 - ",ataquesGuerreiro[0],"\n")
+      escreva("2 - ",ataquesGuerreiro[1],"\n")
+      escreva("3 - ",ataquesGuerreiro[2]," ")
+      se(contadorTurnos > 0){
+        escreva("(CARREGANDO)\n")
+      }senao se(contadorTurnos <= 0){
+        escreva("(PRONTO)\n")
+      }
+      }
+      se(classeEscolhida == 2){
+      escreva("1 - ",ataquesArqueiro[0],"\n")
+      escreva("2 - ",ataquesArqueiro[1],"\n")
+      escreva("3 - ",ataquesArqueiro[2]," ")
+      se(contadorTurnos > 0){
+        escreva("(CARREGANDO)\n")
+      }senao se(contadorTurnos <= 0){
+        escreva("(PRONTO)\n")
+      }
+      }
+      se(classeEscolhida == 3){
+      escreva("1 - ",ataquesMago[0],"\n")
+      escreva("2 - ",ataquesMago[1],"\n")
+      escreva("3 - ",ataquesMago[2]," ")
+      se(contadorTurnos > 0){
+        escreva("(CARREGANDO)\n")
+      }senao se(contadorTurnos <= 0){
+        escreva("(PRONTO)\n")
+      }
+      }
+
       se(quantidadePocao > 0){
-        escreva("3 - Curar\n")
+        escreva("4 - CURAR ( ",quantidadePocao," )\n")
       }
       leia(escolher)
       limpa()
       }
       se(escolher == 1){
-        inteiro dano = u.sorteia(ataque * 0.7, ataque)
-        se(dano < 0){
-          dano = 0
+        se(danoJogador < 0){
+          danoJogador = 0
         }
-        escreva("💥 Você ataca o inimigo e causa ",dano," de dano!\n")
-        vidaAtualInimigo = vidaAtualInimigo - dano
-        defendendo = falso
+        escreva("💥 Você ataca o inimigo e causa ",danoJogador," de dano!\n")
+        vidaAtualInimigo = vidaAtualInimigo - danoJogador
         se(vidaAtualInimigo <= 0){
           pare
         }
       }
       se(escolher == 2){
-        escreva("🛡️ Você se prepara para defender o próximo ataque.\n")
-        defendendo = verdadeiro
+        inteiro chanceDeErrar
+        danoJogador = (danoJogador * 0.7)
+        se(danoJogador < 0){
+          danoJogador = 0
+        }
+        escreva("💥 Você acerta o primeiro ataque e causa  ",danoJogador," de dano!\n")
+        vidaAtualInimigo = vidaAtualInimigo - danoJogador
+        u.aguarde(1000)
+        danoJogador = u.sorteia(ataque * 0.7, ataque)
+
+        chanceDeErrar = u.sorteia(1,3)
+        se(chanceDeErrar < 3){
+          escreva("💥 Você acerta o segundo ataque e causa ",danoJogador," de dano!\n")
+          vidaAtualInimigo = vidaAtualInimigo - danoJogador
+          se(vidaAtualInimigo <= 0){
+            pare
+          }
+        }senao{
+          escreva("🌀 Você ERRA o segundo ataque!\n")
+        }
       }
       se(escolher == 3){
+        inteiro danoBonus = (ataque * 0.2)
+        se(contadorTurnos <= 0){
+        contadorTurnos = 4
+        escreva("💥 Você acerta um ataque especial e causa ",ataque," de dano puro!\n")
+        vidaAtualInimigo = vidaAtualInimigo - ataque
+        u.aguarde(1000)
+
+        escreva("💥 Seu ataque foi tão poderoso que o inimigo sofreu mais ",danoBonus," de dano\n!")
+        vidaAtualInimigo = vidaAtualInimigo - danoBonus
+      }senao{
+        escreva("⚠️ Você só pode usar esse ataque daqui ",contadorTurnos," turno(s)")
+        acaoValida = falso
+      }
+      }
+      se(escolher == 4){
         se(quantidadePocao > 0){
           vidaAtual += 100
           se(vidaAtual > vidaMax){
@@ -942,6 +1104,7 @@ programa {
           u.aguarde(1000)
           atordoado = falso
         }
+        contadorTurnos -= 1
       }
       escolher = ""
     }
@@ -978,6 +1141,7 @@ programa {
     limpa()
     inteiro vidaAtualInimigo = vidaMaxInimigo
     inteiro danoInimigo = ataqueInimigo - defesa
+    inteiro danoJogador = u.sorteia(ataque * 0.7, ataque)
     cadeia escolher
     logico defendendo = falso
     logico sangrando = falso
@@ -985,8 +1149,8 @@ programa {
     logico gritoTirano = falso
     enquanto (vidaAtualInimigo > 0 e vidaAtual > 0){
       logico acaoValida = verdadeiro
-      enquanto(escolher != 1 e escolher != 2 e escolher != 3){
-        
+      enquanto(escolher != 1 e escolher != 2 e escolher != 3 e escolher != 4){
+
       limpa()
       escreva(nomeInimigo," Nv.",nivelInimigo,"\n")
       escreva("❤️ Vida: ",vidaAtualInimigo,"/",vidaMaxInimigo,"\n")
@@ -1001,40 +1165,123 @@ programa {
       escreva("\n----------------------------------\n")
 
       escreva("Escolha sua ação:\n")
-      escreva("1 - Atacar   |   2 - Defender\n")
+      se(classeEscolhida == 1){
+      escreva("1 - ",ataquesGuerreiro[0],"\n")
+      escreva("2 - ",ataquesGuerreiro[1],"\n")
+      escreva("3 - ",ataquesGuerreiro[2]," ")
+      se(contadorTurnos > 0){
+        escreva("(CARREGANDO)\n")
+      }senao se(contadorTurnos <= 0){
+        escreva("(PRONTO)\n")
+      }
+      }
+      se(classeEscolhida == 2){
+      escreva("1 - ",ataquesArqueiro[0],"\n")
+      escreva("2 - ",ataquesArqueiro[1],"\n")
+      escreva("3 - ",ataquesArqueiro[2]," ")
+      se(contadorTurnos > 0){
+        escreva("(CARREGANDO)\n")
+      }senao se(contadorTurnos <= 0){
+        escreva("(PRONTO)\n")
+      }
+      }
+      se(classeEscolhida == 3){
+      escreva("1 - ",ataquesMago[0],"\n")
+      escreva("2 - ",ataquesMago[1],"\n")
+      escreva("3 - ",ataquesMago[2]," ")
+      se(contadorTurnos > 0){
+        escreva("(CARREGANDO)\n")
+      }senao se(contadorTurnos <= 0){
+        escreva("(PRONTO)\n")
+      }
+      }
+
       se(quantidadePocao > 0){
-        escreva("3 - Curar\n")
+        escreva("4 - CURAR ( ",quantidadePocao," )\n")
       }
       leia(escolher)
       limpa()
       }
       se(escolher == 1){
-        inteiro dano = u.sorteia(ataque * 0.7, ataque)
-        se(dano < 0){
-          dano = 0
+        se(danoJogador < 0){
+          danoJogador = 0
         }
         se(gritoTirano){
-          escreva("💥 Você ataca o inimigo e causa ",dano/2," de dano!\n")
-          vidaAtualInimigo = vidaAtualInimigo - dano/2
-          gritoTirano = falso
-          defendendo = falso
+          escreva("💥 Você ataca o inimigo e causa ",danoJogador / 2," de dano!\n")
+          vidaAtualInimigo = vidaAtualInimigo - danoJogador / 2
           se(vidaAtualInimigo <= 0){
-          pare
-        }
+            pare
+          }
+          gritoTirano = falso
         }senao{
-          escreva("💥 Você ataca o inimigo e causa ",dano," de dano!\n")
-          vidaAtualInimigo = vidaAtualInimigo - dano
-          defendendo = falso
+          escreva("💥 Você ataca o inimigo e causa ",danoJogador," de dano!\n")
+          vidaAtualInimigo = vidaAtualInimigo - danoJogador
           se(vidaAtualInimigo <= 0){
             pare
           }
         }
       }
       se(escolher == 2){
-        escreva("🛡️ Você se prepara para defender o próximo ataque.\n")
-        defendendo = verdadeiro
+        inteiro chanceDeErrar
+        danoJogador = (danoJogador * 0.7)
+        se(danoJogador < 0){
+          danoJogador = 0
+        }
+        se(gritoTirano){
+          escreva("💥 Você acerta o primeiro ataque e causa  ",danoJogador / 2," de dano!\n")
+          vidaAtualInimigo = vidaAtualInimigo - danoJogador / 2
+          u.aguarde(1000)
+          danoJogador = u.sorteia(ataque * 0.7, ataque)
+
+          chanceDeErrar = u.sorteia(1,3)
+          se(chanceDeErrar < 3){
+            escreva("💥 Você acerta o segundo ataque e causa ",danoJogador / 2," de dano!\n")
+            vidaAtualInimigo = vidaAtualInimigo - danoJogador / 2
+            se(vidaAtualInimigo <= 0){
+              pare
+            }
+          }senao{
+            escreva("🌀 Você ERRA o segundo ataque!\n")
+          }
+          gritoTirano = falso
+        }senao{
+          escreva("💥 Você acerta o primeiro ataque e causa  ",danoJogador," de dano!\n")
+          vidaAtualInimigo = vidaAtualInimigo - danoJogador
+          u.aguarde(1000)
+          danoJogador = u.sorteia(ataque * 0.7, ataque)
+
+          chanceDeErrar = u.sorteia(1,3)
+          se(chanceDeErrar < 3){
+            escreva("💥 Você acerta o segundo ataque e causa ",danoJogador," de dano!\n")
+            vidaAtualInimigo = vidaAtualInimigo - danoJogador
+            se(vidaAtualInimigo <= 0){
+              pare
+            }
+          }senao{
+            escreva("🌀 Você ERRA o segundo ataque!\n")
+          }
+        }
       }
       se(escolher == 3){
+        inteiro danoBonus = (ataque * 0.2)
+        se(contadorTurnos <= 0){
+        contadorTurnos = 4
+        se(gritoTirano){
+          escreva("| O grito do tirano não funciona em ataques especiais!\n")
+          u.aguarde(1500)
+        }
+        escreva("💥 Você acerta um ataque especial e causa ",ataque," de dano puro!\n")
+        vidaAtualInimigo = vidaAtualInimigo - ataque
+        u.aguarde(1000)
+
+        escreva("💥 Seu ataque foi tão poderoso que o inimigo sofreu mais ",danoBonus," de dano!\n")
+        vidaAtualInimigo = vidaAtualInimigo - danoBonus
+      }senao{
+        escreva("⚠️ Você só pode usar esse ataque daqui ",contadorTurnos," turno(s)")
+        acaoValida = falso
+      }
+      }
+      se(escolher == 4){
         se(quantidadePocao > 0){
           vidaAtual += 100
           se(vidaAtual > vidaMax){
@@ -1113,6 +1360,7 @@ programa {
         }
           u.aguarde(1000)
         }
+        contadorTurnos -= 1
       }
       escolher = ""
     }
@@ -1122,7 +1370,15 @@ programa {
       escreva("Fim de jogo.\n")
     }
     se(vidaAtual > 0){
-    botao_enter()
+      u.aguarde(1000)
+      limpa()
+      escreva("| Parabéns, ",nomeJogador,"! Você derrotou o temido Devastador e salvou Eldoria...\n")
+      u.aguarde(1000)
+      escreva("| espera...\n")
+      u.aguarde(1000)
+      escreva("| o que está acontecendo?!\n")
+      botao_enter()
+      historia6()
     }
   }
 
@@ -1130,6 +1386,7 @@ programa {
     limpa()
     inteiro vidaAtualInimigo = vidaMaxInimigo
     inteiro danoInimigo = ataqueInimigo - defesa
+    inteiro danoJogador = u.sorteia(ataque * 0.7, ataque)
     cadeia escolher
     logico defendendo = falso
     logico queimando = falso
@@ -1138,56 +1395,139 @@ programa {
     logico gritoTirano = falso
     enquanto (vidaAtualInimigo > 0 e vidaAtual > 0){
       logico acaoValida = verdadeiro
-      enquanto(escolher != 1 e escolher != 2 e escolher != 3){
-          
-        limpa()
-        escreva(nomeInimigo," Nv.",nivelInimigo,"\n")
-        escreva("❤️ Vida: ",vidaAtualInimigo,"/",vidaMaxInimigo,"\n")
-        escreva("🛡️ Defesa: ",defesaInimigo,"\n")
-        barra_de_vida_inimigo(vidaAtualInimigo, vidaMaxInimigo)
-        escreva("\n----------------------------------\n")
+      enquanto(escolher != 1 e escolher != 2 e escolher != 3 e escolher != 4){
 
-        escreva(nomeJogador," (",classe,") Nv. ",nivel,"\n")
-        escreva("❤️ Vida: ",vidaAtual,"/",vidaMax,"\n")
-        escreva("🛡️ Defesa: ",defesa,"\n")
-        barra_de_vida_heroi(vidaAtual, vidaMax)
-        escreva("\n----------------------------------\n")
+      limpa()
+      escreva(nomeInimigo," Nv.",nivelInimigo,"\n")
+      escreva("❤️ Vida: ",vidaAtualInimigo,"/",vidaMaxInimigo,"\n")
+      escreva("🛡️ Defesa: ",defesaInimigo,"\n")
+      barra_de_vida_inimigo(vidaAtualInimigo, vidaMaxInimigo)
+      escreva("\n----------------------------------\n")
 
-        escreva("Escolha sua ação:\n")
-        escreva("1 - Atacar   |   2 - Defender\n")
-        se(quantidadePocao > 0){
-          escreva("3 - Curar\n")
-        }
-        leia(escolher)
-        limpa()
+      escreva(nomeJogador," (",classe,") Nv. ",nivel,"\n")
+      escreva("❤️ Vida: ",vidaAtual,"/",vidaMax,"\n")
+      escreva("🛡️ Defesa: ",defesa,"\n")
+      barra_de_vida_heroi(vidaAtual, vidaMax)
+      escreva("\n----------------------------------\n")
+
+      escreva("Escolha sua ação:\n")
+      se(classeEscolhida == 1){
+      escreva("1 - ",ataquesGuerreiro[0],"\n")
+      escreva("2 - ",ataquesGuerreiro[1],"\n")
+      escreva("3 - ",ataquesGuerreiro[2]," ")
+      se(contadorTurnos > 0){
+        escreva("(CARREGANDO)\n")
+      }senao se(contadorTurnos <= 0){
+        escreva("(PRONTO)\n")
+      }
+      }
+      se(classeEscolhida == 2){
+      escreva("1 - ",ataquesArqueiro[0],"\n")
+      escreva("2 - ",ataquesArqueiro[1],"\n")
+      escreva("3 - ",ataquesArqueiro[2]," ")
+      se(contadorTurnos > 0){
+        escreva("(CARREGANDO)\n")
+      }senao se(contadorTurnos <= 0){
+        escreva("(PRONTO)\n")
+      }
+      }
+      se(classeEscolhida == 3){
+      escreva("1 - ",ataquesMago[0],"\n")
+      escreva("2 - ",ataquesMago[1],"\n")
+      escreva("3 - ",ataquesMago[2]," ")
+      se(contadorTurnos > 0){
+        escreva("(CARREGANDO)\n")
+      }senao se(contadorTurnos <= 0){
+        escreva("(PRONTO)\n")
+      }
+      }
+
+      se(quantidadePocao > 0){
+        escreva("4 - CURAR ( ",quantidadePocao," )\n")
+      }
+      leia(escolher)
+      limpa()
       }
       se(escolher == 1){
-        inteiro dano = u.sorteia(ataque * 0.7, ataque)
-        se(dano < 0){
-          dano = 0
+        se(danoJogador < 0){
+          danoJogador = 0
         }
-        se(gritoTirano == verdadeiro){
-          escreva("💥 Você ataca o inimigo e causa ",dano/2," de dano!\n")
-          vidaAtualInimigo = vidaAtualInimigo - dano/2
-          gritoTirano = falso
-          defendendo = falso
+        se(gritoTirano){
+          escreva("💥 Você ataca o inimigo e causa ",danoJogador / 2," de dano!\n")
+          vidaAtualInimigo = vidaAtualInimigo - danoJogador / 2
           se(vidaAtualInimigo <= 0){
-          pare
-        }
+            pare
+          }
+          gritoTirano = falso
         }senao{
-          escreva("💥 Você ataca o inimigo e causa ",dano," de dano!\n")
-          vidaAtualInimigo = vidaAtualInimigo - dano
-          defendendo = falso
+          escreva("💥 Você ataca o inimigo e causa ",danoJogador," de dano!\n")
+          vidaAtualInimigo = vidaAtualInimigo - danoJogador
           se(vidaAtualInimigo <= 0){
             pare
           }
         }
       }
       se(escolher == 2){
-        escreva("🛡️ Você se prepara para defender o próximo ataque.\n")
-        defendendo = verdadeiro
+        inteiro chanceDeErrar
+        danoJogador = (danoJogador * 0.7)
+        se(danoJogador < 0){
+          danoJogador = 0
+        }
+        se(gritoTirano){
+          escreva("💥 Você acerta o primeiro ataque e causa  ",danoJogador / 2," de dano!\n")
+          vidaAtualInimigo = vidaAtualInimigo - danoJogador / 2
+          u.aguarde(1000)
+          danoJogador = u.sorteia(ataque * 0.7, ataque)
+
+          chanceDeErrar = u.sorteia(1,3)
+          se(chanceDeErrar < 3){
+            escreva("💥 Você acerta o segundo ataque e causa ",danoJogador / 2," de dano!\n")
+            vidaAtualInimigo = vidaAtualInimigo - danoJogador / 2
+            se(vidaAtualInimigo <= 0){
+              pare
+            }
+          }senao{
+            escreva("🌀 Você ERRA o segundo ataque!\n")
+          }
+          gritoTirano = falso
+        }senao{
+          escreva("💥 Você acerta o primeiro ataque e causa  ",danoJogador," de dano!\n")
+          vidaAtualInimigo = vidaAtualInimigo - danoJogador
+          u.aguarde(1000)
+          danoJogador = u.sorteia(ataque * 0.7, ataque)
+
+          chanceDeErrar = u.sorteia(1,3)
+          se(chanceDeErrar < 3){
+            escreva("💥 Você acerta o segundo ataque e causa ",danoJogador," de dano!\n")
+            vidaAtualInimigo = vidaAtualInimigo - danoJogador
+            se(vidaAtualInimigo <= 0){
+              pare
+            }
+          }senao{
+            escreva("🌀 Você ERRA o segundo ataque!\n")
+          }
+        }
       }
       se(escolher == 3){
+        inteiro danoBonus = (ataque * 0.2)
+        se(contadorTurnos <= 0){
+        contadorTurnos = 4
+        se(gritoTirano){
+          escreva("| O grito do tirano não funciona em ataques especiais!\n")
+          u.aguarde(1500)
+        }
+        escreva("💥 Você acerta um ataque especial e causa ",ataque," de dano puro!\n")
+        vidaAtualInimigo = vidaAtualInimigo - ataque
+        u.aguarde(1000)
+
+        escreva("💥 Seu ataque foi tão poderoso que o inimigo sofreu mais ",danoBonus," de dano!\n")
+        vidaAtualInimigo = vidaAtualInimigo - danoBonus
+      }senao{
+        escreva("⚠️ Você só pode usar esse ataque daqui ",contadorTurnos," turno(s)")
+        acaoValida = falso
+      }
+      }
+      se(escolher == 4){
         se(quantidadePocao > 0){
           vidaAtual += 100
           se(vidaAtual > vidaMax){
@@ -1225,7 +1565,7 @@ programa {
             u.aguarde(1000)
             contadorFogo--
           }senao{
-            
+
           }
           u.aguarde(1500)
         }
@@ -1271,6 +1611,7 @@ programa {
           }
           u.aguarde(1000)
         }
+        contadorTurnos -= 1
       }
       escolher = ""
     }
@@ -1281,41 +1622,10 @@ programa {
     }
     se(vidaAtualInimigo <= 0){
       limpa()
-      escreva("Matou geral parabéns")
     }
     se(vidaAtual > 0){
-    botao_enter()
+    u.aguarde(1500)
     }
-  }
-
-  funcao intro_vila_abandonada(){
-    limpa()
-    escreva("| Após atravessar a misteriosa Floresta da Névoa...\n")
-    escreva("| O herói segue por uma trilha coberta por galhos e folhas úmidas.\n")
-    escreva("| A névoa começa a desaparecer, revelando construções antigas e silenciosas.\n")
-    escreva("| O vento sopra entre as casas destruídas...\n")
-    escreva("| Portas rangem. Janelas batem com força.\n")
-    escreva("| Você chegou à Vila Abandonada.\n")
-    escreva("| Um lugar esquecido, tomado por sombras e memórias.\n")
-    botao_enter()
-    limpa()
-    escreva("❗AVISO❗\n")
-    u.aguarde(1000)
-    escreva("VOCÊ CHEGOU À VILA ABANDONADA...\n\n")
-    u.aguarde(1000)
-    escreva("| Ao vasculhar as ruínas da vila, você encontra um velho baú coberto de poeira...\n")
-    escreva("| Com algum esforço, você o abre e encontra uma poção de cura em seu interior!\n")
-    quantidadePocao++
-    escreva("-------------\n")
-    escreva("+1 POÇÃO 🧪\n")
-    escreva("-------------\n")
-    escreva("| Você agora possui ", quantidadePocao, " poção de cura.\n")
-    botao_enter()
-    limpa()
-    escreva("| Você aproveita e descansa para recuperar as energias.\n")
-    vidaAtual = vidaMax
-    escreva("❤️ Vida atual: ", vidaAtual, "/", vidaMax, "\n")
-    botao_enter()
   }
 
   funcao barra_de_vida_inimigo(inteiro vidaAtualInimigo, inteiro vidaMaxInimigo){
@@ -1467,9 +1777,86 @@ programa {
         pare
       }
     }
-    
+
   }
 
+  funcao historia0(){
+    limpa()
+    escreva("| Em um mundo mergulhado em sombras, ",nomeJogador," parte em sua jornada para restaurar a luz em Eldoria.\n")
+    u.aguarde(1000)
+    escreva("| A primeira parada é a Floresta da Névoa 🌫️🌲 um lugar denso e traiçoeiro, onde a luz mal atravessa a copa das árvores.\n")
+    u.aguarde(1000)
+    escreva("| Criaturas ocultas espreitam entre as árvores... ",nomeJogador," sente a presença de algo hostil.\n")
+    u.aguarde(1000)
+    botao_enter()
+  }
+  funcao historia1(){
+    limpa()
+    escreva("| Após vencer os horrores da floresta, ",nomeJogador," encontra os portões quebrados da Vila Abandonada 🏚️👻\n")
+    u.aguarde(1000)
+    escreva("| As casas estão em ruínas, tomadas por ladrões e espíritos inquietos.\n")
+    u.aguarde(1000)
+    botao_enter()
+  }
+  funcao historia2(){
+    limpa()
+    escreva("| Com determinação, ",nomeJogador," segue para a Caverna Sombria 🕳️🦇\n")
+    u.aguarde(1500)
+    botao_enter()
+  }
+  funcao historia3(){
+    limpa()
+    escreva("| ",nomeJogador," sai da escuridão e entra no Pântano dos Lamentos 🐸🧪.\n")
+    u.aguarde(1500)
+    botao_enter()
+  }
+  funcao historia4(){
+    limpa()
+    escreva("| Finalmente, ",nomeJogador," chega aos portões do Castelo Dourado 🏰✨. O céu está encoberto, e um silêncio sombrio domina o ar.\n")
+    u.aguarde(1500)
+    botao_enter()
+  }
+  funcao historia5(){
+    limpa()
+    escreva("| Portões rangem e se abrem... ",nomeJogador," adentra o salão principal, onde um trono de ossos e ouro aguarda.\n")
+    escreva("| No trono, ergue-se 👑 O DEVASTADOR (Forma Corpórea), exalando poder puro e corrupção. A batalha final começa!\n")
+    u.aguarde(1500)
+    botao_enter()
+  }
+  funcao historia6(){
+    limpa()
+    escreva("| Quando seus golpes finais atingem o corpo do Devastador, ele cai de joelhos, exalando um riso distorcido.\n")
+    u.aguarde(1500)
+    escreva("| Uma névoa densa envolve seu corpo caído. A escuridão consome tudo ao redor.\n")
+    u.aguarde(1500)
+    escreva("| O trono se desfaz. Raios de energia sombria rasgam o chão.\n")
+    u.aguarde(1500)
+    escreva("| A essência do mal renasce diante de ",nomeJogador,": 🔥 O DEVASTADOR ASCENDIDO (Forma Etérea) levita com olhos em chamas e voz que ecoa como trovão.\n")
+    u.aguarde(1500)
+    escreva("| Esta é a batalha final. A última esperança de Eldoria repousa nas mãos de ",nomeJogador,".\n")
+    u.aguarde(1500)
+    botao_enter()
+  }
+  funcao historia7(){
+    limpa()
+    escreva("| Com um último golpe, a essência de 🔥 O DEVASTADOR ASCENDIDO se desfaz em chamas etéreas, ecoando em um grito final.\n")
+    u.aguarde(1000)
+    escreva("| A escuridão que cobria Eldoria começa a recuar lentamente... como se o próprio mundo respirasse aliviado.\n")
+    u.aguarde(1000)
+    escreva("| A luz retorna aos céus. As árvores florescem. O pântano se purifica. E as almas perdidas enfim encontram paz.\n")
+    u.aguarde(1000)
+    escreva("| ",nomeJogador," observa os salões em ruínas do Castelo Dourado enquanto a Pedra da Luz reaparece, flutuando em seu brilho restaurado.\n")
+    u.aguarde(1000)
+    escreva("| A relíquia sagrada volta ao seu lugar de origem, selando o ciclo das trevas.\n")
+    u.aguarde(1000)
+    escreva("| As lendas contarão sobre esta jornada por gerações. O herói sem nome, aquele que enfrentou o mal absoluto... e venceu.\n")
+    u.aguarde(1000)
+    escreva("| Eldoria está a salvo, e tudo graças à coragem de ",nomeJogador,".\n")
+    u.aguarde(1000)
+    escreva("| Fim da jornada...\n")
+    u.aguarde(1000)
+    botao_enter()
+  }
   funcao descansar(){
     limpa()
     cadeia descanso
