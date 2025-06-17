@@ -67,19 +67,26 @@ programa {
             caso 1:
                 escreva("=================================================================\n")
                 escreva("Por favor campeão, coloque aqui o nome do seu campeão...\n") 
+                Util.aguarde(250)
                 leia(nomedocampeao)
+                Util.aguarde(250)
                 escreva("Seja muito bem vindo ao reino de Eldoria ", nomedocampeao, "\n")
                 escreva("==================================================================\n")
 
                 escreva("Por favor campeão, escolha a especializacao na qual você pretende jogar:\n")
+                Util.aguarde(250)
                 escreva("1=GUERREIRO-Classe lutadora com atributos focados principalmente em resistencia e vida ,--POUCO DANO \n")
+                Util.aguarde(250)
                 escreva("2=ARCANISTA-Uma classe poderosa com dano base alto e canalizacao da magia em tempo mediano,--POUCA VIDA \n")
+                Util.aguarde(250)
                 escreva("3=ARQUEIRO-Classe rápida,de alta agilidade possuindo diversos ataques ágeis com as flechas poderosas,--VIDA BAIXA E DANO MEDIANO \n")
+                Util.aguarde(250)
                 escreva("4=CAVALEIRO DAS TREVAS-Ataques potentes porém deixa a magia negra consumir parte de sua vida dessa forma reduzindo os atributos,--POUCA VIDA E VELOCIDADE REDUZIDA \n")
+                Util.aguarde(250)
 
                 inteiro especializacaodeclasse
                 leia(especializacaodeclasse)
-
+                limpa()
                 escolha(especializacaodeclasse) {
                     caso 1:
                         danodaespecializacao = 16
@@ -148,7 +155,9 @@ programa {
                 
                 escreva("Você deseja prosseguir com o jogo?", nomedocampeao, "\n")
                 escreva("Por favor, digite -1- para continuar a sua aventura em Eldoria e -2- para pararmos por aqui!")
+                Util.aguarde(250)
                 leia(opcaodecontinuarcomojogo)
+                limpa()
                 
                 se(opcaodecontinuarcomojogo == 1) {
                     escreva("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
@@ -251,20 +260,23 @@ programa {
                     Util.aguarde(250)
                     escreva("-Salve nossa Eldoria campeão, contamos com você...")
                     Util.aguarde(250)
-                    escreva("\n\n\n\n\n")
+                    escreva("\n\n\n")
 
                     inteiro opcaodecontinuarcomojogo2
                     escreva("Deseja continuar para a floresta da névoa campeão?\n")
                     escreva("1-SIM\n")
                     escreva("2-NÃO\n")
                     leia(opcaodecontinuarcomojogo2)
-
+                    limpa()
                     se(opcaodecontinuarcomojogo2 == 1) {
                         escreva("\n\n\n\n\n")
                         inteiro escolheroproximocaminho
                         escreva("Ao chegar na floresta da névoa você se depara com dois caminhos, um deles é um caminho que leva a um rio turvo, com algumas algas por cima dele...\n")
+                        Util.aguarde(250)
                         escreva("O outro caminho é um caminho com algumas cabanas abandonadas na qual você pode ouvir sussuros ouvindo de lá...\n")
+                        Util.aguarde(250)
                         escreva("-Agora é com você ", nomedocampeao, ", por onde deseja seguir?\n")
+                        Util.aguarde(250)
                         escreva("1-CAMINHO DO RIO TURVO\n")
                         escreva("2-CAMINHO DAS CABANAS ABANDONADAS(NAO RECOMENDADO)\n")
                         leia(escolheroproximocaminho)
@@ -308,10 +320,12 @@ programa {
                             
                             se(vidadaespecializacao <= 0) {
                                 escreva("Você foi derrotado pelo inimigo ", nomedocampeao, "\n")
+                                Util.aguarde(500)
                                 escreva("FIM DE JOGO CAMPEAO!\n")
                             }
                             senao se(vidaDoGoblin <= 0) {
                                 escreva("Parabéns ", nomedocampeao, ", Voce derrotou o inimigo!!\n")
+                                Util.aguarde(500)
                                 inteiro xpGanhonocombatecontraogoblin = 100
                                 xp = xp + xpGanhonocombatecontraogoblin
                                 escreva("Parabéns ", nomedocampeao, ", Voce recebeu", xpGanhonocombatecontraogoblin, "de XP\n")
@@ -334,33 +348,46 @@ programa {
                             se(remarateaoutramargemopcaodojogoflorestadanevoa==1){
                             inteiro consumirounaoapocaodovelhomisterioso
                             escreva("-Voce rema até a outra margem e ao chegar lá encontra um monge misterioso , com uma aparencia um tanto quanto duvidosa.\n")
+                            Util.aguarde(500)
                             escreva("-O velho viu a sua brava batalha contra o goblin e resolveu lhe dar uma pocao com uma cor um tanto duvidosa , voce a consome?\n")
+                            Util.aguarde(500)
                             escreva("!POSSÍVEL BONUS!\n")
                             escreva("1-CONSUMIR POCAO\n")
                             escreva("2-NAO CONSUMIR POCAO\n")
                             leia(consumirounaoapocaodovelhomisterioso)
+                            limpa()
                             escolha(consumirounaoapocaodovelhomisterioso){
                               caso 1:
                               escreva("Voce consumiu a pocao do velho lhe causando um certo desconforto")
+                              Util.aguarde(250)
                               vidadaespecializacao = vidadaespecializacao + 7
                               escreva("Você bebeu tudo...sua vida agora é",vidadaespecializacao,"\n")
+                              Util.aguarde(250)
                               pare
                               caso 2: 
                               escreva("Você seguiu sua rota sem nenhuma alteracao\n")
+                              Util.aguarde(250)
                               escreva("Sua vida total é",vidadaespecializacao,"\n")
+                              Util.aguarde(250)
                               pare
                             }
                               escreva("Sua vida",vidadaespecializacao,"\n")
+                              Util.aguarde(250)
                               escreva("Voce continua sua jornada pela floresta...\n")
+                              Util.aguarde(250)
                               escreva("Ao andar pela floresta da névoa voce encontra um caminho com cogumelos verdes...\n")
+                              Util.aguarde(250)
                               escreva("O outro caminho parece ser mais calmo , porém mais longo...\n")
+                              Util.aguarde(250)
                               escreva("POR QUAL CAMINHO PROSSEGUIR?\n")
                               escreva("\n\n\n\n")
                               escreva("ESCOLHA ONDE DESEJA IR JOGADOR...\n")
+                              Util.aguarde(250)
                               escreva("1-CAMINHO DOS COGUMELOS...\n")
                               escreva("2-CAMINHO MAIS LONGO...\n")
                               inteiro caminhoparaprosseguirflorestadanevoa2
                               leia(caminhoparaprosseguirflorestadanevoa2)
+                              limpa()
                               escolha(caminhoparaprosseguirflorestadanevoa2){
                                 caso 1:
                                 escreva("VOCÊ ENCONTROU UM GOLEM DE COGUMELOS!!\n")
@@ -409,53 +436,77 @@ programa {
                                 pare
                                 caso 2: 
                                 escreva("Voce prossegue pela floresta no caminho calmo porém anda acontece...\n")
+                                Util.aguarde(250)
                                 escreva(nomedocampeao,"aproveita a vista de uma floresta que é linda , porém conturbada...\n")
+                                Util.aguarde(250)
                                 escreva("Voce anda um pouco mais e acaba encontrando uma fogueira...")
+                                Util.aguarde(250)
                                 escreva("Provavelmetne ela foi deixada por algum explorador que ali passava...")
+                                Util.aguarde(250)
                                 escreva("Você resolve reascendê-la com alguns galhos que você encontrou ali por perto...")
+                                Util.aguarde(250)
                                 pare
                                }
                                escreva("\n\n\n\n")
                                escreva("Muito bem herói após suas escolhas anteriores voce segue com os seguintes status base:\n")
+                               Util.aguarde(250)
                                escreva(vidadaespecializacao,"de vida\n")
                                escreva(danodaespecializacao,"de dano\n")
                                escreva(agilidadedaespecializacao,"de agilidade\n")
                                escreva(defesadaespecializacao,"de defesa\n")
 
                                escreva(nomedocampeao,"acaba saindo por um caminho que se co-liga com as outras duas estradas anteriores...\n")
+                               Util.aguarde(250)
                                escreva("Você acaba encontrando rastros de florestas destruidas por um trecho da floresta...\n")
                                Util.aguarde(3000)
                                escreva("Ao avancar por todo o trecho, voce encontra uma carroagem de guerreiros de Eldoria...\n")
+                               Util.aguarde(250)
                                escreva(nomedocampeao,"encontrou uma carroagem destruida...\n")
+                               Util.aguarde(250)
                                escreva("Ao encontrar aquilo",nomedocampeao,"vai até um dos guerreiros da pedra sagrada de Eldoria")
+                               Util.aguarde(250)
                                
                                inteiro opcao_de_dialogo_com_o_guerreiro_ferido
                                escreva("--DESCUBRA QUEM FEZ AQUILO--\n")
+                               Util.aguarde(500)
                                escreva("1==TENTAR AJUDÁ-LO\n")
                                escreva("2==PERGUNTAR QUEM FEZ AQUILO\n")
                                escreva("3==DEIXÁ-LO MORRER\n")
                                leia(opcao_de_dialogo_com_o_guerreiro_ferido)
-                               
+                               limpa()
                                escolha(opcao_de_dialogo_com_o_guerreiro_ferido){
                                 caso 1:
                                 escreva("Obrigado meu caro...mas creio que não tenho muitas chances de sair daqui...\n")
+                                Util.aguarde(500)
                                 escreva("Vá embora enquanto ainda lhe resta tempo...\n")
+                                Util.aguarde(500)
                                 escreva("É impossível de vence-lo...ele é imbatível...maldito...\n")
+                                Util.aguarde(500)
                                 escreva("Xa....vii...us...\n")
+                                Util.aguarde(500)
                                 escreva("O guerreiro se engasga e dá seu último suspiro...\n")
+                                Util.aguarde(500)
                                 pare
 
                                 caso 2:
                                 escreva("Foi ele ...Xavius\n")
+                                Util.aguarde(500)
                                 escreva("Com seus ataques devastadores ele possui uma forca bruta indescritível...\n")
+                                Util.aguarde(500)
                                 escreva("Vejo que voce quer enfrentá-lo , mas tome cuidado...\n")
+                                Util.aguarde(500)
                                 escreva("Mal....dit...ooo.. cof cof\n")
+                                Util.aguarde(500)
                                 escreva("O guerreiro se engasga e dá seu último suspiro...\n")
+                                Util.aguarde(500)
                                 pare
                                 caso 3:
                                 escreva("Você observa o guerreiro morrer...\n")
+                                Util.aguarde(500)
                                 escreva("O guerreiro lhe observa...e gagueja suas ultimas palavras...\n")
+                                Util.aguarde(500)
                                 escreva(nomedocampeao,"acabe com ele...por favor..\n")
+                                Util.aguarde(500)
                                 pare
                                }
                                 escreva("Voce se pergunta como ele sabia seu nome...\n")
@@ -466,6 +517,7 @@ programa {
                                 inteiro ir_para_a_primeira_fase_final
                                 escreva("1-ENTRAR NO TERRITÓRIO DE XAVIUS\n")
                                 leia(ir_para_a_primeira_fase_final)
+                                limpa()
                                 se (ir_para_a_primeira_fase_final == 1) {
                                  escreva("\n\n\n\n")
                                 escreva("-------------------------------------------------\n")
@@ -525,7 +577,9 @@ programa {
                                 }
                                 se(vidadaespecializacao <=0){
                                   escreva("Voce foi derrotado por",nome_chefe_xavius,"\n")
+                                  Util.aguarde(500)
                                   escreva("Que os deuses guardem sua alma",nomedocampeao,"\n")
+                                  Util.aguarde(500)
                                   }
                                 senao se(vida_do_primeiro_chefe_xavius<=0){
                                   escreva("Parabéns",nomedocampeao,"voce derrotou",nome_chefe_xavius,"\n")
@@ -542,9 +596,11 @@ programa {
                                   escreva("\nApós um bom descanso",nomedocampeao,"acorda e revigora suas energias antes de ir para a sua próxima aventura...\n")
                                   escreva("SUA VIDA:",vidadaespecializacao,"\n")
                                   Util.aguarde(4000)
+                                  limpa()
                                   escreva("\n\n\n\n")
                                   
                                   escreva("Parabéns campeão escolha a região na qual você deseja ir...\n")
+                                  Util.aguarde(500)
                                   escreva("REINO DE ELDORIA\n")
                                   escreva("1-FLORESTA DA NÉVOA\n")
                                   escreva("2-VILA ABANDONADA\n")
@@ -553,6 +609,7 @@ programa {
                                   escreva("5-CASTELO DOURADO\n")
                                   inteiro variavel_para_a_mudanca_de_mapa1
                                   leia(variavel_para_a_mudanca_de_mapa1)
+                                  limpa()
                                   Util.aguarde(3000)
                                   escolha (variavel_para_a_mudanca_de_mapa1){
                                     
@@ -618,6 +675,7 @@ programa {
                                   escreva("\n\n\n")
                                   escreva("1-CONTINUAR PARA A VILA SOMBRIA...\n")
                                   leia(prosseguir_para_a_vila_sombria_escolha)
+                                  limpa()
                                   se(prosseguir_para_a_vila_sombria_escolha==1){
                                   escreva("\n\n\n")
                                   escreva("Ao andar por toda a vila,você nota casas familiares...\n")
@@ -643,16 +701,22 @@ programa {
                                   inteiro resistir_a_magia_de_guldhan1
                                   cadeia nome_chefe_guldhan = "GULDHAN, O MALDITO"
                                   escreva("**RESISTA A MAGIA DE **",nome_chefe_guldhan,"\n")
+                                  Util.aguarde(500)
                                   escreva("\n\n\n")
                                   escreva("GULDHAN:--HAHAHAHAHA, AINDA RESTA ALGUMA CONSCIÊNCIA MORAL AÍ DENTRO?\n")
+                                  Util.aguarde(250)
                                   escreva("GULDHAN:--É OQUE VEREMOS...\n")
+                                  Util.aguarde(250)
                                   escreva("GULDHAN:--ME DIGA",nomedocampeao, "Poque é tão importante salvar esse mundo sarnento para você?\n")
+                                  Util.aguarde(250)
                                   escreva("**PORQUE SALVAR ELDORIA?**\n")
+                                  Util.aguarde(250)
                                   escreva(nomedocampeao,"-1:Não sei o porque...\n ")
                                   escreva(nomedocampeao,"-2:Talvez eu não seja forte o suficiente...\n ")
                                   escreva(nomedocampeao,"-3:Talvez eu não seja páreo para ele...\n ")
-                                  escreva(nomedocampeao,"-4:EU SOU O ESCOLHIDO!!\n ")
+                                  escreva(nomedocampeao,"-4:Eu sou o escolhido!!..\n ")
                                   leia(resistir_a_magia_de_guldhan1)
+                                  limpa()
                                   inteiro atributos_reduzidos_caso_escolha123_guldhan = 13
                                   escreva("\n\n")
                                   escolha(resistir_a_magia_de_guldhan1){
@@ -663,33 +727,49 @@ programa {
                                     danodaespecializacao = danodaespecializacao - atributos_reduzidos_caso_escolha123_guldhan
                                     defesadaespecializacao = defesadaespecializacao - atributos_reduzidos_caso_escolha123_guldhan
                                     escreva("GULDHAN:--RECEBA MEU PRESENTE DE BOAS VINDAS A NOVA TERRA DE ELDORIA...HAHAHAHA\n")
+                                    Util.aguarde(250)
                                     escreva("GULDHAN:--Aqui está oque merece de verdade...\n")
+                                    Util.aguarde(250)
                                     escreva("\n\n\n")
                                     escreva(nome_chefe_guldhan," **AMALDICOOU VOCE CAMPEÃO!!\n")
+                                    Util.aguarde(250)
                                     escreva("SEUS NOVOS ATRIBUTOS...\n")
+                                    Util.aguarde(250)
                                     escreva(vidadaespecializacao," de vida\n")
                                     escreva(danodaespecializacao," de dano\n")
                                     escreva(defesadaespecializacao," de defesa\n")
                                     escreva("GULDHAN:--EU SOU O MALDITO...NÃO HÁ COMO FUGIR DE MIM!\n")
+                                    Util.aguarde(250)
 
                                     caso 2:
                                     escreva("GULDHAN:--Hahahahaha pobre coitado...")
+                                    Util.aguarde(250)
                                     escreva("GULDHAN:--tenho pena de você", nomedocampeao, "\n")
+                                    Util.aguarde(250)
                                     escreva("**AMALDICOOU VOCÊ COM (MEDO IMPLACÁVEL)\n")
+                                    Util.aguarde(250)
                                     danodaespecializacao = danodaespecializacao - atributos_reduzidos_caso_escolha123_guldhan
+                                    Util.aguarde(250)
                                     escreva("SEU DANO FOI REDUZIDO PARA: ", danodaespecializacao, " de dano \n")
 
                                     caso 3:
                                     escreva("GULDHAN:--SUA ALMA SOFRERÁ!\n")
+                                    Util.aguarde(250)
                                     vidadaespecializacao = vidadaespecializacao - atributos_reduzidos_caso_escolha123_guldhan
+                                    Util.aguarde(250)
                                     escreva("SUA VIDA FOI REDUZIDA PARA: ", danodaespecializacao, " de vida \n")
 
                                     caso 4:
                                     escreva("Acha mesmo que é pareo para mim?\n")
+                                    Util.aguarde(250)
                                     escreva("Voce não passa de um garoto\n")
+                                    Util.aguarde(250)
                                     inteiro aumentodevida_escolha_guldan1 = 8
+                                    Util.aguarde(250)
                                     vidadaespecializacao = Util.sorteia(aumentodevida_escolha_guldan1+5,aumentodevida_escolha_guldan1+8)
+                                    Util.aguarde(250)
                                     escreva("SUA VIDA AUMENTOU PARA:",vidadaespecializacao, "\n")
+                                    Util.aguarde(250)
                                     
                                   }
                                     escreva("\n\n\n\n")
@@ -712,29 +792,40 @@ programa {
                                     inteiro encostar_no_orbe
                                     escreva("1-ENCOSTAR NO ORBE...")
                                     leia(encostar_no_orbe)
+                                    limpa()
                                     se(encostar_no_orbe==1){
                                     escreva("\n\n\n\n")
                                     escreva(nome_chefe_guldhan," você vai aprender a respeitar o caos infinito...\n")
+                                    Util.aguarde(250)
                                     inteiro vida_aumentada_ao_encostar_no_orbe = 30
-                                    escreva("UMA ÁRUA NEGRA TOMA CONTA DE VOCÊ , E A SUA VIDA É AUMENTADA APÓS ENCOSTAR NO ORBE!!\n")
+                                    escreva("UMA ÁUREA NEGRA TOMA CONTA DE VOCÊ , E A SUA VIDA É AUMENTADA APÓS ENCOSTAR NO ORBE!!\n")
+                                    Util.aguarde(250)
                                     vidadaespecializacao = Util.sorteia(vida_aumentada_ao_encostar_no_orbe,vida_aumentada_ao_encostar_no_orbe+5)
                                     escreva("SUA NOVA VIDA: ",vidadaespecializacao,"\n")
                                     Util.aguarde(1000)
                                     escreva(nome_chefe_guldhan,"IMPOSSÍVEL...\n")
+                                    Util.aguarde(250)
                                     escreva("**GULDHAN FICA IMPRESSIONADO COM A SUA REACAO APÓS ENCOSTAR NO ORBE**\n")
+                                    Util.aguarde(250)
                                     inteiro esquivarse_seta_sombria_guldhan
                                     escreva(nome_chefe_guldhan," acha mesmo que isso muda algo?MALDITO!!..\n")
+                                    Util.aguarde(250)
                                     escreva(nome_chefe_guldhan," *ARREMESSOU UMA SETA SOMBRIA PARA O SEU LADO ESQUERDO HERÓI!!*\n")
+                                    Util.aguarde(250)
                                     escreva("ESQUIVAR-SE PARA QUAL LADO?\n")
+                                    Util.aguarde(250)
                                     escreva("1-LADO DIREITO\n")
                                     escreva("2-LADO ESQUERDO\n")
                                     leia(esquivarse_seta_sombria_guldhan)
+                                    limpa()
                                     escolha(esquivarse_seta_sombria_guldhan){
                                       caso 1:
                                       escreva("VOCÊ SE ESQUIVOU DA HABILIDADE DE", nome_chefe_guldhan," \n")
-
+                                      Util.aguarde(250)
                                       escreva(nome_chefe_guldhan,"Acha mesmo que vai sobreviver porque se esquivou de uma de minhas habilidades mortal?\n")
+                                      Util.aguarde(250)
                                       escreva(nome_chefe_guldhan," ACHA QUE SE ESQUIVAR DE UMA HABILIDADE MINHA VAI FAZER ALGUMA DIFERENCA?\n")
+                                      Util.aguarde(250)
                                       escreva(nome_chefe_guldhan,"VOCE SUCUMBIRÁ MESMO ASSIM!!\n")
                                       Util.aguarde(3000)
                                       pare
@@ -753,16 +844,25 @@ programa {
 
                                       limpa()
                                       escreva("Muito bem capeão, veremos se ainda consegue resistir a minha magia persuasiva\n")
+                                      Util.aguarde(250)
                                       escreva(nome_chefe_guldhan, "*USA A TEMÍVEL MAGIA DA PERSUASÃO!!**\n")
+                                      Util.aguarde(250)
                                       escreva("**VOCE PRECISA LEMBRAR O SEU NOME CAMPEAO!!**\n")
+                                      Util.aguarde(250)
                                       escreva(nome_chefe_guldhan," sua arma será sua ruína...\n")
+                                      Util.aguarde(250)
                                       escreva("**SUA ARMA REVIRA-SE CONTRA VOCê MESMO!!**\n")
+                                      Util.aguarde(250)
                                       escreva("**RELEMBRE SEU NOME PARA QUE VOCE NAO SE AUTO-SABOTE HERÓI!!\n")
+                                      Util.aguarde(250)
                                       inteiro magia_persuasiva_de_guldhan_escolha
                                       escreva("**QUAL O SEU NOME??**\n")
+                                      Util.aguarde(500)
                                       leia(magia_persuasiva_de_guldhan_escolha)
+                                      limpa()
                                       se(magia_persuasiva_de_guldhan_escolha==nomedocampeao){
                                         escreva("**VOCÊ RETOMOU CONTROLE DO SEU CORPO**\n")
+                                        Util.aguarde(250)
                                         escreva(nome_chefe_guldhan," VEJO QUE VOCE NÃO É TÃO FRACO ASSIM CAMPEÃO...")
                                         Util.aguarde(2000)
                                         escreva(nome_chefe_guldhan," ACHO QUE É DIGNO O SUFICIENTE PARA ME ENFRENTAR...\n")
@@ -839,17 +939,20 @@ programa {
                                   escreva("\nApós um bom descanso",nomedocampeao,"acorda e revigora suas energias antes de ir para a sua próxima aventura...\n")
                                   escreva("SUA VIDA:",vidadaespecializacao,"\n")
                                   Util.aguarde(4000)
-                                  escreva("\n\n\n\n")
+                                  limpa()
 
                                   inteiro terceira_regiao_eldoria
                                   escreva("Parabéns campeão escolha a região na qual você deseja ir...\n")
+                                  Util.aguarde(250)
                                   escreva("REINO DE ELDORIA\n")
+                                  Util.aguarde(250)
                                   escreva("1-FLORESTA DA NÉVOA\n")
                                   escreva("2-VILA ABANDONADA\n")
                                   escreva("3-CAVERNA SOMBRIA\n")
                                   escreva("4-PANTANO DOS LAMENTOS\n")
                                   escreva("5-CASTELO DOURADO\n")
                                   leia(terceira_regiao_eldoria)
+                                  limpa()
                                   escolha(terceira_regiao_eldoria){
                                     caso 1:
                                     escreva("VOCE JA PASSOU POR ESTA REGIÃO", nomedocampeao,"\n")
@@ -900,153 +1003,244 @@ programa {
                                   }
                                     limpa()
                                      escreva("- APÓS UMA ÁRDUA BATALHA CONTRA O TEMÍVEL GULDHAN VOCÊ ENCONTRA UM PORTAL...\n")
+                                     Util.aguarde(250)
                                       inteiro portal_mundo_normal
                                       escreva("1-ENTRAR NO PORTAL")
                                       leia(portal_mundo_normal)
+                                      limpa()
                                       se(portal_mundo_normal==1){
                                         inteiro escolher_historia_celeiro
                                         escreva("Você retorna ao mundo de eldoria...\n")
+                                        Util.aguarde(250)
                                         escreva("- Você olha para trás e resolve continuar , porém sente que comeca a perder as forcas...\n")
+                                        Util.aguarde(250)
                                         escreva("-Se sente tonto...porém alguns quilometros antes da sua próxima aventura vocÊ encontra um celeiro...\n")
+                                        Util.aguarde(250)
                                         escreva("-Ao pensar bem você resolve entrar no estábulo para tentar arranjar algo para se manter de pé...\n")
+                                        Util.aguarde(250)
+                                        escreva("\n\n\n")
                                         escreva("\n**ONDE PROCURAR MANTIMENTOS**\n")
+                                        Util.aguarde(250)
                                         escreva("1-LOCAL ONDE FICAM OS CAVALOS(ADENTRAR A PARTE EM QUE OS CAVALOS DORMEM)\n")
                                         escreva("2-PARTE DE CIMA DO CELEIRO\n")
                                         escreva("3-ESTOQUE DE FENO\n")
                                         escreva("4-SAIR DO CELEIRO\n")
                                         leia(escolher_historia_celeiro)
+                                        limpa()
                                         escolha(escolher_historia_celeiro){
                                           caso 1:
                                           escreva("Voce anda lentamente onde ficam os cavalos...\n")
+                                          Util.aguarde(250)
                                           escreva("Porém não encontra nada , apenas o chão úmido e solido de concreto que ali estavam os animais\n")
+                                          Util.aguarde(250)
                                           escreva("Voce pensa seriamente em executar um deles para alimentar-se\n")
+                                          Util.aguarde(250)
                                           escreva("Ao executar um golpe que executaria um dos cavalos você comeca a se sentir mal e desmaia...\n")
+                                          Util.aguarde(250)
                                           pare
 
                                           caso 2:
                                           escreva("Voce sobe na parte de cima do celeiro\n")
+                                          Util.aguarde(250)
                                           escreva("A única coisa que você encontra é alguns remédios para os cavalos\n")
+                                          Util.aguarde(250)
                                           escreva("Voce desce a escada e acaba pisando em um degrau infalso\n")
+                                          Util.aguarde(250)
                                           escreva("Após isso , você escorrega e cai sobre aquele chão úmido...\n")
+                                          Util.aguarde(250)
                                           escreva("Enquanto seus olhos se fechavam você avista um semblante de um agricultor vindo na sua direcao vagarosamente...\n")
+                                          Util.aguarde(250)
                                           pare
 
                                           caso 3:
                                           escreva("Ao subir no estoque de feno , só se depara com muito feno e algumas pilhas de pasto...\n")
+                                          Util.aguarde(250)
                                           escreva("Mesmo com uma fome e cansaco implacáveis , voce resolve olhar pela janela do celeiro\n")
+                                          Util.aguarde(250)
                                           escreva("Uma grande tempestade está a caminho...\n ")
+                                          Util.aguarde(250)
                                           escreva("Voce se deita sobre os fenos...e a única coisa que lhe motiva é salvar Eldoria...\n")
+                                          Util.aguarde(250)
                                           escreva("Pouco antes de dormir voce nota um semblante de um homem se aproximar pouco a pouco..\n")
-                                          escreva("Você desmaia pouco depois de lhe avistar...")
+                                          Util.aguarde(250)
+                                          escreva("Você desmaia pouco depois de lhe avistar...\n")
+                                          Util.aguarde(250)
                                           pare
 
                                           caso 4:
                                           escreva("Voce tenta ir para fora do celeiro porém uma árdua jornada o aguarda...\n")
+                                          Util.aguarde(250)
                                           escreva("Uma forte tempestade comeca...\n")
+                                          Util.aguarde(250)
                                           escreva("Voce nota um movimento estranho na mata...\n")
+                                          Util.aguarde(250)
                                           escreva("Ao tentar correr...se depara com uma pedra na qual voce tropeca...\n")
+                                          Util.aguarde(250)
                                           escreva("Voce torce o tornozelo e bate a cabeca...\n")
-                                          escreva("Um homem grande se aproxima e após notá-lo voce desmaia...")
+                                          Util.aguarde(250)
+                                          escreva("Um homem grande se aproxima e após notá-lo voce desmaia...\n")
+                                          Util.aguarde(250)
                                           pare
                                         }
                                           
                                           vidadaespecializacao = Util.sorteia(vidadaespecializacao+10,vidadaespecializacao+25)
                                           cadeia nome_camponesamigo = "Joofrey"
+                                          Util.aguarde(8000)
 
                                           escreva("*Após um bom descanso sua vida se restaurou!*\n")
-                                          escreva("SUA VIDA ATUAL",vidadaespecializacao)
+                                          Util.aguarde(250)
+                                          escreva("SUA VIDA ATUAL",vidadaespecializacao,"\n")
+                                          Util.aguarde(250)
                                           escreva("-Após algum tempo , você acorda em uma casa de madeira...\n")
+                                          Util.aguarde(250)
                                           escreva("-Voce se pergunta quem é ele...\n")
+                                          Util.aguarde(250)
                                           escreva("-Eu vi você ai jovem...\n")
+                                          Util.aguarde(250)
                                           escreva("-pode se levantar se quiser , estou preparando algo para comer...venha!\n")
+                                          Util.aguarde(250)
                                           escreva("**Levantando-se da cama rapidamente**\n")
-                                          escreva("voce saca ",armadaespecializacao)
+                                          Util.aguarde(250)
+                                          escreva("voce saca ",armadaespecializacao,"\n")
+                                          Util.aguarde(250)
                                           escreva("hahahahaha , nao precisa ter medo\n")
+                                          Util.aguarde(250)
                                           escreva("não quero machucá-lo menino...vamos, deve estar faminto...\n")
-                                          escreva("**VOCE PUXA A CADEIRA RAPIDAMENTE...**")
-                                          escreva("**COMENDO RAPIDO,QUASE QUE SE ENGASGANDO COM A COMIDA**")
+                                          Util.aguarde(250)
+                                          escreva("**VOCE PUXA A CADEIRA RAPIDAMENTE...**\n")
+                                          Util.aguarde(250)
+                                          escreva("**COMENDO RAPIDO,QUASE QUE SE ENGASGANDO COM A COMIDA**\n")
+                                          Util.aguarde(250)
                                           escreva("Me chamo Joofrey, muito prazer garoto\n")
+                                          Util.aguarde(250)
                                           escreva(nomedocampeao,"Agradeco a refeica...",nome_camponesamigo,"Muito obrigado...\n")
-                                          escreva("hahahah não há de que , nada mais justo que eu lhe ajudar após salvar o lugar que eu nasci daquele monstro --\n")//variavel nome guldhan
+                                          Util.aguarde(250)
+                                          escreva("hahahah não há de que , nada mais justo que eu lhe ajudar após salvar o lugar que eu nasci daquele monstro --\n")
+                                          Util.aguarde(250)
                                           escreva(nomedocampeao," :ele deve ter matado muitos inocentes não é?\n")
-                                          escreva(nome_camponesamigo," :Você não faz idéia...")
-                                          escreva(nome_camponesamigo," :Antes de prosseguir campeão...pegue isto...")
+                                          Util.aguarde(250)
+                                          escreva(nome_camponesamigo," :Você não faz idéia...\n")
+                                          Util.aguarde(250)
+                                          escreva(nome_camponesamigo," :Antes de prosseguir campeão...pegue isto...\n")
+                                          Util.aguarde(250)
                                           inteiro safira_azul = 20
                                           escreva(nome_camponesamigo," :Ganhei isso de alguns amigos que moravam na vila devastada por Guldhan...\n")
+                                          Util.aguarde(250)
                                           escreva(nome_camponesamigo," :Ouvi conversas de monges que algum escolhido estaria a caminho de salvar nossa terra...\n")
+                                          Util.aguarde(250)
                                           escreva(nome_camponesamigo," :Acho que o encontrei...pegue campeão\n")
+                                          Util.aguarde(250)
                                           escreva(nomedocampeao," :obrigado... usarei-a com sabedoria!\n")
+                                          Util.aguarde(250)
                                           escreva("\n**ABRINDO A PORTA LENTAMENTE...**\n")
+                                          Util.aguarde(250)
                                           escreva(nome_camponesamigo," :Espere campeão, aqui , pegue este mapa para não se perder nas cavernas sombrias!\n")
-                                          escreva(nomedocampeao," :como vou saber por onde devo ir naquela caverna??")
+                                          Util.aguarde(250)
+                                          escreva(nomedocampeao," :como vou saber por onde devo ir naquela caverna??\n")
+                                          Util.aguarde(250)
                                           escreva(nome_camponesamigo," :Ah claro quase esqueci, hahahaha eu encriptei este mapa para que os inimigos não soubessem como passar...\n")
+                                          Util.aguarde(250)
                                           escreva(nome_camponesamigo," :ao entrar na caverna , terá pedras nos caminhos e dessa forma você deve se basear nos seguintes túneis..\n")
+                                          Util.aguarde(250)
                                           escreva(nome_camponesamigo," :As cores das pedras são, Azul , Vermelha , Amarela e verde, e os caminhos são:")
-                                          escreva("**--LEMBRE-SE DA SUA CONVERSA COM Joofrey***---")
+                                          Util.aguarde(250)
+                                          escreva("**--LEMBRE-SE DA SUA CONVERSA COM Joofrey***---\n")
+                                          Util.aguarde(250)
                                           escreva(nome_camponesamigo," :Primeiro caminho:Azul,Segundo caminho:Vermelho, Terceiro caminho:Verde e Quarto caminho:Amarelo \n")
                                           Util.aguarde(7000)
-                                          escreva(nomedocampeao," :Agradeco",nome_camponesamigo,"que os Deuses lhe iluminem...")
+                                          escreva(nomedocampeao," :Agradeco",nome_camponesamigo,"que os Deuses lhe iluminem...\n")
+                                          Util.aguarde(250)
                                           escreva(nome_camponesamigo," :Fique tranquilho,para chegar até as cavernas sombrias é só continuar a estrada até duas ameixeiras grandes\n")
-                                          escreva(nomedocampeao," :Certo, e obrigado pelo amuleto...")
+                                          Util.aguarde(250)
+                                          escreva(nomedocampeao," :Certo, e obrigado pelo amuleto...\n")
+                                          Util.aguarde(20000)
+                                          limpa()
                                           escreva("**VOCE SAI DA CASA**\n")
+                                          Util.aguarde(250)
                                           escreva("\n\n\n")
                                           escreva("-Voce segue pelo caminho na qual foi dito por Joofrey...\n")
+                                          Util.aguarde(250)
                                           escreva("-Ao avistar as ameixeiras nota que está no lugar certo\n")
+                                          Util.aguarde(250)
                                           escreva("-Ao ver a entrada , você se depara com a escuridão da caverna\n")
+                                          Util.aguarde(250)
                                           escreva("-Você acende uma tocha com uma pederneira que estava no seu bolso...\n")
+                                          Util.aguarde(250)
                                           escreva("1--ENTRAR NA CAVERNA SOMBRIA.\n")
                                           inteiro entrar_caverna_sombria
                                           leia(entrar_caverna_sombria)
+                                          limpa()
                                           se(entrar_caverna_sombria==1){
                                             Util.aguarde(2000)
                                             limpa()
                                             escreva("BEM VINDO ÀS CAVERNAS SOMBRIAS CAMPEÃO!!\n")
+                                            Util.aguarde(250)
                                             escreva("SEUS STATUS ATÉ AGORA:\n")
+                                            Util.aguarde(250)
                                             escreva("VIDA: ",vidadaespecializacao,"\n")
                                             escreva("DANO: ",danodaespecializacao,"\n")
                                             escreva("DEFESA: ",defesadaespecializacao,"\n")
                                             escreva("AGILIDADE: ",agilidadedaespecializacao,"\n")
                                             escreva("\n\n\n\n")
                                             escreva("-Após uma intensa jornada você encontra o início das cavernas sombrias...\n")
+                                            Util.aguarde(250)
                                             escreva("1--ENTRAR NAS CAVERNAS SOMBRIAS\n")
                                             inteiro entrar_nas_cavernas_sombrias
                                             leia(entrar_nas_cavernas_sombrias)
+                                            limpa()
                                             se(entrar_nas_cavernas_sombrias==1){
-                                              limpa()
                                               escreva("Após adentrar nas cavernas sombrias você repara nas marcas nas paredes e em tudo oque tem lá...\n")
+                                              Util.aguarde(250)
                                               escreva("Depois de alguns metros , você se depara com escrituras antigas nas paredes , que aparentemente foram colocadas a pouco lá...\n")
+                                              Util.aguarde(250)
                                               escreva("Elas são muito úmidas e vocÊ você consegue escutar o barulho dos pingos caindo e as suas botas andando pelo chão\n")
+                                              Util.aguarde(250)
                                               escreva("Dentro da caverna é possível escutar o barulho das pedras caindo por todo o local!\n")
+                                              Util.aguarde(250)
                                               escreva("***UM BARULHO ESTRONDOSO ACONTECE ATRÁS DE VOCÊ***\n")
                                              Util.aguarde(2000)
 
                                               escreva("você olha pra trás e imediatamente vê a passagem de volta bloqueada, náo é possível retornar!\n")
+                                              Util.aguarde(250)
                                               escreva("\n\n\n\n")
                                               escreva("VocÊ acende a tocha na qual tinha na sua mochila , junto com a safira azul\n")
+                                              Util.aguarde(250)
                                               escreva("Um poder ecoa sobre a safira azul, e você observa o poder que nela emana...\n")
+                                              Util.aguarde(250)
                                               escreva("Você observa alguns metros a frente alguns túneis , os mesmos na qual Joofrey havia comentado quando você estava na cabana...\n")
                                               Util.aguarde(2000)
-                                              limpa()
                                               escreva("**VOCÊ ENCONTROU 2 TÚNEIS**")
+                                              Util.aguarde(250)
                                               escreva("Observando as pedras que possuíam dentro dos mesmo , você nota que eles eram diferentes dos quais Joofrey comentou...\n")
+                                              Util.aguarde(250)
                                               escreva("Os dois túneis possuíam pedras de cores das quais Joofrey não havia comentado com você...\n")
+                                              Util.aguarde(250)
                                               escreva("Um deles possuia um cristal cinza e o outro um cristal roxo...\n")
+                                              Util.aguarde(250)
                                               escreva("Ao se aproximar do túnel roxo , você sente que a sua vida passa mais rápido, dessa forma a prejudicando...\n")
+                                              Util.aguarde(250)
                                               escreva("No momento em que chega perto do túnel cinza , sente sua forca se esvaindo , podendo ficar mais fraco...\n")
                                               Util.aguarde(2000)                                          
                                               escreva("POR ONDE DESEJA IR CAMPEÃO?\n")
+                                              Util.aguarde(250)
                                               escreva("1--TÚNEL DO CRISTAL ROXO.\n")
                                               escreva("2--TÚNEL DO CRISTAL CINZA.\n")
                                               inteiro escolher_tunel_cinza_roxo
                                               leia(escolher_tunel_cinza_roxo)
+                                              limpa()
                                               escolha(escolher_tunel_cinza_roxo){
                                                 caso 1:
                                                 escreva("Ao entrar no túnel roxo, você caminha por alguns metros e nota que a sua forca diminui...\n")
+                                                Util.aguarde(250)
                                                 escreva("Uma fadiga indescritível que não o deixa muito bem!!\n")
+                                                Util.aguarde(250)
                                                 danodaespecializacao = 12
                                                 escreva("Você encontra a saída , e sai do túnel tossindo de forma incontrolável...\n")
+                                                Util.aguarde(250)
                                                 escreva("Um labirinto traicoeiro,porém necessário para que até os mais bravos guerreiros sucumbam nele...\n")
+                                                Util.aguarde(250)
                                                 escreva("SEU DANO FOI REDUZIDO PARA: ",danodaespecializacao,"\n")
+                                                Util.aguarde(250)
                                                 pare
 
                                                 caso 2:
@@ -1056,21 +1250,28 @@ programa {
                                                 agilidadedaespecializacao = atributos_diminuidos_depois_tunelcinza - agilidadedaespecializacao
                                                 defesadaespecializacao = atributos_diminuidos_depois_tunelcinza - defesadaespecializacao 
                                                 escreva("Quando você entra no túnel cinza , sente uma profunda enxaqueca...\n")
+                                                Util.aguarde(250)
                                                 escreva("Ela quase o desmaia,porém você comeca a correr...\n")
+                                                Util.aguarde(250)
                                                 escreva("E chega no final do túnel...\n")
+                                                Util.aguarde(250)
                                                 pare
                                               }
                                               escreva("SEUS STATUS:\n")
+                                              Util.aguarde(500)
                                               escreva("VIDA: ",vidadaespecializacao,"\n")
                                               escreva("DANO: ",danodaespecializacao,"\n")
                                               escreva("DEFESA: ",defesadaespecializacao,"\n")
                                               escreva("AGILIDADE: ",agilidadedaespecializacao,"\n")
                                               escreva("\n\n\n\n")
                                               escreva("VocÊ anda um pouco mais a frente você encontra quatro túneis...\n")
+                                              Util.aguarde(500)
                                               escreva("Após atravessar o túnel anterior com um pouco de mal estar, vocÊ observa os cristais ali contidos\n")
+                                              Util.aguarde(500)
                                               escreva("**--LEMBRE-SE DA SUA CONVERSA COM Joofrey***---\n")
                                               Util.aguarde(1000)
                                               escreva("**VOCE ENCONTROU QUATRO TÚNEIS DISPONÍVEIS NA SUA FRENTE**\n")
+                                              Util.aguarde(500)
                                               escreva("1--TÚNEL COM O CRISTAL AZUL\n")
                                               escreva("2--TÚNEL COM O CRISTAL VERMELHO\n")
                                               escreva("3--TÚNEL COM O CRISTAL VERDE\n")
@@ -1081,15 +1282,22 @@ programa {
                                               escolha(escolher_primeiro_tunel1){
                                                 caso 1:
                                                 escreva("CAMINHO CERTO!!\n")
+                                                Util.aguarde(500)
                                                 escreva("Após se recordar de onde se deve passar o primeiro caminho , você passa sem nenhuma dificuldade\n")
+                                                Util.aguarde(250)
                                                 escreva("Você continua percorrendo pelo labirinto daquelas cavernas sombrias...\n")
+                                                Util.aguarde(250)
                                                 pare
 
                                                 caso 2:
                                                 escreva("CAMINHO ERRADO!!\n")
+                                                Util.aguarde(500)
                                                 escreva("Você se depara com uma névoa implacável , porém atravessa ela...\n")
+                                                Util.aguarde(250)
                                                 escreva("Ao atravessar você tenta prender a respiracao,porém não aguenta mais e solta-a\n")
+                                                Util.aguarde(250)
                                                 escreva("Ao inalar aquela névoa você sente um mal súbito...e sente sua agilidade indo embora...\n")
+                                                Util.aguarde(250)
                                                 agilidadedaespecializacao = 15
                                                 escreva("SEU ATRIBUTO DIMINUI!!",agilidadedaespecializacao,"\n")
                                                 pare
@@ -1097,28 +1305,43 @@ programa {
                                                 
                                                 caso 3:
                                                 escreva("CAMINHO ERRADO!!\n")
+                                                Util.aguarde(500)
                                                 escreva("Você se depara com um rio , porém atravessa ela...\n")
+                                                Util.aguarde(250)
                                                 escreva("Ao atravessar você tenta prender a respiracao,porém não aguenta mais e solta-a\n")
+                                                Util.aguarde(250)
                                                 escreva("Ao inalar aquela água você sente um mal súbito...e sente sua vida indo embora...\n")
+                                                Util.aguarde(250)
                                                 vidadaespecializacao = 15
                                                 escreva("SEU ATRIBUTO DIMINUI!! ",vidadaespecializacao,"\n")
+                                                Util.aguarde(250)
                                                 pare
 
                                                 caso 4:
                                                 escreva("CAMINHO ERRADO!!\n")
+                                                Util.aguarde(500)
                                                 escreva("Você se depara com uma ponte e  um riacho , porém atravessa ela...\n")
+                                                Util.aguarde(250)
                                                 escreva("Ao atravessar você tenta se equilibrar,porém não aguenta mais e cai\n")
+                                                Util.aguarde(250)
                                                 escreva("Ao inalar aquela água você sente um mal súbito...e sente sua vida indo embora...\n")
+                                                Util.aguarde(250)
                                                 escreva("porém consegue voltar para o caminho certo...\n")
+                                                Util.aguarde(250)
                                                 defesadaespecializacao = 15
                                                 escreva("SEU ATRIBUTO DIMINUI!! ",defesadaespecializacao,"\n")
                                                 pare
                                               }
                                               escreva("Após uma escolha decisiva de caminhos, você prossegue com a jornada em busca de sair daquela caverna..\n")
+                                              Util.aguarde(500)
                                               escreva("Andando mas é possível ver desenhos nas paredes de um monstro um tanto quando esquisito...\n")
+                                              Util.aguarde(500)
                                               escreva("Aquilo lhe chama atencao,mas não tenta pensar muito naquilo...\n")
+                                              Util.aguarde(500)
                                               escreva("Você se depara com mais túneis!!\n")
+                                              Util.aguarde(500)
                                               escreva("**VOCE ENCONTROU QUATRO TÚNEIS DISPONÍVEIS NA SUA FRENTE**\n")
+                                              Util.aguarde(500)
                                               escreva("1--TÚNEL COM O CRISTAL AZUL\n")
                                               escreva("2--TÚNEL COM O CRISTAL VERMELHO\n")
                                               escreva("3--TÚNEL COM O CRISTAL VERDE\n")
@@ -1129,6 +1352,7 @@ programa {
                                               escolha(escolher_segundo_tunel2){
                                                 caso 1:
                                                 escreva("CAMINHO ERRADO!!\n")
+                                                Util.aguarde(500)
                                                 escreva("Você se depara com uma ponte e  um riacho , porém atravessa ela...\n")
                                                 escreva("Ao atravessar você tenta se equilibrar,porém não aguenta mais e cai\n")
                                                 escreva("Ao inalar aquela água você sente um mal súbito...e sente sua vida indo embora...\n")
@@ -1139,12 +1363,14 @@ programa {
 
                                                 caso 2:
                                                 escreva("CAMINHO CERTO!!\n")
+                                                Util.aguarde(500)
                                                 escreva("Após se recordar de onde se deve passar o primeiro caminho , você passa sem nenhuma dificuldade\n")
                                                 escreva("Você continua percorrendo pelo labirinto daquelas cavernas sombrias...\n")
                                                 pare
 
                                                 caso 3:
                                                 escreva("CAMINHO ERRADO!!\n")
+                                                Util.aguarde(500)
                                                 escreva("Você se depara com um rio , porém atravessa ela...\n")
                                                 escreva("Ao atravessar você tenta prender a respiracao,porém não aguenta mais e solta-a\n")
                                                 escreva("Ao inalar aquela água você sente um mal súbito...e sente sua vida indo embora...\n")
@@ -1154,31 +1380,50 @@ programa {
 
                                                 caso 4:
                                                 escreva("CAMINHO ERRADO!!\n")
-                                                 escreva("CAMINHO ERRADO!!\n")
+                                                Util.aguarde(500)
                                                 escreva("Você se depara com uma névoa implacável , porém atravessa ela...\n")
+                                                Util.aguarde(500)
                                                 escreva("Ao atravessar você tenta prender a respiracao,porém não aguenta mais e solta-a\n")
+                                                Util.aguarde(500)
                                                 escreva("Ao inalar aquela névoa você sente um mal súbito...e sente sua agilidade indo embora...\n")
+                                                Util.aguarde(500)
                                                 agilidadedaespecializacao = 10
                                                 escreva("SEU ATRIBUTO DIMINUI!!",agilidadedaespecializacao,"\n")
+                                                Util.aguarde(500)
                                                 pare
 
                                               }
                                               escreva("\n\n")
                                               escreva("Após passar para o próximo estágio,você observa ecrituras com sangue nas paredes...\n")
+                                              Util.aguarde(500)
                                               escreva("Escrevitas com sangue não tão velho,e alguns pares de ossos no chão...\n")
+                                              Util.aguarde(500)
                                               escreva("É possível encontrar uma espécie de nome na parede, ao se aproximar dele você enxerga um nome..\n")
+                                              Util.aguarde(500)
                                               escreva("O nome parecia ser uma espécie de escritura entalhada em fogo e sangue...\n")
+                                              Util.aguarde(500)
                                               escreva("R\n")
+                                              Util.aguarde(250)
                                               escreva("A\n")
+                                              Util.aguarde(250)
                                               escreva("G\n")
+                                              Util.aguarde(250)
                                               escreva("N\n")
+                                              Util.aguarde(250)
                                               escreva("A\n")
+                                              Util.aguarde(250)
                                               escreva("R\n")
+                                              Util.aguarde(250)
                                               escreva("O\n")
+                                              Util.aguarde(250)
                                               escreva("S\n")
+                                              Util.aguarde(250)
                                               escreva("Você prossegue a sua aventura , pensando no nome que havia visto na parede...\n")
+                                              Util.aguarde(500)
                                               escreva("Você se depara com mais túneis!!\n")
+                                              Util.aguarde(500)
                                               escreva("**VOCE ENCONTROU QUATRO TÚNEIS DISPONÍVEIS NA SUA FRENTE**\n")
+                                              Util.aguarde(500)
                                               escreva("1--TÚNEL COM O CRISTAL AZUL\n")
                                               escreva("2--TÚNEL COM O CRISTAL VERMELHO\n")
                                               escreva("3--TÚNEL COM O CRISTAL VERDE\n")
@@ -1189,45 +1434,71 @@ programa {
                                               escolha(escolher_terceiro_tunel3){
                                                 caso 1:
                                                 escreva("CAMINHO ERRADO!!\n")
+                                                Util.aguarde(500)
                                                 escreva("Você se depara com uma ponte e  um riacho , porém atravessa ela...\n")
+                                                Util.aguarde(500)
                                                 escreva("Ao atravessar você tenta se equilibrar,porém não aguenta mais e cai\n")
+                                                Util.aguarde(500)
                                                 escreva("Ao inalar aquela água você sente um mal súbito...e sente sua vida indo embora...\n")
+                                                Util.aguarde(500)
                                                 escreva("porém consegue voltar para o caminho certo...\n")
+                                                Util.aguarde(500)
                                                 defesadaespecializacao = 5
                                                 escreva("SEU ATRIBUTO DIMINUI!! ",defesadaespecializacao,"\n")
+                                                Util.aguarde(500)
                                                 pare
 
                                                 caso 2:
                                                 escreva("CAMINHO ERRADO!!\n")
+                                                Util.aguarde(500)
                                                 escreva("Você se depara com um rio , porém atravessa ela...\n")
+                                                Util.aguarde(500)
                                                 escreva("Ao atravessar você tenta prender a respiracao,porém não aguenta mais e solta-a\n")
+                                                Util.aguarde(500)
                                                 escreva("Ao inalar aquela água você sente um mal súbito...e sente sua vida indo embora...\n")
+                                                Util.aguarde(500)
                                                 vidadaespecializacao = 5
                                                 escreva("SEU ATRIBUTO DIMINUI!! ",vidadaespecializacao,"\n")
+                                                Util.aguarde(500)
                                                 pare
 
                                                 caso 3:
                                                 escreva("CAMINHO CERTO!!\n")
+                                                Util.aguarde(500)
                                                 escreva("Após se recordar de onde se deve passar o primeiro caminho , você passa sem nenhuma dificuldade\n")
+                                                Util.aguarde(500)
                                                 escreva("Você continua percorrendo pelo labirinto daquelas cavernas sombrias...\n")
+                                                Util.aguarde(500)
                                                 pare
 
                                                 caso 4:
                                                 escreva("CAMINHO ERRADO!!\n")
+                                                Util.aguarde(500)
                                                 escreva("Você se depara com uma névoa implacável , porém atravessa ela...\n")
+                                                Util.aguarde(500)
                                                 escreva("Ao atravessar você tenta prender a respiracao,porém não aguenta mais e solta-a\n")
+                                                Util.aguarde(500)
                                                 escreva("Ao inalar aquela névoa você sente um mal súbito...e sente sua agilidade indo embora...\n")
+                                                Util.aguarde(500)
                                                 agilidadedaespecializacao = 5
                                                 escreva("SEU ATRIBUTO DIMINUI!!",agilidadedaespecializacao,"\n")
+                                                Util.aguarde(500)
                                                 pare
                                               }
                                               escreva("Caminho atrás de caminho você prossegue...\n")
+                                              Util.aguarde(500)
                                               escreva("Após sair do último túnel , é possível deparar-se com corpos em decomposicao...\n")
+                                              Util.aguarde(500)
                                               escreva("O cheiro é insuportável..porém vocÊ anda firmemente até o último túnel...\n")
+                                              Util.aguarde(500)
                                               escreva("Conforme você se aproxima do último túnel , mais ossos são vistos...\n")
+                                              Util.aguarde(500)
                                               escreva("É preciso cuidar onde se vai pisar para não esbarrar nos ossos...e nas armas ao lado deles...\n")
+                                              Util.aguarde(500)
                                               escreva("Você se depara com mais túneis!!\n")
+                                              Util.aguarde(500)
                                               escreva("**VOCE ENCONTROU QUATRO TÚNEIS DISPONÍVEIS NA SUA FRENTE**\n")
+                                              Util.aguarde(500)
                                               escreva("1--TÚNEL COM O CRISTAL AZUL\n")
                                               escreva("2--TÚNEL COM O CRISTAL VERMELHO\n")
                                               escreva("3--TÚNEL COM O CRISTAL VERDE\n")
@@ -1238,81 +1509,116 @@ programa {
                                               escolha(escolher_terceiro_tunel4){
                                                 caso 1:
                                                 escreva("CAMINHO ERRADO!!\n")
+                                                Util.aguarde(500)
                                                 escreva("Você se depara com uma névoa implacável , porém atravessa ela...\n")
+                                                Util.aguarde(500)
                                                 escreva("Ao atravessar você tenta prender a respiracao,porém não aguenta mais e solta-a\n")
+                                                Util.aguarde(500)
                                                 escreva("Ao inalar aquela névoa você sente um mal súbito...e sente sua agilidade indo embora...\n")
+                                                Util.aguarde(500)
                                                 agilidadedaespecializacao = 1
                                                 escreva("SEU ATRIBUTO DIMINUI!!",agilidadedaespecializacao,"\n")
+                                                Util.aguarde(500)
                                                 pare
 
                                                 caso 2:
                                                 escreva("CAMINHO ERRADO!!\n")
+                                                Util.aguarde(500)
                                                 escreva("Você se depara com um rio , porém atravessa ela...\n")
+                                                Util.aguarde(500)
                                                 escreva("Ao atravessar você tenta prender a respiracao,porém não aguenta mais e solta-a\n")
+                                                Util.aguarde(500)
                                                 escreva("Ao inalar aquela água você sente um mal súbito...e sente sua vida indo embora...\n")
+                                                Util.aguarde(500)
                                                 vidadaespecializacao = 1
                                                 escreva("SEU ATRIBUTO DIMINUI!! ",vidadaespecializacao,"\n")
+                                                Util.aguarde(500)
                                                 pare
 
                                                 caso 3:
                                                 escreva("CAMINHO ERRADO!!\n")
+                                                Util.aguarde(500)
                                                 escreva("Você se depara com uma ponte e  um riacho , porém atravessa ela...\n")
+                                                Util.aguarde(500)
                                                 escreva("Ao atravessar você tenta se equilibrar,porém não aguenta mais e cai\n")
+                                                Util.aguarde(500)
                                                 escreva("Ao inalar aquela água você sente um mal súbito...e sente sua vida indo embora...\n")
+                                                Util.aguarde(500)
                                                 escreva("porém consegue voltar para o caminho certo...\n")
+                                                Util.aguarde(500)
                                                 defesadaespecializacao = 1
                                                 escreva("SEU ATRIBUTO DIMINUI!! ",defesadaespecializacao,"\n")
+                                                Util.aguarde(500)
                                                 pare
 
                                                 caso 3:
                                                 escreva("CAMINHO CERTO!!\n")
+                                                Util.aguarde(500)
                                                 escreva("Após se recordar de onde se deve passar o primeiro caminho , você passa sem nenhuma dificuldade\n")
+                                                Util.aguarde(500)
                                                 escreva("Você continua percorrendo pelo labirinto daquelas cavernas sombrias...\n")
+                                                Util.aguarde(500)
                                                 pare
                                               }
                                               escreva("Você sai dos labirintos das cavernas sombrias...\n")
+                                              Util.aguarde(500)
                                               escreva("Porém é possível enxergar entalhes com fogo na parede....\n")
+                                              Util.aguarde(500)
                                               escreva("O  F0G0 & 7NC0NTR0L4VeL \n")
+                                              Util.aguarde(500)
                                               escreva("ᒪᗩᖇ ᗞᕮ ᖇᗩＧᘉᗩᖇOS\n")
+                                              Util.aguarde(500)
                                               escreva("Mais a frente é possível enxergar uma sala gigante com fogo...\n")
+                                              Util.aguarde(500)
                                               escreva("SEUS STATUS:\n")
+                                              Util.aguarde(500)
                                               escreva("VIDA: ",vidadaespecializacao,"\n")
                                               escreva("DANO: ",danodaespecializacao,"\n")
                                               escreva("DEFESA: ",defesadaespecializacao,"\n")
                                               escreva("AGILIDADE: ",agilidadedaespecializacao,"\n")
                                               escreva("\n\n\n")
                                               escreva("Você resolve utilizar a safira na qual Joofrey lhe entregou...\n")
+                                              Util.aguarde(500)
                                               inteiro utilizar_safira_azul
-                                              escreva("**UTILIZE A SAFIRA AZUL**")
+                                              escreva("**UTILIZE A SAFIRA AZUL**\n")
+                                              Util.aguarde(500)
                                               escreva("1==AUMENTAR A VIDA\n")
                                               escreva("2==AUMENTAR O DANO\n")
                                               escreva("3==AUMENTAR A AGILIDADE\n")
                                               escreva("4==AUMENTAR A DEFESA\n")
                                               leia(utilizar_safira_azul)
-                                              escreva("\n\n\n\n")
+                                              limpa()
                                               escolha(utilizar_safira_azul){
 
                                               caso 1:
                                               escreva("Você segura na mão aquela safira...e sente ela fazendo parte da sua alma...\n")
+                                              Util.aguarde(500)
                                               escreva("Seus olhos brilham...e você se sente renovado...\n")
+                                              Util.aguarde(500)
                                               vidadaespecializacao = safira_azul + vidadaespecializacao
                                               pare
 
                                               caso 2:
                                               escreva("Você segura na mão aquela safira...e sente ela fazendo parte da sua alma...\n")
+                                              Util.aguarde(500)
                                               escreva("Seus olhos brilham...e você se sente maligno...\n")
+                                              Util.aguarde(500)
                                               danodaespecializacao = safira_azul + danodaespecializacao
                                               pare
 
                                               caso 3:
                                               escreva("Você segura na mão aquela safira...e sente ela fazendo parte da sua alma...\n")
+                                              Util.aguarde(500)
                                               escreva("Seus olhos brilham...e você se sente mais esperto...\n")
+                                              Util.aguarde(500)
                                               agilidadedaespecializacao = safira_azul + agilidadedaespecializacao
                                               pare
 
                                               caso 4:
                                               escreva("Você segura na mão aquela safira...e sente ela fazendo parte da sua alma...\n")
+                                              Util.aguarde(500)
                                               escreva("Seus olhos brilham...e você se sente mais esperto...\n")
+                                              Util.aguarde(500)
                                               defesadaespecializacao = safira_azul + defesadaespecializacao
                                               pare
                                               }
@@ -1320,12 +1626,15 @@ programa {
                                               limpa()
                                               inteiro entrar_covil_ragnaros
                                               escreva("SEUS STATUS:\n")
+                                              Util.aguarde(500)
                                               escreva("VIDA: ",vidadaespecializacao,"\n")
                                               escreva("DANO: ",danodaespecializacao,"\n")
                                               escreva("DEFESA: ",defesadaespecializacao,"\n")
                                               escreva("AGILIDADE: ",agilidadedaespecializacao,"\n")
+                                              Util.aguarde(500)
                                               escreva("\n\n\n")
                                               escreva("Entalhes eram escritos sobre as rochas nas quais você estava a frente...\n")
+                                              Util.aguarde(500)
                                               escreva("FЦJΛ ΣПQЦΛПƬӨ ΗΛ ƬΣMPӨ...\n")
                                               escreva("\n\n\n")
                                               escreva("1--ENTRAR NO COVIL DE RAGNAROS...\n")
@@ -1411,13 +1720,16 @@ programa {
 
                                                 inteiro quarta_regiao_eldoria
                                                 escreva("Parabéns campeão escolha a região na qual você deseja ir...\n")
+                                                Util.aguarde(500)
                                                 escreva("REINO DE ELDORIA\n")
+                                                Util.aguarde(500)
                                                 escreva("1-FLORESTA DA NÉVOA\n")
                                                 escreva("2-VILA ABANDONADA\n")
                                                 escreva("3-CAVERNA SOMBRIA\n")
                                                 escreva("4-PANTANO DOS LAMENTOS\n")
                                                 escreva("5-CASTELO DOURADO\n")
-
+                                                leia(quarta_regiao_eldoria)
+                                                limpa()
                                                 escolha(quarta_regiao_eldoria){
 
                                                 caso 1:
@@ -1475,13 +1787,16 @@ programa {
                                                 }
                                                 limpa()
                                                 escreva("SEUS STATUS: \n")
+                                                Util.aguarde(500)
                                                 escreva("VIDA: ",vidadaespecializacao,"\n")
                                                 escreva("DANO: ",danodaespecializacao,"\n")
                                                 escreva("DEFESA: ",defesadaespecializacao,"\n")
                                                 escreva("AGILIDADE: ",agilidadedaespecializacao,"\n")
                                                 escreva("\n\n\n")
                                                 escreva("Após uma longa jornada, voce encontra uma fogueira...\n")
+                                                Util.aguarde(500)
                                                 escreva("Resolve se aproximar dela para se esquentar...\n")
+                                                Util.aguarde(500)
                                                 vidadaespecializacao = Util.sorteia(vidadaespecializacao+15,vidadaespecializacao+20)
                                                 danodaespecializacao = Util.sorteia(danodaespecializacao+15,danodaespecializacao+20)
                                                 agilidadedaespecializacao = Util.sorteia(agilidadedaespecializacao+15,agilidadedaespecializacao+20)
@@ -1490,6 +1805,7 @@ programa {
                                                 escreva("Depois de algum tempo você resolve seguir seu caminho ")
                                                 escreva("\n\n\n")
                                                 escreva("SEUS STATUS APÓS O DESCANSO:\n")
+                                                Util.aguarde(500)
                                                 escreva("VIDA: ",vidadaespecializacao,"\n")
                                                 escreva("DANO: ",danodaespecializacao,"\n")
                                                 escreva("DEFESA: ",defesadaespecializacao,"\n")
@@ -1497,78 +1813,127 @@ programa {
                                                 Util.aguarde(4000)
                                                 escreva("\n\n\n")
                                                 escreva("Ao andar por três longas jornadas, você prossegue sem rumo sem ter uma idéia de onde deve ir...\n")
+                                                Util.aguarde(500)
                                                 escreva("Enquanto caminahva por aquela longínqua estrada , se depara com uma carroca de um vendedor ambulante...\n")
+                                                Util.aguarde(500)
                                                 escreva("Aproximadamente há 100 metros dali,mas você já viu aquela carroca em algum lugar...\n")
+                                                Util.aguarde(500)
                                                 escreva("Parecia ser Joofrey,o homem na qual havia salvado você...\n")
+                                                Util.aguarde(500)
                                                 escreva(nome_camponesamigo," :Olá",nomedocampeao," sabia que você se sairia vitorioso sobre eles...\n")
+                                                Util.aguarde(500)
                                                 inteiro escolha_joofrey_vendedor_perguntar
                                                 escreva("**PERGUNTE A JOOFREY COMO ELE CHEGOU ATÉ ALI**\n")
+                                                Util.aguarde(500)
                                                 escreva("1--JOOFREY,COMO CONSEGUIU SAIR DA SUA CASA E PASSAR A MINHA FRENTE?\n")
+                                                Util.aguarde(500)
                                                 escreva("2--UAU,VEJO QUE ESTÁ VENDENDO COISAS LEGAIS AAÍ EIN?\n")
+                                                Util.aguarde(500)
                                                 escreva("3--JOOFREY A SUA CARA ESTÁ COM ALGUNS FERIMENTOS!!\n")
+                                                Util.aguarde(500)
                                                 escreva("4--VOCÊ TERIA ALGO PARA COMER?")
+                                                Util.aguarde(500)
                                                 leia(escolha_joofrey_vendedor_perguntar)
                                                 limpa()
                                                 escolha(escolha_joofrey_vendedor_perguntar){
                                                 
                                                 caso 1:
                                                 escreva("1--JOOFREY,COMO CONSEGUIU SAIR DA SUA CASA E PASSAR A MINHA FRENTE?\n")
+                                                Util.aguarde(500)
                                                 escreva("Joofrey :hahahah,pode parecer brincadeira as eu sabia alguns atalhozinhos para chegar até aqui\n")
+                                                Util.aguarde(500)
                                                 escreva("Joofrey :Sabe como é",nomedocampeao,"quem é veterano desta região conhece alguns atalhos...\n")
+                                                Util.aguarde(500)
                                                 escreva("**Você nota uma leve mudanca na voz de Joofrey**\n")
+                                                Util.aguarde(500)
                                                 pare
 
                                                 caso 2:
                                                 escreva("2--UAU,VEJO QUE ESTÁ VENDENDO COISAS LEGAIS AAÍ EIN?\n")
+                                                Util.aguarde(500)
                                                 escreva("Joofrey :Sim, campeão estou com alguns produtos especiais aqui\n")
+                                                Util.aguarde(500)
                                                 escreva("Joofrey :Gostaria de ver um pouco mais a fundo?\n")
+                                                Util.aguarde(500)
                                                 escreva("Claro! estou precisando de uma melhoria para o meu",armadaespecializacao,"\n")
+                                                Util.aguarde(500)
                                                 escreva("Joofrey :HAHAHAH você tem uma moeda chamada alma campeão?\n")
+                                                Util.aguarde(500)
                                                 escreva("**Jofreey fala com uma voz demoniaca**\n")
+                                                Util.aguarde(500)
                                                 escreva("Você repara na mudanca de voz de joofrey e mesmo assim continua a conversa tranquilamente!\n")
+                                                Util.aguarde(500)
                                                 pare
 
                                                 caso 3:
                                                 escreva("3--JOOFREY A SUA CARA ESTÁ COM ALGUNS FERIMENTOS!!\n")
+                                                Util.aguarde(500)
                                                 escreva("Joofrey :Não se preocupe com isso campeão..\n")
+                                                Util.aguarde(500)
                                                 escreva("Joofrey :Isso nada mais é do que alguns arranhãozinhos pegos durante o atalho...\n")
+                                                Util.aguarde(500)
                                                 escreva("Joofrey :Sabe como é campeão, depois que o devastador veio até o nosso mundo as coisas ficaram tensas...\n")
+                                                Util.aguarde(500)
                                                 escreva("VocÊ não acredita muito na história de Joofrey\n")
+                                                Util.aguarde(500)
                                                 escreva("Mesmo assim,continua a conversa tranquilamente...\n")
+                                                Util.aguarde(500)
                                                 pare
 
                                                 caso 4:
                                                 escreva("4--VOCÊ TERIA ALGO PARA COMER?\n")
+                                                Util.aguarde(500)
                                                 escreva("Joofrey :Claro campeão,gostaria de um pedaco de pão?\n")
+                                                Util.aguarde(500)
                                                 escreva(nomedocampeao,": Claro!! adoraria.\n")
+                                                Util.aguarde(500)
                                                 escreva("**VOCE COME O PÃO DE JOOFREY**\n")
+                                                Util.aguarde(500)
                                                 escreva(nomedocampeao,": Estava uma delícia , obrigado Joofrey!\n")
+                                                Util.aguarde(500)
                                                 escreva("Ao comer o pão você se depara com feridas na cara de joofrey , e algumas mudancas em seu rosto...\n")
+                                                Util.aguarde(500)
                                                 pare
                                                 }
                                                 //biblioteca util de tempo (aproximadamente 5 segundo para ler o diálogo!)
                                                 escreva("Mesmo notando aquela diferenca em Joofrey você continua olhando sem parar para suas feridas...\n")
+                                                Util.aguarde(500)
                                                 escreva("Joofrey :VEJO QUE ESTÁ GOSTANDO DE OLHAR PARA MEUS FERIMENTOS...\n")
+                                                Util.aguarde(500)
                                                 escreva("Falou Joofrey com uma voz demoníaca...\n")
+                                                Util.aguarde(500)
                                                 escreva("Joofrey :COF COF, perdão herói , esta mudanca de temperatura está acabando comigo...\n")
+                                                Util.aguarde(500)
                                                 escreva(nomedocampeao,"Certo e você tem idéia de por onde posso seguir para o pântano vadeoso?\n")
+                                                Util.aguarde(500)
                                                 escreva("Joofrey :é claro campeão,siga pela estrada até encontrar uma clareira ao norte!!\n")
+                                                Util.aguarde(500)
                                                 escreva(nomedocampeao,"Muito obrigado Joofrey,espero que os deuses lhe iluminem!\n")
+                                                Util.aguarde(500)
                                                 escreva("Joofrey :HAHAHA voCE NaO sABe o QUantTO\n")
+                                                Util.aguarde(500)
                                                 escreva("**Joofrey alternava entre aquela voz esquisita e a sua voz normal**\n")
+                                                Util.aguarde(500)
                                                 escreva("\n\n")
                                                 inteiro seguir_para_clareira_pantano
                                                 escreva("1--SEGUIR PELO CAMINHO QUE JOOFREY RECOMENDOU\n")
                                                 leia(seguir_para_clareira_pantano)
+                                                limpa()
                                                 se(seguir_para_clareira_pantano==1){
-                                                  limpa()
                                                   escreva("Após uma caminhada intensa, você resolve se sentar...\n")
+                                                  Util.aguarde(500)
                                                   escreva("Depois de muito caminhar você encontra uma velha cabana ali por perto...\n")
+                                                  Util.aguarde(500)
                                                   escreva("Após se aproximar da cabana , nota um senhor saindo dela...\n")
+                                                  Util.aguarde(500)
                                                   escreva("Velho desconhecido: Ahhhh olá meu jovem")
+                                                  Util.aguarde(500)
                                                   escreva(nomedocampeao, ":Olá senhor , vejo que está se preparando para este inverno neste pântano..\n")
+                                                  Util.aguarde(500)
                                                   escreva("Velho desconhecido: Hahahahaha , com certeza jovem!")
+                                                  Util.aguarde(500)
                                                   escreva("**FALE COM O VELHO DESCONHECIDO**\n")
+                                                  Util.aguarde(500)
                                                   inteiro falar_com_o_velhodesconhecido
                                                   escreva("1--Conversar sobre a armadura do velho(humor)\n")
                                                   escreva("2--Perguntar sobre oque foi aquilo que houve no céu ontem a noite...(campanha)\n")
@@ -1576,59 +1941,97 @@ programa {
                                                   escreva("4--Questionar sobre o passado do velho...(história)\n")
                                                   leia(falar_com_o_velhodesconhecido)
                                                   limpa()
+                                                  //// CONTINUAR A IDENTACAO A PARTIR DAQUI
                                                   escolha(falar_com_o_velhodesconhecido){
 
                                                     caso 1:
                                                     escreva("Velho desconhecido: Ah, jovem viajante! Sabia que eu sonhei com um pato de armadura ontem à noite?\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Ele marchava como um general, gritando 'quac-quac' em código de guerra! Hahaha!\n")
+                                                    Util.aguarde(500)
                                                     escreva(nomedocampeao," :É… interessante. E o que isso tem a ver com alguma coisa?\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Tudo! Desde esse sonho, minhas galinhas começaram a botar ovos com cheiro de enxofre, e eu encontrei este diário enterrado no galinheiro\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Tem uns símbolos estranhos... parece coisa de magia antiga ou de um pato feiticeiro, sei lá.\n")
+                                                    Util.aguarde(500)
                                                     escreva(nomedocampeao, ":Posso dar uma olhada?\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Claro , por favor leve essa coisa para bem longe de mim...\n")
+                                                    Util.aguarde(500)
                                                     pare
 
                                                     caso 2:
                                                     escreva("Velho desconhecido: Você ouviu os céus trovejarem esta manhã? \n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Aquilo não foi tempestade… foi o rugido do Devastador. A criatura rompeu o véu entre mundos. Eldoria não está mais segura.\n")
+                                                    Util.aguarde(500)
                                                     escreva(nomedocampeao," :Ouvi dizer sim , ele é tão assustador assim?\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Era. Até que ele pisou em Eldoria e reduziu três cidades a cinzas\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Dizem que há um antigo saber, perdido nos tempos dos magos primordiais, que pode selar a criatura novamente.\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Este diário… encontrei entre os escombros de uma torre destruída. Está coberto de símbolos rúnicos.\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Ninguém por aqui consegue entender, mas talvez você consiga\n")
+                                                    Util.aguarde(500)
                                                     escreva(nomedocampeao," :Obrigado , sinto que ele será muito útil...\n")
+                                                    Util.aguarde(500)
                                                     pare
 
                                                     caso 3:
                                                     escreva("Velho desconhecido: Bem-vindo ao Pântano Vadeoso. Aqui, a terra afunda sob seus pés e as sombras sussurram mentiras aos seus ouvidos.\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Dizem que quem passa tempo demais aqui… esquece o próprio nome\n")
+                                                    Util.aguarde(500)
                                                     escreva(nomedocampeao," :Por que alguém viveria num lugar assim?\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Porque o pântano guarda segredos que o mundo esqueceu. \n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Eu… sou um dos poucos que ainda escutam.\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Encontrei isto entre as raízes de um cipreste morto. Um diário, coberto de símbolos rúnicos.\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido:  Ele pulsa com uma energia estranha. O pântano parece… vivo quando estou perto dele.\n")
+                                                    Util.aguarde(500)
                                                     escreva(nomedocampeao, ":Posso ver?\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Claro. Mas cuidado — o pântano observa. E ele nunca esquece quem o perturba \n")
+                                                    Util.aguarde(500)
                                                     pare
 
                                                     caso 4:
                                                     escreva("Velho desconhecido: Antes de viver aqui, eu vestia as cores do Conselho Real de Eldoria.\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Era escriba, tradutor de antigas escrituras. Já segurei penas mais valiosas que espadas.\n")
+                                                    Util.aguarde(500)
                                                     escreva(nomedocampeao," :Então… o que aconteceu?\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Fui traído. Enviado numa missão para decifrar uma profecia perdida e deixado para morrer neste pântano amaldiçoado.\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Tudo que me restou foi este diário. As runas que ele contém… não pertencem a este mundo.\n")
+                                                    Util.aguarde(500)
                                                     escreva(nomedocampeao," :E por que não tentou retornar?\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Há coisas que não se pode desfazer. Sombras do passado que aguardam minha volta…\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Mas talvez, se alguém como você levar esse diário, possa terminar o que comecei\n")
+                                                    Util.aguarde(500)
                                                     escreva("Velho desconhecido: Leve-o. Decifre-o. E se puder… liberte-me da culpa que carrego.\n")
+                                                    Util.aguarde(500)
                                                     pare
                                                   }
                                                   escreva("\n\n\n")
                                                   escreva("Após pegar aquele diário do velho,você decide abrir o diário\n")
+                                                  Util.aguarde(500)
                                                   escreva("Ao abrí-lo , uma áura negra mágica sai e você sente uma leve tontura...\n")
+                                                  Util.aguarde(500)
                                                   escreva("Quando você olha fixamente para o diário,é possível reparar em símbolos como...\n")
+                                                  Util.aguarde(500)
                                                   escreva("\n\n\n")
                                                   escreva("      **DIÁRIO DE MEFISTÓFELES**      \n")
+                                                  Util.aguarde(500)
                                                   escreva("ᚠ = Fogo, destruição, renascimento\n")
                                                   escreva("ᚨ = Sabedoria, visão além do tempo\n")
                                                   escreva("ᚢ = Água, cura, emoções profundas\n")
@@ -1636,21 +2039,30 @@ programa {
                                                   escreva("ᛉ = Proteção, barreira mágica\n")
                                                   escreva("ᛒ = Força, coragem, herança\n")
                                                   escreva("ᛏ = Equilíbrio, justiça, sacrifício\n")
+                                                  Util.aguarde(500)
                                                   escreva("\n\n\n")
                                                   escreva("1-Seguir pela estrada de terra do pântano vadeoso\n")
+                                                  Util.aguarde(500)
                                                   inteiro seguir_para_pantanovadeoso
                                                   leia(seguir_para_pantanovadeoso)
                                                   limpa()
                                                   se(seguir_para_pantanovadeoso==1){
                                                   escreva("Ao seguir pelo pântano, você encontra um barco na qual é necessário para cruzar o rio\n")
+                                                  Util.aguarde(500)
                                                   escreva("Você resolve deixar de lado , de forma que o diário apenas lhe observara\n")
                                                   Util.aguarde(5000)
                                                   escreva("Pouco antes de entrar no barco , um monstro , vindo da gosma daquele pântano , surge de meio ao rio...\n")
+                                                  Util.aguarde(500)
                                                   escreva("Carnical viscoso: COOOOO-MOOO OUSSA VIR ATÉ NOSSO LAR....RAAHAIAAAA....\n")
+                                                  Util.aguarde(500)
                                                   escreva("\n\n\n")
+                                                  Util.aguarde(500)
                                                   escreva("-------------------------------------\n")
+                                                  Util.aguarde(500)
                                                   escreva("VOCÊ ENCONTROU UM CARNICAL VISCOSO!!\n")
+                                                  Util.aguarde(500)
                                                   escreva("-------------------------------------\n")
+                                                  Util.aguarde(500)
                                                   inteiro vida_carnical_viscoso = 40
                                                   inteiro dano_carnical_viscoso = 6
                                                   inteiro xp_ganho_carnicalviscoso = 100
@@ -1693,8 +2105,11 @@ programa {
                                                   Util.aguarde(5000)
                                                   limpa()
                                                   escreva("Após uma batalha contra aquele ser pútrido , você resolve continuar para o seu barco\n")
+                                                  Util.aguarde(500)
                                                   escreva("Você entra no seu barco e comeca a pensar sobre aquele diário...\n")
+                                                  Util.aguarde(500)
                                                   escreva("Após uma larga jornada , você comeca tambéma achar estranho o quão Joofrey estava esquisito mais cedo...\n")
+                                                  Util.aguarde(500)
                                                   escreva("SEUS STATUS: \n")
                                                   escreva("VIDA: ",vidadaespecializacao,"\n")
                                                   escreva("DANO: ",danodaespecializacao,"\n")
@@ -1702,43 +2117,77 @@ programa {
                                                   escreva("AGILIDADE: ",agilidadedaespecializacao,"\n")
                                                   escreva("\n\n\n")
                                                   escreva("**ENTRE NO BARCO PARA CONTINUAR SUA JORNADA**\n")
+                                                  Util.aguarde(500)
                                                   inteiro prosseguir_pantano_vadeoso
                                                   escreva("1--REMAR PARA DENTRO DO PÂNTANO\n")
+                                                  Util.aguarde(500)
                                                   leia(prosseguir_pantano_vadeoso)
                                                   limpa()
                                                   se(prosseguir_pantano_vadeoso==1){
                                                     escreva("Ao adentrar dentro daquelo pântano úmido e frio...\n")
+                                                    Util.aguarde(500)
                                                     escreva("Era possível ouvir as cigarras e sapos que por lá moravam...\n")
+                                                    Util.aguarde(500)
                                                     escreva("Você resolve reabrir o diário , para rever oque lá tinha escrito...\n")
+                                                    Util.aguarde(500)
                                                     escreva("Enquanto remava-se por aquele rio repleto de musgo, você avista um espírito de uma mulher...\n")
+                                                    Util.aguarde(500)
                                                     escreva("O espírito estava em cima de um pedaco de terra que por ali servia como ilha\n")
+                                                    Util.aguarde(500)
                                                     escreva("Ao se aproximar daquele jovem espírito...\n")
+                                                    Util.aguarde(500)
                                                     escreva("ESPÍIRITO: Poucos chegariam até aqui",nomedocampeao,"tenho que lhe dr meus parabéns...\n")
+                                                    Util.aguarde(500)
                                                     escreva(nomedocampeao,": Co-co-mo você sabe meu nome?\n")
+                                                    Util.aguarde(500)
                                                     escreva("ESPÍRITO: Você derrotou inimigos poderosos campeão , não há alguém no meu mundo que não tenha ouvido falar de você...\n")
+                                                    Util.aguarde(500)
                                                     escreva(nomedocampeao,"Meu Deus , espero que isso não seja algo ruim , não quero entrar em conflito com o mundo dos mortos...\n")
+                                                    Util.aguarde(500)
                                                     escreva("ESPÍRITO: Na verdade muito pelo contrário,quero lhe agradecer em nome de todos espíritos de Eldoria...\n")
+                                                    Util.aguarde(500)
                                                     escreva("ESPÍRITO: Lembra do seu diário que aquele velho louco lhe deu?\n")
+                                                    Util.aguarde(500)
                                                     escreva(nomedocampeao," :Cla-claro, oque tem ele?\n")
+                                                    Util.aguarde(500)
                                                     escreva("ESPÍRITO: Na verdade fomos nós quem colocamos aquele diário e as memórias sobre o mesmo na cabeca dele...\n")
+                                                    Util.aguarde(500)
                                                     escreva(nomedocampeao,":Deveria me preocupar?\n")
+                                                    Util.aguarde(500)
                                                     escreva("ESPÍRITO: Muito pelo contrário , deveria ficar aliviado ele será a sua salvacao aqui dentro!\n")
+                                                    Util.aguarde(500)
                                                     escreva("ESPÍRITO: Este pântano guarda muitos segredos",nomedocampeao,"e um deles é os inimigos poderosos que nele habitam...\n")
+                                                    Util.aguarde(500)
                                                     escreva(nomedocampeao,": Hahaha , agradeco a sua preocupacao mas enfrentei mosntros muito mais fortes que eles , obrigado...\n")
+                                                    Util.aguarde(500)
                                                     escreva("ESPÍRITO: Desta vez eles serão mais fortes do que pensa , o devastador soube oque você fez com os chefes das outras regiões..\n")
+                                                    Util.aguarde(500)
                                                     escreva("ESPÍRITO: Eles possuem a magia negra do devastador, causando um dano que não é deste mundo,diminuindo e muito suas chances de sobreviver...\n")
+                                                    Util.aguarde(500)
                                                     escreva(nomedocampeao," :Se os lacaios dele são assim , como poderia vence-lo?\n")
+                                                    Util.aguarde(500)
                                                     escreva("ESPÍRITO: Calma campeão, tudo no seu tempo...\n")
+                                                    Util.aguarde(500)
                                                     escreva("ESPÍRITO: Preocupe-se em conseguir passar deste pântano vivo, utilizando o diário de mefistófeles.\n")
+                                                    Util.aguarde(500)
                                                     escreva("ESPÍRITO: AH e tome cuidado com seu amigo Joofrey, ele já não é quem mais parece ser...\n")
+                                                    Util.aguarde(500)
                                                     escreva("ESPÍRITO: Posso ver algo negro ao redor dele , que mata tudo ao seu redor...\n")
+                                                    Util.aguarde(500)
                                                     escreva("ESPÍRITO: Que os Deuses lhe iluminem campeão!\n")
+                                                    Util.aguarde(500)
                                                     escreva("**O ESPÍRITO SOME AO PISCAR OS OLHOS**")
+                                                    Util.aguarde(500)
                                                     escreva(nomedocampeao," :Espere volte aqui!!")
+                                                    Util.aguarde(500)
                                                     escreva("você continua remando...")
+                                                    Util.aguarde(500)
                                                     escreva("Você se depara com um pergaminho na frente de uma árvore, ele possui uma frase...\n")
+                                                    Util.aguarde(500)
                                                     escreva("\n\n\n")
+                                                    Util.aguarde(500)
                                                     escreva("      **DIÁRIO DE MEFISTÓFELES**      \n")
+                                                    Util.aguarde(500)
                                                     escreva("ᚠ = Fogo, destruição, renascimento\n")
                                                     escreva("ᚨ = Sabedoria, visão além do tempo\n")
                                                     escreva("ᚢ = Água, cura, emoções profundas\n")
@@ -1746,10 +2195,13 @@ programa {
                                                     escreva("ᛉ = Proteção, barreira mágica\n")
                                                     escreva("ᛒ = Força, coragem, herança\n")
                                                     escreva("ᛏ = Equilíbrio, justiça, sacrifício\n")
+                                                    Util.aguarde(500)
                                                     escreva("\n\n\n")
                                                     inteiro caminho_para_seguir_pantano1
                                                     escreva("**PASSE PELO PANTANO VADEOSO UTILIZANDO O DIÁRIO DE MEFISTÓFELES**\n")
+                                                    Util.aguarde(500)
                                                     escreva("~~~~RAGNAROS , O SENHOR DO FOGO UM DIA TERÁ SEU RENASCIMENTO E CAUSARÁ MUITA DESTRUICÃO EM TUDO QUE EXISTE~~~\n")
+                                                    Util.aguarde(500)
                                                     escreva("**PARA QUAL CAMINHO DO RIO REMAR?**\n")
                                                     escreva("1==ᚠ\n")
                                                     escreva("2==ᚢ\n")
@@ -1759,14 +2211,20 @@ programa {
                                                     escolha(caminho_para_seguir_pantano1){
                                                       caso 1:
                                                       escreva("CAMINHO CERTO!")
+                                                      Util.aguarde(500)
                                                       escreva("Você segue por um caminho limpo e seguro...\n")
+                                                      Util.aguarde(500)
                                                       escreva("Ao olhar em volta é possível ver barcos destruidos , bem parecidos com o seu!\n")
+                                                      Util.aguarde(500)
                                                       escreva("Porém nada o atrapalha e é possível seguir tranquilamente...\n")
+                                                      Util.aguarde(500)
                                                       pare
 
                                                       caso 2:
                                                       escreva("?????CAMINHO CERTO?????\n")
+                                                      Util.aguarde(500)
                                                       escreva("Você seguiu por um caminho alternativo...\n")
+                                                      Util.aguarde(500)
                                                       escreva("------------------------------------------------\n")
                                                       escreva("VOCÊ ENCONTROU UM GOLEM DO PÂNTANO (MELHORADO)!!\n")
                                                       escreva("------------------------------------------------\n")
@@ -1817,7 +2275,9 @@ programa {
 
                                                       caso 3:
                                                       escreva("?????CAMINHO CERTO?????\n")
+                                                      Util.aguarde(500)
                                                       escreva("Você seguiu por um caminho alternativo...\n")
+                                                      Util.aguarde(500)
                                                       escreva("------------------------------------------------\n")
                                                       escreva("VOCÊ ENCONTROU UM GOLEM DO PÂNTANO (MELHORADO)!!\n")
                                                       escreva("------------------------------------------------\n")
@@ -1868,11 +2328,16 @@ programa {
                                                     }
                                                     se(vidadaespecializacao>=1){
                                                     escreva("Voce continua remando firmemente em frente após escolher o camimho correto!\n")
+                                                    Util.aguarde(500)
                                                     escreva("É possível observar a vegetacao morrendo cada vez mais ao remar mais e mais \n")
+                                                    Util.aguarde(500)
                                                     escreva("Você observa de longe outros 4 caminhos e próximos a eles uma pedra que contém uma escrita na mesma...\n")
+                                                    Util.aguarde(500)
                                                     escreva("Ao se aproximar, você lê o enigma...\n")
+                                                    Util.aguarde(500)
                                                      escreva("\n\n\n")
                                                     escreva("      **DIÁRIO DE MEFISTÓFELES**      \n")
+                                                    Util.aguarde(500)
                                                     escreva("ᚠ = Fogo, destruição, renascimento\n")
                                                     escreva("ᚨ = Sabedoria, visão além do tempo\n")
                                                     escreva("ᚢ = Água, cura, emoções profundas\n")
@@ -1880,11 +2345,15 @@ programa {
                                                     escreva("ᛉ = Proteção, barreira mágica\n")
                                                     escreva("ᛒ = Força, coragem, herança\n")
                                                     escreva("ᛏ = Equilíbrio, justiça, sacrifício\n")
+                                                    Util.aguarde(500)
                                                     escreva("\n\n\n")
                                                     inteiro caminho_para_seguir_pantano2
                                                     escreva("**PASSE PELO PANTANO VADEOSO UTILIZANDO O DIÁRIO DE MEFISTÓFELES**\n")
+                                                    Util.aguarde(500)
                                                     escreva("~~~~A ÁGUA QUE CURA A ALMA E TRAZ AS MAIORES EMOÇÕES PROFUNDAS QUE UM SER PODERIA TER.~~~~\n")
+                                                    Util.aguarde(500)
                                                     escreva("**PARA QUAL CAMINHO DO RIO REMAR?**\n")
+                                                    Util.aguarde(500)
                                                     escreva("ᛏ==1\n")
                                                     escreva("ᚠ==2\n")
                                                     escreva("ᛒ==3\n")
@@ -1896,7 +2365,9 @@ programa {
                                                     
                                                     caso 1:
                                                      escreva("?????CAMINHO CERTO?????\n")
+                                                     Util.aguarde(500)
                                                       escreva("Você seguiu por um caminho alternativo...\n")
+                                                      Util.aguarde(500)
                                                       escreva("------------------------------------------------\n")
                                                       escreva("VOCÊ ENCONTROU UM GOLEM DO PÂNTANO (MELHORADO)!!\n")
                                                       escreva("------------------------------------------------\n")
@@ -1998,7 +2469,9 @@ programa {
 
                                                     caso 3:
                                                      escreva("?????CAMINHO CERTO?????\n")
+                                                     Util.aguarde(500)
                                                       escreva("Você seguiu por um caminho alternativo...\n")
+                                                      Util.aguarde(500)
                                                       escreva("------------------------------------------------\n")
                                                       escreva("VOCÊ ENCONTROU UM GOLEM DO PÂNTANO (MELHORADO)!!\n")
                                                       escreva("------------------------------------------------\n")
@@ -2049,20 +2522,31 @@ programa {
 
                                                     caso 4:
                                                     escreva("CAMINHO CERTO!\n")
+                                                    Util.aguarde(500)
                                                     escreva("Você segue remando pelo caminho escolhido...\n")
+                                                    Util.aguarde(500)
                                                     escreva("A água era limosa e turva...\n")
+                                                    Util.aguarde(500)
                                                     escreva("Sua cor parecia ser meio negra com verde...\n")
+                                                    Util.aguarde(500)
                                                     escreva("\n\n")
                                                     }
                                                     se(vidadaespecializacao>=1){
                                                     escreva("Depois de concluir mais um caminho você consegue prosseguir\n")
+                                                    Util.aguarde(500)
                                                     escreva("É possível observar nos outros caminhos algo similar com golens enormes...\n")
+                                                    Util.aguarde(500)
                                                     escreva("Você nota que aqueles monstros eram muito grandes e provavelmente não venceria eles...\n")
+                                                    Util.aguarde(500)
                                                     escreva("Você continua a aventura remando em frente \n")
+                                                    Util.aguarde(500)
                                                     escreva("As árvores comecam a apodrecer, de forma que a vegetacao fique cada vez mais morta enquanto avanca\n")
+                                                    Util.aguarde(500)
                                                     escreva("Você se depara com outros possíveis caminhos \n")
+                                                    Util.aguarde(500)
                                                     escreva("\n\n\n")
                                                     escreva("      **DIÁRIO DE MEFISTÓFELES**      \n")
+                                                    Util.aguarde(500)
                                                     escreva("ᚠ = Fogo, destruição, renascimento\n")
                                                     escreva("ᚨ = Sabedoria, visão além do tempo\n")
                                                     escreva("ᚢ = Água, cura, emoções profundas\n")
@@ -2070,11 +2554,15 @@ programa {
                                                     escreva("ᛉ = Proteção, barreira mágica\n")
                                                     escreva("ᛒ = Força, coragem, herança\n")
                                                     escreva("ᛏ = Equilíbrio, justiça, sacrifício\n")
+                                                    Util.aguarde(500)
                                                     escreva("\n\n\n")
                                                     inteiro caminho_para_seguir_pantano3
                                                     escreva("**PASSE PELO PANTANO VADEOSO UTILIZANDO O DIÁRIO DE MEFISTÓFELES**\n")
+                                                    Util.aguarde(500)
                                                     escreva("~~~~No fim de tudo o seu sacrifício não foi em vão,a justica e o equilibrio reinarão~~~~~\n")
+                                                    Util.aguarde(500)
                                                     escreva("POR QUAL CAMINHO DESEJA SEGUIR?\n")
+                                                    Util.aguarde(500)
                                                     escreva("ᛏ==1\n")
                                                     escreva("ᚾ==2\n")
                                                     escreva("ᛉ==3\n")
@@ -2084,15 +2572,21 @@ programa {
                                                     escolha(caminho_para_seguir_pantano3){
                                                       caso 1:
                                                       escreva("CAMINHO CERTO!!\n")
+                                                      Util.aguarde(500)
                                                       escreva("Você avanca pelo caminho , sem maiores complicacoes!\n")
+                                                      Util.aguarde(500)
                                                       escreva("A mata já está morta o suficiente ao ponto de tudo estar entristecidamente morto...\n")
+                                                      Util.aguarde(500)
                                                       escreva("você avista de longe um corpo enforcado sobre uma árvore...\n")
+                                                      Util.aguarde(500)
                                                       escreva("\n\n\n")
                                                       pare
 
                                                       caso 2:
                                                       escreva("?????CAMINHO CERTO?????\n")
+                                                      Util.aguarde(500)
                                                       escreva("Você seguiu por um caminho alternativo...\n")
+                                                      Util.aguarde(500)
                                                       escreva("------------------------------------------------\n")
                                                       escreva("VOCÊ ENCONTROU UM GOLEM DO PÂNTANO (MELHORADO)!!\n")
                                                       escreva("------------------------------------------------\n")
@@ -2143,7 +2637,9 @@ programa {
                                                      
                                                       caso 3:
                                                       escreva("?????CAMINHO CERTO?????\n")
+                                                      Util.aguarde(500)
                                                       escreva("Você seguiu por um caminho alternativo...\n")
+                                                      Util.aguarde(500)
                                                       escreva("------------------------------------------------\n")
                                                       escreva("VOCÊ ENCONTROU UM GOLEM DO PÂNTANO (MELHORADO)!!\n")
                                                       escreva("------------------------------------------------\n")
@@ -2193,8 +2689,10 @@ programa {
                                                       pare
 
                                                     caso 4:
-                                                     escreva("?????CAMINHO CERTO?????\n")
+                                                      escreva("?????CAMINHO CERTO?????\n")
+                                                      Util.aguarde(500)
                                                       escreva("Você seguiu por um caminho alternativo...\n")
+                                                      Util.aguarde(500)
                                                       escreva("------------------------------------------------\n")
                                                       escreva("VOCÊ ENCONTROU UM GOLEM DO PÂNTANO (MELHORADO)!!\n")
                                                       escreva("------------------------------------------------\n")
@@ -2238,7 +2736,9 @@ programa {
                                                           }
                                                             se(vidadaespecializacao <=0){
                                                               escreva("Voce foi derrotado por Golem do pantano\n")
+                                                              Util.aguarde(500)
                                                               escreva("Que os deuses guardem sua alma",nomedocampeao,"\n")
+                                                              Util.aguarde(500)
                                                         }
                                                       }
                                                       pare
@@ -2246,12 +2746,18 @@ programa {
                                                     }
                                                     se(vidadaespecializacao>=1){
                                                     escreva("Você se apoxima do cadáver que por ali boiava\n")
+                                                    Util.aguarde(500)
                                                     escreva("Nele se entalhava uma escrita antiga...\n")
+                                                    Util.aguarde(500)
                                                     escreva("entre a escrita antiga era possível ver entre os nomes...\n")
+                                                    Util.aguarde(500)
                                                     escreva("KELTHUZAD\n")
+                                                    Util.aguarde(500)
                                                     escreva("você prossegue para o possível último caminho?\n")
+                                                    Util.aguarde(500)
                                                     escreva("\n\n\n")
                                                     escreva("      **DIÁRIO DE MEFISTÓFELES**      \n")
+                                                    Util.aguarde(500)
                                                     escreva("ᚠ = Fogo, destruição, renascimento\n")
                                                     escreva("ᚨ = Sabedoria, visão além do tempo\n")
                                                     escreva("ᚢ = Água, cura, emoções profundas\n")
@@ -2259,21 +2765,27 @@ programa {
                                                     escreva("ᛉ = Proteção, barreira mágica\n")
                                                     escreva("ᛒ = Força, coragem, herança\n")
                                                     escreva("ᛏ = Equilíbrio, justiça, sacrifício\n")
+                                                    Util.aguarde(500)
                                                     escreva("\n\n\n")
                                                     inteiro caminho_para_seguir_pantano4
                                                     escreva("**PASSE PELO PANTANO VADEOSO UTILIZANDO O DIÁRIO DE MEFISTÓFELES**\n")
+                                                    Util.aguarde(500)
                                                     escreva("~~~~QUE A PROTECAO DOS DEUSES SEJAM A NOSSA BARREIRA MÁGICA DA ETERNIDADE~~~~~\n")
+                                                    Util.aguarde(500)
                                                     escreva("ᚠ==1\n")
                                                     escreva("ᛒ==2\n")
                                                     escreva("ᛉ==3\n")
                                                     escreva("ᛏ==4\n")
                                                     escreva("POR QUAL CAMINHO DESEJA SEGUIR?\n")
+                                                    Util.aguarde(500)
                                                     leia(caminho_para_seguir_pantano4)
                                                     limpa()
                                                     escolha(caminho_para_seguir_pantano4){
                                                       caso 1:
                                                       escreva("?????CAMINHO CERTO?????\n")
+                                                      Util.aguarde(500)
                                                       escreva("Você seguiu por um caminho alternativo...\n")
+                                                      Util.aguarde(500)
                                                       escreva("------------------------------------------------\n")
                                                       escreva("VOCÊ ENCONTROU UM GOLEM DO PÂNTANO (MELHORADO)!!\n")
                                                       escreva("------------------------------------------------\n")
@@ -2317,14 +2829,18 @@ programa {
                                                           }
                                                             se(vidadaespecializacao <=0){
                                                               escreva("Voce foi derrotado por Golem do pantano\n")
+                                                              Util.aguarde(500)
                                                               escreva("Que os deuses guardem sua alma",nomedocampeao,"\n")
+                                                              Util.aguarde(500)
                                                         }
                                                       }
                                                       pare
                                                      
                                                       caso 2:
                                                       escreva("?????CAMINHO CERTO?????\n")
+                                                      Util.aguarde(500)
                                                       escreva("Você seguiu por um caminho alternativo...\n")
+                                                      Util.aguarde(500)
                                                       escreva("------------------------------------------------\n")
                                                       escreva("VOCÊ ENCONTROU UM GOLEM DO PÂNTANO (MELHORADO)!!\n")
                                                       escreva("------------------------------------------------\n")
@@ -2375,14 +2891,19 @@ programa {
 
                                                       caso 3:
                                                       escreva("CAMINHO CERTO!!")
+                                                      Util.aguarde(500)
                                                       escreva("Você passa mais uma vez pelo caminho calmo e tranquilamente...\n")
+                                                      Util.aguarde(500)
                                                       escreva("Porém comeca a estranhar aquela calmaria que no fundo você sabe que não é muito normal...\n")
+                                                      Util.aguarde(500)
                                                       escreva("\n\n\n")
                                                       pare
 
                                                       caso 4:
                                                       escreva("?????CAMINHO CERTO?????\n")
+                                                      Util.aguarde(500)
                                                       escreva("Você seguiu por um caminho alternativo...\n")
+                                                      Util.aguarde(500)
                                                       escreva("------------------------------------------------\n")
                                                       escreva("VOCÊ ENCONTROU UM GOLEM DO PÂNTANO (MELHORADO)!!\n")
                                                       escreva("------------------------------------------------\n")
@@ -2426,35 +2947,55 @@ programa {
                                                           }
                                                             se(vidadaespecializacao <=0){
                                                               escreva("Voce foi derrotado por Golem do pantano\n")
+                                                              Util.aguarde(500)
                                                               escreva("Que os deuses guardem sua alma",nomedocampeao,"\n")
+                                                              Util.aguarde(500)
                                                         }
                                                       }
                                                       pare
                                                      
                                                     }
                                                     se(vidadaespecializacao>=1){
+                                                      Util.aguarde(500)
                                                      escreva("Após uma longa jornada você encontra uma clareira mais a frente ...\n")
+                                                     Util.aguarde(500)
                                                      escreva("Comeca a acha-la estranha, pois não tinha muito movimento ou muito menos algo colossal por ali\n")
+                                                     Util.aguarde(500)
                                                      escreva("Você caminha até lá...\n")
+                                                     Util.aguarde(500)
                                                      inteiro entrar_clareira_pantano_vadeoso
                                                      escreva("1==ENTRAR NA CLAREIRA DO PANTANO VADEOSO\n")
                                                      leia(entrar_clareira_pantano_vadeoso)
                                                      limpa()
                                                      se(entrar_clareira_pantano_vadeoso==1){
                                                       escreva("Ao entrar você repara em Joofrey , que por ali estava\n")
+                                                      Util.aguarde(500)
                                                       escreva("Imediatamente você acha aquela seituacao muito estranha\n")
+                                                      Util.aguarde(500)
                                                       escreva(nomedocampeao," :Joofrey? Oque faz aqui??\n")
+                                                      Util.aguarde(500)
                                                       escreva("Joofrey: Hahaha , olá meu caro amigo, vejo que chegou até onde eu lhe disse...\n")
+                                                      Util.aguarde(500)
                                                       escreva(nomedocampeao," :Porque você está aqui?Não estava bem da última vez que eu te vi...\n")
+                                                      Util.aguarde(500)
                                                       escreva("Joofrey: Então meu caro amigo...lamento dizer isso , mas...\n")
+                                                      Util.aguarde(500)
                                                       escreva(nomedocampeao," :Oque está acontecendo com seus olhos??\n")
+                                                      Util.aguarde(500)
                                                       escreva("Joofrey: Seu querido amigo Joofrey, já não está mais entre nós garoto\n")
+                                                      Util.aguarde(500)
                                                       escreva("Joofrey: Contemple a minha verdadeira forma...KELTUZAD...UUUAAARHHHHHG\n")
+                                                      Util.aguarde(500)
                                                       escreva("****O CORPO DE JOOFREY SE QUEBRA E SE DEFORMA,SE TRANSFORMANDO EM KELTUZAD, O SENHOR DO VAZIO")
+                                                      Util.aguarde(500)
                                                       escreva(nomedocampeao," :Pelos Deuses..oque é você?")
+                                                      Util.aguarde(500)
                                                       escreva("KELTUZAD, O SENHOR DO VAZIO: CONTEMPLE A MINHA VERDADEIRA FORMA , MORTAL MALDITO...\n")
+                                                      Util.aguarde(500)
                                                       escreva("KELTUZAD, O SENHOR DO VAZIO: NAO TEM IDÉIA DE COMO EU ESPEREI PARA PODER TE MATAR...\n")
+                                                      Util.aguarde(500)
                                                       escreva(nomedocampeao," :Bem, veremos então...\n")
+                                                      Util.aguarde(500)
                                                       escreva("\n\n\n\n\n")
 
                                               cadeia nome_chefe_keltuzad = "KELTUZAD,O SENHOR DO VAZIO"
@@ -2467,7 +3008,7 @@ programa {
                                               inteiro dano_de_ataque_chefe_keltuzad = 5 //alterar o dano do chefe
                                               logico defenderse_chefe_keltuzad = falso
                                               enquanto(vidadaespecializacao > 0 e vida_chefe_keltuzad > 0) {
-                                              escreva("\nSUA VIDA:", vidadaespecializacao, "\nVIDA DO ", vida_chefe_keltuzad, ":", vida_chefe_keltuzad, "\n")
+                                              escreva("\nSUA VIDA:", vidadaespecializacao, "\nVIDA DO ", nome_chefe_keltuzad, ":", vida_chefe_keltuzad, "\n")
                                               escreva("1-ATACAR\n")
                                               escreva("2-DEFENDER-SE\n")
                                               inteiro acao_combate_chefe_keltuzad
@@ -2525,7 +3066,9 @@ programa {
                                                 limpa()
                                                 inteiro quinta_regiao_eldoria
                                                 escreva("Parabéns campeão escolha a região na qual você deseja ir...\n")
+                                                Util.aguarde(500)
                                                 escreva("REINO DE ELDORIA\n")
+                                                Util.aguarde(500)
                                                 escreva("1-FLORESTA DA NÉVOA\n")
                                                 escreva("2-VILA ABANDONADA\n")
                                                 escreva("3-CAVERNA SOMBRIA\n")
@@ -2595,21 +3138,27 @@ programa {
                                                 }
                                                 limpa()
                                                 escreva("SEUS STATUS: \n")
+                                                Util.aguarde(500)
                                                 escreva("VIDA: ",vidadaespecializacao,"\n")
                                                 escreva("DANO: ",danodaespecializacao,"\n")
                                                 escreva("DEFESA: ",defesadaespecializacao,"\n")
                                                 escreva("AGILIDADE: ",agilidadedaespecializacao,"\n")
                                                 escreva("\n\n\n")
                                                 escreva("Após uma longa jornada, voce encontra uma fogueira...\n")
+                                                Util.aguarde(500)
                                                 escreva("Resolve se aproximar dela para se esquentar...\n")
+                                                Util.aguarde(500)
                                                 vidadaespecializacao = Util.sorteia(vidadaespecializacao+15,vidadaespecializacao+20)
                                                 danodaespecializacao = Util.sorteia(danodaespecializacao+15,danodaespecializacao+20)
                                                 agilidadedaespecializacao = Util.sorteia(agilidadedaespecializacao+15,agilidadedaespecializacao+20)
                                                 defesadaespecializacao = Util.sorteia(defesadaespecializacao+15,defesadaespecializacao+20)
                                                 escreva("Após um cochilo próximo a fogueira , você acorda",nomedocampeao,"\n")
+                                                Util.aguarde(500)
                                                 escreva("Depois de algum tempo você resolve seguir seu caminho ")
+                                                Util.aguarde(500)
                                                 escreva("\n\n\n")
                                                 escreva("SEUS STATUS APÓS O DESCANSO:\n")
+                                                Util.aguarde(500)
                                                 escreva("VIDA: ",vidadaespecializacao,"\n")
                                                 escreva("DANO: ",danodaespecializacao,"\n")
                                                 escreva("DEFESA: ",defesadaespecializacao,"\n")
@@ -2617,17 +3166,28 @@ programa {
                                                 Util.aguarde(5000)
                                                 limpa()
                                                 escreva("Você cavalga por entre os portões antigos do lendário CASTELO DOURADO...\n")
+                                                Util.aguarde(500)
                                                 escreva("Os ventos sopram forte, e o céu se fecha em cinza...\n")
+                                                Util.aguarde(500)
                                                 escreva("Você desce do cavalo e observa os detalhes dourados nas paredes.\n")
+                                                Util.aguarde(500)
                                                 escreva("As marcas de batalhas antigas ainda permanecem nas colunas do castelo...\n")
+                                                Util.aguarde(500)
                                                 escreva("Ao entrar, o silêncio é quebrado apenas pelo eco de seus próprios passos...\n")
+                                                Util.aguarde(500)
                                                 escreva("Você avança pelo SALÃO DOS HERÓIS, onde estão estátuas dos campeões que falharam\n")
+                                                Util.aguarde(500)
                                                 escreva("Uma voz ecoa pelas paredes...\n")
+                                                Util.aguarde(500)
                                                 escreva("DEVASTADOR: Mais um tolo ousa desafiar o Devastador...\n")
+                                                Util.aguarde(500)
                                                 escreva("Você ignora a provocação e continua...\n")
+                                                Util.aguarde(500)
                                                 escreva("Chega ao CORREDOR DAS ARMADILHAS.\n")
+                                                Util.aguarde(500)
                                                 inteiro corredor_de_armadilhas
                                                 escreva("**LANCAS E FLECHAS VENENOSAS VOAM PARA A SUA DIREITA**\n")
+                                                Util.aguarde(500)
                                                 escreva("1==ESQUIVAR-SE PARA A DIREITA\n")
                                                 escreva("2==ESQUIVAR-SE PARA A ESQUERDA\n")
                                                 leia(corredor_de_armadilhas)
@@ -2638,13 +3198,17 @@ programa {
                                                   vidadaespecializacao = vida_diminuida_corredor_armadilhas - vidadaespecializacao
 
                                                   escreva("Você perdeu ",vida_diminuida_corredor_armadilhas," de vida após ser atingido pelas armadilhas!!\n")
+                                                  Util.aguarde(500)
                                                   escreva("Você se sente meio mal mas mesmo assim continua a sua jornada!\n")
+                                                  Util.aguarde(500)
                                                   pare
 
                                                   caso 2: 
 
                                                   escreva("Você se esquiva pulando para o lado certo deixando as armadilhas de lado!!\n")
+                                                  Util.aguarde(500)
                                                   escreva("As lancas e flechas se cravam na parede do outro lado!!\n")
+                                                  Util.aguarde(500)
 
                                                   pare
 
@@ -2652,56 +3216,81 @@ programa {
 
                                                   escreva("\n\n\n\n")
                                                   escreva("Você encontra um portão gigante com símbolos rúnicos brilhando em vermelho.\n")
+                                                  Util.aguarde(500)
                                                   escreva("Você posiciona o amuleto antigo no centro do símbolo e o portão se abre...\n")
+                                                  Util.aguarde(500)
                                                   inteiro entrar_covil_devastador
                                                   escreva("1==ENTRAR NO COVIL DO DEVASTADOR!\n")
                                                   leia(entrar_covil_devastador)
                                                   limpa()
                                                   se(entrar_covil_devastador==1){
                                                     escreva("O chão está coberto de cinzas e as janelas estão trincadas.\n")
+                                                    Util.aguarde(500)
                                                     escreva("Sentado em um trono feito de ossos e chamas, está o DEVASTADOR\n")
+                                                    Util.aguarde(500)
                                                     escreva("O monstro levanta sua cabeça coberta por um elmo negro e ri cruelmente...\n")
+                                                    Util.aguarde(500)
                                                     escreva("Então... é você o último campeão? Interessante...\n")
+                                                    Util.aguarde(500)
                                                     escreva("Você segura firme sua arma, o coração batendo como um tambor\n")
+                                                    Util.aguarde(500)
 
                                                     escreva("\n\n\n\n")
-                                                    escreva("\n[Você encara o Devastador, que se ergue lentamente do trono.]")
+                                                    escreva("\n[Você encara o Devastador, que se ergue lentamente do trono.")
+                                                    Util.aguarde(500)
                                                     escreva("\nDEVASTADOR: Então... o novo tolo chegou.")
+                                                    Util.aguarde(500)
 
                                                     escreva("\nJOGADOR: Eu vim pôr um fim à sua tirania. Você destruiu reinos, famílias, esperanças...")
+                                                    Util.aguarde(500)
                                                     escreva("\nJOGADOR: Por que fez isso? Por que devastar o mundo de Eldoria?")
                                                     Util.aguarde(5000)
 
                                                     escreva("\n[O Devastador caminha lentamente em sua direção, a cada passo, o chão treme.]")
+                                                    Util.aguarde(500)
                                                     escreva("\nDEVASTADOR: Por que...?\n")
+                                                    Util.aguarde(500)
 
                                                     escreva("\nDEVASTADOR: Porque Eldoria apodreceu. Porque seus reis se escondem atrás de muros dourados e seus heróis viraram sombras do passado.")
+                                                    Util.aguarde(500)
                                                     escreva("\nDEVASTADOR: Porque os fracos multiplicaram-se, e os fortes foram esquecidos.")
+                                                    Util.aguarde(500)
                                                     escreva("\nDEVASTADOR: Eu sou o equilíbrio restaurado. Eu sou a tempestade que purifica.")
+                                                    Util.aguarde(500)
 
                                                     escreva("\nJOGADOR: Você não é equilíbrio. Você é apenas destruição e vaidade.")
+                                                    Util.aguarde(500)
                                                     escreva("\nDEVASTADOR: Vaidade? Ha! Eu não desejo aplausos. Eu desejo silêncio. E cinzas.")
                                                     Util.aguarde(5000)
 
 
-                                                    escreva("\n[O Devastador ergue o braço e mostra uma runa em chamas na palma da mão.]")
+                                                    escreva("\n[O Devastador ergue o braço e mostra uma runa em chamas na palma da mão.")
+                                                    Util.aguarde(500)
                                                     escreva("\nDEVASTADOR: Cada grito, cada ruína, cada lágrima... é um lembrete de que a ordem falhou.")
+                                                    Util.aguarde(500)
                                                     escreva("\nDEVASTADOR: Eu vim para reescrever este mundo — com sangue.")
+                                                    Util.aguarde(500)
 
                                                     escreva("\nJOGADOR: Você não sairá vivo desta sala.")
+                                                    Util.aguarde(500)
 
-                                                    escreva("\n[O Devastador dá uma gargalhada sombria, seu elmo cintila em vermelho.]")
+                                                    escreva("\n[O Devastador dá uma gargalhada sombria, seu elmo cintila em vermelho.")
+                                                    Util.aguarde(500)
                                                     escreva("\nDEVASTADOR: Hahaha... Que arrogância patética.")
+                                                    Util.aguarde(500)
                                                     escreva("\nDEVASTADOR: Você é apenas mais um verme com uma espada... achando que é um herói.")
-
+                                                    Util.aguarde(500)
                                                     escreva("\nDEVASTADOR: Prepare-se para ser esquecido, como todos os outros!!\n")
                                                     Util.aguarde(5000)
                                                     limpa()
                                                    cadeia nome_chefe_devastador = "O DEVASTADOR DE MUNDOS"
 
                                                   escreva("--------------------------------------------------------------\n")
+                                                  Util.aguarde(500)
                                                   escreva("VOCÊ ENCONTROU ", nome_chefe_devastador, "!!\n")
+                                                  Util.aguarde(500)
                                                   escreva("--------------------------------------------------------------\n\n\n")
+                                                  Util.aguarde(500)
 
                                                   inteiro vida_chefe_devastador = 400
                                                   inteiro vida_maxima_chefe_devastador = 400
@@ -2776,21 +3365,37 @@ programa {
                                                       escreva("\n💀 Você foi derrotado por ", nome_chefe_devastador, "\n")
                                                       escreva("🕯️ Que os deuses guardem sua alma, ", nomedocampeao, ".\n")
                                                   } senao se (vida_chefe_devastador <= 0) {
+                                                      limpa()
                                                       escreva("Você se aproxima do corpo caído de O DEVASTADOR DE MUNDOS...\n")
+                                                      Util.aguarde(500)
                                                       escreva("A fumaça negra que envolvia Eldoria começa a desaparecer.\n")
+                                                      Util.aguarde(500)
                                                       escreva("Os céus se abrem, revelando o sol pela primeira vez em séculos.\n\n")
+                                                      Util.aguarde(500)
                                                       escreva("Você se aproxima do corpo caído de O DEVASTADOR DE MUNDOS...\n")
+                                                      Util.aguarde(500)
                                                       escreva("A fumaça negra que envolvia Eldoria começa a desaparecer.\n")
+                                                      Util.aguarde(500)
                                                       escreva("Os céus se abrem, revelando o sol pela primeira vez em séculos.\n\n")
+                                                      Util.aguarde(500)
                                                       escreva("GUARDIÃO DE ELDORIA: Herói, você conseguiu! O Devastador foi derrotado.\n")
+                                                      Util.aguarde(500)
                                                       escreva("GUARDIÃO DE ELDORIA: Diga-nos, qual é o seu nome, salvador do nosso povo?\n")
+                                                      Util.aguarde(500)
                                                       escreva("\nGUARDIÃO DE ELDORIA: ", nomedocampeao, "... Que nome magnífico! Será lembrado por todas as gerações!\n")
+                                                      Util.aguarde(500)
                                                       escreva("GUARDIÃO DE ELDORIA: Como se sente após derrotar uma entidade tão terrível?\n")
+                                                      Util.aguarde(500)
                                                       escreva("\n(O povo de Eldoria se reúne ao redor do herói. Gritos de alegria ecoam pelos vales.)\n")
+                                                      Util.aguarde(500)
                                                       escreva("\nANCIÃO DO TEMPLO: As runas profetizavam sua chegada. Você é o escolhido.\n")
+                                                      Util.aguarde(500)
                                                       escreva("ANCIÃO DO TEMPLO: Graças a você, Eldoria pode florescer mais uma vez.\n")
+                                                      Util.aguarde(500)
                                                       escreva("\n--- FIM DA JORNADA ---\n")
+                                                      Util.aguarde(500)
                                                       escreva("Obrigado por salvar Eldoria!\n")
+                                                      Util.aguarde(500)
                                                                                                     
                                                   }
  
