@@ -1454,7 +1454,12 @@ funcao gerarBossDaRegiao(){
     inimigoEscudoMax = inimigoDEF
     inimigoEscudo = inimigoEscudoMax
     ganhoDeExperiencia = nivelDoBoss + 1
-    batalhaGrandeGabonga()
+    batalhaGrandeGabongaV2()
+    se(vidaDoInimigo <= 0){
+      fragmentoDaPedraDaLuz++
+      escreva("Voce recuperou o fragmento da pedra da luz que estava com ", nomeDoInimigoAtual, ".\n")
+      menuDeNavegacao()
+    }
 
   }senao se(regioes[regiaoAtual] == "FLORESTA DA NEVOA" e fragmentoDaPedraDaLuz == 1){
     nomeDoInimigoAtual = nomeDeBoss[1]
@@ -1471,6 +1476,7 @@ funcao gerarBossDaRegiao(){
     se(vidaDoInimigo < 1){
       fragmentoDaPedraDaLuz++
       escreva("Voce recuperou o fragmento da pedra da luz que estava com ", nomeDoInimigoAtual, ".\n")
+      menuDeNavegacao()
     }
   }senao se(regioes[regiaoAtual] == "VILA ABANDONADA" e fragmentoDaPedraDaLuz == 2){
     nomeDoInimigoAtual = nomeDeBoss[2]
@@ -1488,6 +1494,7 @@ funcao gerarBossDaRegiao(){
     se(vidaDoInimigo < 1){
       fragmentoDaPedraDaLuz++
       escreva("Voce recuperou o fragmento da pedra da luz que estava com ", nomeDoInimigoAtual, ".\n")
+      menuDeNavegacao()
     }
   }senao se(regioes[regiaoAtual] == "CAVERNA SOMBRIA" e fragmentoDaPedraDaLuz == 3){
     nomeDoInimigoAtual = nomeDeBoss[3]
@@ -1505,6 +1512,7 @@ funcao gerarBossDaRegiao(){
     se(vidaDoInimigo < 1){
       fragmentoDaPedraDaLuz++
       escreva("Voce recuperou o fragmento da pedra da luz que estava com ", nomeDoInimigoAtual, ".\n")
+      menuDeNavegacao()
     }
   }senao se(regioes[regiaoAtual] == "LABIRINTO ESCONDIDO" e fragmentoDaPedraDaLuz == 4){
     nomeDoInimigoAtual = nomeDeBoss[4]
@@ -1522,6 +1530,7 @@ funcao gerarBossDaRegiao(){
     se(vidaDoInimigo < 1){
       fragmentoDaPedraDaLuz++
       escreva("Voce recuperou o fragmento da pedra da luz que estava com ", nomeDoInimigoAtual, ".\n")
+      menuDeNavegacao()
     }
   }senao se(regioes[regiaoAtual] == "COLISEU DE SUCATAS" e regiaoAtual == 5){
     nomeDoInimigoAtual = nomeDeBoss[5]
@@ -1539,6 +1548,7 @@ funcao gerarBossDaRegiao(){
     se(vidaDoInimigo < 1){
       fragmentoDaPedraDaLuz++
       escreva("Voce recuperou o fragmento da pedra da luz que estava com ", nomeDoInimigoAtual, ".\n")
+      menuDeNavegacao()
     }
   }senao se(regioes[regiaoAtual] == "PANTANO DOS LAMENTOS" e fragmentoDaPedraDaLuz == 6){
     nomeDoInimigoAtual = nomeDeBoss[6]
@@ -1556,6 +1566,7 @@ funcao gerarBossDaRegiao(){
     se(vidaDoInimigo <= 0){
       fragmentoDaPedraDaLuz++
       escreva("Voce recuperou o fragmento da pedra da luz que estava com ", nomeDoInimigoAtual, ".\n")
+      menuDeNavegacao()
     }
   }senao se(regioes[regiaoAtual] == "CASTELO DOURADO" e fragmentoDaPedraDaLuz == 7){
     nomeDoInimigoAtual = nomeDeBoss[7]
@@ -1568,7 +1579,8 @@ funcao gerarBossDaRegiao(){
     inimigoEscudoMax = inimigoDEF
     inimigoEscudo = inimigoEscudoMax
     ganhoDeExperiencia = nivelDoBoss + 7
-    batalhaEldlich()
+    batalhaEldlichV2()
+    menuDeNavegacao()
   }
 }
 funcao batalhaGrandeGabonga(){
@@ -2335,13 +2347,15 @@ funcao campanha(){
 
 }
 funcao turnoDeBatalhaSimples(){
+  inteiro defesaOriginal = defesa
+  pocaoDisponivel()
     enquanto(vida > 0 ou vidaDoInimigo > 0){
       enquanto(vida > 0 e vidaDoInimigo > 0) {
         escreva("Turno do jogador\n")
         escreva("1 - Atacar\n2 - Defender\nEscolha: ")
+        defesa = defesaOriginal
         inteiro acao
-        leia(acao)
-
+        leia(acao) 
         se (acao == 1) {
             inteiro danoCausado = ataque - inimigoDEF
             se (danoCausado < 0) {
@@ -2351,10 +2365,9 @@ funcao turnoDeBatalhaSimples(){
             escreva("Você causou ", danoCausado, " de dano.\n")
         } senao se (acao == 2) {
             escreva("Você se defendeu e recebeu menos dano.\n")
-            // Pode implementar bônus de defesa aqui
+            defesa += 5
         }
 
-        // Turno do inimigo
         se (vidaDoInimigo > 0) {
             escreva("Turno do inimigo\n")
             inteiro danoRecebido = inimigoATK - defesa
@@ -2370,7 +2383,146 @@ funcao turnoDeBatalhaSimples(){
         escreva("Você foi derrotado...\n")
     } senao {
         escreva("Inimigo derrotado!\n")
-        ganharExperiencia(10) // ou qualquer valor adequado
+        ganharExperiencia(ganhoDeExperiencia) // ou qualquer valor adequado
+    }
+  }
+funcao batalhaGrandeGabongaV2(){
+    pocaoDisponivel()
+    inteiro defesaOriginal = defesa
+
+    enquanto(vida > 0 ou vidaDoInimigo > 0){
+      enquanto(vida > 0 e vidaDoInimigo > 0) {
+        escreva("Turno do jogador\n")
+        escreva("1 - Atacar\n2 - Defender\nEscolha: ")
+        defesa = defesaOriginal
+        inteiro acao
+        leia(acao) 
+        se (acao == 1) {
+            inteiro danoCausado = ataque - inimigoDEF
+            se (danoCausado < 0) {
+                danoCausado = 0
+            }
+            vidaDoInimigo = vidaDoInimigo - danoCausado
+            escreva("Você causou ", danoCausado, " de dano.\n")
+        } senao se (acao == 2) {
+            escreva("Você se defendeu e recebeu menos dano.\n")
+            defesa += 5
+        }
+      se(vidaDoInimigo <= 10 e nomeDoInimigoAtual == "Goblin Motoqueiro, Grande Gabonga"){
+        escreva("Grande Gabonga esta desesperado soltou as amarras da besta que usa como montoria.\n")
+        u.aguarde(4000)
+        limpa()
+        escreva("Agora voce enfrentara  a Besta Enlouquecida dos Goblins.\n")
+        u.aguarde(4000)
+        limpa()
+
+        nomeDoInimigoAtual = "Besta Enlouquecida dos Goblins"
+        vidaDoInimigo += 10
+        pontosDeAcaoInimigo += 5
+        inimigoATK += nivelDoBoss
+        inimigoDEF += nivelDoBoss
+        inimigoAGI += nivelDoBoss
+      }
+      se(vidaDoInimigo > 0) {
+        escreva("Turno do inimigo\n")
+        inteiro danoRecebido = inimigoATK - defesa
+        se (danoRecebido < 0) {
+            danoRecebido = 0
+        }
+          vida = vida - danoRecebido
+          escreva("Você recebeu ", danoRecebido, " de dano.\n")
+        }
+      }
+    }
+  }
+funcao batalhaEldlichV2(){
+  pocaoDisponivel()
+  inteiro defesaOriginal = defesa
+
+  escreva("Voce entra na sala do trono, onde o Senhor Dourado reina.\n")
+  u.aguarde(1000)
+  escreva("Um monstro o qual o poder nega a morte e a vida e torna tudo em ouro com um toque.\n")
+  u.aguarde(1000)
+  escreva("-------------------------------Eldlich, o Devastador------------------------------\n")
+  escreva("Outro aspirante a heroi?\n")
+  u.aguarde(1000)
+  escreva("Voce vai ser so mais uma estatua neste castelo.\n")
+  u.aguarde(2000)
+  limpa()
+
+    enquanto(vida > 0 ou vidaDoInimigo > 0){
+      enquanto(vida > 0 e vidaDoInimigo > 0) {
+        escreva("Turno do jogador\n")
+        escreva("1 - Atacar\n2 - Defender\nEscolha: ")
+        defesa = defesaOriginal
+        inteiro acao
+        leia(acao) 
+        se (acao == 1) {
+            inteiro danoCausado = ataque - inimigoDEF
+            se (danoCausado < 0) {
+                danoCausado = 0
+            }
+            vidaDoInimigo = vidaDoInimigo - danoCausado
+            escreva("Você causou ", danoCausado, " de dano.\n")
+        } senao se (acao == 2) {
+            escreva("Você se defendeu e recebeu menos dano.\n")
+            defesa += 5
+        }
+
+        se (vidaDoInimigo > 0) {
+          vidaDoInimigo += 2
+            escreva("Turno do inimigo\n")
+            inteiro danoRecebido = inimigoATK - defesa
+            se (danoRecebido < 0) {
+                danoRecebido = 0
+            }
+            vida = vida - danoRecebido
+            escreva("Você recebeu ", danoRecebido, " de dano.\n")
+        }
+      }
+    }
+    se(vidaDoInimigo <= 10 e nomeDoInimigoAtual == "Eldlich, O Devastador"){
+      escreva("Voce acha que me ferir serve de alguam coisa?\n")
+      u.aguarde(4000)
+      limpa()
+      escreva("Eldlich está em furia.\n")
+      u.aguarde(4000)
+      limpa()
+
+      nomeDoInimigoAtual = "Eldlich, O Senhor Dourado Enlouqecido"
+      vidaDoInimigo += 10
+      pontosDeAcaoInimigo += 5
+      inimigoATK += nivelDoBoss
+      inimigoDEF += nivelDoBoss
+      inimigoAGI += nivelDoBoss
+    }
+    se(vidaDoInimigo <=5 e nomeDoInimigoAtual == "Eldlich, O Senhor Dourado Enlouqecido"){
+      escreva("Voce fez Eldlich se lembrar da dor da vida.\n")
+      u.aguarde(1000)
+      escreva("----------------Eldlich--------------------\n")
+      escreva("Que sensacao desagradavel.\n")
+      u.aguarde(2000)
+      escreva("Voce vai pagar por isso ", nomeDoPersonagem, "!")
+      u.aguarde(2000)
+      limpa()
+      escreva("Usando de sua magia nefasta Eldlich junta todo ouro em uma estatua viva colossal.\n")
+      u.aguarde(3000)
+      limpa()
+
+      nomeDoInimigoAtual = "Anjo Caido da Terra Dourada"
+      vidaDoInimigo += 2
+      pontosDeAcaoInimigo += 2
+      inimigoATK += 5
+      inimigoDEF += 5
+      inimigoAGI += 5
+
+    }
+    se (vida <= 0) {
+        escreva("Você foi derrotado...\n")
+    } senao {
+        escreva("Inimigo derrotado!\n")
+        ganharExperiencia(ganhoDeExperiencia)
+        mostrarCreditos()
     }
   }
 }
