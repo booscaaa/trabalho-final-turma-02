@@ -1,6 +1,6 @@
 programa {
   inclua biblioteca Util --> u
-                      //0                   1                    2                  3                  4                      5                     6                       7
+
   cadeia regioes[8] = {"VILA DOS COMECOS", "FLORESTA DA NEVOA", "VILA ABANDONADA", "CAVERNA SOMBRIA", "LABIRINTO ESCONDIDO", "COLISEU DE SUCATAS", "PANTANO DOS LAMENTOS", "CASTELO DOURADO"}
   inteiro regiaoAtual = 0
 
@@ -16,17 +16,18 @@ programa {
   inteiro afinidadeTERRA = 0
   inteiro afinidadeNEUTRO = 1
   inteiro vida = 100
+  inteiro vidaMaxima = 0
   inteiro ataque = 0
   inteiro defesa = 0
   inteiro agilidade = 0
 
   inteiro escudoMax = defesa
   inteiro escudo = escudoMax
-  
+
+  inteiro pocaoEmPosse = 0  
   
   cadeia escudoAtivo = "NAO"
   
-  // Bagulho pro combate
   inteiro pontosDeAcao = 10
   inteiro excedenteJogador = 0
   inteiro pontosDeAcaoInimigo = 10
@@ -35,8 +36,8 @@ programa {
   inteiro continuar
 
   cadeia nomeDeBoss[8] ={"Goblin Motoqueiro, Grande Gabonga", "Tsumuha-Kutsunagi, O Senhor das Espadas", "Nenleria, a sonhadora", "Atomic, o Dragao de Restolhos", "Dama Prateada do Labirinto", "Rei Besta-Maquina, Regulus", "Rei do Pantano", "Eldlich, O Devastador"}
-                              //0,                          1,                              2,                                       3,                                       4,                                  5,                         6,                    7,                     8,                    9,                    10,                    11,                      12,                           13,                         14,                           15,                         16,                     17                       18,              19,                    20
-  cadeia nomeDoInimigo[20] = {"Goblin Motoqueiro, Troika", "Goblin Motoqueiro, Boom Mach", "Goblin Motoqueiro, Dougg Atropelador", "Goblin Motoqueiro, Clater Explosivo", "Goblin Motoqueira, Mean Impiedosa", "Goblin Motoqueiro, Griare", "Boneca Amaldicoada", "Soldado De Brinquedo", "Cadaver Rastejante", "Besta de Restolhos", "Goblin de Restolhos", "Quimera de Restolhos", "Ariane, Serva do Labirinto", "Arias, Serva do Labirito", "Arch, Estatua do Labirito", "Sargas, Campeao Possuido", "Golem de Engrenagens", "Arquidemonio de Sucata", "Lobo da Praga", "Zumbi Espalha-Prga", "Paladino do Dragao Amaldicoado"}
+      
+  cadeia nomeDoInimigo[25] = {"Goblin Motoqueiro, Troika", "Goblin Motoqueiro, Boom Mach", "Goblin Motoqueiro, Dougg Atropelador", "Goblin Motoqueiro, Clater Explosivo", "Goblin Motoqueira, Mean Impiedosa", "Goblin Motoqueiro, Griare", "Boneca Amaldicoada", "Soldado De Brinquedo", "Cadaver Rastejante", "Besta de Restolhos", "Goblin de Restolhos", "Quimera de Restolhos", "Ariane, Serva do Labirinto", "Arias, Serva do Labirito", "Arch, Estatua do Labirito", "Sargas, Campeao Possuido", "Golem de Engrenagens", "Arquidemonio de Sucata", "Lobo da Praga", "Zumbi Espalha-Prga", "Paladino do Dragao Amaldicoado", "Conqistador Caido da Terra Dourad", "General Caido da Terra Dourda", "Guardiao Caido da Terra Dourada", "Arruaceiro da Terra Dourada"}
   cadeia nomeDoInimigoAtual
 
   inteiro nivelDoInimigo
@@ -53,14 +54,11 @@ programa {
   inteiro nivelDoBoss = 0
   inteiro fragmentoDaPedraDaLuz = 0
 
-  // A??es de combate
-
   inteiro custoAcao = 0
   inteiro custoAtacar = 3
   inteiro custoDefesa = 2
   inteiro custoHabilidade = 7
 
-    // Fun??o principal
   funcao inicio() {
     inteiro opcao = 0
         
@@ -85,7 +83,6 @@ programa {
     }
   }
     
-  // Fun??o para exibir o menu inicial e retornar a op??o escolhida
 funcao inteiro menuDeInicializacao() {
   inteiro opcao = 0
    
@@ -95,7 +92,6 @@ funcao inteiro menuDeInicializacao() {
   escreva("--3: Sair--\n")
   escreva("Escolha uma opcao: ")
 
-  // Garante que a leitura seja feita pelo menos uma vez
   leia(opcao)
   enquanto(opcao < 1 ou opcao > 3) {
     escreva("Opcao invalida! Tente novamente: ")
@@ -104,15 +100,13 @@ funcao inteiro menuDeInicializacao() {
         
   retorne opcao
 }
-    
-// Fun??o para criar um novo personagem
+
 funcao criarPersonagem() {
 
   escreva("\n--- Criacao de Personagem ---\n")
   escreva("Digite o nome do seu personagem: ")
   leia(nomeDoPersonagem)
   
-  // Mostra menu de classes at? receber uma op??o v?lida
   escreva("\nEscolha sua classe:\n")
   escreva("1 - GUERREIRO, Foco em vida e defesa. Ideal para resist?ncia prolongada.\n")
   escreva("2 - MAGO, Ataque poderoso, porem fragil. Especialista em dano rapido.\n")
@@ -134,9 +128,8 @@ funcao criarPersonagem() {
     caso 3:
       classe = "ARQUEIRO"
     pare
-    }
-        
-// Aqui voc? pode adicionar a inicializa??o dos atributos do personagem
+  }
+
   escreva("\nPersonagem criado com sucesso!\n")
 
   se(classe == "GUERREIRO"){
@@ -176,7 +169,6 @@ funcao criarPersonagem() {
   escreva("Escudo: ", escudo, "\n")
 }
     
-// Fun??o para mostrar os cr?ditos
 funcao mostrarCreditos() {
   escreva("\n--- Creditos ---\n")
   escreva("Desenvolvido por: Patrick-fed\n")
@@ -186,7 +178,10 @@ funcao mostrarCreditos() {
       enquanto(experiencia >= (nivel+1)*10 e nivel < 15) {
       nivel = nivel + 1
       vida = vida + nivel * 10
+      vidaMaxima = vida
       escreva("Seu heroi subiu para o nivel: ", nivel, "\n")
+
+      atributoLivre()
 
       escolha(classe) {
         caso "GUERREIRO":
@@ -569,7 +564,7 @@ funcao avancoDeClasseFinal(){
     }
   }
 }
-  // Fun??o para avan?o de classe do Guerreiro
+
 funcao avancoDeClasseGuerreiro() {
     inteiro opcaoDeAvanco
     
@@ -1022,7 +1017,7 @@ funcao avancoDeClasseVigia(){
   escreva(nomeDoPersonagem, ", agora eh um: ", classe, ".\n")
   mostrarAtributos()
 }
-// Fun??o para avan?o de classe do Mago
+
 funcao avancoDeClasseMago() {
     inteiro opcaoDeAvanco
     
@@ -1065,7 +1060,6 @@ funcao avancoDeClasseMago() {
     mostrarAtributos()
 }
 
-// Fun??o para avan?o de classe do Arqueiro
 funcao avancoDeClasseArqueiro() {
   inteiro opcaoDeAvanco
     
@@ -1117,20 +1111,14 @@ funcao turnoDeBatalha(){
 
     se(escudo <= 0){
       escudoAtivo = "NAO"
-      escreva("Voc? n?o pode se defender por enquanto.\n")
+      escreva("Voce nao pode se defender por enquanto.\n")
     }
     se(escudoAtivo == "NAO" e escudo < escudoMax){
       escudo = escudo + nivel
       escreva("Voce reparou seu escudo por: ", defesa, ".\n")
     }
-    
+    escudoAtivo = "NAO"
     turnoDoJogador()
-
-    se(vidaDoInimigo < 1){
-      escreva("Parabens, ", nomeDoPersonagem, " derrotou o inimigo.\n")
-      ganharExperiencia(ganhoDeExperiencia)
-      pare
-    }
 
     se(pontosDeAcaoInimigo < 10){
       pontosDeAcaoInimigo = 10
@@ -1138,14 +1126,18 @@ funcao turnoDeBatalha(){
       pontosDeAcaoInimigo += excedenteJogador
       escreva(nomeDoInimigoAtual, " ganhou: ", excedenteJogador, " pontos extras\n")
     }
-      //turno do inimigo
-    turnoDoInimigo()
-    se(vida <= 0){
-      escreva(nomeDoPersonagem, " foi derrotado.\n")
-    pare
-    }
 
+    escudoAtivoDoInimigo = "NAO"
       
+  }
+  se(vidaDoInimigo <= 0){
+    escreva("Parabens, ", nomeDoPersonagem, " derrotou o inimigo.\n")
+    ganharExperiencia(ganhoDeExperiencia)
+    recompensasOuAlgoAssim()
+    adquirirPocao()
+  }
+  se(vida <= 0){
+    escreva(nomeDoPersonagem, " foi derrotado.\n")
   }
 
 }
@@ -1200,35 +1192,35 @@ funcao turnoDoJogador(){
   }
 }
 funcao turnoDoInimigo(){
-  escreva("\n-----------Turno do inimigo-------------\n")
-  
-  enquanto(vidaDoInimigo > 0 e pontosDeAcaoInimigo > 0){
-    inteiro acaoDoInimigo
-    se(pontosDeAcaoInimigo > 0){
-      acaoDoInimigo = u.sorteia(1,3)
-    }senao se(pontosDeAcaoInimigo < 0 e excedenteInimigo > 0){
-      escreva(nomeDoInimigoAtual, " nao tem pontos para continuar com o turno.\n")
-      pare
-    }
-    se(acaoDoInimigo == 1){
-      custoAcao = custoAtacar
-      executarAcaoInimigo(custoAcao, "atacar")
-    }senao se(acaoDoInimigo == 2){
-      custoAcao = custoDefesa
-      executarAcaoInimigo(custoAcao, "defender")
-    }senao se(acaoDoInimigo == 3){
-      custoAcao = custoHabilidade
-      executarAcaoInimigo(custoAcao, "habilidade")
+  se(pontosDeAcaoInimigo < 1){
+    pontosDeAcaoInimigo = 10
+  }
+    escreva("\n-----------Turno do inimigo-------------\n")
+    enquanto(vidaDoInimigo > 0 e pontosDeAcaoInimigo > 0){
+        inteiro acaoDoInimigo = u.sorteia(1,3)
+
+        escolha(acaoDoInimigo){
+            caso 1:
+                executarAcaoInimigo(custoAtacar, "atacar")
+            caso 2:
+                executarAcaoInimigo(custoDefesa, "defender")
+            caso 3:
+                executarAcaoInimigo(custoHabilidade, "habilidade")
+        }
+
+        se(vidaDoInimigo < 1){
+          escreva("Voce venceu.\n")
+          pare
+        }
+        escreva(nomeDoInimigoAtual, "ainda tem: ", pontosDeAcaoInimigo, " PA.\n")
+        u.aguarde(1000)
     }
     se(pontosDeAcaoInimigo <= 0){
-      escreva(nomeDoInimigoAtual, "Nao tem pontos para continuar com o turno.\n")
-      pare  
+      escreva(nomeDoInimigoAtual, " nao tem pontos para continuar com o turno.\n")
+      turnoDoJogador()
     }
-
-    u.aguarde(1000)
-
-  }
 }
+
 funcao executarAcao(inteiro custo, cadeia tipoAcao){
 
   se(pontosDeAcao < custo){
@@ -1240,9 +1232,12 @@ funcao executarAcao(inteiro custo, cadeia tipoAcao){
   }senao{
     pontosDeAcao -= custo
   }
+  
   se(tipoAcao == "atacar"){
     inteiro danoCausado = ataque - inimigoDEF
-    //se o inimigo n?o se defender
+
+
+
     se(inimigoEscudo <= 0){
       escudoAtivoDoInimigo ="NAO"
       escreva(nomeDoInimigoAtual," nao pode se defender por enquanto.\n")
@@ -1255,7 +1250,7 @@ funcao executarAcao(inteiro custo, cadeia tipoAcao){
       escreva(nomeDoInimigoAtual, " reparou o escudo em: ", nivelDoInimigo, " pontos.\n")
     }
 
-    // se o inimigo se defender
+
 
     se(escudoAtivoDoInimigo == "NAO"){
       vidaDoInimigo -= danoCausado
@@ -1276,7 +1271,7 @@ funcao executarAcao(inteiro custo, cadeia tipoAcao){
 
     escudoAtivo = "SIM"
     escreva(nomeDoPersonagem, " gerou um escudo que recebera os proximos ataques.\n")
-    u.aguarde(4000)
+    u.aguarde(3000)
     limpa()
     
   }senao se(tipoAcao == "habilidade"){
@@ -1292,34 +1287,36 @@ funcao executarAcao(inteiro custo, cadeia tipoAcao){
     retorne
   }
 }
-funcao executarAcaoInimigo(inteiro custo, cadeia tipoAcao){
-
+funcao executarAcaoInimigo(inteiro custo, cadeia tipoAcaoInimigo){
+  se(pontosDeAcaoInimigo <= custo){
+    pontosDeAcaoInimigo -= custo
+  }
+  
+  escreva(nomeDoInimigoAtual, "usou de ", custo, " PA para usar de", tipoAcaoInimigo, "\n")
+  escreva(nomeDoInimigoAtual, " PA: ", pontosDeAcaoInimigo, ".\n")
+  
   se(pontosDeAcaoInimigo < custo){
     excedenteInimigo = custo - pontosDeAcaoInimigo
     pontosDeAcaoInimigo += excedenteJogador
     escreva("O inimigo realizou uma acao sem ter pontos o suficientes o excedente de: ", excedenteInimigo, "sera seu bonus para o proximo turno.\n")
     excedenteJogador = 0
-
-    
     pontosDeAcaoInimigo = 0
-    retorne
+    turnoDoJogador()
   }
-  pontosDeAcaoInimigo -= custo
 
-  se(tipoAcao == "atacar"){
+  se(tipoAcaoInimigo == "atacar"){
     inteiro danoAoPersonagem = inimigoATK - defesa
-    // o que acontece se o jogador n?o se defender
+
     se(escudoAtivo == "NAO"){
       se(danoAoPersonagem < 1){
       danoAoPersonagem = 1
       vida -= danoAoPersonagem
-      escreva(nomeDoInimigoAtual, "acertou um ataque de rasp?o causando dano de: ", danoAoPersonagem, ".\n")
+      escreva(nomeDoInimigoAtual, "acertou um ataque de raspao causando dano de: ", danoAoPersonagem, ".\n")
       }senao se(danoAoPersonagem > 0){
         vida -= danoAoPersonagem
         escreva(nomeDoInimigoAtual, " te atacou causando dano de: ", danoAoPersonagem, "\n.")
       }
       
-      // se o jogador se defender
     }senao se(escudoAtivo == "SIM"){
       se(danoAoPersonagem < 0){
         danoAoPersonagem = 1
@@ -1339,10 +1336,11 @@ funcao executarAcaoInimigo(inteiro custo, cadeia tipoAcao){
       }
     }
     
-  }senao se(tipoAcao == "defender"){
+  }senao se(tipoAcaoInimigo == "defender"){
     escreva(nomeDoInimigoAtual, " gerou um escudo que recebera os proximos ataques.\n")
     escudoAtivoDoInimigo = "SIM"
-  }senao se(tipoAcao == "habilidade"){
+    escrva("EScudo: ",inimigoEscudo)
+  }senao se(tipoAcaoInimigo == "habilidade"){
     inteiro danoAoPersonagem = (inimigoATK*2) - defesa
     se(danoAoPersonagem < 0){
       danoAoPersonagem = 0
@@ -1352,9 +1350,8 @@ funcao executarAcaoInimigo(inteiro custo, cadeia tipoAcao){
   }
   se(excedenteInimigo > 0){
     escreva("Voce ganhou: ", excedenteInimigo, " pontos extras para o proximo turno.\n")
-    retorne
   }
-  
+  turnoDoJogador()
 }
 funcao statusDeBatalha(){
   escreva("\n-----situacao atual da batalha------\n")
@@ -1384,161 +1381,197 @@ funcao mostrarOpcoes(){
   escreva("Escolha: ")
 }
 funcao gerarInimigo() {
+  pocaoDisponivel()
+
   inteiro seletorDeInimigos
-  se(regiao[0] == "VILA DOS COMECOS" e regiaoAtual == 0){
+  se(regioes[0] == "VILA DOS COMECOS" e regiaoAtual == 0){
     seletorDeInimigos = u.sorteia(0,2)
-  }senao se(regiao[1] == "FLORESTA DA NEVOA" e regiaoAtual == 1){
+  }senao se(regioes[1] == "FLORESTA DA NEVOA" e regiaoAtual == 1){
     seletorDeInimigos = u.sorteia(3,5)
-  }senao se(regiao[2] == "VILA ABANDONADA" e regiaoAtual == 2){
+  }senao se(regioes[2] == "VILA ABANDONADA" e regiaoAtual == 2){
     seletorDeInimigos = u.sorteia(6,8)
-  }senao se(regiao[3] == "CAVERNA SOMBRIA" e regiaoAtual == 3){
+  }senao se(regioes[3] == "CAVERNA SOMBRIA" e regiaoAtual == 3){
     seletorDeInimigos = u.sorteia(9,11)
-  }senao se(regiao[4] == "LABIRINTO ESCONDIDO" e regiaoAtual == 4){
+  }senao se(regioes[4] == "LABIRINTO ESCONDIDO" e regiaoAtual == 4){
     seletorDeInimigos = u.sorteia(12,14)
-  }senao se(regiao[5 == "COLISEU DE SUCATAS"] e regiaoAtual == 5){
+  }senao se(regioes[5] == "COLISEU DE SUCATAS" e regiaoAtual == 5){
     seletorDeInimigos = u.sorteia(15,17)
-  }senao se(regiao[6] == "PANTANO DOS LAMENTOS" e regiaoAtual == 6){
+  }senao se(regioes[6] == "PANTANO DOS LAMENTOS" e regiaoAtual == 6){
     seletorDeInimigos = u.sorteia(18,20)
+  }senao se(regioes[7] == "CASTELO DOURADO" e regiaoAtual == 7){
+    inteiro batalhaDoCastelo = 0
+    se(batalhaDoCastelo == 0){
+      seletorDeInimigos = 21
+      nomeDoInimigo[seletorDeInimigos]
+      se(vidaDoInimigo < 1){
+        batalhaDoCastelo++
+      }
+    }senao se(batalhaDoCastelo == 1){
+      seletorDeInimigos = 22
+      nomeDoInimigo[seletorDeInimigos]
+      se(vidaDoInimigo < 1){
+        batalhaDoCastelo++
+      }
+    }senao se(batalhaDoCastelo == 2){
+      seletorDeInimigos = 23
+      nomeDoInimigo[seletorDeInimigos]
+      se(vidaDoInimigo < 1){
+        batalhaDoCastelo++
+      }
+    }senao se(batalhaDoCastelo == 3){
+      seletorDeInimigos = 24
+      nomeDeBoss[seletorDeInimigos]
+    }
+
   }
-  
+    escudoAtivoDoInimigo = "NAO"
+
     nomeDoInimigoAtual = nomeDoInimigo[seletorDeInimigos]
     nivelDoInimigo = nivel
     vidaDoInimigo = 20 + nivel * 5
     inimigoATK = 5 + nivel
     inimigoDEF = 2 + nivel
     inimigoAGI = 1 + nivel
+    pontosDeAcaoInimigo = 10
     inimigoEscudoMax = inimigoDEF
     inimigoEscudo = inimigoEscudoMax
     ganhoDeExperiencia = nivelDoInimigo + 5
 
-    turnoDeBatalha()
+    turnoDeBatalhaSimples()
 }
 funcao gerarBossDaRegiao(){
-  se(regiao[regiaoAtual] == 0 e fragmentoDaPedraDaLuz == 0){
+  escudoAtivoDoInimigo = "NAO"
+  pocaoDisponivel()
+  se(regioes[regiaoAtual] == "VILA DOS COMECOS" e fragmentoDaPedraDaLuz == 0){
 
     nomeDoInimigoAtual = nomeDeBoss[0]
-    nivelDoBoss = nivel + 2
+    nivelDoBoss = nivel + 1
     vidaDoInimigo = 20 + nivelDoBoss * 5
     inimigoATK = 4 + nivel
     inimigoDEF = 4 + nivel
     inimigoAGI = 4 + nivel
+    pontosDeAcaoInimigo = 10
     inimigoEscudoMax = inimigoDEF
     inimigoEscudo = inimigoEscudoMax
     ganhoDeExperiencia = nivelDoBoss + 1
     batalhaGrandeGabonga()
 
-  }senao se(regiaoAtual == 1 e fragmentoDaPedraDaLuz == 1){
+  }senao se(regioes[regiaoAtual] == "FLORESTA DA NEVOA" e fragmentoDaPedraDaLuz == 1){
     nomeDoInimigoAtual = nomeDeBoss[1]
     nivelDoBoss = nivel + 2
     vidaDoInimigo = 20 + nivelDoBoss * 5
     inimigoATK = 5 + nivel
     inimigoDEF = 5 + nivel
     inimigoAGI = 5 + nivel
+    pontosDeAcaoInimigo = 10
     inimigoEscudoMax = inimigoDEF
     inimigoEscudo = inimigoEscudoMax
     ganhoDeExperiencia = nivelDoBoss + 2
-
-    turnoDeBatalha()
-    se(vidaDoInimigo <= 0){
+    turnoDeBatalhaSimples()
+    se(vidaDoInimigo < 1){
       fragmentoDaPedraDaLuz++
       escreva("Voce recuperou o fragmento da pedra da luz que estava com ", nomeDoInimigoAtual, ".\n")
     }
-    //logica do 2? boss aqui sem nome ainda
-  }senao se(regiao[regiaoAtual] == 2 e fragmentoDaPedraDaLuz == 2){
+  }senao se(regioes[regiaoAtual] == "VILA ABANDONADA" e fragmentoDaPedraDaLuz == 2){
     nomeDoInimigoAtual = nomeDeBoss[2]
     nivelDoBoss = nivel + 2
     vidaDoInimigo = 20 + nivelDoBoss * 5
     inimigoATK = 5 + nivel
     inimigoDEF = 5 + nivel
     inimigoAGI = 5 + nivel
+    pontosDeAcaoInimigo = 10
     inimigoEscudoMax = inimigoDEF
     inimigoEscudo = inimigoEscudoMax
     ganhoDeExperiencia = nivelDoBoss + 2
 
-    turnoDeBatalha()
-    se(vidaDoInimigo <= 0){
+    turnoDeBatalhaSimples()
+    se(vidaDoInimigo < 1){
       fragmentoDaPedraDaLuz++
       escreva("Voce recuperou o fragmento da pedra da luz que estava com ", nomeDoInimigoAtual, ".\n")
     }
-    //mesma coisa
-  }senao se(regiao[regiaoAtual] == 3 e fragmentoDaPedraDaLuz == 3){
+  }senao se(regioes[regiaoAtual] == "CAVERNA SOMBRIA" e fragmentoDaPedraDaLuz == 3){
     nomeDoInimigoAtual = nomeDeBoss[3]
     nivelDoBoss = nivel + 3
     vidaDoInimigo = 20 + nivelDoBoss * 5
     inimigoATK = 5 + nivel
     inimigoDEF = 5 + nivel
     inimigoAGI = 5 + nivel
+    pontosDeAcaoInimigo = 10
     inimigoEscudoMax = inimigoDEF
     inimigoEscudo = inimigoEscudoMax
     ganhoDeExperiencia = nivelDoBoss + 3
 
-    turnoDeBatalha()
-    se(vidaDoInimigo <= 0){
+    turnoDeBatalhaSimples()
+    se(vidaDoInimigo < 1){
       fragmentoDaPedraDaLuz++
       escreva("Voce recuperou o fragmento da pedra da luz que estava com ", nomeDoInimigoAtual, ".\n")
     }
-  }senao se(regiao[regiaoAtual] == 4 e fragmentoDaPedraDaLuz == 4){
+  }senao se(regioes[regiaoAtual] == "LABIRINTO ESCONDIDO" e fragmentoDaPedraDaLuz == 4){
     nomeDoInimigoAtual = nomeDeBoss[4]
     nivelDoBoss = nivel + 4
     vidaDoInimigo = 20 + nivelDoBoss * 5
     inimigoATK = 5 + nivel
     inimigoDEF = 5 + nivel
     inimigoAGI = 5 + nivel
+    pontosDeAcaoInimigo = 10
     inimigoEscudoMax = inimigoDEF
     inimigoEscudo = inimigoEscudoMax
     ganhoDeExperiencia = nivelDoBoss + 4
 
-    turnoDeBatalha()
-    se(vidaDoInimigo <= 0){
+    turnoDeBatalhaSimples()
+    se(vidaDoInimigo < 1){
       fragmentoDaPedraDaLuz++
       escreva("Voce recuperou o fragmento da pedra da luz que estava com ", nomeDoInimigoAtual, ".\n")
     }
-  }senao se(regiao[regiaoAtual] == 5 e regiaoAtual == 5){
+  }senao se(regioes[regiaoAtual] == "COLISEU DE SUCATAS" e regiaoAtual == 5){
     nomeDoInimigoAtual = nomeDeBoss[5]
     nivelDoBoss = nivel + 5
     vidaDoInimigo = 20 + nivelDoBoss * 5
     inimigoATK = 5 + nivel
     inimigoDEF = 5 + nivel
     inimigoAGI = 5 + nivel
+    pontosDeAcaoInimigo = 10
     inimigoEscudoMax = inimigoDEF
     inimigoEscudo = inimigoEscudoMax
     ganhoDeExperiencia = nivelDoBoss + 5
 
-    turnoDeBatalha()
-    se(vidaDoInimigo <= 0){
+    turnoDeBatalhaSimples()
+    se(vidaDoInimigo < 1){
       fragmentoDaPedraDaLuz++
       escreva("Voce recuperou o fragmento da pedra da luz que estava com ", nomeDoInimigoAtual, ".\n")
     }
-  }senao se(regiao[regiaoAtual] e fragmentoDaPedraDaLuz == 6){
+  }senao se(regioes[regiaoAtual] == "PANTANO DOS LAMENTOS" e fragmentoDaPedraDaLuz == 6){
     nomeDoInimigoAtual = nomeDeBoss[6]
     nivelDoBoss = nivel + 6
     vidaDoInimigo = 20 + nivelDoBoss * 5
     inimigoATK = 5 + nivel
     inimigoDEF = 5 + nivel
     inimigoAGI = 5 + nivel
+    pontosDeAcaoInimigo = 10
     inimigoEscudoMax = inimigoDEF
     inimigoEscudo = inimigoEscudoMax
     ganhoDeExperiencia = nivelDoBoss + 6
 
-    turnoDeBatalha()
+    turnoDeBatalhaSimples()
     se(vidaDoInimigo <= 0){
       fragmentoDaPedraDaLuz++
       escreva("Voce recuperou o fragmento da pedra da luz que estava com ", nomeDoInimigoAtual, ".\n")
     }
-  }senao se(regiao[regiaoAtual] == 7 e fragmentoDaPedraDaLuz == 7){
+  }senao se(regioes[regiaoAtual] == "CASTELO DOURADO" e fragmentoDaPedraDaLuz == 7){
     nomeDoInimigoAtual = nomeDeBoss[7]
     nivelDoBoss = nivel + 7
     vidaDoInimigo = 20 + nivelDoBoss * 5
-    inimigoATK = 5 + nivel
-    inimigoDEF = 5 + nivel
-    inimigoAGI = 5 + nivel
+    inimigoATK = 5 + nivelDoBoss
+    inimigoDEF = 5 + nivelDoBoss
+    inimigoAGI = 5 + nivelDoBoss
+    pontosDeAcaoInimigo = 10
     inimigoEscudoMax = inimigoDEF
     inimigoEscudo = inimigoEscudoMax
     ganhoDeExperiencia = nivelDoBoss + 7
+    batalhaEldlich()
   }
 }
 funcao batalhaGrandeGabonga(){
-  escudoAtivo = "NAO"
   enquanto(vida > 0 e vidaDoInimigo > 0){
     se(pontosDeAcao < 10){
       pontosDeAcao = 10
@@ -1549,22 +1582,14 @@ funcao batalhaGrandeGabonga(){
 
     se(escudo <= 0){
       escudoAtivo = "NAO"
-      escreva("Voce n?o pode se defender por enquanto.\n")
+      escreva("Voce nao pode se defender por enquanto.\n")
     }
     se(escudoAtivo == "NAO" e escudo < escudoMax){
       escudo = escudo + nivel
       escreva("Voce reparou seu escudo por: ", defesa, ".\n")
     }
 
-    se(escudo <= 0){
-      escudoAtivo = "NAO"
-      escreva("Voce n?o pode se defender por enquanto.\n")
-    }
-    se(escudoAtivo == "NAO" e escudo < escudoMax){
-      escudo = escudo + nivel
-      escreva("Voce reparou seu escudo por: ", defesa, ".\n")
-    }
-
+    escudoAtivo = "NAO"
     turnoDoJogador()
 
     se(pontosDeAcaoInimigo < 10){
@@ -1573,6 +1598,7 @@ funcao batalhaGrandeGabonga(){
       pontosDeAcaoInimigo += excedenteJogador
     }
 
+    escudoAtivoDoInimigo = "NAO"
     turnoDoInimigo()
     se(vidaDoInimigo <= 10 e nomeDoInimigoAtual == "Goblin Motoqueiro, Grande Gabonga"){
       escreva("Grande Gabonga esta desesperado soltou as amarras da besta que usa como montoria.\n")
@@ -1619,6 +1645,100 @@ funcao batalhaGrandeGabonga(){
   }
 
 }
+funcao batalhaEldlich(){
+  escreva("Voce entra na sala do trono, onde o Senhor Dourado reina.\n")
+  u.aguarde(1000)
+  escreva("Um monstro o qual o poder nega a morte e a vida e torna tudo em ouro com um toque.\n")
+  u.aguarde(1000)
+  escreva("-------------------------------Eldlich, o Devastador------------------------------\n")
+  escreva("Outro aspirante a heroi?\n")
+  u.aguarde(1000)
+  escreva("Voce vai ser so mais uma estatua neste castelo.\n")
+  u.aguarde(2000)
+  limpa()
+
+  enquanto(vida > 0 e vidaDoInimigo > 0){
+    se(pontosDeAcao < 10){
+      pontosDeAcao = 10
+    }senao se(excedenteInimigo > 0){
+      pontosDeAcao += excedenteInimigo
+      escreva(nomeDoPersonagem, " ganhou: ", excedenteInimigo, "pontos extras.\n")
+    }
+
+    se(escudo <= 0){
+      escudoAtivo = "NAO"
+      escreva("Voce nao pode se defender por enquanto.\n")
+    }
+    se(escudoAtivo == "NAO" e escudo < escudoMax){
+      escudo = escudo + nivel
+      escreva("Voce reparou seu escudo por: ", defesa, ".\n")
+    }
+
+    escudoAtivo = "NAO"
+    turnoDoJogador()
+
+    se(pontosDeAcaoInimigo < 10){
+      pontosDeAcaoInimigo = 10
+    }senao se(excedenteJogador > 0){
+      pontosDeAcaoInimigo += excedenteJogador
+    }
+    
+    escudoAtivoDoInimigo = "NAO"
+    se(vidaDoInimigo%fragmentoDaPedraDaLuz > 0){
+      vidaDoInimigo-fragmentoDaPedraDaLuz
+    }senao{
+      vidaDoInimigo += 7
+    }
+    turnoDoInimigo()
+    se(vidaDoInimigo <= 10 e nomeDoInimigoAtual == "Eldlich, O Devastador"){
+      escreva("Voce acha que me ferir serve de alguam coisa?\n")
+      u.aguarde(4000)
+      limpa()
+      escreva("Eldlich está em furia.\n")
+      u.aguarde(4000)
+      limpa()
+
+      nomeDoInimigoAtual = "Eldlich, O Senhor Dourado Enlouqecido"
+      vidaDoInimigo += 10
+      pontosDeAcaoInimigo += 5
+      inimigoATK += nivelDoBoss
+      inimigoDEF += nivelDoBoss
+      inimigoAGI += nivelDoBoss
+    }
+    se(vidaDoInimigo <=5 e nomeDoInimigoAtual == "Eldlich, O Senhor Dourado Enlouqecido"){
+      escreva("Voce fez Eldlich se lembrar da dor da vida.\n")
+      u.aguarde(1000)
+      escreva("----------------Eldlich--------------------\n")
+      escreva("Que sensacao desagradavel.\n")
+      u.aguarde(2000)
+      escreva("Voce vai pagar por isso ", nomeDoPersonagem, "!")
+      u.aguarde(2000)
+      limpa()
+      escreva("Usando de sua magia nefasta Eldlich junta todo ouro em uma estatua viva colossal.\n")
+      u.aguarde(3000)
+      limpa()
+
+      nomeDoInimigoAtual = "Anjo Caido da Terra Dourada"
+      vidaDoInimigo += 2
+      pontosDeAcaoInimigo += 2
+      inimigoATK += 5
+      inimigoDEF += 5
+      inimigoAGI += 5
+
+    }  
+    se(vidaDoInimigo <= 0){
+      escreva("Parabens, ", nomeDoPersonagem, " derrotou o inimigo.\n")
+      fragmentoDaPedraDaLuz++
+      escreva("Voce recuperou o fragmento da pedra da luz que estava na posse dos Goblins Motoqueiros.\n")
+      ganharExperiencia(ganhoDeExperiencia)
+    }  
+    se(vida <= 0){
+      escreva(nomeDoPersonagem, " foi derrotado.\n")
+    pare
+    }
+
+  }
+}
 funcao proximaRegiao(){
   se(regiaoAtual >= 7){
     escreva("Voce ja esta na ultima regiao de Eldoria.\n")
@@ -1639,7 +1759,7 @@ funcao proximaRegiao(){
     escreva(nomeDoPersonagem, " Avancou para a proxima regiao.\n")
     escreva(nomeDoPersonagem, "Agora esta na regiao da: ", regioes[regiaoAtual], "\n")
     escreva("Voce esta na regiao:", (regiaoAtual + 1), "de 8.\n")
-      // pensar na logica aqui.
+
   }senao{
     escreva("Voce decidiu permanecer na regiao atual.\n")
     escreva(nomeDoPersonagem, " continua na regiao: ", regioes[regiaoAtual], ".\n")
@@ -1670,7 +1790,28 @@ funcao voltarRegiao(){
     }
 }
 funcao menuDeNavegacao(){
-    // pensar em como fazer aqui, escolha provavelmente.
+  inteiro opcaoDeMovimentacao
+  escreva("\n-----------Zaruba----------\n")
+  escreva(nomeDoPersonagem, " como quer continuar sua jornada?\n")
+  escreva("Avancar ou retornar?\n")
+  escreva("1 - Avancar\n")
+  escreva("2 - Retornar\n")
+  leia(opcaoDeMovimentacao)
+  enquanto(opcaoDeMovimentacao < 1 e opcaoDeMovimentacao > 2){
+    escreva("-------Zaruba-----\n")
+    escreva("1 ou 2 onde que eu falei sobre algum outro numero?\n")
+    leia(opcaoDeMovimentacao)
+  }
+  escolha(opcaoDeMovimentacao){
+    caso 1:
+      proximaRegiao()
+      mostrarRegiaoAtual()
+    pare
+    caso 2:
+      voltarRegiao()
+      mostrarRegiaoAtual()
+    pare
+  }
 }
 funcao mostrarRegiaoAtual(){
 
@@ -1687,7 +1828,6 @@ funcao mostrarRegiaoAtual(){
     }
   }
         
-  // Informa??es de navega??o
   escreva("\n Informacoes de navegacao:\n")
   se(regiaoAtual == 0){
       escreva(" Voce esta na primeira regiao\n")
@@ -1703,21 +1843,21 @@ funcao mostrarRegiaoAtual(){
     }
 }
 funcao introducaoDaRegiao(){
-  se(regiao[0] == "VILA DOS COMECOS" e regiaoAtual == 0){
+  se(regioes[0] == "VILA DOS COMECOS" e regiaoAtual == 0){
     introducaoVilaDosComecos()
-  }senao se(regiao[1] == "FLORESTA DA NEVOA" e regiaoAtual == 1){
+  }senao se(regioes[1] == "FLORESTA DA NEVOA" e regiaoAtual == 1){
     introducaoFlorestaDaNevoa()
-  }senao se(regiao[2] == "VILA ABANDONADa" e regiaoAtual == 2){
+  }senao se(regioes[2] == "VILA ABANDONADA" e regiaoAtual == 2){
     introducaoVilaAbandonada()
-  }senao se(regiao[3] == "CAVERNA SOMBRIA" e regiaoAtual == 3){
+  }senao se(regioes[3] == "CAVERNA SOMBRIA" e regiaoAtual == 3){
     introducaoCavernaSombria()
-  }senao se(regiao[4] == "LABIRINTO ESCONDIDO" e regiaoAtual == 4){
-    introducaLabirintoEscondido()
-  }senao se(regiao[5] == "COLISEU DE SUCATAS" e regiaoAtual == 5){
+  }senao se(regioes[4] == "LABIRINTO ESCONDIDO" e regiaoAtual == 4){
+    introducaoLabirintoEscondido()
+  }senao se(regioes[5] == "COLISEU DE SUCATAS" e regiaoAtual == 5){
     introducaoColiseuDeSucata()
-  }senao se(regiao[6] == "PANTANO DOS LAMENTOS" e regiaoAtual == 6){
+  }senao se(regioes[6] == "PANTANO DOS LAMENTOS" e regiaoAtual == 6){
     introducaoPantanoDosLamentos()
-  }senao se(regia[7 == "CASTELO DOURADO"] e regiaoAtual == 7){
+  }senao se(regioes[7] == "CASTELO DOURADO" e regiaoAtual == 7){
     introducaoCasteloDourado()
   }
 }
@@ -1754,7 +1894,6 @@ funcao introducaoVilaDosComecos(){
   u.aguarde(3000)
   limpa()
 
-  //zaruba
   escreva("---------------------??????-----------------------------\n")
   escreva("Entao nao vai ouvir o meu chamado a batalha?\n")
   u.aguarde(3000)
@@ -1765,7 +1904,6 @@ funcao introducaoVilaDosComecos(){
   u.aguarde(3500)
   limpa()
 
-  //zaruba
   escreva("---------------------Zarubar-----------------------------\n")
   escreva("Otimo porque os menores e mais barulhentos dos males estao vindo.\n")
   escreva("Goblins motoqueiros.\n")
@@ -1794,8 +1932,8 @@ funcao introducaoVilaDosComecos(){
   escreva("Mas tenha cuidado seus inimigos tambem irao crescer com voce.\n")
   u.aguarde(2500)
   limpa()
-  
   gerarBossDaRegiao()
+  menuDeNavegacao()
 }
 funcao introducaoFlorestaDaNevoa(){
   escreva("\n---- FLORESTA DA NEVOA ----\n")
@@ -1824,6 +1962,7 @@ funcao introducaoFlorestaDaNevoa(){
   escreva("E talves os poucos que restam dos Goblins Motoqueiros.\n")
   u.aguarde(3000)
   limpa()
+  
   gerarInimigo()
   escreva("A comocao chamou a atencao do Senhor das Espadas.\n")
   escreva("E ele tem um fragmento da pedra da luz.\n")
@@ -1831,6 +1970,7 @@ funcao introducaoFlorestaDaNevoa(){
   u.aguarde(3000)
   limpa()
   gerarBossDaRegiao()
+  menuDeNavegacao()
 }
 funcao introducaoVilaAbandonada(){
   escreva("\n-- VILA ABANDONADA --\n")
@@ -1869,6 +2009,7 @@ funcao introducaoVilaAbandonada(){
   u.aguarde(3000)
   limpa()
   gerarBossDaRegiao()
+  menuDeNavegacao()
 
 }
 funcao introducaoCavernaSombria(){
@@ -1893,7 +2034,7 @@ funcao introducaoCavernaSombria(){
   limpa()
   escreva("\n---------------------Zaruba---------------------\n")
   u.aguarde(1000)
-  escreva("Aqui os poderes de Eldich distorcem a vida em metal, alguns tentaram tirar vantagem desta situacao.\n")
+  escreva("Aqui os poderes de Eldlich distorcem a vida em metal, alguns tentaram tirar vantagem desta situacao.\n")
   u.aguarde(1000)
   escreva("E adapataram seus corpos as mudancas, mas a dor das alteracoes os reduziu a bestas feitas de restos de metal e carne.\n")
   u.aguarde(3000)
@@ -1906,7 +2047,7 @@ funcao introducaoCavernaSombria(){
   gerarBossDaRegiao()
 
 }
-funcao introducaLabirintoEscondido(){
+funcao introducaoLabirintoEscondido(){
   escreva("\n LABIRINTO ESCONDIDO \n")
   escreva("--------------------------------------------------\n")
   u.aguarde(1000)
@@ -1936,6 +2077,7 @@ funcao introducaLabirintoEscondido(){
   gerarInimigo()
   escreva("Raspando o machado pela parede a anfiatra chega.\n")
   gerarBossDaRegiao()
+  menuDeNavegacao()
 }
 funcao introducaoColiseuDeSucata(){
   escreva("\n             COLISEU DE SUCATAS                 \n")
@@ -1957,7 +2099,7 @@ funcao introducaoColiseuDeSucata(){
   u.aguarde(3000)
   limpa()
 
-  escrva("\n------------Zaruba---------\n")
+  escreva("\n------------Zaruba---------\n")
   u.aguarde(1000)
   escreva("Estamos perto agora.\n")
   u.aguarde(1000)
@@ -1965,10 +2107,12 @@ funcao introducaoColiseuDeSucata(){
   u.aguarde(2000)
   limpa()
   gerarInimigo()
+  
   escreva("E o \"Rei\" do coliseu veio nos receber.\n")
   u.aguarde(2500)
   limpa()
   gerarBossDaRegiao()
+  menuDeNavegacao()
 }
 funcao introducaoPantanoDosLamentos(){
   escreva("\n?? PANTANO DOS LAMENTOS ??\n")
@@ -1990,26 +2134,31 @@ funcao introducaoPantanoDosLamentos(){
   u.aguarde(2500)
   limpa()
   escreva("--------------------Zaruba------------------------\n")
-  u.aguarda(1000)
+  u.aguarde(1000)
   escreva("Quando Eldlich destruiu a Pedra da Luz a ordem natural se perdeu.\n")
   u.aguarde(1000)
   escreva("A natureza se retorce em diferentes metais onde o poder dele toca.\n")
-  u.aguarda(1000)
+  u.aguarde(1000)
   escreva("E os mortos se levantam ou viram estatuas de ouro que o enaltecem.\n")
   u.aguarde(1000)
   escreva("Tudo aqui se corrompeu pelo toque do devastador, mesmo se detruir tudo ninguem irá te culpar.\n")
-  u.aguarda(3000)
+  u.aguarde(3000)
   limpa()
   gerarInimigo()
+  escreva("Até a lama e se contorce e pensa em sim como realeza\n")
+  u.aguarde(1000)
+  escreva("Sobre influencia de Eldlich.\n")
+  gerarBossDaRegiao()
+  menuDeNavegacao()
 }
 funcao introducaoCasteloDourado(){
   escreva("\n                CASTELO DOURADO                \n")
   escreva("--------------------------------------------------\n")
-  u.aguarda(1000)
+  u.aguarde(1000)
   escreva("Erguido sobre as cinzas da antiga capital, o castelo brilha...\n")
   u.aguarde(1000)
   escreva("mas nao com luz mas com ambiçao fossilizada e poder corrompido.\n")
-  u.aguarda(1000)
+  u.aguarde(1000)
   escreva("Cada parede e cravejada de ossos banhados a ouro.\n")
   u.aguarde(1000)
   escreva("Cada salao ecoa com canticos distorcidos de um culto que perdeu a fe.\n")
@@ -2023,8 +2172,131 @@ funcao introducaoCasteloDourado(){
   escreva("--------------------------------------------------\n")
   u.aguarde(2500)
   limpa()
-}
 
+  escreva("-------------------Zaruba-------------------------\n")
+  escreva("Finalmente chegamos ", nomeDoPersonagem, ".\n")
+  u.aguarde(1000)
+  escreva("Com os fragmentos da pedra da luz temos uma chance.\n")
+  u.aguarde(1000)
+  escreva("Os servos nem vivos nem mortos, mas de carne e ouro vieram nos receber.")
+  u.aguarde(2500)
+  limpa()
+  gerarInimigo()
+  escreva("Hora de ir para a sala do trono.\n")
+  gerarBossDaRegiao()
+
+}
+funcao recompensasOuAlgoAssim(){
+  inteiro acharRecompensa = u.sorteia(0,1)
+  se(acharRecompensa > 0){
+    inteiro encontro
+    escreva("Apos seusesforcos por Eldoria é hora de escolher uma recompensa: \n")
+    escreva("Digite 1 para descansar(recuperar vida) \t|\t Digite 2 para ganhar experiencia.\n")
+    leia(encontro)
+    enquanto(encontro < 1 e encontro > 2){
+      escreva("Opcao inválida tente noavemente, as opcoes valida sao: 1 e 2.\n")
+    }
+    escolha(encontro){
+      caso 1:
+        escreva("Voce encontrou vestigios de um acampamento, descanse um pouco.\n")
+        vida+= nivel*20
+      pare
+      caso 2:
+        escreva("Voce encontrou anotacoes sobre os poderes de Devastador, o sabio aprende com as experiencias do passado.\n")
+        experiencia += 5
+      pare
+    }
+  }
+}
+funcao atributoLivre(){
+  
+
+  inteiro atributoMelhorar
+  escreva("Escolha um atributo a melhorar(+",nivel, ".\n")
+  escreva("1 - Vida\n")
+  escreva("2 - Ataque\n")
+  escreva("3 - Defesa\n")
+  escreva("4 - Agilidade\n")
+  escreva("Digite o numero da opcao escolhida: ")
+  leia(atributoMelhorar)
+  enquanto(atributoMelhorar < 1 e atributoMelhorar > 4){
+    escreva("Opcao invalida, digite um numero de 1 a 4.\n")
+    leia(atributoMelhorar)
+  }
+  escolha(atributoMelhorar){
+    caso 1:
+      mostrarAtributos()
+      escreva("Voce escolhou aumentar sua vida.\n")
+      vida+=nivel
+      escreva("Valor atualizado:\n")
+      mostrarAtributos()
+    pare
+    caso 2:
+      mostrarAtributos()
+      escreva("Voce escolhou aumentar seu ataque\n.")
+      ataque+=nivel
+      escreva("Valor atualizado:\n")
+      mostrarAtributos()
+    pare
+    caso 3:
+      mostrarAtributos()
+      escreva("Voce escolhou aumentar seu defesa\n.")
+      defesa+=nivel
+      escreva("Valor atualizado:\n")
+      mostrarAtributos()
+    pare
+    caso 4:
+      mostrarAtributos()
+      escreva("Voce escolhou aumentar sua agilidade\n.")
+      agilidade+=nivel
+      escreva("Valor atualizado:\n")
+      mostrarAtributos()
+    pare
+  }
+}
+funcao ganharPocao(){
+  inteiro adquirirPocao = u.sorteia(0,1)
+
+  se(adquirirPocao > 0){
+    inteiro usarPocao = 0
+    escreva("Voce encontrou uma pocao capaz de te curar por completo.\n")
+    pocaoEmPosse += 1
+    escreva(nomeDoPersonagem, " possui: ", pocaoEmPosse, "pocoes.\n")
+    escreva("Digite 1 para usa-la, dois para guardar pocao para uso futuro.")
+    leia(usarPocao)
+    enquanto(usarPocao <1 e usarPocao > 2){
+      escreva("Opcao invalida tente novamente.\n")
+    }
+    se(usarPocao == 1 e pocaoEmPosse > 0){
+      pocaoEmPosse -= 1
+      vida = vidaMaxima
+      escreva("Vida de ", nomeDoPersonagem, ": ", vida, " HP.\n")
+    }senao se(usarPocao == 2){
+      escreva(nomeDoPersonagem, "guardou a pocao.\n")
+    }
+    
+  }
+}
+funcao pocaoDisponivel(){
+  inteiro usarPocao = 0
+  se(pocaoEmPosse > 0){
+    escreva("Deseja usar uma pocao antes de proseguir?\n")
+    escreva("Digite 1 para usar uma pocao.\n")
+    escreva("Digite 2 para manter a pocao.\n")
+    leia(usarPocao)
+    enquanto(usarPocao < 1 e usarPocao > 2){
+      escreva("Opcao invalida. As opcoes validas são 1 e 2.\n")
+    }
+    se(usarPocao == 1){
+      pocaoEmPosse -= 1
+      escreva(nomeDoPersonagem, "usou uma pocao.\n")
+      vida = vidaMaxima
+      escreva(nomeDoPersonagem, " Vida: ", vida, ".\n")
+    }senao se(usarPocao == 2){
+      escreva(nomeDoPersonagem, " nao usa a pocao.\n")
+    }
+  }
+}
 funcao campanha(){
 
   escreva("\nHa muito tempo, no Reino de Eldoria, a paz era mantida pela mistica Pedra da Luz, protegida pelos Anciaos do Castelo Dourado.\n")
@@ -2061,5 +2333,44 @@ funcao campanha(){
 
   introducaoDaRegiao()
 
+}
+funcao turnoDeBatalhaSimples(){
+    enquanto(vida > 0 ou vidaDoInimigo > 0){
+      enquanto(vida > 0 e vidaDoInimigo > 0) {
+        escreva("Turno do jogador\n")
+        escreva("1 - Atacar\n2 - Defender\nEscolha: ")
+        inteiro acao
+        leia(acao)
+
+        se (acao == 1) {
+            inteiro danoCausado = ataque - inimigoDEF
+            se (danoCausado < 0) {
+                danoCausado = 0
+            }
+            vidaDoInimigo = vidaDoInimigo - danoCausado
+            escreva("Você causou ", danoCausado, " de dano.\n")
+        } senao se (acao == 2) {
+            escreva("Você se defendeu e recebeu menos dano.\n")
+            // Pode implementar bônus de defesa aqui
+        }
+
+        // Turno do inimigo
+        se (vidaDoInimigo > 0) {
+            escreva("Turno do inimigo\n")
+            inteiro danoRecebido = inimigoATK - defesa
+            se (danoRecebido < 0) {
+                danoRecebido = 0
+            }
+            vida = vida - danoRecebido
+            escreva("Você recebeu ", danoRecebido, " de dano.\n")
+        }
+      }
+    }
+    se (vida <= 0) {
+        escreva("Você foi derrotado...\n")
+    } senao {
+        escreva("Inimigo derrotado!\n")
+        ganharExperiencia(10) // ou qualquer valor adequado
+    }
   }
 }
