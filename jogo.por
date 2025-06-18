@@ -1454,7 +1454,7 @@ funcao gerarBossDaRegiao(){
     inimigoEscudoMax = inimigoDEF
     inimigoEscudo = inimigoEscudoMax
     ganhoDeExperiencia = nivelDoBoss + 1
-    batalhaGrandeGabongaV2()
+    turnoDeBatalhaSimples()
     se(vidaDoInimigo <= 0){
       fragmentoDaPedraDaLuz++
       escreva("Voce recuperou o fragmento da pedra da luz que estava com ", nomeDoInimigoAtual, ".\n")
@@ -2349,13 +2349,17 @@ funcao campanha(){
 funcao turnoDeBatalhaSimples(){
   inteiro defesaOriginal = defesa
   pocaoDisponivel()
-    enquanto(vida > 0 ou vidaDoInimigo > 0){
-      enquanto(vida > 0 e vidaDoInimigo > 0) {
+    enquanto(vida > 0 e vidaDoInimigo > 0){
+      statusDeBatalha()
         escreva("Turno do jogador\n")
         escreva("1 - Atacar\n2 - Defender\nEscolha: ")
         defesa = defesaOriginal
         inteiro acao
-        leia(acao) 
+        leia(acao)
+        enquanto(acao < 1 e acao > 2){
+          escreva("Opcao invalida digite 1 ou 2.\n")
+          leia(acao)
+        }
         se (acao == 1) {
             inteiro danoCausado = ataque - inimigoDEF
             se (danoCausado < 0) {
@@ -2377,21 +2381,23 @@ funcao turnoDeBatalhaSimples(){
             vida = vida - danoRecebido
             escreva("Você recebeu ", danoRecebido, " de dano.\n")
         }
-      }
     }
     se (vida <= 0) {
         escreva("Você foi derrotado...\n")
     } senao {
         escreva("Inimigo derrotado!\n")
-        ganharExperiencia(ganhoDeExperiencia) // ou qualquer valor adequado
+        ganharExperiencia(ganhoDeExperiencia)
+        recompensasOuAlgoAssim()
+        adquirirPocao()
     }
+    
   }
 funcao batalhaGrandeGabongaV2(){
     pocaoDisponivel()
     inteiro defesaOriginal = defesa
 
     enquanto(vida > 0 ou vidaDoInimigo > 0){
-      enquanto(vida > 0 e vidaDoInimigo > 0) {
+      statusDeBatalha()
         escreva("Turno do jogador\n")
         escreva("1 - Atacar\n2 - Defender\nEscolha: ")
         defesa = defesaOriginal
@@ -2432,9 +2438,9 @@ funcao batalhaGrandeGabongaV2(){
           vida = vida - danoRecebido
           escreva("Você recebeu ", danoRecebido, " de dano.\n")
         }
-      }
     }
-  }
+    }
+}
 funcao batalhaEldlichV2(){
   pocaoDisponivel()
   inteiro defesaOriginal = defesa
@@ -2450,13 +2456,17 @@ funcao batalhaEldlichV2(){
   u.aguarde(2000)
   limpa()
 
-    enquanto(vida > 0 ou vidaDoInimigo > 0){
-      enquanto(vida > 0 e vidaDoInimigo > 0) {
+    enquanto(vida > 0 e vidaDoInimigo > 0){
+        statusDeBatalha()
         escreva("Turno do jogador\n")
         escreva("1 - Atacar\n2 - Defender\nEscolha: ")
         defesa = defesaOriginal
         inteiro acao
-        leia(acao) 
+        leia(acao)
+        enquanto(acao < 1 e acao > 2){
+          escreva("Opacao inavalida, digite 1 ou 2.\n")
+          leia()
+        } 
         se (acao == 1) {
             inteiro danoCausado = ataque - inimigoDEF
             se (danoCausado < 0) {
@@ -2479,8 +2489,8 @@ funcao batalhaEldlichV2(){
             vida = vida - danoRecebido
             escreva("Você recebeu ", danoRecebido, " de dano.\n")
         }
-      }
-    }
+      
+    
     se(vidaDoInimigo <= 10 e nomeDoInimigoAtual == "Eldlich, O Devastador"){
       escreva("Voce acha que me ferir serve de alguam coisa?\n")
       u.aguarde(4000)
