@@ -6,6 +6,8 @@ programa {
     const inteiro CHANCE_FUGA = 7 // 40% de chance (7-10 em 1d10)
     const inteiro CUSTO_HABILIDADE_MAGO = 20
 
+    inteiro xpProximoNivel
+    inteiro calcularXp
 
     inteiro controladorDeSenario = 0
 
@@ -119,7 +121,8 @@ programa {
     funcao inicio() {
         inicializarJogo()
         mostrarMenuPrincipal()
-    }
+    } 
+  
 
     // INICIALIZAÇÃO DO JOGO
     funcao inicializarJogo() {
@@ -296,7 +299,7 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
                     classePersonagem = "Guerreiro"
                     hpMaximo = 150
                     defesa = 14
-                    ataqueBase = 13
+                    ataqueBase = 15
                     manaMaxima = 0
                     xpMaximo = 100
                     nivelAtual = 1
@@ -307,7 +310,7 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
                     classePersonagem = "Arqueiro"
                     hpMaximo = 120
                     defesa = 12
-                    ataqueBase = 16
+                    ataqueBase = 20
                     manaMaxima = 100
                     xpMaximo = 100
                     nivelAtual = 1
@@ -318,7 +321,7 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
                     classePersonagem = "Mago"
                     hpMaximo = 100
                     defesa = 10
-                    ataqueBase = 19
+                    ataqueBase = 23
                     manaMaxima = 100
                     xpMaximo = 100
                     nivelAtual = 1
@@ -458,7 +461,7 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
     }
     funcao logico batalhar(inteiro a) {
         logico iniciarBatalhar
-        fugiuDeCombate = falso
+        
         iniciarBatalhar = verdadeiro
         enquanto (vidaInimigoMaxima[a] >= 0 e vidaInimigoAtual[a] >= 0) {
             limpa()
@@ -510,13 +513,16 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
                         "Golpe Demolidor"habilidadeGuerreiro = ataqueBase + a
                         "Chuva De Meteoro"habilidadeArqueiro = ataqueBase + b
                         "Bola De Fogo"habilidadeMago = ataqueBase + b
-                        inteiro dano = calcular(ataquebase == a,b,c)
+                        inteiro dano = calcularDanoHabilidade(danoHabilidades == a,b,c)
                         escreva("\nVocê Causa", dano, "De Dano!\n")
                         se(habilidades == habilidadeMago){
                           escreva("O Inimigo e Acertado pela bola de fogo e entra em chamas")
 
                         }
-                    } senao {
+                    } senao se(habilidades == habilidadeGuerreiro) {
+                      escreva("Você Acerta um golpe destrutivo no", nomeInimigos[a])
+                    } se(habilidades == habilidadeArqueiro){
+                        escreva("Você Atira uma flecha pro ceu e uma chuva de flechas começa cair perfurando varias vezes o", nomeInimigos[a])
                         
                     }
                     
@@ -559,20 +565,24 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
                 calcular()
                 oferecerDescanso()
                 habilidades()
+                calcularDano()
+                calcularDanoHabilidade()
+                calcualarXp()
                 
             }
           
         }
   }  funcao inteiro oferecerDescanso(){
     escreva("Você Venceu Parabens Descanse um pouco")
-   inteiro descanso = hpMaximo
-   retorne descanso
+    inteiro descanso = hpMaximo
+    retorne descanso
 
   }
-  funcao inteiro calcularDano(inteiro numeroFinal, inteiro danoDoAtaque, inteiro danoHabilidades){
+  funcao inteiro calcularDano(inteiro numeroFinal, inteiro danoDoAtaque){
 
     inteiro resultado = u.sorteia(1,numeroFinal) + danoDoAtaque
-    inteiro resultado = u.sorteia(1,numeroFinal) + danoHabilidades
+    
+   
     retorne resultado
   } funcao inteiro habilidades(){
     inteiro habilidades
@@ -585,6 +595,18 @@ escreva("Seu destino e o de Eldoria estão entrelaçados.\n")
     "Bola De Fogo"habilidadeMago = ataqueBase + b
     retorne habilidades
 
+  } funcao calcularDanoHabilidade(inteiro numeroFinal, inteiro danoHabilidades){
+    inteiro resultadoHabilidade = u.sorteia(1,numeroFinal) + danoHabilidades
+
+
+    retorne resultadoHabilidade
+  }funcao calcualarXp(){
+    se(vidaInimigoAtual[a] > 0){
+    escreva(nomeInimigos[a], "Derrotado")
+    
+    xpAtual + xpInimigoFacil[a]
+    escreva("Voce ganha", xpInimigoFacil[a])
+    }
   }
 
   funcao mostrarStatusPersonagem() {
