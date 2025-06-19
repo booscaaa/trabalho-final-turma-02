@@ -16,8 +16,7 @@ programa {
   inteiro sorteio = 0
   inteiro sorteioDefesa = 0
   inteiro armazenaDano = 0
-  inteiro pOSSUIpOCAO = 0
-  inteiro pOSSUIpOCAOfoda = 0
+  inteiro pOSSUIpOCAO? = 0
   
   inteiro arma[2] = {0,0}
 
@@ -28,7 +27,6 @@ programa {
 
   inteiro salvaCachorro = 0
   inteiro encontrouOcadaverComAsBotas = 0
-  inteiro fugiuDoVerdugo = 0
   inteiro contador = 0
 
   cadeia regioes[5] = {"Floresta das Névoas", "Vila Abandonada","Caverna Sombria","Pântano dos Lamentos","Castelo Dourado"}
@@ -41,12 +39,6 @@ programa {
   inteiro aTaqueDosInimigos[15] = {12,15,30,30,35,45,1,40,30,40,60,20,60,80}
   inteiro dEfesaDosInimigos[15] = {15,8,20,30,30,30,1,30,40,25,40,25,50,40}
   inteiro xPDosInimigos[15] = {25,75,125,40,100,150,120,125,225,50,400,50,240,260}
-
-  cadeia nomeTOGURO = "Toguro"
-  inteiro vidaTOGURO = 400
-  inteiro auxVidaTOGURO = 400 
-  inteiro aTaqueTOGURO = 70
-  inteiro dEfesaTOGURO = 60
 
 
   inteiro passouPelaIntroducaoDaVilaAbandonada = 0
@@ -88,6 +80,7 @@ programa {
 
   funcao menu(){ 
     se(vidaDoPersonagem > 0){
+
       cadeia opcao
 
       u.aguarde(1000)
@@ -195,7 +188,7 @@ programa {
 
 
   funcao classesDoPersonagem(){
-    
+    inteiro contador = 3
 
     escreva("\nGuerreiro: Se você quer um personagem TANKUDÃO, pega ele, os status dele são:\nVida: 40\nDefesa: 33\nAtaque: +6\n")
     //u.aguarde(1000)
@@ -236,8 +229,8 @@ programa {
       escreva("\nVida: ", vidaDoPersonagem,"\nDefesa: ", defesaDoPersonagem,"\nAtaque: ", ataqueDoPersonagem,"\n")
 
     } senao se(classe == "Lorde Faisão das Trevas"){
-      vidaDoPersonagem = 500
-      defesaDoPersonagem = 10
+      vidaDoPersonagem = 1000
+      defesaDoPersonagem = 40
       ataqueDoPersonagem = 60
       sorteDoPersonagem = 1
     }
@@ -255,6 +248,11 @@ programa {
     escreva("PERFEITO, bora começar de fato com a sua jornada, que provavelmente será bem sangrenta e sofrida...\n")
 
   }
+
+
+
+
+
 
 
   funcao florestaDaNevoa() {
@@ -357,15 +355,17 @@ programa {
       dEfesaDosInimigos[0] = dEfesaDosInimigos[0] - 2
 
     }
-    inteiro contadorRodada = 0
-    inteiro numDoInimigo = 0
+    inteiro contador = 0
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[0] > 0){
       
       limpa()
 
-      contadorRodada++
-      
-      opcaoNaBatalha(numDoInimigo,contadorRodada)
+      contador++
+      escreva("Rodada ",contador)
+
+      statusDuranteBatalhaCOntraLoboDasNevoas()
+
+      opcaoNaBatalha()
 
       u.aguarde(1000)
       sorteio = 0
@@ -456,10 +456,6 @@ programa {
 
   }
 
- 
-
-  
-
   funcao subirDeNivelContraLoboDasNevoas() {
       
     xpDoPersonagem = xpDoPersonagem + xPDosInimigos[0]
@@ -484,6 +480,12 @@ programa {
     }
   }
 
+
+  funcao statusDuranteBatalhaCOntraLoboDasNevoas(){
+    escreva("\nUsuário:",nomeDoPersonagem,"\t│\t",vidaDoPersonagem,"/",auxVidaDoPersonagem,"\n")
+    escreva("Inimigo:",inimigosDaCampanhaNormal[0],"\t│\t",vIdaDosInimigos[0],"/",aUXVIDADOSINIMIGOS[0],"\n\n")
+
+  }
 
   funcao liberdadeNaFloresta(){
     cadeia opcaoDaLiberdade
@@ -777,8 +779,7 @@ programa {
 
     seguir()
 
-    inteiro contadorRodada = 0
-    inteiro numDoInimigo = 1
+    inteiro contador = 0
 
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[1] > 0){
       se(defesaDoPersonagem > 30){
@@ -790,8 +791,12 @@ programa {
       }
 
       limpa()
-    
-      se(contadorRodada == 3 e salvaCachorro == 1){
+
+      contador++
+      escreva("Rodada ",contador)
+      statusDuranteBatalhaContraGigante()
+
+      se(contador == 3 e salvaCachorro == 1){
         escreva("\nVocê está lá, pronto pra atacar o Gigante, quando ouve uns latidos...você olha e É O CACHORRO QUE VOCÊ AJUDOU ANTES!\n")
         escreva("Os latidos distraem o Gigante e você poderá atacar duas vezes nesse turno(valeu a pena ser bondoso).")
         escreva("\nVocê aproveita pra ataca-lo de uma vez!\n")
@@ -806,7 +811,7 @@ programa {
         
       }
 
-      se(contadorRodada == 4){
+      se(contador == 4){
         escreva("\nO ",inimigosDaCampanhaNormal[1]," se irritou, pegou e arrancou uma árvore da floresta, agora ele vai usar ela pra te atacar\n\n")
         se(defesaDoPersonagem < 30){
           aTaqueDosInimigos[1] = aTaqueDosInimigos[1] + 5
@@ -817,7 +822,7 @@ programa {
         }
       }
 
-      opcaoNaBatalha(numDoInimigo,contadorRodada)
+      opcaoNaBatalha()
 
       u.aguarde(1000)
       sorteio = 0
@@ -969,9 +974,7 @@ programa {
     vidaDoPersonagem = vidaDoPersonagem - 1
       
 
-    inteiro contadorRodada = 0
-    inteiro numDoInimigo = 2
-
+    inteiro contador = 0
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[2] > 0){
       
 
@@ -980,8 +983,9 @@ programa {
       
       contador++
       escreva("Rodada ",contador)
+      statusDuranteBatalhaContraDrSalvador() 
 
-      opcaoNaBatalha(numDoInimigo,contadorRodada)
+      opcaoNaBatalha()
 
       u.aguarde(1000)
       sorteio = 0
@@ -1125,9 +1129,7 @@ programa {
     vidaDoPersonagem = vidaDoPersonagem - 1
       
 
-    inteiro contadorRodada = 0
-    inteiro numDoInimigo = 2
-
+    inteiro contador = 0
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[2] > 0){
       
 
@@ -1136,8 +1138,9 @@ programa {
       
       contador++
       escreva("Rodada ",contador)
-      
-      opcaoNaBatalha(numDoInimigo,contadorRodada)
+      statusDuranteBatalhaContraDrSalvador() 
+
+      opcaoNaBatalha()
 
       u.aguarde(1000)
       sorteio = 0
@@ -1672,18 +1675,18 @@ programa {
       aTaqueDosInimigos[3] = aTaqueDosInimigos[3] - 5
       dEfesaDosInimigos[3] = dEfesaDosInimigos[3] - 5
     }
-
-    inteiro contadorRodada = 0
-    inteiro numDoInimigo = 3
+    inteiro contador = 0
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[3] > 0){
       
 
       limpa()
 
       
-      contadorRodada++
+      contador++
+      escreva("Rodada ",contador)
+      statusDuranteBatalhaContraChavesChiquinhaQuico()//criar um novo pra cada batalha
 
-      opcaoNaBatalha(numDoInimigo,contadorRodada)
+      opcaoNaBatalha()
 
       u.aguarde(1000)
       sorteio = 0
@@ -1788,8 +1791,7 @@ programa {
     seguir()
       
 
-    inteiro contadorRodada = 0
-    inteiro numDoInimigo = 3
+    inteiro contador = 0
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[3] > 0){
       
 
@@ -1797,9 +1799,10 @@ programa {
 
       
       contador++
-      
+      escreva("Rodada ",contador)
+      statusDuranteBatalhaContraChavesChiquinhaQuico()//criar um novo pra cada batalha
 
-      opcaoNaBatalha(numDoInimigo,contadorRodada)
+      opcaoNaBatalha()
 
       u.aguarde(1000)
       sorteio = 0
@@ -1902,19 +1905,18 @@ programa {
     
       
 
-    inteiro contadorRodada = 0
-    inteiro numDoInimigo = 3
+    inteiro contador = 0
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[3] > 0){
       
 
       limpa()
 
       
-      contadorRodada++
-        
-      
+      contador++
+      escreva("Rodada ",contador)
+      statusDuranteBatalhaContraChavesChiquinhaQuico()//criar um novo pra cada batalha
 
-      opcaoNaBatalha(numDoInimigo,contadorRodada)
+      opcaoNaBatalha()
 
       u.aguarde(1000)
       sorteio = 0
@@ -2163,15 +2165,16 @@ programa {
     
       
 
-    inteiro contadorRodada = 0
-    inteiro numDoInimigo = 4
+    inteiro contador = 0
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[4] > 0){
 
       limpa()
 
-      contadorRodada++
-      
-      opcaoNaBatalha(numDoInimigo,contadorRodada)
+      contador++
+      escreva("Rodada ",contador)
+      statusDuranteBatalhaContraSeuMadruga()
+
+      opcaoNaBatalha()
 
       u.aguarde(1000)
       sorteio = 0
@@ -2379,16 +2382,16 @@ programa {
     }
     escreva("Isso mesmo, boa sorte(você vai precisar)\n")
     
-    inteiro contadorRodada = 0
-    inteiro numDoInimigo = 5
+    inteiro contador = 0
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[5] > 0){
     
       limpa()
 
-      contadorRodada++
-      
-      
-      opcaoNaBatalha(numDoInimigo,contadorRodada)
+      contador++
+      escreva("Rodada ",contador)
+      statusDuranteBatalhaContraChapolinColorado()//criar um novo pra cada batalha
+
+      opcaoNaBatalha()
 
       u.aguarde(1000)
       sorteio = 0
@@ -2725,16 +2728,17 @@ programa {
     
       
 
-    inteiro contadorRodada = 0
-    inteiro numDoInimigo = 6
+    inteiro contador = 0
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[6] > 0){
       
 
       limpa()
       
-      contadorRodada++
+      contador++
+      escreva("Rodada ",contador)
+      statusDuranteBatalhaContraYanagisawa()//criar um novo pra cada batalha
 
-      opcaoNaBatalha(numDoInimigo,contadorRodada)
+      opcaoNaBatalha()
 
       se(contador == 5){
         escreva("\nVocê percebe que Yanagisawa está ficando cansado")
@@ -2881,18 +2885,18 @@ programa {
     }
       
 
-    inteiro contadorRodada = 0
-    inteiro numDoInimigo = 6
-
+    inteiro contador = 0
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[7] > 0){
       
 
       limpa()
 
       
-      contadorRodada++
+      contador++
+      escreva("Rodada ",contador)
+      statusDuranteBatalhaContraHelga()
 
-      opcaoNaBatalha(numDoInimigo,contadorRodada)
+      opcaoNaBatalha()
 
       u.aguarde(1000)
       sorteio = 0
@@ -3426,28 +3430,34 @@ programa {
     seguir()
       
 
-    inteiro contadorRodada = 0
-    inteiro numDoInimigo = 8
+    inteiro contador = 0
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[8] > 0){
       aTaqueDosInimigos[8] = aTaqueDosInimigos[8] + 3
 
       limpa()
 
       
-      contadorRodada++
-      
-      se(contadorRodada > 5){
-        se(contadorRodada == 6){
+      contador++
+      escreva("Rodada ",contador)
+      statusDuranteBatalhaContraVerdugo()//criar um novo pra cada batalha
+
+      se(contador > 5){
+        se(contador == 6){
           escreva("\nO Elevador chegou\n")
         }
-  
-        opcaoNaBatalhaContraVerdugo(numDoInimigo,contadorRodada)
-        
+        cadeia opcaoDaBatalhaDoVerdugaoDaRapaziada
+        enquanto(opcaoDaBatalhaDoVerdugaoDaRapaziada != "1" e opcaoDaBatalhaDoVerdugaoDaRapaziada != "2" e opcaoDaBatalhaDoVerdugaoDaRapaziada != "3"){
+          
+      
+          escreva("Sua vez!\nO que você quer fazer?\n1-Atacar\n2-Usar Poção\n3-Fugir pelo elevador\n")
+          leia(opcaoDaBatalhaDoVerdugaoDaRapaziada)
+        }
+        opcaoNaBatalhaContraVerdugo(opcaoDaBatalhaDoVerdugaoDaRapaziada)
+        se(opcaoDaBatalhaDoVerdugaoDaRapaziada == 3){
+          pare
+        }
       } senao{
-        opcaoNaBatalha(numDoInimigo,contadorRodada)
-      }
-      se(fugiuDoVerdugo == 1){
-        pare
+        opcaoNaBatalha()
       }
         
 
@@ -3543,25 +3553,14 @@ programa {
     escreva("Inimigo:",inimigosDaCampanhaNormal[8],"\t│\t",vIdaDosInimigos[8],"/",aUXVIDADOSINIMIGOS[8],"\n\n")
   }
   
-  funcao opcaoNaBatalhaContraVerdugo(inteiro numDoInimigo,inteiro contadorRodada){
-    cadeia opcao
-
-    enquanto(opcao != "1" e opcao != "2" e opcao ){
-      escreva("Rodada ",contadorRodada)
-      escreva("\nUsuário:",nomeDoPersonagem,"\t│\t",vidaDoPersonagem,"/",auxVidaDoPersonagem,"\n")
-      escreva("Inimigo:",inimigosDaCampanhaNormal[numDoInimigo],"\t│\t",vIdaDosInimigos[numDoInimigo],"/",aUXVIDADOSINIMIGOS[numDoInimigo],"\n\n")
-      
-      escreva("Sua vez!\nO que você quer fazer?\n1-Atacar\n2-Usar Poção\n")
-      leia(opcao)
-      limpa()
-    }
-
+  funcao opcaoNaBatalhaContraVerdugo(cadeia opcao){
+    
     se(opcao == "3"){
       escreva("\nEu não vou nem testar sua sorte aqui, só de ter aguentado tudo isso, você merece sair vivo!\n")
       escreva("\nO Verdugo tenta te acertar, mas você desvia e corre pro Elevador, abre ele, entra e imediatamente clica desesperadamente no botão pra subir.\n")
       escreva("\nO Verdugo tenta a todo custo abrir a porta, arranhando, chutando, mas o elevador finalmente sobe.\n")
       escreva("Você fica aliviado um pouco, mas a última coisa que você são aqueles olhos vermelhos do Verdugo.\n")
-      fugiuDoVerdugo = 1
+
       seguir()
     }
     
@@ -4118,9 +4117,7 @@ programa {
     escreva("\nVocê nota que Karasu começa a emanar uma energia absurda, e em suas mãos aparece algo.\n\nKarasu:\n-Isso é uma bomba, e eu alimento ela com minha própria energia, prepare-se, vou explodir esse seu lindo rostinho.\n")
     seguir()
 
-    inteiro contadorRodada = 0
-    inteiro numDoInimigo = 10
-
+    contador = 0
     inteiro umQuintoDoDanoPersonagem = 0
     inteiro umQuintoDaDefesaPersonagem = 0
     inteiro umQuintoDoDanoInimigo = 0
@@ -4135,9 +4132,11 @@ programa {
       
       limpa()
 
-      contadorRodada++
-      
-      opcaoNaBatalha(numDoInimigo,contadorRodada)
+      contador++
+      escreva("Rodada ",contador)
+      statusDuranteBatalhaContraKarasu()
+
+      opcaoNaBatalha()
 
       u.aguarde(1000)
       sorteio = 0
@@ -4162,7 +4161,10 @@ programa {
         escreva("Dano dado: 0\n")
 
       } 
+        
+
       
+        
       
       se(vIdaDosInimigos[10] <= 0){
         vIdaDosInimigos[10] = 0
@@ -4185,7 +4187,7 @@ programa {
 
         seguir()
         limpa()
-       
+        statusDuranteBatalhaContraKarasu()
       }
       
 
@@ -4310,15 +4312,17 @@ programa {
 
     seguir()
 
-    inteiro contadorRodada = 0
-    inteiro numDoInimigo = 9
+    inteiro contador = 0
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[9] > 0){
       
       limpa()
 
-      contadorRodada++
+      contador++
+      escreva("Rodada ",contador)
+      escreva("\nUsuário:",nomeDoPersonagem,"\t│\t",vidaDoPersonagem,"/",auxVidaDoPersonagem,"\n")
+      escreva("Inimigo:",inimigosDaCampanhaNormal[9],"\t│\t",vIdaDosInimigos[9],"/",aUXVIDADOSINIMIGOS[9],"\n\n")
 
-      opcaoNaBatalha(numDoInimigo,contadorRodada)
+      opcaoNaBatalha()
 
       u.aguarde(1000)
       sorteio = 0
@@ -4517,12 +4521,6 @@ programa {
           } senao{
             batalhaContraKuririn()
           }
-          seguir()
-
-          se(vidaDoPersonagem > 0){
-            helgaMinhaAnja()
-
-          }
 
         }
       }
@@ -4561,25 +4559,21 @@ programa {
       defesaDaArmadura = 22
       casoEncontreArmadura(defesaDaArmadura,capaceteDaFuncao,peitoralDaFuncao,calcaDaFuncao,botasDaFuncao)
 
-    }
-    se(opcRecompPantan == "2"){
+    } senao se(opcRecompPantan == "2"){
       peitoralDaFuncao = 1
       defesaDaArmadura = 25
       casoEncontreArmadura(defesaDaArmadura,capaceteDaFuncao,peitoralDaFuncao,calcaDaFuncao,botasDaFuncao)
 
-    }
-    se(opcRecompPantan == "3"){
+    } senao se(opcRecompPantan == "3"){
       calcaDaFuncao = 1
       defesaDaArmadura = 24
       casoEncontreArmadura(defesaDaArmadura,capaceteDaFuncao,peitoralDaFuncao,calcaDaFuncao,botasDaFuncao)
 
-    }
-    se(opcRecompPantan == "4"){
+    } senao se(opcRecompPantan == "4"){
       botasDaFuncao = 1
       defesaDaArmadura = 23 
 
-    }
-    se(opcRecompPantan == "5"){
+    } senao se(opcRecompPantan == "5"){
       danoDaArma = 26
       casoEncontreARMA(danoDaArma)
 
@@ -4708,15 +4702,16 @@ programa {
     }
     escreva("Isso mesmo, boa sorte(você vai precisar)\n")
     
-    inteiro contadorRodada = 0
-    inteiro numDoInimigo = 11
+    inteiro contador = 0
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[11] > 0){
       
       limpa()
 
-      contadorRodada++
+      contador++
+      escreva("Rodada ",contador)
+      statusDuranteBatalhaGiovani()//criar um novo pra cada batalha
 
-      opcaoNaBatalha(numDoInimigo,contadorRodada)
+      opcaoNaBatalha()
 
       u.aguarde(1000)
       sorteio = 0
@@ -4926,25 +4921,21 @@ programa {
       defesaDaArmadura = 30
       casoEncontreArmadura(defesaDaArmadura,capaceteDaFuncao,peitoralDaFuncao,calcaDaFuncao,botasDaFuncao)
 
-    }
-    se(opcBaus == "2"){
+    } senao se(opcBaus == "2"){
       peitoralDaFuncao = 1
       defesaDaArmadura = 32
       casoEncontreArmadura(defesaDaArmadura,capaceteDaFuncao,peitoralDaFuncao,calcaDaFuncao,botasDaFuncao)
 
-    }
-    se(opcBaus == "3"){
+    } senao se(opcBaus == "3"){
       calcaDaFuncao = 1
       defesaDaArmadura = 31
       casoEncontreArmadura(defesaDaArmadura,capaceteDaFuncao,peitoralDaFuncao,calcaDaFuncao,botasDaFuncao)
 
-    }
-    se(opcBaus == "4"){
+    } senao se(opcBaus == "4"){
       botasDaFuncao = 1
       defesaDaArmadura = 33
 
-    }
-    se(opcBaus == "5"){
+    } senao se(opcBaus == "5"){
       casoEncontreARMA(danoDaArma)
 
     }
@@ -4961,16 +4952,16 @@ programa {
     escreva("Arlequina:\n-Você não é meu Pudimzinho, você é um intruso.\n\nEla Pega a marreta dela e parte pra cima de você.\n")
     
     seguir()
-    inteiro contadorRodada = 0
-    inteiro numDoInimigo = 12
-
+    inteiro contador = 0
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[12] > 0){
       
       limpa()
 
-      contadorRodada++
+      contador++
+      escreva("Rodada ",contador)
+      statusDuranteBatalhaContraArlequina()//criar um novo pra cada batalha
 
-      opcaoNaBatalha(numDoInimigo,contadorRodada)
+      opcaoNaBatalha()
 
       u.aguarde(1000)
       sorteio = 0
@@ -5129,15 +5120,16 @@ programa {
     }
     escreva("Isso mesmo, boa sorte(você vai precisar)\n")
     
-    inteiro contadorRodada = 0
-    inteiro numDoInimigo = 13
+    inteiro contador = 0
     enquanto(vidaDoPersonagem > 0 e vIdaDosInimigos[13] > 0){
       
       limpa()
 
-      contadorRodada++
+      contador++
+      escreva("Rodada ",contador)
+      statusDuranteBatalhaKuririn()//criar um novo pra cada batalha
 
-      opcaoNaBatalha(numDoInimigo,contadorRodada)
+      opcaoNaBatalha()
 
       u.aguarde(1000)
       sorteio = 0
@@ -5266,11 +5258,13 @@ programa {
       escreva("\nHelga:\n-Isso é uma bebida que recuperará sua vida por completo, tome ela, por favor!\n\n")
       escreva("Eae, você toma?\n1-Sim\n2-Não\n")
       leia(aceitaBebidaAlcolica)
+      
       enquanto(aceitaBebidaAlcolica != "1" e aceitaBebidaAlcolica != "2"){
         escreva("\n???responda direito\n")
         leia(aceitaBebidaAlcolica)
 
       }
+
       limpa()
       se(aceitaBebidaAlcolica == "1"){
         escreva("\nVocê pega a bebida e toma...você sente-se mal no começo, mas logo sente um vigor absurdo, sente todo seu poder restaurado.\n")
@@ -5287,11 +5281,13 @@ programa {
       escreva("\nAo olhar, você vê que é uma moça...bem moça, você olha pra ela e pensa \"Moça bonita! moça bem feita! Moça formosa!\".\n")
       escreva("\nHelga:\n-Prazer, meu nome é Helga, eu estava na caverna esperando por você, mas tu não me encontrou. Eu vim\nte ajudar, trouxe uma bebida que restaurará suas forças.\n\nHelga te entrega uma bebida, você vai aceitar?\n")
       leia(aceitaBebidaAlcolica)
+      
       enquanto(aceitaBebidaAlcolica != "1" e aceitaBebidaAlcolica != "2"){
         escreva("\n???responda direito\n")
         leia(aceitaBebidaAlcolica)
 
       }
+
       limpa()
       se(aceitaBebidaAlcolica == "1"){
         escreva("\nVocê resolve confiar na mocinha e tomar a bebia...no começo, você sente uma tontura, mas logo sente-se REVIGORADO\n")
@@ -5343,9 +5339,9 @@ programa {
 
   funcao casoEncontrePocaoFODONA(){
     inteiro opcao
-    se(pOSSUIpOCAOfoda == 1 e vidaDoPersonagem == auxVidaDoPersonagem){
+    se(pOSSUIpOCAO == 1 e vidaDoPersonagem == auxVidaDoPersonagem){
       escreva("\nVocê já possui uma poção e não poderá carregar mais uma, e também já ta com a vida máxima, ou seja...sem poção extra")
-    } senao se(pOSSUIpOCAOfoda == 1 e vidaDoPersonagem < auxVidaDoPersonagem){
+    } senao se(pOSSUIpOCAO == 1 e vidaDoPersonagem < auxVidaDoPersonagem){
       
       escreva("\nVocê já possui uma poção e não poderá carregar mais uma, mas não está com a vida máxima, quer usar a poção que encontrou agora?Sim?Não?\n")
       leia(opcao)
@@ -5355,7 +5351,7 @@ programa {
       }
       se(opcao == "Sim"){
         pocaoFODONA()
-        pOSSUIpOCAOfoda = 1
+        pOSSUIpOCAO = 1
 
       } senao{
         escreva("\nOk então\n")
@@ -5363,22 +5359,23 @@ programa {
       }
       
   
-    } senao{
+    } 
+    senao{
       escreva("\nPoção guardada!\n")
-      pOSSUIpOCAOfoda = 1
+      pOSSUIpOCAO = 1
     }
 
   }
 
   funcao pocaoFODONA(){
-    se(pOSSUIpOCAOfoda == 1){
+    se(pOSSUIpOCAO == 1){
       se((vidaDoPersonagem + 30) > auxVidaDoPersonagem){
       vidaDoPersonagem = auxVidaDoPersonagem
       } senao{
       vidaDoPersonagem = vidaDoPersonagem + 30
       }
       escreva("Poção usada\n")
-      pOSSUIpOCAOfoda--
+      pOSSUIpOCAO--
       escreva("Vida atual: ", vidaDoPersonagem)
     } senao se(pOSSUIpOCAO == 0){
       escreva("\nVocê não tem poção ;-;\n")
@@ -5417,38 +5414,18 @@ programa {
   }
 
   funcao pocao (){
-    
-    se(pOSSUIpOCAO == 1 e pOSSUIpOCAOfoda == 0){
+    se(pOSSUIpOCAO == 1){
       se((vidaDoPersonagem + 15) > auxVidaDoPersonagem){
-        vidaDoPersonagem = auxVidaDoPersonagem
+      vidaDoPersonagem = auxVidaDoPersonagem
       } senao{
-        vidaDoPersonagem = vidaDoPersonagem + 15
+      vidaDoPersonagem = vidaDoPersonagem + 15
       }
       escreva("Poção usada\n")
       pOSSUIpOCAO--
       escreva("Vida atual: ", vidaDoPersonagem)
-
-    } senao se(pOSSUIpOCAO == 0 e pOSSUIpOCAOfoda == 0){
+    } senao se(pOSSUIpOCAO == 0){
       escreva("\nVocê não tem poção ;-;\n")
-
-    } senao se(pOSSUIpOCAO == 0 e pOSSUIpOCAOfoda == 1){
-      pocaoFODONA()
-
-    } senao se(pOSSUIpOCAO == 1 e pOSSUIpOCAOfoda == 1){
-      cadeia toSemIDeiaDeNome
-      escreva("\nVocê possui 2 poções(é muito sortudo mesmo).\n\nQual delas você quer usar?\n1-A normal(15 de HP)\n2-A Fodona(30 de HP)\n")
-      leia(toSemIDeiaDeNome)
-      enquanto(toSemIDeiaDeNome != "1" e toSemIDeiaDeNome != "2"){
-        escreva("\nESCREVE DIREITO NÉ:\n")
-        leia(toSemIDeiaDeNome)
-      }
-      se(toSemIDeiaDeNome == "1"){
-        pocao()
-      }
-      se(toSemIDeiaDeNome == "2"){
-        pocaoFODONA()
-      }
-    }
+    } 
   }
 
   funcao casoEncontreArmadura(inteiro defesaDaArmadura, inteiro capaceteDaFuncao, inteiro peitoralDaFuncao, inteiro calcaDaFuncao, inteiro botasDaFuncao){
@@ -5709,27 +5686,20 @@ programa {
 
   
 
-  funcao opcaoNaBatalha(inteiro numDoInimigo,inteiro contadorRodada){
+  funcao opcaoNaBatalha(){
     cadeia opcao
-
-    limpa()
     
     enquanto(opcao != "1" e opcao != "2"){
-      escreva("Rodada ",contadorRodada)
-      escreva("\nUsuário:",nomeDoPersonagem,"\t│\t",vidaDoPersonagem,"/",auxVidaDoPersonagem,"\n")
-      escreva("Inimigo:",inimigosDaCampanhaNormal[numDoInimigo],"\t│\t",vIdaDosInimigos[numDoInimigo],"/",aUXVIDADOSINIMIGOS[numDoInimigo],"\n\n")
       
       escreva("Sua vez!\nO que você quer fazer?\n1-Atacar\n2-Usar Poção\n")
       leia(opcao)
-      limpa()
     }
-    
     
       se(opcao == 2){
         
         pocao()
-        u.aguarde(2000)
-        opcaoNaBatalha(numDoInimigo,contadorRodada)
+        escreva("\nAinda é ")
+        opcaoNaBatalha()
       } senao se(opcao == 1){
         
       } 
