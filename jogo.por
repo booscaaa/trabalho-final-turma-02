@@ -1835,7 +1835,7 @@ funcao batalhaEldlichV2(){
       }
 
       se (vidaDoInimigo > 0) {
-        vidaDoInimigo += 2
+        vidaDoInimigo += nivelDoBoss
         escreva("Turno do inimigo\n")
         inteiro danoRecebido = inimigoATK - defesa
         se(danoRecebido < 0){
