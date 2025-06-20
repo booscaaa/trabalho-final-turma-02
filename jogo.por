@@ -7,6 +7,8 @@ programa {inclua biblioteca Util --> u
   inteiro danoOrginalHeroi
   inteiro danoMinimoHeroi
   inteiro danoDado
+  inteiro armadilhaAtiva = 0
+  inteiro beserkAtiva = 0
   inteiro danoReal
   inteiro defesaHeroi
   inteiro defesaOriginalHeroi
@@ -202,19 +204,19 @@ programa {inclua biblioteca Util --> u
         danoHeroi = 50
         defesaHeroi = 70 
         manaHeroi = 50 
-        feitico = "Barreira"
+        feitico = "Beserk"
       }senao se(classeEscolhida == "2"){
         vidaHeroi = 250 
         danoHeroi = 150
         defesaHeroi = 20 
         manaHeroi = 200 
-        feitico = "Bola de fogo"
+        feitico = "Trovão"
       }senao se(classeEscolhida == "3" ){
         vidaHeroi = 300 
         danoHeroi = 75 
         defesaHeroi = 50
         manaHeroi = 100 
-        feitico = "Herbalista"
+        feitico = "Armadilha"
       }
       danoMinimoHeroi = danoHeroi / 5
       
@@ -233,6 +235,8 @@ programa {inclua biblioteca Util --> u
    inteiro pantano = 4
    inteiro castelo = 5
    cadeia decisao
+   beserkAtiva = 0
+   armadilhaAtiva = 0
    se(vidaHeroi <= 0){
     retorne
    }
@@ -465,17 +469,41 @@ programa {inclua biblioteca Util --> u
       escreva("Você encontra um ", nomeInimigo)
       atualCombate()
     }senao se (tipoDeBatalha == 5){
+      vidaInimigo = 400
+      danoInimigo = 70
+      defesaInimigo = 45
+      vidaMaximaInimigo = vidaInimigo
+      inimigoXP = 40
+      nomeInimigo = "Creta"
+      escreva("Você encontra um ", nomeInimigo)
+      atualCombate()
       
     }senao se (tipoDeBatalha == 6){
+      vidaInimigo = 750
+      danoInimigo = 90
+      defesaInimigo = 80
+      vidaMaximaInimigo = vidaInimigo
+      inimigoXP = 100
+      nomeInimigo = "Terra"
+      escreva("Você encontra um ", nomeInimigo)
+      atualCombate()
       
     }senao se (tipoDeBatalha == 7){
+      vidaInimigo = 900
+      danoInimigo = 350
+      defesaInimigo = 95
+      vidaMaximaInimigo = vidaInimigo
+      inimigoXP = 150
+      nomeInimigo = "Umbra"
+      escreva("Você encontra um ", nomeInimigo)
+      atualCombate()
       
     }senao se (tipoDeBatalha == 8){
       vidaInimigo = 5
       danoInimigo = 200
       defesaInimigo = 800
       vidaMaximaInimigo = vidaInimigo
-      inimigoXP = 75
+      inimigoXP = 150
        nomeInimigo = "Guardio"
       escreva("Você encontra um ", nomeInimigo)
       
@@ -484,7 +512,7 @@ programa {inclua biblioteca Util --> u
       danoInimigo = 400
       defesaInimigo = 40
       vidaMaximaInimigo = vidaInimigo
-      inimigoXP = 100
+      inimigoXP = 170
        nomeInimigo = "Sparky"
       escreva("Você encontra um ", nomeInimigo)
       
@@ -516,11 +544,16 @@ programa {inclua biblioteca Util --> u
       
   }
   funcao atualCombate(){
+   inteiro manaAux
+   inteiro sorteioMagia
    inteiro sorteioInimigo
    cadeia acaoHeroi
+   
 
    enquanto(vidaInimigo > 0 e vidaHeroi > 0 ){
    limpa()
+   
+   
    turnoAtual ++
     escreva("\n ┌───────────────┐  ", nomePlayer)
     escreva("\n │ 1: Ataque     │  ", "Vida:   ", vidaHeroi, " / ", vidaMaximaHeroi)
@@ -536,8 +569,20 @@ programa {inclua biblioteca Util --> u
     escreva("\n └───────────────┘  ", "\n")
     leia(acaoHeroi)
     limpa()
-     se(acaoHeroi == "1"){
-      escreva("Você ataca: ")
+      se(manaHeroi >= manaMaximaHeroi){
+        escreva("")
+      }senao se(manaHeroi < manaMaximaHeroi){
+        manaAux = (manaMaximaHeroi / 5)
+        se(manaHeroi > (manaMaximaHeroi - manaAux)){
+        manaHeroi = manaMaximaHeroi
+        }senao{
+          manaHeroi = manaHeroi + (manaMaximaHeroi -( manaAux * 4))
+        }
+        
+      }
+        se(acaoHeroi == "1"){
+          escreva("Você ataca: ")
+          
       calculoDeDano()
       escreva(nomePlayer," Rolou um ",danoReal ," de dano contra uma defesa de ",defesaInimigo)
       se(danoReal > defesaInimigo){
@@ -547,7 +592,7 @@ programa {inclua biblioteca Util --> u
       }
       u.aguarde(3000)
       se(vidaInimigo > 0){
-        escreva("\nO ",nomeInimigo," ataca dando ", danoTomado," de dano")
+        turnoInimigo()
       }senao{
         escreva("\n",nomeInimigo," foi derrotado dando ", inimigoXP," de XP")
       }
@@ -563,17 +608,8 @@ programa {inclua biblioteca Util --> u
           numeroDePocoes = numeroDePocoes - 1
 
         }
+         turnoInimigo()
          
-         sorteioInimigo = u.sorteia(1,danoInimigo)
-      se(sorteioInimigo > defesaHeroi){
-        danoTomado = sorteioInimigo - defesaHeroi
-        vidaHeroi = vidaHeroi - (sorteioInimigo - defesaHeroi)
-      }senao se (sorteioInimigo < defesaHeroi){
-        danoTomado = 1
-        vidaHeroi = vidaHeroi - 1
-      }
-      u.aguarde(1500)
-      escreva("\nO ",nomeInimigo," ataca dando ", danoTomado," de dano")
 
         u.aguarde(3000)
         atualCombate()
@@ -581,14 +617,69 @@ programa {inclua biblioteca Util --> u
        escreva("Você não tem poções")
        u.aguarde(3000)
        atualCombate()
+
+
+     }senao se(acaoHeroi == 4){
+       se (feitico == "Beserk"){
+        se(manaHeroi == manaMaximaHeroi){
+        se(beserkAtiva == 0){
+        escreva("Você usa Beserk, seu dano dobra pelo resto da luta")
+        manaHeroi = manaHeroi - manaMaximaHeroi
+        danoHeroi = danoHeroi * 2
+        danoMinimoHeroi = danoHeroi / 5
+        beserkAtiva = 1
+        }senao{
+          escreva("Beserk já esta ativo")
+          u.aguarde(1000)
+          atualCombate()
+
+        }
+
+
+        }senao se(manaHeroi < manaMaximaHeroi){
+         escreva("Você não tem mana sufficiente")
+         atualCombate()
+        }
+        turnoInimigo()
+       }senao se(feitico == "Trovão"){
+        se(manaHeroi >= (manaMaximaHeroi / 2)){
+          manaHeroi = manaHeroi - (manaMaximaHeroi / 2)
+          sorteioMagia = u.sorteia(danoMinimoHeroi,danoHeroi)
+          vidaInimigo = vidaInimigo - sorteioMagia
+           escreva("Você usa Trovão dando ",sorteioMagia," de dano e paralizando o ", nomeInimigo)
+           u.aguarde(2000)
+           atualCombate()
+        }senao{
+          escreva("Você não tem mana suficiente")
+          u.aguarde(1000)
+          atualCombate()
+        }
+       }senao se( feitico == "Armadilha"){
+          se(manaHeroi == manaMaximaHeroi){
+          se(armadilhaAtiva == 0) {
+            manaHeroi = 0
+            escreva("Você solta armadilhas ao redor do ", nomeInimigo)
+            armadilhaAtiva = 1
+            turnoInimigo()
+          }senao{
+            escreva("Você já soltou armadilhas")
+            u.aguarde(2000)
+            atualCombate()
+          }
+         }senao se(manaHeroi < manaMaximaHeroi){
+          escreva("Você não tem mana o suficiente")
+          u.aguarde(2000)
+          atualcombate()
+         } 
+       }
      }senao se(acaoHeroi == "21"){
        escreva("Cheating bastard")
        xpAtualHeroi = maximoXPHeroi
        xpLevelBar()
        u.aguarde(1000)
-     }senao{
-      atualCombate()
+     
      }
+     
     u.aguarde(2500)
    }
    xpAtualHeroi = xpAtualHeroi + inimigoXP
@@ -596,8 +687,8 @@ programa {inclua biblioteca Util --> u
    chanceItem = u.sorteia(1,5)
    se(chanceItem == 5){
     numeroDePocoes = numeroDePocoes + 1
-    escreva("Você encontra uma poção nos restos de ",nomeInimigo)
-    u.aguarde(1000)
+    escreva("\nVocê encontra uma poção nos restos de ",nomeInimigo)
+    u.aguarde(2000)
    }
 
    limpa()
@@ -606,10 +697,12 @@ programa {inclua biblioteca Util --> u
   funcao calculoDeDano(){
    
     inteiro sorteio = 0
-    inteiro sorteioInimigo = 0
+    inteiro sorteioArmadilha
+    
 
     
-    se(chefe != 5){sorteio = u.sorteia(danoMinimoHeroi, danoHeroi)
+    se(chefe != 5){
+      sorteio = u.sorteia(danoMinimoHeroi, danoHeroi)
       danoReal = sorteio
       danoDado = (sorteio - defesaInimigo)
       se(sorteio > defesaInimigo){
@@ -620,6 +713,34 @@ programa {inclua biblioteca Util --> u
       vidaInimigo = vidaInimigo - 1
 
       }
+     
+      
+    } se(chefe == 5){
+      sorteio = u.sorteia(danoMinimoHeroi, danoHeroi)
+      danoReal = sorteio
+      danoDado = (sorteio - defesaInimigo)
+      se(sorteio > defesaInimigo){
+      vidaInimigo = vidaInimigo - danoDado
+      
+      }senao se (sorteio <= defesaInimigo){
+      
+      vidaInimigo = vidaInimigo - 1
+
+      }
+     
+     
+    } 
+    se(armadilhaAtiva == 1){
+      sorteioArmadilha = u.sorteia(50, 100)
+      escreva("\n", nomeInimigo, " é acertado pelas as armadilhas tomando ",sorteioArmadilha, " de dano\n")
+      vidaInimigo = vidaInimigo - sorteioArmadilha
+      u.aguarde(2000)
+    }
+  }
+  funcao turnoInimigo(){
+    inteiro sorteioInimigo
+    
+    se(chefe != 5){
       se(vidaInimigo > 0){
         sorteioInimigo = u.sorteia(1,danoInimigo)
         se(sorteioInimigo > defesaHeroi){
@@ -630,31 +751,26 @@ programa {inclua biblioteca Util --> u
           vidaHeroi = vidaHeroi - 1
         }
       }
-    } se(chefe == 5){sorteio = u.sorteia(danoMinimoHeroi, danoHeroi)
-      danoReal = sorteio
-      danoDado = (sorteio - defesaInimigo)
-      se(sorteio > defesaInimigo){
-      vidaInimigo = vidaInimigo - danoDado
-      
-      }senao se (sorteio <= defesaInimigo){
-      
-      vidaInimigo = vidaInimigo - 1
-
-      }
-      sorteioInimigo = u.sorteia(1,danoInimigo)
-      se(sorteioInimigo > defesaHeroi){
-        danoTomado = sorteioInimigo - defesaHeroi
-        vidaHeroi = vidaHeroi - (sorteioInimigo - defesaHeroi)
-      }senao se (sorteioInimigo < defesaHeroi){
-        danoTomado = 1
-        vidaHeroi = vidaHeroi - 1
-      }
-      se(vidaInimigo < (vidaMaximaInimigo - 100)){
-        se (turnoAtual % 2 == 0 ){
-         vidaInimigo = vidaInimigo + 100
+    }senao se(chefe == 5){
+        se(vidaInimigo > 0){
+        sorteioInimigo = u.sorteia(1,danoInimigo)
+        se(sorteioInimigo > defesaHeroi){
+          danoTomado = sorteioInimigo - defesaHeroi
+          vidaHeroi = vidaHeroi - (sorteioInimigo - defesaHeroi)
+        }senao se (sorteioInimigo < defesaHeroi){
+          danoTomado = 1
+          vidaHeroi = vidaHeroi - 1
+        }
+        se(vidaInimigo < (vidaMaximaInimigo - 100)){
+          se (turnoAtual % 2 == 0 ){
+          vidaInimigo = vidaInimigo + 100
+          }
         }
       }
-    } 
+    }
+    escreva("\nO ", nomeInimigo," ataca dando ", danoTomado, " de dano\n")
+    u.aguarde(2500)
+    atualCombate()
   }
   funcao combateChefe(inteiro tipoDeChefe){
     se (tipoDeChefe == 1){
