@@ -21,15 +21,61 @@ programa {
     "Floresta Amaldiçoada",
     "Vilarejo abandonado",
     "Caverna Sombria",
-    "Castelo",
+    "Pantano dos Lamentos",
     "Campo aberto com tempestade nada suspeito"
   } 
 
+ funcao passouguardiao(){
+  contadordeMapas++
+ inteiro opcaoEscolhidaCaminhoPantano
+  escreva("O Guardião Esquecido foi derrotado!")
+  escreva("Um caminho oculto se revela entre as rochas...")
+  escreva("Você avança e entra no Pântano dos Lamentos.")
+  escreva("O terreno é instável e o ar está cheio de veneno.")
+  
+enquanto(  opcaoEscolhidaCaminhoPantano != 0){
+    escreva("\nO que você deseja fazer?\n")
+    escreva("1 - Entrar na Caverna\n")
+    escreva("2 - Voltar ao Vilarejo\n ")
+    escreva("3 - Ver seus status\n")
+    leia( opcaoEscolhidaCaminhoPantano)
+
+    se(  opcaoEscolhidaCaminhoPantano == 1){
+      cavernaSombria()
+    } senao se ( opcaoEscolhidaCaminhoPantano == 2){
+      voltouNoMapa()
+    }senao se( opcaoEscolhidaCaminhoPantano == 3){
+      mostraAtributos()
+      u.aguarde(3000)
+      limpa()
+      }
+    }
+
+
+
+
+  }
+
+  funcao derrotouGuardiao(){
+     escreva("\nVocê derrotou o Guardião Esquecido!\n")
+        escreva("A criatura solta um urro final antes de desmanchar em cinzas negras...\n")
+        u.aguarde(1000)
+        escreva("Entre os escombros da caverna, uma escadaria de pedra surge, revelando uma passagem secreta.\n")
+        u.aguarde(1000)
+        escreva("Você desce lentamente... cada degrau ecoa como um presságio.\n")
+        u.aguarde(1000)
+        passouguardiao()
+        aumentarXP()
+        limpa()
+
+  }
+
   funcao aumentarxpbatalhagoblin(){
-     experienciaAtual = experienciaAtual + 2
+     experienciaAtual = experienciaAtual + 4
   }
 
   funcao cavernaSombria(){
+    contadordeMapas++
     escreva("Você respira fundo e entra na Caverna Sombria...\n")
 escreva("O ar é pesado e úmido, e cada passo ecoa como se algo o observasse das sombras.\n")
 escreva("Formações rochosas grotescas moldam o caminho, enquanto murmúrios ancestrais sussurram segredos esquecidos.\n")
@@ -89,6 +135,7 @@ funcao batalhacontraGuardiao(){
       escreva("\nVocê derrotou o Guardião\n")
       escreva("Sua jornada continua...\n")
       u.aguarde(1000)
+      derrotouGuardiao()
       aumentarXP()
       limpa()
     }
@@ -265,18 +312,16 @@ funcao batalhacontraGuardiao(){
 
   }
 
-  funcao voltouNoMapa() {
-  escreva("Você resolveu retornar e encontrou um Goblin\n")
-  escreva("Será obrigatorio batalhar com ele para não ser saqueado!")
+ funcao voltouNoMapa() {
+  escreva("Você resolveu retornar e encontrou um Goblin!\n")
+  escreva("Será obrigatório batalhar com ele para não ser saqueado!\n\n")
 
   inteiro vidaDoGoblin = 7
   inteiro ataqueDoGoblin = 2
-  inteiro escolhaTurno
-  inteiro escolhaItem
+  inteiro escolhaTurno, escolhaItem
   inteiro rodada = 1
 
-  enquanto(vidaJogador > 0 e vidaDoGoblin > 0) {
-    escreva(vidaDoGoblin)
+  enquanto (vidaJogador > 0 e vidaDoGoblin > 0) {
     escreva("\n-- Rodada ", rodada, " --\n")
     escreva("Sua Vida: ", vidaJogador, " | Vida do Goblin: ", vidaDoGoblin, "\n")
     escreva("1 - Atacar\n")
@@ -284,25 +329,24 @@ funcao batalhacontraGuardiao(){
     escreva("Escolha sua ação: ")
     leia(escolhaTurno)
 
-    se(escolhaTurno == 1) {
+    se (escolhaTurno == 1) {
       escreva("\nVocê ataca o Goblin causando ", ataqueJogador, " de dano!\n")
       vidaDoGoblin = vidaDoGoblin - ataqueJogador
-    } senao se(escolhaTurno == 2) {
+    } senao se (escolhaTurno == 2) {
       itensnoinventario()
       escreva("Qual item deseja usar? ")
       leia(escolhaItem)
 
-      se(escolhaItem >= 1 e escolhaItem <= 3) {
-        se(quantidadeItens[escolhaItem - 1] > 0) {
-          se(escolhaItem == 1) {
+      se (escolhaItem >= 1 e escolhaItem <= 3) {
+        se (quantidadeItens[escolhaItem - 1] > 0) {
+          se (escolhaItem == 1) {
             usarPocaoDeVida()
-            quantidadeItens[escolhaItem - 1] = quantidadeItens[escolhaItem - 1] - 1
-          } senao se(escolhaItem == 2) {
+          } senao se (escolhaItem == 2) {
             usarPocaoEstranha()
-            quantidadeItens[escolhaItem - 1] = quantidadeItens[escolhaItem - 1] - 1
           } senao {
             escreva("Esse item não faz nada...\n")
           }
+          quantidadeItens[escolhaItem - 1] = quantidadeItens[escolhaItem - 1] - 1
         } senao {
           escreva("Você não tem esse item!\n")
         }
@@ -313,26 +357,26 @@ funcao batalhacontraGuardiao(){
       escreva("Você hesitou... e perdeu sua chance de agir!\n")
     }
 
-    se(vidaDoGoblin <= 0) {
-      vidaDoGoblin = 0
+    se (vidaDoGoblin <= 0) {
       escreva("\nVocê derrotou o Goblin!\n")
       escreva("Sua jornada continua...\n")
       u.aguarde(1000)
       aumentarxpbatalhagoblin()
       limpa()
       continuarPrimeiroWin()
+      pare
     }
 
-    se(vidaJogador <= 0) {
+   
+    se (vidaJogador <= 0) {
       escreva("Você foi derrotado...\n")
       u.aguarde(3000)
       creditos()
+      pare
     }
 
-    se(vidaDoGoblin > 0) {
-      escreva("O Goblin contra-ataca causando ", ataqueDoGoblin, " de dano!\n")
-      vidaJogador = vidaJogador - ataqueDoGoblin
-    }
+    escreva("O Goblin contra-ataca causando ", ataqueDoGoblin, " de dano!\n")
+    vidaJogador = vidaJogador - ataqueDoGoblin
 
     rodada = rodada + 1
     u.aguarde(2000)
