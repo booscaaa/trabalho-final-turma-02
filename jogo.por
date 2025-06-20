@@ -1,6 +1,6 @@
 programa {
   inclua biblioteca Util --> u
-  inteiro vidaMaxima = 100
+  inteiro vidaMaxima = 12
   inteiro vidaJogador
   inteiro ataqueJogador
   cadeia nomedoHeroi
@@ -20,7 +20,7 @@ programa {
   cadeia posicoesNoMapa[5] = {
     "Floresta Amaldiçoada",
     "Vilarejo abandonado",
-    "Entrada do castelo",
+    "Caverna Sombria",
     "Castelo",
     "Campo aberto com tempestade nada suspeito"
   } 
@@ -36,8 +36,78 @@ escreva("Formações rochosas grotescas moldam o caminho, enquanto murmúrios an
 u.aguarde(3000)
 escreva("Subitamente, das profundezas da escuridão, uma criatura emerge — olhos brilhando em vermelho e corpo formado por sombras e ossos.\n")
 escreva("Um **Guardião Esquecido** se interpõe em seu caminho. Você terá que lutar para avançar.\n")
+batalhacontraGuardiao()
 
+ }
+
+funcao batalhacontraGuardiao(){
+  inteiro vidaDoGuardiao = 12
+  inteiro ataqueDoGuardiao = 3
+  inteiro escolhaTurno
+  inteiro escolhaItem
+  inteiro rodada = 0
+
+  enquanto(vidaJogador > 0 e vidaDoGuardiao > 0) {
+    escreva("\n-- Rodada ", rodada, " --\n")
+    escreva("Sua Vida: ", vidaJogador, " | Vida do Guardião: ", vidaDoGuardiao, "\n")
+    escreva("1 - Atacar\n")
+    escreva("2 - Usar item\n")
+    escreva("Escolha sua ação: ")
+    leia(escolhaTurno)
+
+    se(escolhaTurno == 1) {
+      escreva("\nVocê ataca a Alma causando ", ataqueJogador, " de dano!\n")
+      vidaDoGuardiao = vidaDoGuardiao - ataqueJogador
+    } senao se(escolhaTurno == 2) {
+      itensnoinventario()
+      escreva("Qual item deseja usar? ")
+      leia(escolhaItem)
+
+      se(escolhaItem >= 1 e escolhaItem <= 3) {
+        se(quantidadeItens[escolhaItem - 1] > 0) {
+          se(escolhaItem == 1) {
+            usarPocaoDeVida()
+            quantidadeItens[escolhaItem - 1] = quantidadeItens[escolhaItem - 1] - 1
+          } senao se(escolhaItem == 2) {
+            usarPocaoEstranha()
+            quantidadeItens[escolhaItem - 1] = quantidadeItens[escolhaItem - 1] - 1
+          } senao {
+            escreva("Esse item não faz nada...\n")
+          }
+        } senao {
+          escreva("Você não tem esse item!\n")
+        }
+      } senao {
+        escreva("Item inválido!\n")
+      }
+    } senao {
+      escreva("Você hesitou... e perdeu sua chance de agir!\n")
+    }
+
+    se(vidaDoGuardiao <= 0) {
+      vidaDoGuardiao = 0
+      escreva("\nVocê derrotou o Guardião\n")
+      escreva("Sua jornada continua...\n")
+      u.aguarde(1000)
+      aumentarXP()
+      limpa()
+    }
+
+    se(vidaJogador <= 0) {
+      escreva("Você foi derrotado...\n")
+      u.aguarde(3000)
+      creditos()
+    }
+
+    se(vidaDoGuardiao > 0) {
+      escreva("O Guardião contra-ataca causando ", ataqueDoGuardiao, " de dano!\n")
+      vidaJogador = vidaJogador - ataqueDoGuardiao
+    }
+
+    rodada = rodada + 1
+    u.aguarde(2000)
   }
+}
 
   funcao ganhoudaAlma(){
     inteiro opcaoEscolhidaCaminhoVilarejo
@@ -54,8 +124,8 @@ escreva("Um **Guardião Esquecido** se interpõe em seu caminho. Você terá que
 
     enquanto(  opcaoEscolhidaCaminhoVilarejo != 0){
     escreva("\nO que você deseja fazer?\n")
-    escreva("1 - Entrar no Vilarejo\n")
-    escreva("2 - Voltar a Floresta Almadiçoada\n ")
+    escreva("1 - Entrar na Caverna\n")
+    escreva("2 - Voltar ao Vilarejo\n ")
     escreva("3 - Ver seus status\n")
     leia( opcaoEscolhidaCaminhoVilarejo)
 
@@ -74,7 +144,7 @@ escreva("Um **Guardião Esquecido** se interpõe em seu caminho. Você terá que
 
 
   funcao batalhacontraAlma(){
-    inteiro vidaDaAlma = 7
+  inteiro vidaDaAlma = 7
   inteiro ataqueDaAlma = 2
   inteiro escolhaTurno
   inteiro escolhaItem
@@ -133,20 +203,25 @@ escreva("Um **Guardião Esquecido** se interpõe em seu caminho. Você terá que
       creditos()
     }
 
+    se(vidaDaAlma > 0) {
+      escreva("A Alma perdida contra-ataca causando ", ataqueDaAlma, " de dano!\n")
+      vidaJogador = vidaJogador - ataqueDaAlma
+    }
+
     rodada = rodada + 1
     u.aguarde(2000)
-
   }
-  }
+}
 
   funcao aumentarXP(){
   experienciaAtual = experienciaAtual + 5
 
   se(experienciaAtual >= experienciaParaProximoNivel){
     experienciaAtual = experienciaAtual - experienciaParaProximoNivel
+    vidaJogador = vidaMaxima
     nivelJogador = nivelJogador + 1
-    experienciaParaProximoNivel = experienciaParaProximoNivel + 10
     escreva("Parabéns! Você subiu para o nível ", nivelJogador, "\n")
+    escreva("Sua Vida foi totalmente Restaurada!")
 
     inteiro escolhaRecompensa
     escreva("Escolha sua recompensa de nível:\n")
@@ -190,10 +265,9 @@ escreva("Um **Guardião Esquecido** se interpõe em seu caminho. Você terá que
 
   }
 
-  funcao voltouNoMapa(){
-    escreva("Você resolveu retornar e encontrou um Goblin\n")
-
-    escreva("Será obrigatorio batalhar com ele para não ser saqueado!")
+  funcao voltouNoMapa() {
+  escreva("Você resolveu retornar e encontrou um Goblin\n")
+  escreva("Será obrigatorio batalhar com ele para não ser saqueado!")
 
   inteiro vidaDoGoblin = 7
   inteiro ataqueDoGoblin = 2
@@ -211,7 +285,7 @@ escreva("Um **Guardião Esquecido** se interpõe em seu caminho. Você terá que
     leia(escolhaTurno)
 
     se(escolhaTurno == 1) {
-      escreva("\nVocê ataca a Goblin causando ", ataqueJogador, " de dano!\n")
+      escreva("\nVocê ataca o Goblin causando ", ataqueJogador, " de dano!\n")
       vidaDoGoblin = vidaDoGoblin - ataqueJogador
     } senao se(escolhaTurno == 2) {
       itensnoinventario()
@@ -255,13 +329,15 @@ escreva("Um **Guardião Esquecido** se interpõe em seu caminho. Você terá que
       creditos()
     }
 
+    se(vidaDoGoblin > 0) {
+      escreva("O Goblin contra-ataca causando ", ataqueDoGoblin, " de dano!\n")
+      vidaJogador = vidaJogador - ataqueDoGoblin
+    }
+
     rodada = rodada + 1
     u.aguarde(2000)
-
   }
-
-
-  }
+}
 
   funcao continuarPrimeiroWin(){
     aumentarXP()
@@ -468,11 +544,15 @@ escreva("Um **Guardião Esquecido** se interpõe em seu caminho. Você terá que
       creditos()
     }
 
+    se(vidaDaArvore > 0) {
+      escreva("A Árvore do Lamento contra-ataca causando ", ataqueDaArvore, " de dano!\n")
+      vidaJogador = vidaJogador - ataqueDaArvore
+    }
+
     rodada = rodada + 1
     u.aguarde(2000)
   }
 }
-
   funcao inicio() {
     MenuTop()
   }
