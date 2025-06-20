@@ -264,7 +264,7 @@ programa {
                         pare
 
                     caso 2:
-                        danodaespecializacao = 67
+                        danodaespecializacao = 40
                         vidadaespecializacao = 40
                         agilidadedaespecializacao = 44
                         defesadaespecializacao = 23
@@ -296,7 +296,7 @@ programa {
                         pare
 
                     caso 4:
-                        danodaespecializacao = 63
+                        danodaespecializacao = 38
                         vidadaespecializacao = 21
                         agilidadedaespecializacao = 36
                         defesadaespecializacao = 40
@@ -445,8 +445,8 @@ programa {
                             Util.aguarde(500)
                             escreva("Você encontrou um GOBLIN DA NÉVOA!!\n")
                             Util.aguarde(500)
-                            inteiro vidaDoGoblin = 25
-                            inteiro danoDoGoblin = 6
+                            inteiro vidaDoGoblin = 40
+                            inteiro danoDoGoblin = 12
                             inteiro acaodocombate
                             logico defendeuseNesteTurno = falso
                             escreva("                                                                                                                                  \n")
@@ -728,8 +728,8 @@ programa {
                               escolha(caminhoparaprosseguirflorestadanevoa2){
                                 caso 1:
                                 escreva("VOCÊ ENCONTROU UM GOLEM DE COGUMELOS!!\n")
-                                inteiro vidaDoGolemDeCogumelos = 25
-                                inteiro danoDoGolemDeCogumelos = 6
+                                inteiro vidaDoGolemDeCogumelos = 50
+                                inteiro danoDoGolemDeCogumelos = 10
                                 inteiro acaoDoCombateDoGolemDeCogumelos
                                 logico defendeuSeNesteTurnoContraOGolemDeCogumelos = falso
                                 escreva("                                                                                                                                             \n")
@@ -1140,7 +1140,7 @@ programa {
                                 escreva("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n")
                                 escreva("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n")
                                 Util.aguarde(2000)
-                                inteiro vida_do_primeiro_chefe_xavius = 100
+                                inteiro vida_do_primeiro_chefe_xavius = 110
                                 inteiro dano_de_ataque_chefe_xavius = 27
                                 cadeia nome_chefe_xavius = "XAVIUS , O COLOSSO"
                                 logico defenderse_chefe_xavius = falso
@@ -2121,7 +2121,7 @@ programa {
                                         escreva(nome_chefe_guldhan," ACHO QUE É DIGNO O SUFICIENTE PARA ME ENFRENTAR...\n")
                                         Util.aguarde(2000)
                                         inteiro vida_chefe_guldhan = 100
-                                        inteiro dano_de_ataque_guldhan = 8
+                                        inteiro dano_de_ataque_guldhan = 10
                                         inteiro xp_ganho_guldhan = 100
                                         logico defenderse_de_guldhan = falso
                                         limpa()
@@ -4075,9 +4075,9 @@ programa {
                                               Util.aguarde(7000)                                             
                                               escreva(nome_chefe_ragnaros," :ᗰOᖇTᗩᒪ...ᑕOᗰO OᑌSᗩ ᐯIᖇ ᗩTᕮ́ O ᗰᕮᑌ ᒪᗩᖇ???\n")
                                               escreva(nome_chefe_ragnaros," :O ᖴOＧO ᑕOᘉSᑌᗰIᖇᗩ́ ᕮSTᕮ ᗰᑌᘉᗞO ᑭᗩTᕮ́TIᑕO...\n")
-                                              inteiro vida_chefe_ragnaros = 50 //alterar vida do chefe
+                                              inteiro vida_chefe_ragnaros = 300 
                                               inteiro xp_ganho_ragnaros = 100
-                                              inteiro dano_de_ataque_chefe_ragnaros = 5 //alterar o dano do chefe
+                                              inteiro dano_de_ataque_chefe_ragnaros = 13 
                                               logico defenderse_chefe_ragnaros = falso
                                               enquanto(vidadaespecializacao > 0 e vida_chefe_ragnaros > 0) {
                                               escreva("\nSUA VIDA:", vidadaespecializacao, "\nVIDA DO ", nome_chefe_ragnaros, ":", vida_chefe_ragnaros, "\n")
@@ -5193,8 +5193,8 @@ programa {
                                                   escreva("MM--::mm++mm--++----------MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM..++--..::--::MM++--......--MM\n")
                                                   escreva("MMMMMMMMMMMMMMMMMMMMMM@@MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM@@MM@@MMMMMMMMMMMMMMMM\n")
                                                   Util.aguarde(7000)                                             
-                                                  inteiro vida_carnical_viscoso = 40
-                                                  inteiro dano_carnical_viscoso = 6
+                                                  inteiro vida_carnical_viscoso = 280
+                                                  inteiro dano_carnical_viscoso = 30
                                                   inteiro xp_ganho_carnicalviscoso = 100
                                                   inteiro acao_combate_carnical_viscoso
                                                   logico defenderse_carnical_viscoso = falso
@@ -6679,9 +6679,9 @@ programa {
                                               escreva("                              ##############################mm          ############@@mm--\n")                                                  
                                               escreva("                            mm############################..                mm##MM++@@\n")
                                               Util.aguarde(8000)                                                                                         
-                                              inteiro vida_chefe_keltuzad = 50 //alterar vida do chefe
+                                              inteiro vida_chefe_keltuzad = 400 
                                               inteiro xp_ganho_keltuzad = 100
-                                              inteiro dano_de_ataque_chefe_keltuzad = 5 //alterar o dano do chefe
+                                              inteiro dano_de_ataque_chefe_keltuzad = 18
                                               logico defenderse_chefe_keltuzad = falso
                                               enquanto(vidadaespecializacao > 0 e vida_chefe_keltuzad > 0) {
                                               escreva("\nSUA VIDA:", vidadaespecializacao, "\nVIDA DO ", nome_chefe_keltuzad, ":", vida_chefe_keltuzad, "\n")
@@ -8149,6 +8149,36 @@ programa {
                 pare
 
             caso 2:
+                escreva("                       .,,uod8B8bou,,.                             \n")
+                escreva("              ..,uod8BBBBBBBBBBBBBBBBRPFT?l!i:.                    \n")
+                escreva("         ,=m8BBBBBBBBBBBBBBBRPFT?!||||||||||||||                   \n")
+                escreva("         !...:!TVBBBRPFT||||||||||!!^^\"\"' ||||                   \n")
+                escreva("         !.......:!?|||||!!^^\"\"'          ||||                   \n")
+                escreva("         !.........||||                     ||||                   \n")
+                escreva("         !.........||||  A JORNADA          ||||                   \n")
+                escreva("         !.........||||          DO         ||||                   \n")
+                escreva("         !.........||||             HERÓI   ||||                   \n")
+                escreva("         !.........||||             🎮🎮   ||||                   \n")
+                escreva("         !.........||||                     ||||                   \n")
+                escreva("         `.........||||                    ,||||                   \n")
+                escreva("          .;.......||||               _.-!!|||||                   \n")
+                escreva("   .,uodWBBBBb.....||||       _.-!!|||||||||!:'                    \n")
+                escreva("!YBBBBBBBBBBBBBBb..!|||:..-!!|||||||!iof68BBBBBb....               \n")
+                escreva("!..YBBBBBBBBBBBBBBb!!||||||||!iof68BBBBBBRPFT?!::   `.             \n")
+                escreva("!....YBBBBBBBBBBBBBBbaaitf68BBBBBBRPFT?!:::::::::     `.          \n")
+                escreva("!......YBBBBBBBBBBBBBBBBBBBRPFT?!::::::;:!^\"`;:::       `.        \n")
+                escreva("!........YBBBBBBBBBBRPFT?!::::::::::^''...::::::;         iBBbo.  \n")
+                escreva("`..........YBRPFT?!::::::::::::::::::::::::;iof68bo.      WBBBBbo.\n")
+                escreva("  `..........:::::::::::::::::::::::;iof688888888888b.     `YBBBP^'\n")
+                escreva("    `........::::::::::::::::;iof688888888888888888888b.     `     \n")
+                escreva("      `......:::::::::;iof688888888888888888888888888888b.         \n")
+                escreva("        `....:::;iof688888888888888888888888888888888899fT!        \n")
+                escreva("          `..::!8888888888888888888888888888888899fT|!^\"'          \n")
+                escreva("            `' !!988888888888888888888888899fT|!^\"'                \n")
+                escreva("                `!!8888888888888888899fT|!^\"'                      \n")
+                escreva("                  `!988888888899fT|!^\"'                            \n")
+                escreva("                    `!9899fT|!^\"'                                  \n")
+                Util.aguarde(4000)
                 escreva("Créditos:\n")
                 escreva("Muito obrigado por jogar, desenvolvido por mim Samuel Aloisio\n")
                 escreva(">>>>>SIGA-ME NAS REDES SOCIAIS <<<<<\n")
@@ -8159,8 +8189,34 @@ programa {
                 pare
 
             caso 3:
-                escreva("Obrigado por jogar o meu jogo, tmj gurizao!\n")
-                escreva("💗\n")
+escreva("             ________________________________________________              \n")
+escreva("            /                                                \\             \n")
+escreva("           |    _________________________________________     |            \n")
+escreva("           |   |                                         |    |            \n")
+escreva("           |   |  C:\\> _                                |    |            \n")
+escreva("           |   |                                         |    |            \n")
+escreva("           |   |   obrigado por jogar meu jogo           |    |            \n")
+escreva("           |   |                                         |    |            \n")
+escreva("           |   |      Vini melhor prof😉                |    |            \n")
+escreva("           |   |                                         |    |            \n")
+escreva("           |   |                    FIM!!                |    |            \n")
+escreva("           |   |                                         |    |            \n")
+escreva("           |   |                                         |    |            \n")
+escreva("           |   |                                         |    |            \n")
+escreva("           |   |                                         |    |            \n")
+escreva("           |   |_________________________________________|    |            \n")
+escreva("           |                                                  |            \n")
+escreva("            \\_________________________________________________/            \n")
+escreva("                   \\___________________________________/                   \n")
+escreva("                ___________________________________________                \n")
+escreva("             _-'    .-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.  --- `-_             \n")
+escreva("          _-'.-.-. .---.-.-.-.-.-.-.-.-.-.-.-.-.-.-.--.  .-.-.`-_          \n")
+escreva("       _-'.-.-.-. .---.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-`__`. .-.-.-.`-_       \n")
+escreva("    _-'.-.-.-.-. .-----.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-----. .-.-.-.-.`-_    \n")
+escreva(" _-'.-.-.-.-.-. .---.-. .-------------------------. .-.---. .---.-.-.-.`-_ \n")
+escreva(":-------------------------------------------------------------------------:\n")
+escreva("`---._.-------------------------------------------------------------._.---'\n")
+
                 pare
 
             caso contrario:
