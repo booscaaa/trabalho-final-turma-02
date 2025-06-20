@@ -1,0 +1,29 @@
+A função menu é um escolha com tres opções que retorna um valor dentro do inicio().
+as opções são novoJogo()
+mostrarCreditos()
+sair()
+Tanto sair quanto mostrar créditos são apenas um bloco com escreva();
+
+No novoJogo() é chamada a criação de personagem/heroi na função novoPersonagem() que le o nome do heroi, e da três opções de classe;
+se a opção for valida os atributos são salvos em variaveis globais.
+após isso é chamada a função campanha onde está a narrativa.
+
+O controle dos niveis é feito pela função subir de nivel, a cada multiplo de dez do nivel do jogador aumenta em 1 e os atributos são
+aumentados de acordo com a classe escolhida. Alem disso o joagador ganha uma quantia(igual o nivel) de atributo livre que o jogador escolhe onde usar.
+Nos niveis 5 e 10 é possivel avançar de classe aumentando os ganhos de atributo por nivel.
+
+Os inimigos são sorteados de um vetor com Nomes enquantos os atributos são variaveis globais que são alterados conforme região ou nivel.
+Os chefes de cada região usam as mesmas variaveis e então adiciona o proprio nivel como um modificador.
+
+As regiões são um vetor de oito posições, o controle de qual posição está é feito com funções de avançar e retornar para região,
+chamadas ao derrotar um dos chefes da região
+
+Ao final das batalhas e sorteado se o jogador encontra uma poção, um acampamento onde pode recuperar vida ou ganhar experiência.
+
+As batalhas são simples jogador ataca, inimigo ataca.
+
+A batalha final tem 3 fazes que acontecem a certa quantia de vida do inimigo, e Eldlich o chefe final recupera vida igual o proprio nivel
+a cada turno.
+
+Como a maior parte das variaveis são globais para evitar acumulo de valores dentro das funções novoPersonagem e gerarInimigo todas a variaveis
+são resetedas antes de seguir para a atribuição.
