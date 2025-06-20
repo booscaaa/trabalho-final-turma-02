@@ -20,7 +20,7 @@ programa {
 
   cadeia nomeDeBoss[8] ={"Goblin Motoqueiro, Grande Gabonga", "Tsumuha-Kutsunagi, O Senhor das Espadas", "Nenleria, a sonhadora", "Atomic, o Dragao de Restolhos", "Dama Prateada do Labirinto", "Rei Besta-Maquina, Regulus", "Rei do Pantano", "Eldlich, O Devastador"}
       
-  cadeia nomeDoInimigo[25] = {"Goblin Motoqueiro, Troika", "Goblin Motoqueiro, Boom Mach", "Goblin Motoqueiro, Dougg Atropelador", "Goblin Motoqueiro, Clater Explosivo", "Goblin Motoqueira, Mean Impiedosa", "Goblin Motoqueiro, Griare", "Boneca Amaldicoada", "Soldado De Brinquedo", "Cadaver Rastejante", "Besta de Restolhos", "Goblin de Restolhos", "Quimera de Restolhos", "Ariane, Serva do Labirinto", "Arias, Serva do Labirito", "Arch, Estatua do Labirito", "Sargas, Campeao Possuido", "Golem de Engrenagens", "Arquidemonio de Sucata", "Lobo da Praga", "Zumbi Espalha-Prga", "Paladino do Dragao Amaldicoado", "Conqistador Caido da Terra Dourad", "General Caido da Terra Dourda", "Guardiao Caido da Terra Dourada", "Arruaceiro da Terra Dourada"}
+  cadeia nomeDoInimigo[25] = {"Goblin Motoqueiro, Troika", "Goblin Motoqueiro, Boom Mach", "Goblin Motoqueiro, Dougg Atropelador", "Goblin Motoqueiro, Clater Explosivo", "Goblin Motoqueira, Mean Impiedosa", "Goblin Motoqueiro, Griare", "Boneca Amaldicoada", "Soldado De Brinquedo", "Cadaver Rastejante", "Besta de Restolhos", "Goblin de Restolhos", "Quimera de Restolhos", "Ariane, Serva do Labirinto", "Arias, Serva do Labirito", "Arch, Estatua do Labirito", "Sargas, Campeao Possuido", "Golem de Engrenagens", "Arquidemonio de Sucata", "Lobo da Praga", "Zumbi Espalha-Prga", "Paladino do Dragao Amaldicoado", "Conqistador Caido da Terra Dourada", "General Caido da Terra Dourda", "Guardiao Caido da Terra Dourada", "Arruaceiro da Terra Dourada"}
   cadeia nomeDoInimigoAtual
 
   inteiro nivelDoInimigo
@@ -64,11 +64,11 @@ funcao inteiro menuDeInicializacao() {
   escreva("--1: Novo jogo--\n")
   escreva("--2: Creditos--\n")
   escreva("--3: Sair--\n")
-  escreva("Escolha uma opcao: ")
+  escreva("Escolha uma opcao: \n")
 
   leia(opcao)
   enquanto(opcao < 1 ou opcao > 3) {
-    escreva("Opcao invalida! Tente novamente: ")
+    escreva("Opcao invalida! Tente novamente: \n")
     leia(opcao)
   }
         
@@ -126,13 +126,9 @@ funcao criarPersonagem() {
     defesa = 5
     agilidade = 5
   }
-  escreva("Nome: ", nomeDoPersonagem, "\n")
-  escreva("Classe: ", classe, "\n\n")
-  escreva("Vida: ", vida, "\n")
-  escreva("Nivel: ", nivel, "\n")
-  escreva("Ataque: ", ataque, "\n")
-  escreva("Defesa: ", defesa, "\n")
-  escreva("Agilidade: ", agilidade, "\n\n")
+  mostrarAtributos()
+  u.aguarde(4000)
+  limpa()
 }
     
 funcao mostrarCreditos() {
@@ -886,7 +882,7 @@ funcao avancoDeClasseVigia(){
 funcao avancoDeClasseMago() {
     inteiro opcaoDeAvanco
     
-    escreva(nomeDoPersonagem, " alcancou o nivel maximo na sua classe atual, agora escolha uma das opcoes de avanco de classe. Este sera seu ultimo avanco de classe.\n")
+    escreva(nomeDoPersonagem, " alcancou o nivel maximo na sua classe inicial, agora escolha uma das opcoes de avanco de classe.\n")
     escreva("1 - EVOCADOR\n")
     escreva("Classe que continua o caminho do Mago, com foco total em ataques poderosos.\n")
     escreva("Mantem uma defesa fraca, mas eh capaz de causar grande dano de forma rapida e direta.\n")
@@ -994,30 +990,30 @@ funcao gerarInimigo() {
   }senao se(regioes[regiaoAtual] == "PANTANO DOS LAMENTOS"){
     seletorDeInimigos = u.sorteia(18,20)
   }senao se(regioes[regiaoAtual] == "CASTELO DOURADO"){
-    inteiro batalhaDoCastelo = 0
-    se(batalhaDoCastelo == 0){
-      seletorDeInimigos = 21
-      nomeDoInimigo[seletorDeInimigos]
-      se(vidaDoInimigo < 1){
-        batalhaDoCastelo++
-      }
-    }senao se(batalhaDoCastelo == 1){
-      seletorDeInimigos = 22
-      nomeDoInimigo[seletorDeInimigos]
-      se(vidaDoInimigo < 1){
-        batalhaDoCastelo++
-      }
-    }senao se(batalhaDoCastelo == 2){
-      seletorDeInimigos = 23
-      nomeDoInimigo[seletorDeInimigos]
-      se(vidaDoInimigo < 1){
-        batalhaDoCastelo++
-      }
-    }senao se(batalhaDoCastelo == 3){
-      seletorDeInimigos = 24
-      nomeDeBoss[seletorDeInimigos]
+    seletorDeInimigos[21]
+    se(vidaDoInimigo <= 0 e nomeDoInimigoAtual[seletorDeInimigos] == "Conqistador Caido da Terra Dourada"){
+      vidaDoInimigo+=10
+      seletorDeInimigos[22]
+    }senao se(vidaDoInimigo <= 0 e nomeDoInimigoAtual[seletorDeInimigos] == "General Caido da Terra Dourda"){
+      vidaDoInimigo+=10
+      seletorDeInimigos[23]
+    }senao se(vidaDoInimigo <= 0 e nomeDoInimigoAtual[seletorDeInimigos] == "Guardiao Caido da Terra Dourada"){
+      vidaDoInimigo+=10
+      seletorDeInimigos[24]
     }
-
+  }
+  se(nivel > 5){
+    vidaDoInimigo = 40 + nivel * 5
+    inimigoATK = 10 + nivel
+    inimigoDEF = 4 + nivel
+    inimigoAGI = 4 + nivel
+    ganhoDeExperiencia = nivelDoInimigo + 1
+  }senao se(nivel > 10){
+    vidaDoInimigo = 75 + nivel * 5
+    inimigoATK = 15 + nivel
+    inimigoDEF = 10 + nivel
+    inimigoAGI = 6 + nivel
+    ganhoDeExperiencia = nivelDoInimigo + 5
   }
     nomeDoInimigoAtual = nomeDoInimigo[seletorDeInimigos]
     nivelDoInimigo = nivel
@@ -1025,7 +1021,7 @@ funcao gerarInimigo() {
     inimigoATK = 5 + nivel
     inimigoDEF = 2 + nivel
     inimigoAGI = 1 + nivel
-    ganhoDeExperiencia = nivelDoInimigo + 5
+    ganhoDeExperiencia = nivelDoInimigo + 1
 
     turnoDeBatalhaSimples()
 }
@@ -1201,6 +1197,18 @@ funcao voltarRegiao(){
 }
 funcao menuDeNavegacao(){
   inteiro opcaoDeMovimentacao
+  
+  se(regiaoAtual == 0){
+    escreva("Nao a outras regioes antes daqui.\n")
+    escreva("Avancar e a unica escolha ", nomeDoPersonagem, ".\n")
+    proximaRegiao()
+    introducaoDaRegiao()
+  }senao se(regiaoAtual == 7){
+    escreva("Nao ha nada alem do castelo do Devastador.\n")
+    voltarRegiao()
+    introducaoDaRegiao()
+  }
+  
   escreva("\n-----------Zaruba----------\n")
   escreva(nomeDoPersonagem, " como quer continuar sua jornada?\n")
   escreva("Avancar ou retornar?\n")
@@ -1627,7 +1635,7 @@ funcao atributoLivre(){
   escreva("2 - Ataque\n")
   escreva("3 - Defesa\n")
   escreva("4 - Agilidade\n")
-  escreva("Digite o numero da opcao escolhida: ")
+  escreva("Digite o numero da opcao escolhida: \n")
   leia(atributoMelhorar)
   enquanto(atributoMelhorar < 1 ou atributoMelhorar > 4){
     escreva("Opcao invalida, digite um numero de 1 a 4.\n")
@@ -1637,30 +1645,26 @@ funcao atributoLivre(){
     caso 1:
       mostrarAtributos()
       escreva("Voce escolhou aumentar sua vida.\n")
-      vida+=nivel
+      vidaMaxima+=nivel
       escreva("Valor atualizado:\n")
-      mostrarAtributos()
     pare
     caso 2:
       mostrarAtributos()
       escreva("Voce escolhou aumentar seu ataque\n.")
       ataque+=nivel
       escreva("Valor atualizado:\n")
-      mostrarAtributos()
     pare
     caso 3:
       mostrarAtributos()
       escreva("Voce escolhou aumentar seu defesa\n.")
       defesa+=nivel
       escreva("Valor atualizado:\n")
-      mostrarAtributos()
     pare
     caso 4:
       mostrarAtributos()
       escreva("Voce escolhou aumentar sua agilidade\n.")
       agilidade+=nivel
       escreva("Valor atualizado:\n")
-      mostrarAtributos()
     pare
   }
 }
@@ -1672,7 +1676,7 @@ funcao ganharPocao(){
     escreva("Voce encontrou uma pocao capaz de te curar por completo.\n")
     pocaoEmPosse += 1
     escreva(nomeDoPersonagem, " possui: ", pocaoEmPosse, "pocoes.\n")
-    escreva("Digite 1 para usa-la, dois para guardar pocao para uso futuro.")
+    escreva("Digite 1 para usa-la, dois para guardar pocao para uso futuro.\n")
     leia(usarPocao)
     enquanto(usarPocao <1 ou usarPocao > 2){
       escreva("Opcao invalida tente novamente.\n")
@@ -1750,7 +1754,7 @@ funcao turnoDeBatalhaSimples(){
     enquanto(vida > 0 e vidaDoInimigo > 0){
       statusDeBatalha()
         escreva("Turno do jogador\n")
-        escreva("1 - Atacar\n2 - Defender\nEscolha: ")
+        escreva("1 - Atacar\n2 - Defender\nEscolha: \n")
         defesa = defesaOriginal
         inteiro acao
         leia(acao)
@@ -1810,7 +1814,7 @@ funcao batalhaEldlichV2(){
     enquanto(vida > 0 e vidaDoInimigo > 0){
       statusDeBatalha()
       escreva("Turno do jogador\n")
-      escreva("1 - Atacar\n2 - Defender\nEscolha: ")
+      escreva("1 - Atacar\n2 - Defender\nEscolha: \n")
       defesa = defesaOriginal
       inteiro acao
       leia(acao)
