@@ -310,6 +310,10 @@ TA MORTO
 
 Essa função foi inútil durante muito tempo, mas ela serve pra encerrar o programa de vez caso o usuário morra, mandando ele pra uma função que só passa se o usuário tiver vida maior que zero.
 
+OPÇÃO NA BATALHA
+
+Sofreu uma grande alteração, mas é basicamente assim: O usuário escolhe se quer atacar ou usar poção, e ele executa isso, e ali também aparece o contador da rodada e os status do inimigo e do usuário durante a batalha, e uma época era separado, eu criava uma função pra cada batalha, mas depois coloquei na opção da batalha, e criei 2 parâmetros pra ela, uma pra idenitificar qual inimigo era, e outro para identificar o contador de rodadas.
+
 
 
 
