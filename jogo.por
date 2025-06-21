@@ -25,25 +25,328 @@ programa {
     "Campo aberto com tempestade nada suspeito"
   } 
 
+  funcao finalReal() {
+    escreva("\nCom o grito final do Demônio Demoníaco, o silêncio cai sobre o castelo.\n")
+    u.aguarde(2000)
+    escreva("As chamas se apagam. As sombras recuam. O céu, antes vermelho, torna-se dourado.\n")
+    u.aguarde(2500)
+    escreva("Você se ajoelha, ofegante. Mas algo brilha entre os escombros do trono.\n")
+    escreva("Uma pequena chave dourada, pulsando com uma energia celestial...\n")
+    u.aguarde(2000)
+
+    escreva("\nVocê a segura, e ouve uma voz ancestral em sua mente:\n")
+    escreva("\"Herói verdadeiro... você passou pela tentação, pelo medo e pela morte. Chegou onde poucos chegaram.\"\n")
+    u.aguarde(3000)
+
+    escreva("Diante de você, uma porta de luz se abre. Além dela, o verdadeiro coração do Castelo Dourado.\n")
+    escreva("Um templo antigo, guardado pelo tempo, contendo o artefato supremo: **O Olho da Eternidade**.\n")
+    u.aguarde(3000)
+
+    escreva("\nAo tocá-lo, visões do passado, presente e futuro passam por seus olhos.\n")
+    escreva("Você entende. O castelo era uma prisão de deuses caídos. E agora... você é o guardião.\n")
+    u.aguarde(4000)
+
+    escreva("Você se torna o novo Senhor do Castelo Dourado.\n")
+    escreva("Mas com grande poder... vem a eternidade.\n")
+    escreva("Seu nome será lembrado. Ou temido.\n")
+    u.aguarde(4000)
+    creditos()
+
+
+
+  }
+
+ funcao renascerComoDemonio() {
+    escreva("\nO corpo do Rei Dourado cai inerte no chão, mas algo está errado...\n")
+    u.aguarde(2000)
+    escreva("O castelo escurece. As paredes douradas sangram sombras...\n")
+    u.aguarde(2000)
+    escreva("Uma risada grotesca ecoa: \"HAHAHA... vocês acham que isso acabou?\"\n")
+    u.aguarde(2000)
+    escreva("O corpo do Rei se retorce... asas em chamas negras...\n")
+    u.aguarde(1500)
+    escreva("Ele renasce como DEMÔNIO DEMONÍACO!\n")
+    u.aguarde(2000)
+
+    escreva("\nEscolha seu destino:\n1 - Pedra\n2 - Papel\n3 - Tesoura\n")
+    inteiro escolhaJogador
+    leia(escolhaJogador)
+
+    inteiro escolhaDemonio = u.sorteia(1, 3)
+
+    escreva("\nVocê escolheu: ")
+    se (escolhaJogador == 1) {
+      escreva("Pedra\n")
+    } senao se (escolhaJogador == 2) {
+      escreva("Papel\n")
+    } senao se (escolhaJogador == 3) {
+      escreva("Tesoura\n")
+    } senao {
+      escreva("Opção inválida!\n")
+      retorne
+    }
+
+    escreva("O Demônio escolheu: ")
+    se (escolhaDemonio == 1) {
+      escreva("Pedra\n")
+    } senao se (escolhaDemonio == 2) {
+      escreva("Papel\n")
+    } senao {
+      escreva("Tesoura\n")
+    }
+
+    se (escolhaJogador == escolhaDemonio) {
+      escreva("Empate! O Demônio sorri, sedento por outro round...\n")
+      u.aguarde(1500)
+      renascerComoDemonio()
+    } senao se (
+      (escolhaJogador == 1 e escolhaDemonio == 3) ou
+      (escolhaJogador == 2 e escolhaDemonio == 1) ou
+      (escolhaJogador == 3 e escolhaDemonio == 2)
+    ) {
+      escreva("\nVocê venceu o jogo do destino! O Demônio grita e é selado de volta ao inferno!\n")
+      u.aguarde(5000) 
+      escreva("Você virou o novo rei de Eldoria")
+      creditos()
+      pare
+    } senao {
+      escreva("\nO Demônio te derrota com uma jogada cruel...\n")
+      escreva("Seu corpo se desfaz em cinzas enquanto o riso demoníaco ecoa eternamente...\n")
+      u.aguarde(3000)
+      creditos()
+    }
+  }
+
+
+ funcao batalhonafinaldale(){
+
+    inteiro vidaDoRei = 18
+    inteiro ataqueDoRei = 5
+    inteiro escolhaTurno
+    inteiro escolhaItem
+    inteiro rodada = 1
+
+    enquanto(vidaJogador > 0 e vidaDoRei > 0) {
+        escreva("\n-- Rodada ", rodada, " --\n")
+        escreva("Sua Vida: ", vidaJogador, " | Vida do Rei Dourado: ", vidaDoRei, "\n")
+        escreva("1 - Atacar\n")
+        escreva("2 - Usar item\n")
+        escreva("Escolha sua ação: ")
+        leia(escolhaTurno)
+
+        se(escolhaTurno == 1) {
+            escreva("\nVocê ataca o Rei causando ", ataqueJogador, " de dano!\n")
+            vidaDoRei = vidaDoRei - ataqueJogador
+        } senao se(escolhaTurno == 2) {
+            itensnoinventario()
+            escreva("Qual item deseja usar? ")
+            leia(escolhaItem)
+
+            se(escolhaItem >= 1 e escolhaItem <= 3) {
+                se(quantidadeItens[escolhaItem - 1] > 0) {
+                    se(escolhaItem == 1) {
+                        usarPocaoDeVida()
+                        quantidadeItens[escolhaItem - 1] = quantidadeItens[escolhaItem - 1] - 1
+                    } senao se(escolhaItem == 2) {
+                        usarPocaoEstranha()
+                        quantidadeItens[escolhaItem - 1] = quantidadeItens[escolhaItem - 1] - 1
+                    } senao {
+                        escreva("Esse item não faz nada...\n")
+                    }
+                } senao {
+                    escreva("Você não tem esse item!\n")
+                }
+            } senao {
+                escreva("Item inválido!\n")
+            }
+        } senao {
+            escreva("Você hesitou... e perdeu sua chance de agir!\n")
+        }
+        se(vidaDoRei <= 0) {
+            vidaDoRei = 0
+            escreva("\n Você derrotou o Rei Dourado!\n")
+            escreva("O trono desmorona, e o Castelo começa a tremer...\n")
+            u.aguarde(1000)
+            renascerComoDemonio()
+            aumentarXP()
+            limpa()
+        }
+
+        se(vidaJogador <= 0) {
+            escreva(" Você foi derrotado pelo Rei Dourado...\n")
+            u.aguarde(3000)
+            creditos()
+        }
+
+        se(vidaDoRei > 0) {
+            escreva("\nO Rei contra-ataca causando ", ataqueDoRei, " de dano!\n")
+            vidaJogador = vidaJogador - ataqueDoRei
+        }
+
+        rodada = rodada + 1
+        u.aguarde(2000)
+    }
+
+  }
+
+
+ funcao casteloDourado(){ 
+  inteiro escolhabau
+    escreva("Diante de seus olhos surge o Castelo Dourado, reluzindo sob a luz de um sol que você nem sabia que ainda existia.\n")
+    escreva("Suas torres tocam as nuvens e seus portões são feitos de ouro maciço, cravejados com gemas mágicas.\n")
+    escreva("Este é um lugar sagrado, lar de segredos antigos e de poderosos guardiões.\n")
+    escreva("Você atravessa os corredores dourados, repletos de espelhos mágicos e estátuas antigas.\n")
+    escreva("As portas da Sala do Trono se abrem lentamente...\n")
+    u.aguarde(2500)
+    limpa()
+    escreva("Sentado em um trono de ouro, está o Devastador, um ser milenar, meio humano, meio divino.\n")
+    escreva("\"Apenas os dignos podem desafiar-me e tomar o tesouro escondido neste castelo\", ele diz.\n")
+    escreva("\nPrepare-se, um combate épico está prestes a começar...\n")
+    escreva("Encontrou um suco revitalizador, tomando isto sua vida está mais cheia que nunca!\n")
+    vidaMaxima = 15
+    vidaJogador = 15
+    escreva("Você encontrsa um baú na entrada do castelo\n")
+    escreva("Deseja abrir?\n 1 - sim\n 2 - não \n")
+    leia(escolhabau)
+    se (escolhabau == 1){
+       quantidadeItens[0] = quantidadeItens[0] + 5
+      escreva("Você encontrou 5 Poções de Vida :O")
+    }senao se(escolhabau == 2){
+      escreva("Você resolveu seguir em frente sem mexer")
+    }
+    batalhonafinaldale()
+    
+  }
+
+  funcao derrotouHorror(){
+
+     contadordeMapas++
+
+    escreva("\n Com um último golpe, o Horror do Pântano cai, afundando lentamente na lama...\n")
+    escreva("Entre os restos da criatura, você encontra um **Amuleto das Sombras**, que aumenta sua força.\n")
+    escreva("Você sente uma energia sombria, mas poderosa, correndo pelo seu corpo.\n")
+    escreva("\nUm novo caminho se abre, revelando uma ponte de raízes trançadas.\n")
+    u.aguarde(2500)
+    limpa()
+    escreva("Do outro lado, você vê as luzes de uma antiga fortaleza esquecida.\n")
+    escreva("Seu próximo destino é o Castelo Dourado...\n")
+    escreva("a ponte se destoi no mesmo instante que você a atravessa")
+    escreva("Não há como retornar")
+    u.aguarde(2500)
+    casteloDourado()
+
+  }
+
+  funcao batalhaHorror(){
+
+    inteiro vidaDoHorror = 14
+  inteiro ataqueDoHorror = 4
+  inteiro escolhaTurno
+  inteiro escolhaItem
+  inteiro rodada = 0
+
+  enquanto(vidaJogador > 0 e vidaDoHorror > 0) {
+    escreva("\n-- Rodada ", rodada, " --\n")
+    escreva("Sua Vida: ", vidaJogador, " | Vida do Guardião: ", vidaDoHorror, "\n")
+    escreva("1 - Atacar\n")
+    escreva("2 - Usar item\n")
+    escreva("Escolha sua ação: ")
+    leia(escolhaTurno)
+
+    se(escolhaTurno == 1) {
+      escreva("\nVocê ataca o Horror causando ", ataqueJogador, " de dano!\n")
+      vidaDoHorror = vidaDoHorror - ataqueJogador
+    } senao se(escolhaTurno == 2) {
+      itensnoinventario()
+      escreva("Qual item deseja usar? ")
+      leia(escolhaItem)
+
+      se(escolhaItem >= 1 e escolhaItem <= 3) {
+        se(quantidadeItens[escolhaItem - 1] > 0) {
+          se(escolhaItem == 1) {
+            usarPocaoDeVida()
+            quantidadeItens[escolhaItem - 1] = quantidadeItens[escolhaItem - 1] - 1
+          } senao se(escolhaItem == 2) {
+            usarPocaoEstranha()
+            quantidadeItens[escolhaItem - 1] = quantidadeItens[escolhaItem - 1] - 1
+          } senao {
+            escreva("Esse item não faz nada...\n")
+          }
+        } senao {
+          escreva("Você não tem esse item!\n")
+        }
+      } senao {
+        escreva("Item inválido!\n")
+      }
+    } senao {
+      escreva("Você hesitou... e perdeu sua chance de agir!\n")
+    }
+
+    se(vidaDoHorror <= 0) {
+      vidaDoHorror = 0
+      escreva("\nVocê derrotou o Horror do Pantano\n")
+      escreva("Sua jornada continua...\n")
+      u.aguarde(1000)
+      aumentarXP()
+      derrotouHorror()
+      limpa()
+    }
+
+    se(vidaJogador <= 0) {
+      escreva("Você foi derrotado...\n")
+      u.aguarde(3000)
+      creditos()
+    }
+
+    se(vidaDoHorror > 0) {
+      escreva("O Horror contra-ataca causando ", vidaDoHorror, " de dano!\n")
+      vidaJogador = vidaJogador - vidaDoHorror
+    }
+
+    rodada = rodada + 1
+    u.aguarde(2000)
+  }
+}
+
+
+
+ funcao pantanotenebroso(){
+    escreva("\nVocê entra no Pântano dos Lamentos...\n")
+    escreva("O cheiro de podridão é insuportável e nuvens de insetos cercam seu corpo.\n")
+    escreva("O terreno lamacento torna cada passo mais difícil.\n")
+    escreva("Você percebe sombras se movendo entre as árvores retorcidas...\n")
+    escreva("O silêncio é perturbador, até que um rugido ecoa entre as árvores mortas.\n")
+    escreva("Uma criatura gigantesca surge da névoa verde!\n")
+    escreva("É o **Horror do Pântano**, uma besta ancestral coberta de musgos e ossos!\n")
+    u.aguarde(6000)
+    limpa()
+    batalhaHorror()
+
+
+  }
+
  funcao passouguardiao(){
-  contadordeMapas++
- inteiro opcaoEscolhidaCaminhoPantano
-  escreva("O Guardião Esquecido foi derrotado!")
-  escreva("Um caminho oculto se revela entre as rochas...")
-  escreva("Você avança e entra no Pântano dos Lamentos.")
-  escreva("O terreno é instável e o ar está cheio de veneno.")
-  
-enquanto(  opcaoEscolhidaCaminhoPantano != 0){
+    contadordeMapas++
+    inteiro opcaoEscolhidaCaminhoPantano
+    escreva("O Guardião Esquecido foi derrotado!")
+    escreva("Um caminho oculto se revela entre as rochas...")
+    escreva("Você avança e entra no Pântano dos Lamentos.")
+    escreva("O terreno é instável e o ar está cheio de veneno.")
+    u.aguarde(3000)
+    limpa()
+
+    enquanto(  opcaoEscolhidaCaminhoPantano != 0){
     escreva("\nO que você deseja fazer?\n")
-    escreva("1 - Entrar na Caverna\n")
-    escreva("2 - Voltar ao Vilarejo\n ")
+    escreva("1 - Entrar no Pantano\n")
+    escreva("2 - Voltar a caverna\n ")
     escreva("3 - Ver seus status\n")
     leia( opcaoEscolhidaCaminhoPantano)
 
     se(  opcaoEscolhidaCaminhoPantano == 1){
-      cavernaSombria()
+      pantanotenebroso()
     } senao se ( opcaoEscolhidaCaminhoPantano == 2){
-      voltouNoMapa()
+      voltouNoMapa3()
+      passouguardiao()
     }senao se( opcaoEscolhidaCaminhoPantano == 3){
       mostraAtributos()
       u.aguarde(3000)
@@ -59,11 +362,12 @@ enquanto(  opcaoEscolhidaCaminhoPantano != 0){
   funcao derrotouGuardiao(){
      escreva("\nVocê derrotou o Guardião Esquecido!\n")
         escreva("A criatura solta um urro final antes de desmanchar em cinzas negras...\n")
-        u.aguarde(1000)
+        u.aguarde(2000)
         escreva("Entre os escombros da caverna, uma escadaria de pedra surge, revelando uma passagem secreta.\n")
-        u.aguarde(1000)
+        u.aguarde(2000)
+        limpa()
         escreva("Você desce lentamente... cada degrau ecoa como um presságio.\n")
-        u.aguarde(1000)
+        u.aguarde(2000)
         passouguardiao()
         aumentarXP()
         limpa()
@@ -80,7 +384,7 @@ enquanto(  opcaoEscolhidaCaminhoPantano != 0){
 escreva("O ar é pesado e úmido, e cada passo ecoa como se algo o observasse das sombras.\n")
 escreva("Formações rochosas grotescas moldam o caminho, enquanto murmúrios ancestrais sussurram segredos esquecidos.\n")
 u.aguarde(3000)
-escreva("Subitamente, das profundezas da escuridão, uma criatura emerge — olhos brilhando em vermelho e corpo formado por sombras e ossos.\n")
+escreva("Subitamente, das profundezas da escuridão, uma criatura emerge — olhos brilhando em vermelho\n e corpo formado por sombras e ossos.\n")
 escreva("Um **Guardião Esquecido** se interpõe em seu caminho. Você terá que lutar para avançar.\n")
 batalhacontraGuardiao()
 
@@ -102,7 +406,7 @@ funcao batalhacontraGuardiao(){
     leia(escolhaTurno)
 
     se(escolhaTurno == 1) {
-      escreva("\nVocê ataca a Alma causando ", ataqueJogador, " de dano!\n")
+      escreva("\nVocê ataca O Guardiao causando ", ataqueJogador, " de dano!\n")
       vidaDoGuardiao = vidaDoGuardiao - ataqueJogador
     } senao se(escolhaTurno == 2) {
       itensnoinventario()
@@ -135,8 +439,9 @@ funcao batalhacontraGuardiao(){
       escreva("\nVocê derrotou o Guardião\n")
       escreva("Sua jornada continua...\n")
       u.aguarde(1000)
-      derrotouGuardiao()
       aumentarXP()
+      derrotouGuardiao()
+
       limpa()
     }
 
@@ -179,8 +484,8 @@ funcao batalhacontraGuardiao(){
     se(  opcaoEscolhidaCaminhoVilarejo == 1){
       cavernaSombria()
     } senao se ( opcaoEscolhidaCaminhoVilarejo == 2){
-      voltouNoMapa()
-      continuarPrimeiroWin()
+      voltouNoMapa2()
+      ganhoudaAlma()
     }senao se( opcaoEscolhidaCaminhoVilarejo == 3){
       mostraAtributos()
       u.aguarde(3000)
@@ -302,17 +607,236 @@ funcao batalhacontraGuardiao(){
     escreva("Você adentra o vilarejo. O som de correntes e gemidos ecoa entre as casas em ruínas...\n")
     escreva("O céu escurece enquanto corvos sobrevoam em círculos acima de você...\n")
     escreva("O som do vento entre as árvores parece sussurrar palavras esquecidas há séculos.\n")
+    u.aguarde(2000)
+    limpa()
     escreva("Você sente um arrepio percorrer sua espinha, como se algo antigo estivesse te observando.\n")
     escreva("Das sombras da névoa, uma alma perdida se materializa diante de você...\n")
     escreva("Ela emana dor e raiva — não há mais humanidade em seu olhar vazio.\n")
     escreva("Prepare-se... você terá que batalhar contra a alma perdida!\n")
+    u.aguarde(2000)
     batalhacontraAlma()
     ganhoudaAlma()
 
 
   }
 
- funcao voltouNoMapa() {
+  funcao voltouNoMapa4() {
+  escreva("Você resolveu retornar e encontrou um Goblin!\n")
+  escreva("Será obrigatório batalhar com ele para não ser saqueado!\n\n")
+
+  inteiro vidaDoGoblin = 7
+  inteiro ataqueDoGoblin = 2
+  inteiro escolhaTurno, escolhaItem
+  inteiro rodada = 1
+
+  enquanto (vidaJogador > 0 e vidaDoGoblin > 0) {
+    escreva("\n-- Rodada ", rodada, " --\n")
+    escreva("Sua Vida: ", vidaJogador, " | Vida do Goblin: ", vidaDoGoblin, "\n")
+    escreva("1 - Atacar\n")
+    escreva("2 - Usar item\n")
+    escreva("Escolha sua ação: ")
+    leia(escolhaTurno)
+
+    se (escolhaTurno == 1) {
+      escreva("\nVocê ataca o Goblin causando ", ataqueJogador, " de dano!\n")
+      vidaDoGoblin = vidaDoGoblin - ataqueJogador
+    } senao se (escolhaTurno == 2) {
+      itensnoinventario()
+      escreva("Qual item deseja usar? ")
+      leia(escolhaItem)
+
+      se (escolhaItem >= 1 e escolhaItem <= 3) {
+        se (quantidadeItens[escolhaItem - 1] > 0) {
+          se (escolhaItem == 1) {
+            usarPocaoDeVida()
+          } senao se (escolhaItem == 2) {
+            usarPocaoEstranha()
+          } senao {
+            escreva("Esse item não faz nada...\n")
+          }
+          quantidadeItens[escolhaItem - 1] = quantidadeItens[escolhaItem - 1] - 1
+        } senao {
+          escreva("Você não tem esse item!\n")
+        }
+      } senao {
+        escreva("Item inválido!\n")
+      }
+    } senao {
+      escreva("Você hesitou... e perdeu sua chance de agir!\n")
+    }
+
+    se (vidaDoGoblin <= 0) {
+      escreva("\nVocê derrotou o Goblin!\n")
+      escreva("Sua jornada continua...\n")
+      u.aguarde(1000)
+      aumentarxpbatalhagoblin()
+      limpa()
+      continuarPrimeiroWin()
+      pare
+    }
+
+   
+    se (vidaJogador <= 0) {
+      escreva("Você foi derrotado...\n")
+      u.aguarde(3000)
+      creditos()
+      pare
+    }
+
+    escreva("O Goblin contra-ataca causando ", ataqueDoGoblin, " de dano!\n")
+    vidaJogador = vidaJogador - ataqueDoGoblin
+
+    rodada = rodada + 1
+    u.aguarde(2000)
+  }
+}
+
+
+  funcao voltouNoMapa3() {
+  escreva("Você resolveu retornar e encontrou um Goblin!\n")
+  escreva("Será obrigatório batalhar com ele para não ser saqueado!\n\n")
+
+  inteiro vidaDoGoblin = 7
+  inteiro ataqueDoGoblin = 2
+  inteiro escolhaTurno, escolhaItem
+  inteiro rodada = 1
+
+  enquanto (vidaJogador > 0 e vidaDoGoblin > 0) {
+    escreva("\n-- Rodada ", rodada, " --\n")
+    escreva("Sua Vida: ", vidaJogador, " | Vida do Goblin: ", vidaDoGoblin, "\n")
+    escreva("1 - Atacar\n")
+    escreva("2 - Usar item\n")
+    escreva("Escolha sua ação: ")
+    leia(escolhaTurno)
+
+    se (escolhaTurno == 1) {
+      escreva("\nVocê ataca o Goblin causando ", ataqueJogador, " de dano!\n")
+      vidaDoGoblin = vidaDoGoblin - ataqueJogador
+    } senao se (escolhaTurno == 2) {
+      itensnoinventario()
+      escreva("Qual item deseja usar? ")
+      leia(escolhaItem)
+
+      se (escolhaItem >= 1 e escolhaItem <= 3) {
+        se (quantidadeItens[escolhaItem - 1] > 0) {
+          se (escolhaItem == 1) {
+            usarPocaoDeVida()
+          } senao se (escolhaItem == 2) {
+            usarPocaoEstranha()
+          } senao {
+            escreva("Esse item não faz nada...\n")
+          }
+          quantidadeItens[escolhaItem - 1] = quantidadeItens[escolhaItem - 1] - 1
+        } senao {
+          escreva("Você não tem esse item!\n")
+        }
+      } senao {
+        escreva("Item inválido!\n")
+      }
+    } senao {
+      escreva("Você hesitou... e perdeu sua chance de agir!\n")
+    }
+
+    se (vidaDoGoblin <= 0) {
+      escreva("\nVocê derrotou o Goblin!\n")
+      escreva("Sua jornada continua...\n")
+      u.aguarde(1000)
+      aumentarxpbatalhagoblin()
+      limpa()
+      passouguardiao()
+      pare
+    }
+
+   
+    se (vidaJogador <= 0) {
+      escreva("Você foi derrotado...\n")
+      u.aguarde(3000)
+      creditos()
+      pare
+    }
+
+    escreva("O Goblin contra-ataca causando ", ataqueDoGoblin, " de dano!\n")
+    vidaJogador = vidaJogador - ataqueDoGoblin
+
+    rodada = rodada + 1
+    u.aguarde(2000)
+  }
+}
+
+
+  funcao voltouNoMapa2() {
+  escreva("Você resolveu retornar e encontrou um Goblin!\n")
+  escreva("Será obrigatório batalhar com ele para não ser saqueado!\n\n")
+
+  inteiro vidaDoGoblin = 7
+  inteiro ataqueDoGoblin = 2
+  inteiro escolhaTurno, escolhaItem
+  inteiro rodada = 1
+
+  enquanto (vidaJogador > 0 e vidaDoGoblin > 0) {
+    escreva("\n-- Rodada ", rodada, " --\n")
+    escreva("Sua Vida: ", vidaJogador, " | Vida do Goblin: ", vidaDoGoblin, "\n")
+    escreva("1 - Atacar\n")
+    escreva("2 - Usar item\n")
+    escreva("Escolha sua ação: ")
+    leia(escolhaTurno)
+
+    se (escolhaTurno == 1) {
+      escreva("\nVocê ataca o Goblin causando ", ataqueJogador, " de dano!\n")
+      vidaDoGoblin = vidaDoGoblin - ataqueJogador
+    } senao se (escolhaTurno == 2) {
+      itensnoinventario()
+      escreva("Qual item deseja usar? ")
+      leia(escolhaItem)
+
+      se (escolhaItem >= 1 e escolhaItem <= 3) {
+        se (quantidadeItens[escolhaItem - 1] > 0) {
+          se (escolhaItem == 1) {
+            usarPocaoDeVida()
+          } senao se (escolhaItem == 2) {
+            usarPocaoEstranha()
+          } senao {
+            escreva("Esse item não faz nada...\n")
+          }
+          quantidadeItens[escolhaItem - 1] = quantidadeItens[escolhaItem - 1] - 1
+        } senao {
+          escreva("Você não tem esse item!\n")
+        }
+      } senao {
+        escreva("Item inválido!\n")
+      }
+    } senao {
+      escreva("Você hesitou... e perdeu sua chance de agir!\n")
+    }
+
+    se (vidaDoGoblin <= 0) {
+      escreva("\nVocê derrotou o Goblin!\n")
+      escreva("Sua jornada continua...\n")
+      u.aguarde(1000)
+      aumentarxpbatalhagoblin()
+      limpa()
+      ganhoudaAlma()
+      pare
+    }
+
+   
+    se (vidaJogador <= 0) {
+      escreva("Você foi derrotado...\n")
+      u.aguarde(3000)
+      creditos()
+      pare
+    }
+
+    escreva("O Goblin contra-ataca causando ", ataqueDoGoblin, " de dano!\n")
+    vidaJogador = vidaJogador - ataqueDoGoblin
+
+    rodada = rodada + 1
+    u.aguarde(2000)
+  }
+}
+
+
+ funcao voltouNoMapa1() {
   escreva("Você resolveu retornar e encontrou um Goblin!\n")
   escreva("Será obrigatório batalhar com ele para não ser saqueado!\n\n")
 
@@ -396,6 +920,7 @@ funcao batalhacontraGuardiao(){
      limpa()
     escreva("Logo a frente você encontra a sua frente um Vilarejo Abandonado\n")
     escreva("De longe você escuta grito de almas perdidas\n")
+    u.aguarde(4000)
     enquanto(opcaoEscolhidaCaminhoFloresta != 0){
     escreva("\nO que você deseja fazer?\n")
     escreva("1 - Entrar no Vilarejo\n")
@@ -406,7 +931,7 @@ funcao batalhacontraGuardiao(){
     se(opcaoEscolhidaCaminhoFloresta == 1){
       vilarejoAbandonado()
     } senao se (opcaoEscolhidaCaminhoFloresta == 2){
-      voltouNoMapa()
+      voltouNoMapa1()
       continuarPrimeiroWin()
     }senao se(opcaoEscolhidaCaminhoFloresta == 3){
       mostraAtributos()
@@ -482,6 +1007,7 @@ funcao batalhacontraGuardiao(){
     escreva("\nEnquanto você caminha pela floresta...\n")
     escreva("\nAs árvores se fecham em formato de arena, no meio da escuridão você vê 2 olhos vermelhos como sangue.\n")
     escreva("\nVocê encontra Árvore do Lamento, não há para onde correr sua única escolha é batalhar!\n")
+    u.aguarde(6000)
    enquanto(vidaJogador > 0 e opcaoEsolhidaNaBatalha1 != 99) {
     escreva("O que você você deseja fazer agora ?\n")
     escreva("1- Atacar\n")
@@ -620,47 +1146,48 @@ funcao batalhacontraGuardiao(){
     escreva("\n --------------------\n")
     escreva("\n  A jornada do Herói \n")
     escreva("\n --------------------\n")
-    u.aguarde(1)
+    u.aguarde(2500)
     limpa()
 
     escreva("\n Há muito tempo, no Reino de Eldoria, a paz era mantida pela mística Pedra da Luz, protegida pelos Anciãos do Castelo Dourado.\n")
-    u.aguarde(1)
+    u.aguarde(2500)
     escreva("\nUm dia, uma força sombria conhecida como O Devastador invadiu o reino, roubando a relíquia sagrada e mergulhando as terras em trevas e caos.\n")
     escreva("Vilas foram saqueadas, florestas corrompidas, e criaturas sombrias começaram a vagar pelas regiões.\n")
-    u.aguarde(1)
+    u.aguarde(2500)
     escreva("\nDiante da crise, uma antiga profecia se cumpriu: um herói escolhido surgirá das sombras para restaurar a luz. Você é esse herói.\n")
-    u.aguarde(1)
+    u.aguarde(2500)
     escreva("\nSua missão é atravessar cinco regiões dominadas pelo mal, enfrentando inimigos, evoluindo suas habilidades e se preparando para confrontar O Devastador no Castelo Dourado.\n")
     escreva(" A jornada será repleta de perigos, escolhas e batalhas. Seu destino e o de Eldoria estão entrelaçados.")
-    u.aguarde(1)
+    u.aguarde(2500)
     limpa()
 
     escreva("\n--Bem Vindo ao RPG A jornada do Herói--\n")
-    u.aguarde(1)
+    u.aguarde(2500)
     escreva("Primeiramente digite o nome que seu Herói terá: ")
     leia(nomedoHeroi)
     escreva("Olá ", nomedoHeroi, "\n")
     escreva("\n no reino de Eldoria, é comum que as pessoas escolham trilhar o caminho de guerreiro, mago ou arqueiro, moldando seu destino conforme essas lendárias vocações.\n")
-    u.aguarde(1)
+    u.aguarde(2500)
     limpa()
 
     escreva("\n 1. Guerreiro")
     mostrardesenhoguerreiro()
-    u.aguarde(1000)
+    u.aguarde(4500)
     limpa()
 
     escreva("\n 2. Mago\n")
     mostrardesenhomago()
-    u.aguarde(1000)
+    u.aguarde(4500)
     limpa()
 
     escreva("\n 3. Arqueiro\n")
     escreva("\nespecialista em combate à distância, ágil e preciso, domina arcos e táticas de emboscada.\n")
-    u.aguarde(1000)
+    u.aguarde(4500)
     limpa()
 
     escreva("\n 4 Aldeão\n")
     mostrardesenhoaldeao()
+    u.aguarde(4500)
     limpa()
     
 
@@ -672,7 +1199,7 @@ funcao batalhacontraGuardiao(){
         escreva("\nBem vindo Guerreiro ", nomedoHeroi, "\n")
         classescolhidaMostrar = "Guerreiro"
         vidaJogador = 10
-        ataqueJogador = 3
+        ataqueJogador = 4
       } senao se(classeEscolhida == 2) {
         escreva("\nBem vindo Mago " , nomedoHeroi, "\n")
         classescolhidaMostrar = "Mago"
